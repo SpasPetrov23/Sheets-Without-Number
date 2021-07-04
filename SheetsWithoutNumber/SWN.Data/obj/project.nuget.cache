@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0GaC69sHWexqZG1wXhfd6JUqvlzk+5RFNi4ltMbDwmt0iYTk0SHzGq/vHU0DCp6F39eSwEnQyHbgFf3vOTFQ0g==",
+  "dgSpecHash": "ComZ6sS5uoxgjAAKuYu1F8RLfM/F1mroTizSDpMTFDuRdCHo+0s5kpppRV4hfpSbgqU71oN+LxxEI5dr+MTDwQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj",
+  "projectFilePath": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Spas\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Spas\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

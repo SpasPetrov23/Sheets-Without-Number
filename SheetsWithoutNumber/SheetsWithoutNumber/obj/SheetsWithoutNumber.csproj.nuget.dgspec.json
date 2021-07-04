@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber.csproj": {}
+    "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber.csproj": {
+    "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber.csproj",
+        "projectUniqueName": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber.csproj",
         "projectName": "SheetsWithoutNumber",
-        "projectPath": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber.csproj",
+        "projectPath": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber.csproj",
         "packagesPath": "C:\\Users\\Spas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SheetsWithoutNumber\\obj\\",
+        "outputPath": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -31,8 +31,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj": {
-                "projectPath": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj"
+              "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj": {
+                "projectPath": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj"
               }
             }
           }
@@ -74,14 +74,14 @@
         }
       }
     },
-    "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj": {
+    "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj",
         "projectName": "SWN.Data",
-        "projectPath": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj",
+        "projectPath": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj",
         "packagesPath": "C:\\Users\\Spas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SWN.Data\\obj\\",
+        "outputPath": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SWN.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
