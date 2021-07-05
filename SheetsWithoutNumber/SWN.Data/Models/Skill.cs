@@ -6,25 +6,23 @@
 
     using static DataConstants;
 
-    public class User
+    public class Skill
     {
         [Required]
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(UsernameMaxLength)]
-        public string Username { get; set; }
+        [MaxLength(SkillNameMaxLength)]
+        public string Name { get; set; }
+
+        public int Level { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public string Description { get; set; }
 
-        [Required]
-        public string Email { get; set; }
-
-        public DateTime JoinDate { get; set; }
-
-        public ICollection<Session> Sessions { get; init; } = new HashSet<Session>();
+        public bool IsPsychic { get; set; }
 
         public ICollection<Character> Characters { get; init; } = new HashSet<Character>();
+
     }
 }

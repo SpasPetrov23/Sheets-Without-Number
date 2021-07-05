@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H/aYo/4bs8RalzJsr0QXCxUxIK/3qL6IsEkPzh59oPh23ovMdIcrk8OC8a2KORq5mUQNhxP1vYKfi+p5GFpFTQ==",
+  "dgSpecHash": "CD+ysR6utEpPoP0AafKHCbpnwk1Dt1qU+H8Hqeij2h9WBi65AZQ0xjH/wZgywuZpNexavNbRzaIncWyxtRbnAQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber.csproj",
+  "projectFilePath": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber\\SheetsWithoutNumber.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Spas\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.6\\microsoft.aspnetcore.mvc.razor.extensions.5.0.6.nupkg.sha512",
     "C:\\Users\\Spas\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.6\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.6.nupkg.sha512",

@@ -29,6 +29,6 @@
         [MaxLength(GameDescriptionMaxLength)]
         public string Description { get; set; }
 
-        public ICollection<User> Users { get; init; } = new HashSet<User>();
+        public ICollection<Session> Sessions { get; init; } = new HashSet<Session>();
     }
 }

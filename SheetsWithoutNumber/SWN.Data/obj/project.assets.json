@@ -7284,11 +7284,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj",
+      "projectUniqueName": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj",
       "projectName": "SWN.Data",
-      "projectPath": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj",
+      "projectPath": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SWN.Data\\SWN.Data.csproj",
       "packagesPath": "C:\\Users\\Spas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Spas\\Software_University\\Project\\SheetsWithoutNumber\\SWN.Data\\obj\\",
+      "outputPath": "C:\\Users\\Spas\\SheetsWithoutNumber\\SheetsWithoutNumber\\SWN.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
