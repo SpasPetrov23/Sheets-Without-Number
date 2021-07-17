@@ -8,9 +8,9 @@
 
     public class UsersController : Controller
     {
-        private readonly ApplicationDbContext data;
+        private readonly SWNDbContext data;
 
-        public UsersController(ApplicationDbContext data)
+        public UsersController(SWNDbContext data)
         {
             this.data = data;
         }

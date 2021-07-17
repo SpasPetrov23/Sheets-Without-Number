@@ -1,6 +1,7 @@
 ﻿namespace SheetsWithoutNumber.Models.Characters
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static SWN.Data.DataConstants;
@@ -8,27 +9,31 @@
     public class CharacterCreateModel
     {
         [Required]
-        [MaxLength(SheetCharacterNameMaxLength)]
-        public string Name { get; set; }
+        [MaxLength(CharacterNameMaxLength)]
+        public string Name { get; init; }
 
-        public int Strength { get; set; }
+        public int Strength { get; init; }
 
-        public int Dexterity { get; set; }
+        public int Dexterity { get; init; }
 
-        public int Constitution { get; set; }
+        public int Constitution { get; init; }
 
-        public int Charisma { get; set; }
+        public int Charisma { get; init; }
 
-        public int Wisdom { get; set; }
+        public int Wisdom { get; init; }
 
-        public int Intelligence { get; set; }
-
-        [Required]
-        [MaxLength(SheetSpeciesMaxLength)]
-        public string Species { get; set; }
+        public int Intelligence { get; init; }
 
         [Required]
-        [MaxLength(SheetHomeworldMaxLength)]
-        public string Homeworld { get; set; }
+        [MaxLength(CharacterSpeciesMaxLength)]
+        public string Species { get; init; }
+
+        [Required]
+        [MaxLength(CharacterHomeworldMaxLength)]
+        public string Homeworld { get; init; }
+
+        public string ClassId { get; init; }
+
+        public IEnumerable<CharacterClassViewModel> Classes { get; init; }
     }
 }

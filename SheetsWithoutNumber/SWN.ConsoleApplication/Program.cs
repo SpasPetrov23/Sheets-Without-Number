@@ -8,7 +8,7 @@
     {
         static void Main(string[] args)
         {
-            var db = new ApplicationDbContext();
+            var db = new SWNDbContext();
             db.Database.Migrate();
         }
     }

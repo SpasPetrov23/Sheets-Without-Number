@@ -9,9 +9,9 @@ using SWN.Data;
 
 namespace SWN.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210705174413_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(SWNDbContext))]
+    [Migration("20210717130730_ErrorFixes")]
+    partial class ErrorFixes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -202,8 +202,8 @@ namespace SWN.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
 

@@ -12,7 +12,7 @@
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(FocusNameMaxLength)]
+        [MaxLength(ClassNameMaxLength)]
         public string Name { get; set; }
 
         [Required]

@@ -12,7 +12,7 @@
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(SheetCharacterNameMaxLength)]
+        [MaxLength(CharacterNameMaxLength)]
         public string Name { get; set; }
 
         public int Strength { get; set; }
@@ -28,11 +28,11 @@
         public int Intelligence { get; set; }
 
         [Required]
-        [MaxLength(SheetSpeciesMaxLength)]
+        [MaxLength(CharacterSpeciesMaxLength)]
         public string Species { get; set; }
 
         [Required]
-        [MaxLength(SheetHomeworldMaxLength)]
+        [MaxLength(CharacterHomeworldMaxLength)]
         public string Homeworld { get; set; }
 
         public int HitPoints { get; set; }
@@ -62,7 +62,7 @@
         public int StowedEncumbrance { get; set; }
 
         [Required]
-        [MaxLength(SheetEncumbranceMaxLength)]
+        [MaxLength(CharacterEncumbranceMaxLength)]
         public string Encumbrance { get; set; }
 
         public int Credits { get; set; }

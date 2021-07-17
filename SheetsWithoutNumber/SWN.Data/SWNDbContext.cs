@@ -3,13 +3,13 @@
     using Microsoft.EntityFrameworkCore;
     using SWN.Data.Models;
 
-    public class ApplicationDbContext : DbContext
+    public class SWNDbContext : DbContext
     {
-        public ApplicationDbContext()
+        public SWNDbContext()
         {
         }
 
-        public ApplicationDbContext(DbContextOptions options)
+        public SWNDbContext(DbContextOptions options)
             :base(options)
         {
         }

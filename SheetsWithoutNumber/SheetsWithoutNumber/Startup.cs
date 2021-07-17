@@ -2,16 +2,12 @@ namespace SheetsWithoutNumber
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.HttpsPolicy;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using SheetsWithoutNumber.Infrastructure;
     using SWN.Data;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class Startup
     {
@@ -24,6 +20,8 @@ namespace SheetsWithoutNumber
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<SWNDbContext>();
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services
@@ -34,14 +32,15 @@ namespace SheetsWithoutNumber
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
                 })
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<SWNDbContext>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
-            services.AddDbContext<ApplicationDbContext>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.PrepareDatabase();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
