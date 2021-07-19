@@ -51,8 +51,10 @@ namespace SWN.Data.Migrations
 
             modelBuilder.Entity("SWN.Data.Models.Background", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -81,7 +83,10 @@ namespace SWN.Data.Migrations
 
                     b.Property<string>("BackgroundId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BackgroundId1")
+                        .HasColumnType("int");
 
                     b.Property<string>("CharacterImage")
                         .HasColumnType("nvarchar(max)");
@@ -91,7 +96,10 @@ namespace SWN.Data.Migrations
 
                     b.Property<string>("ClassId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ClassId1")
+                        .HasColumnType("int");
 
                     b.Property<int>("Constitution")
                         .HasColumnType("int");
@@ -176,9 +184,9 @@ namespace SWN.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BackgroundId");
+                    b.HasIndex("BackgroundId1");
 
-                    b.HasIndex("ClassId");
+                    b.HasIndex("ClassId1");
 
                     b.HasIndex("UserId");
 
@@ -187,8 +195,10 @@ namespace SWN.Data.Migrations
 
             modelBuilder.Entity("SWN.Data.Models.Class", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Ability")
                         .IsRequired()
@@ -386,15 +396,11 @@ namespace SWN.Data.Migrations
                 {
                     b.HasOne("SWN.Data.Models.Background", "Background")
                         .WithMany("Characters")
-                        .HasForeignKey("BackgroundId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BackgroundId1");
 
                     b.HasOne("SWN.Data.Models.Class", "Class")
                         .WithMany("Characters")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClassId1");
 
                     b.HasOne("SWN.Data.Models.User", "User")
                         .WithMany("Characters")

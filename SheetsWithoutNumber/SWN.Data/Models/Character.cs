@@ -85,12 +85,12 @@
         public ICollection<Skill> Skills { get; init; } = new HashSet<Skill>();
 
         [Required]
-        public string ClassId { get; set; }
+        public int ClassId { get; set; }
 
         public Class Class { get; set; }
 
         [Required]
-        public string BackgroundId { get; set; }
+        public int BackgroundId { get; set; }
 
         public Background Background { get; set; }
 

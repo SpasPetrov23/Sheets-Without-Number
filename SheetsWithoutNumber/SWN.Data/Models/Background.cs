@@ -3,13 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     using static DataConstants;
 
     public class Background
     {
         [Required]
-        public string Id { get; init; } = Guid.NewGuid().ToString();
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(BackgroundNameMaxLength)]

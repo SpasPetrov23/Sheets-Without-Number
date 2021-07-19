@@ -11,7 +11,8 @@ namespace SWN.Data.Migrations
                 name: "Backgrounds",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -24,8 +25,9 @@ namespace SWN.Data.Migrations
                 name: "Classes",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     Ability = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -141,24 +143,26 @@ namespace SWN.Data.Migrations
                     Goal = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CharacterImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ClassId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    BackgroundId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    ClassId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ClassId1 = table.Column<int>(type: "int", nullable: true),
+                    BackgroundId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BackgroundId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Characters", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Characters_Backgrounds_BackgroundId",
-                        column: x => x.BackgroundId,
+                        name: "FK_Characters_Backgrounds_BackgroundId1",
+                        column: x => x.BackgroundId1,
                         principalTable: "Backgrounds",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Characters_Classes_ClassId",
-                        column: x => x.ClassId,
+                        name: "FK_Characters_Classes_ClassId1",
+                        column: x => x.ClassId1,
                         principalTable: "Classes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Characters_Users_UserId",
                         column: x => x.UserId,
@@ -252,14 +256,14 @@ namespace SWN.Data.Migrations
                 column: "FociId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Characters_BackgroundId",
+                name: "IX_Characters_BackgroundId1",
                 table: "Characters",
-                column: "BackgroundId");
+                column: "BackgroundId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Characters_ClassId",
+                name: "IX_Characters_ClassId1",
                 table: "Characters",
-                column: "ClassId");
+                column: "ClassId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Characters_UserId",

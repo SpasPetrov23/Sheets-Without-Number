@@ -2,10 +2,11 @@
 {
     using System;
 
-    public class CharacterClassViewModel
+    public class CharacterBackgroundView
     {
         public int Id { get; init; }
 
         public string Name { get; init; }
+
     }
 }
