@@ -35,6 +35,10 @@
         [MaxLength(CharacterHomeworldMaxLength)]
         public string Homeworld { get; set; }
 
+        public int Level { get; set; }
+
+        public int Experience { get; set; }
+
         public int HitPoints { get; set; }
 
         public int MaxHitPoints { get; set; }

@@ -4657,9 +4657,11 @@ input[type="button"].btn-block {
 }
 
 .card-img-top {
-  width: 100%;
-  border-top-left-radius: calc(0.25rem - 1px);
-  border-top-right-radius: calc(0.25rem - 1px);
+    width: 100%;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+    max-height: 5vh; /*not want to take all vertical space*/
+    object-fit: contain; /*show all image, autosized, no cut, in available space*/
 }
 
 .card-img-bottom {

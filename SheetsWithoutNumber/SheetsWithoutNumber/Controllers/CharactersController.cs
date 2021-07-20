@@ -17,7 +17,24 @@
             this.data = data;
         }
 
-        public IActionResult All() => View();
+        public IActionResult All()
+        {
+            var characters = data
+                .Characters
+                .Select(c => new CharacterPreviewModel
+                {
+                    Name = c.Name,
+                    Class = c.Class.Name,
+                    Background = c.Background.Name,
+                    Level = c.Level,
+                    Homeworld = c.Homeworld,
+                    Species = c.Species,
+                    CharacterImage = c.CharacterImage
+                })
+                .ToList();
+
+            return View(characters);
+        }
 
         public IActionResult Create() => View(new CharacterCreateModel
         {
@@ -46,6 +63,18 @@
                 return View(characterModel);
             }
 
+            if (!data.Users.Any())
+            {
+                data.Users.Add(new User
+                {
+                    Id = "Test",
+                    Username = "SpasMaster",
+                    Password = "TestPass",
+                    Email = "spaspetrov23@gmail.com",
+                    JoinDate = DateTime.Now,
+                });
+            }
+
             var character = new Character
             {
                 Name = characterModel.Name,
@@ -59,8 +88,31 @@
                 Intelligence = characterModel.Intelligence,
                 Charisma = characterModel.Charisma,
                 Homeworld = characterModel.Homeworld,
-                Species = characterModel.Species
+                Species = characterModel.Species,
+                Level = 1,
+                Experience = 0,
+                HitPoints = 0,
+                MaxHitPoints = 0,
+                ArmorClass = 10,
+                AttackBonus = 0,
+                Credits = 0,
+                Effort = 0,
+                MaxEffort = 0,
+                Encumbrance = string.Empty,
+                Goal = string.Empty,
+                Initiative = 0,
+                Notes = string.Empty,
+                Speed = 0,
+                ReadiedEncumbrance = 0,
+                StowedEncumbrance = 0,
+                SystemStrain = 0,
+                MaxSystemStrain = 0,
+                UnspentSkillPoints = 0,
+                UserId = "Test"
             };
+
+            data.Characters.Add(character);
+            data.SaveChanges();
 
             return RedirectToAction("All", "Characters");
         }
@@ -68,7 +120,6 @@
         private IEnumerable<CharacterClassViewModel> GetCharacterClasses()
             => this.data
             .Classes
-            .OrderBy(b => b.Name)
             .Select(c => new CharacterClassViewModel
             {
                 Id = c.Id,

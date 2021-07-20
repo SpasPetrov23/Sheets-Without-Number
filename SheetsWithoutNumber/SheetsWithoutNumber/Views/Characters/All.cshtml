@@ -1,11 +1,22 @@
-﻿<div class="row">
-    <div class="card" style="width:300px">
-        <img class="card-img-top" src="https://comicvine.gamespot.com/a/uploads/scale_small/0/3848/5333749-captainmal.jpg" alt="Card image">
-        <div class="card-body">
-            <h4 class="card-title">John Doe</h4>
-            <p class="card-text">Some example text.</p>
-            <a href="#" class="btn btn-primary">View</a>
-        </div>
+﻿@model ICollection<CharacterPreviewModel>
+
+<div class="row">
+    <div class="card-deck">
+        @foreach (var classPreview in Model)
+        {
+            <div class="card" style="width: 18rem">
+                <img class="card-img-top" src="@classPreview.CharacterImage" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">@classPreview.Name</h4> <h5>[Level @classPreview.Level @classPreview.Background @classPreview.Class]</h5>
+                    <p class="card-text">
+                        <b>Homeworld:</b> @classPreview.Homeworld
+                        <div></div>
+                        <b>Species:</b> @classPreview.Species
+                    </p>
+                    <a href="#" class="btn btn-primary">View</a>
+                </div>
+            </div>
+        }
     </div>
 </div>
 
