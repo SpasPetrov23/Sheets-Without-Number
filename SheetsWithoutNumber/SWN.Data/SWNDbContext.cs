@@ -47,17 +47,20 @@
             modelBuilder.Entity<Session>()
                 .HasOne<User>(s => s.User)
                 .WithMany(u => u.Sessions)
-                .HasForeignKey(s => s.UserId);
+                .HasForeignKey(s => s.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Session>()
                 .HasOne<Game>(s => s.Game)
                 .WithMany(g => g.Sessions)
-                .HasForeignKey(s => s.GameId);
+                .HasForeignKey(s => s.GameId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Session>()
                 .HasOne<UserRole>(s => s.UserRole)
                 .WithMany(ur => ur.Sessions)
-                .HasForeignKey(s => s.UserRoleId);
+                .HasForeignKey(s => s.UserRoleId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants;
+    using static DataConstants.Character;
 
     public class Character
     {
@@ -12,7 +12,7 @@
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(CharacterNameMaxLength)]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
         public int Strength { get; set; }
@@ -28,11 +28,11 @@
         public int Intelligence { get; set; }
 
         [Required]
-        [MaxLength(CharacterSpeciesMaxLength)]
+        [MaxLength(SpeciesMaxLength)]
         public string Species { get; set; }
 
         [Required]
-        [MaxLength(CharacterHomeworldMaxLength)]
+        [MaxLength(HomeworldMaxLength)]
         public string Homeworld { get; set; }
 
         public int Level { get; set; }
@@ -66,7 +66,7 @@
         public int StowedEncumbrance { get; set; }
 
         [Required]
-        [MaxLength(CharacterEncumbranceMaxLength)]
+        [MaxLength(EncumbranceMaxLength)]
         public string Encumbrance { get; set; }
 
         public int Credits { get; set; }

@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants;
+    using static DataConstants.Item;
 
     public class RangedWeapon
     {
@@ -11,11 +11,11 @@
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(ItemNameMaxLength)]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(ItemDamageMaxLength)]
+        [MaxLength(DamageMaxLength)]
         public string Damage { get; set; }
 
         public int NormalRange { get; set; }
@@ -27,7 +27,7 @@
         public bool IsHeavy { get; set; }
 
         [Required]
-        [MaxLength(ItemAttributeMaxLength)]
+        [MaxLength(AttributeMaxLength)]
         public string Attribute { get; set; }
 
         public int Cost { get; set; }

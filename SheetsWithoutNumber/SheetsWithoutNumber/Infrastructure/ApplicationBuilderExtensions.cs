@@ -8,7 +8,8 @@
     using System;
     using System.Linq;
 
-    using static SWN.Data.DataConstants;
+    using static SWN.Data.DataConstants.ClassData;
+    using static SWN.Data.DataConstants.Background;
 
     public static class ApplicationBuilderExtensions
     {
@@ -18,7 +19,7 @@
 
             var data = scopedServices.ServiceProvider.GetService<SWNDbContext>();
 
-            //data.Database.EnsureDeleted();
+            data.Database.EnsureDeleted();
             data.Database.Migrate();
 
             SeedClasses(data);
@@ -39,38 +40,38 @@
                 new Class
                 {
                     Name = "Expert",
-                    Ability = ClassExpertAbility,
-                    Description = ClassExpertDescription,
+                    Ability = ExpertAbility,
+                    Description = ExpertDescription,
                 },
                 new Class
                 {
                     Name = "Warrior",
-                    Ability = ClassWarriorAbility,
-                    Description = ClassWarriorDescription,
+                    Ability = WarriorAbility,
+                    Description = WarriorDescription,
                 },
                 new Class
                 {
                     Name = "Psychic",
-                    Ability = ClassPsychicAbility,
-                    Description = ClassPsychicDescription,
+                    Ability = PsychicAbility,
+                    Description = PsychicDescription,
                 },
                 new Class
                 {
                     Name = "Adventurer (Expert + Psychic)",
-                    Ability = ClassAdventurerAbilityExpertPsychic,
-                    Description = ClassAdventurerDescription,
+                    Ability = AdventurerAbilityExpertPsychic,
+                    Description = AdventurerDescription,
                 },
                 new Class
                 {
                     Name = "Adventurer (Expert + Warrior)",
-                    Ability = ClassAdventurerAbilityExpertWarrior,
-                    Description = ClassAdventurerDescription,
+                    Ability = AdventurerAbilityExpertWarrior,
+                    Description = AdventurerDescription,
                 },
                 new Class
                 {
                     Name = "Adventurer (Psychic + Warrior)",
-                    Ability = ClassAdventurerAbilityPsychicWarrior,
-                    Description = ClassAdventurerDescription,
+                    Ability = AdventurerAbilityPsychicWarrior,
+                    Description = AdventurerDescription,
                 }
             });
 
@@ -89,102 +90,102 @@
                 new Background
                 {
                     Name = "Barbarian",
-                    Description = BackgroundBarbarianDescription
+                    Description = BarbarianDescription
                 },
                 new Background
                 {
                     Name = "Clergy",
-                    Description = BackgroundClergyDescription
+                    Description = ClergyDescription
                 },
                 new Background
                 {
                     Name = "Courtesan",
-                    Description = BackgroundCourtesanDescription
+                    Description = CourtesanDescription
                 },
                 new Background
                 {
                     Name = "Criminal",
-                    Description = BackgroundCriminalDescription
+                    Description = CriminalDescription
                 },
                 new Background
                 {
                     Name = "Dilettante",
-                    Description = BackgroundDilettanteDescription
+                    Description = DilettanteDescription
                 },
                 new Background
                 {
                     Name = "Entertainer",
-                    Description = BackgroundEntertainerDescription
+                    Description = EntertainerDescription
                 },
                 new Background
                 {
                     Name = "Merchant",
-                    Description = BackgroundMerchantDescription
+                    Description = MerchantDescription
                 },
                 new Background
                 {
                     Name = "Noble",
-                    Description = BackgroundNobleDescription
+                    Description = NobleDescription
                 },
                 new Background
                 {
                     Name = "Official",
-                    Description = BackgroundOfficialDescription
+                    Description = OfficialDescription
                 },
                 new Background
                 {
                     Name = "Peasant",
-                    Description = BackgroundPeasantDescription
+                    Description = PeasantDescription
                 },
                 new Background
                 {
                     Name = "Physician",
-                    Description = BackgroundPhysicianDescription
+                    Description = PhysicianDescription
                 },
                 new Background
                 {
                     Name = "Pilot",
-                    Description = BackgroundPilotDescription
+                    Description = PilotDescription
                 },
                 new Background
                 {
                     Name = "Politician",
-                    Description = BackgroundPoliticianDescription
+                    Description = PoliticianDescription
                 },
                 new Background
                 {
                     Name = "Scholar",
-                    Description = BackgroundScholarDescription
+                    Description = ScholarDescription
                 },
                 new Background
                 {
                     Name = "Soldier",
-                    Description = BackgroundSoliderDescription
+                    Description = SoliderDescription
                 },
                 new Background
                 {
                     Name = "Spacer",
-                    Description = BackgroundSpacerDescription
+                    Description = SpacerDescription
                 },
                 new Background
                 {
                     Name = "Technician",
-                    Description = BackgroundTechnicianDescription
+                    Description = TechnicianDescription
                 },
                 new Background
                 {
                     Name = "Thug",
-                    Description = BackgroundThugDescription
+                    Description = ThugDescription
                 },
                 new Background
                 {
                     Name = "Vagabond",
-                    Description = BackgroundVagabondDescription
+                    Description = VagabondDescription
                 },
                 new Background
                 {
                     Name = "Worker",
-                    Description = BackgroundWorkerDescription
+                    Description = WorkerDescription
                 }
             });
 

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants;
+    using static DataConstants.Game;
 
     public class Game
     {
@@ -12,7 +12,7 @@
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(GameNameMaxLength)]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
         public int PlayersMax { get; set; }
@@ -26,7 +26,7 @@
         public int SessionsCount { get; set; }
 
         [Required]
-        [MaxLength(GameDescriptionMaxLength)]
+        [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
         public ICollection<Session> Sessions { get; init; } = new HashSet<Session>();

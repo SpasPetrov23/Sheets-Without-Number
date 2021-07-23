@@ -5,7 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    using static DataConstants;
+    using static DataConstants.Background;
 
     public class Background
     {
@@ -13,7 +13,7 @@
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(BackgroundNameMaxLength)]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
         [Required]

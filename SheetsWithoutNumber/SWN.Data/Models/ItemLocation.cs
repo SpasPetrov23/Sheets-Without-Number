@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants;
+    using static DataConstants.Item;
 
     public class ItemLocation
     {
@@ -11,7 +11,7 @@
         public string Id { get; init; } = Guid.NewGuid().ToString();
 
         [Required]
-        [MaxLength(ItemNameMaxLength)]
+        [MaxLength(NameMaxLength)]
         public string Name { get; set; }
     }
 }

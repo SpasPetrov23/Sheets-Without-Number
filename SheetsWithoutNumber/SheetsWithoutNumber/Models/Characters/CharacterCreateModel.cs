@@ -4,12 +4,12 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static SWN.Data.DataConstants;
+    using static SWN.Data.DataConstants.Character;
 
     public class CharacterCreateModel
     {
         [Required]
-        [StringLength(CharacterNameMaxLength, MinimumLength = 2)]
+        [StringLength(NameMaxLength, MinimumLength = 2)]
         public string Name { get; init; }
 
         [Range(3,18)]
@@ -31,11 +31,11 @@
         public int Intelligence { get; init; }
 
         [Required]
-        [StringLength(CharacterSpeciesMaxLength, MinimumLength = 2)]
+        [StringLength(SpeciesMaxLength, MinimumLength = 2)]
         public string Species { get; init; }
 
         [Required]
-        [StringLength(CharacterHomeworldMaxLength, MinimumLength = 2)]
+        [StringLength(HomeworldMaxLength, MinimumLength = 2)]
         public string Homeworld { get; init; }
 
         [Required]
