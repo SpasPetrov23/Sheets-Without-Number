@@ -1,9 +1,11 @@
 ﻿namespace SWN.Data
 {
-    using Microsoft.EntityFrameworkCore;
     using SWN.Data.Models;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+    using Microsoft.AspNetCore.Identity;
 
-    public class SWNDbContext : DbContext
+    public class SWNDbContext : IdentityDbContext
     {
         public SWNDbContext()
         {
@@ -14,13 +16,9 @@
         {
         }
 
-        public DbSet<User> Users { get; init; }
-
         public DbSet<Game> Games { get; init; }
 
-        public DbSet<UserRole> UserRoles { get; init; }
-
-        public DbSet<Session> Sessions { get; init; }
+        public DbSet<Player> Players { get; init; }
 
         public DbSet<Character> Characters { get; init; }
 
@@ -42,25 +40,33 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Session>().HasKey(s => new { s.UserId, s.GameId });
+            //modelBuilder.Entity<Session>().HasKey(s => new { s.UserId, s.GameId });
 
-            modelBuilder.Entity<Session>()
-                .HasOne<User>(s => s.User)
-                .WithMany(u => u.Sessions)
-                .HasForeignKey(s => s.UserId)
+            modelBuilder.Entity<Character>()
+                .HasOne<Game>(c => c.Game)
+                .WithMany(g => g.Characters)
+                .HasForeignKey(c => c.GameId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Session>()
-                .HasOne<Game>(s => s.Game)
-                .WithMany(g => g.Sessions)
-                .HasForeignKey(s => s.GameId)
+            modelBuilder.Entity<Character>()
+                .HasOne<Background>(c => c.Background)
+                .WithMany(b => b.Characters)
+                .HasForeignKey(c => c.BackgroundId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<Session>()
-                .HasOne<UserRole>(s => s.UserRole)
-                .WithMany(ur => ur.Sessions)
-                .HasForeignKey(s => s.UserRoleId)
+            modelBuilder.Entity<Character>()
+                .HasOne<Class>(@char => @char.Class)
+                .WithMany(c => c.Characters)
+                .HasForeignKey(@char => @char.ClassId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Player>()
+                .HasOne<IdentityUser>()
+                .WithOne()
+                .HasForeignKey<Player>(p => p.UserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

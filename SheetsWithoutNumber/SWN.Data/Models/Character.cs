@@ -8,8 +8,7 @@
 
     public class Character
     {
-        [Required]
-        public string Id { get; init; } = Guid.NewGuid().ToString();
+        public int Id { get; init; }
 
         [Required]
         [MaxLength(NameMaxLength)]
@@ -80,15 +79,12 @@
         /// <summary>
         /// Table Relations Below
         /// </summary>
-
+        
         [Required]
-        public string UserId { get; set; }
-
-        public User User { get; set; }
+        public string OwnerId { get; init; }
 
         public ICollection<Skill> Skills { get; init; } = new HashSet<Skill>();
 
-        [Required]
         public int ClassId { get; set; }
 
         public Class Class { get; set; }
@@ -99,5 +95,9 @@
         public Background Background { get; set; }
 
         public ICollection<Focus> Foci { get; init; } = new HashSet<Focus>();
+
+        public int GameId { get; init; }
+
+        public Game Game { get; set; }
     }
 }

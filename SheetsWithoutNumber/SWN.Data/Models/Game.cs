@@ -3,13 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Microsoft.AspNetCore.Identity;
 
     using static DataConstants.Game;
 
     public class Game
     {
-        [Required]
-        public string Id { get; init; } = Guid.NewGuid().ToString();
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(NameMaxLength)]
@@ -29,6 +29,8 @@
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
-        public ICollection<Session> Sessions { get; init; } = new HashSet<Session>();
+        public ICollection<Player> Players { get; init; } = new HashSet<Player>();
+
+        public ICollection<Character> Characters { get; init; } = new HashSet<Character>();
     }
 }

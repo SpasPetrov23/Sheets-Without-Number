@@ -1,6 +1,7 @@
 ﻿namespace SheetsWithoutNumber.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
+    using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Models.Characters;
     using SWN.Data;
     using SWN.Data.Models;
@@ -63,16 +64,18 @@
                 return View(characterModel);
             }
 
-            if (!data.Users.Any())
+            if (!data.Games.Any())
             {
-                data.Users.Add(new User
+                var game = new Game
                 {
-                    Id = "Test",
-                    Username = "SpasMaster",
-                    Password = "TestPass",
-                    Email = "spaspetrov23@gmail.com",
-                    JoinDate = DateTime.Now,
-                });
+                    Name = "In the Wake of Dreams",
+                    SessionsCount = 0,
+                    Description = "About to start.",
+                    PlayersMax = 4,
+                };
+
+                data.Add(game);
+                data.SaveChanges();
             }
 
             var character = new Character
@@ -89,6 +92,8 @@
                 Charisma = characterModel.Charisma,
                 Homeworld = characterModel.Homeworld,
                 Species = characterModel.Species,
+                OwnerId = this.User.GetId(),
+                GameId = data.Games.FirstOrDefault(x => x.Name == "In the Wake of Dreams").Id,
                 Level = 1,
                 Experience = 0,
                 HitPoints = 0,
@@ -108,7 +113,6 @@
                 SystemStrain = 0,
                 MaxSystemStrain = 0,
                 UnspentSkillPoints = 0,
-                UserId = "Test"
             };
 
             data.Characters.Add(character);

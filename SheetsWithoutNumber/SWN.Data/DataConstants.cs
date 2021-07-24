@@ -2,7 +2,7 @@
 {
     public class DataConstants
     {
-        public class User
+        public class Player
         {
             public const int UsernameMaxLength = 30;
             public const string EmailRegularExpression = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
@@ -14,9 +14,9 @@
             public const int DescriptionMaxLength = 200;
         }
 
-        public class UserRole
+        public class GameMaster
         {
-            public const int NameMaxLength = 10;
+            public const int NameMaxLength = 30;
         }
 
         public class Focus
