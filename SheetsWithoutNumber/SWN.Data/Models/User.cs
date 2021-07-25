@@ -1,22 +1,14 @@
 ﻿namespace SWN.Data.Models
 {
+    using Microsoft.AspNetCore.Identity;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Player;
+    using static DataConstants.User;
 
-    public class Player
+    public class User : IdentityUser
     {
-        public int Id { get; init; }
-
-        [Required]
-        [MaxLength(UsernameMaxLength)]
-        public string Username { get; set; }
-
-        [Required]
-        public string UserId { get; set; }
-
         public DateTime JoinDate { get; set; }
 
         public ICollection<Game> Games { get; init; } = new HashSet<Game>();

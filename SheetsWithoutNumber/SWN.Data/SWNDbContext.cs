@@ -5,7 +5,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.AspNetCore.Identity;
 
-    public class SWNDbContext : IdentityDbContext
+    public class SWNDbContext : IdentityDbContext<User>
     {
         public SWNDbContext()
         {
@@ -17,8 +17,6 @@
         }
 
         public DbSet<Game> Games { get; init; }
-
-        public DbSet<Player> Players { get; init; }
 
         public DbSet<Character> Characters { get; init; }
 
@@ -58,12 +56,6 @@
                 .HasOne<Class>(@char => @char.Class)
                 .WithMany(c => c.Characters)
                 .HasForeignKey(@char => @char.ClassId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Player>()
-                .HasOne<IdentityUser>()
-                .WithOne()
-                .HasForeignKey<Player>(p => p.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);

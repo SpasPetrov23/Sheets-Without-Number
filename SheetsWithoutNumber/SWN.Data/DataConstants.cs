@@ -2,7 +2,7 @@
 {
     public class DataConstants
     {
-        public class Player
+        public class User
         {
             public const int UsernameMaxLength = 30;
             public const string EmailRegularExpression = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";

@@ -26,6 +26,7 @@ namespace SWN.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    JoinDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -230,27 +231,6 @@ namespace SWN.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Players",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Username = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    JoinDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Players", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Players_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Characters",
                 columns: table => new
                 {
@@ -314,25 +294,25 @@ namespace SWN.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "GamePlayer",
+                name: "GameUser",
                 columns: table => new
                 {
                     GamesId = table.Column<int>(type: "int", nullable: false),
-                    PlayersId = table.Column<int>(type: "int", nullable: false)
+                    PlayersId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GamePlayer", x => new { x.GamesId, x.PlayersId });
+                    table.PrimaryKey("PK_GameUser", x => new { x.GamesId, x.PlayersId });
                     table.ForeignKey(
-                        name: "FK_GamePlayer_Games_GamesId",
-                        column: x => x.GamesId,
-                        principalTable: "Games",
+                        name: "FK_GameUser_AspNetUsers_PlayersId",
+                        column: x => x.PlayersId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_GamePlayer_Players_PlayersId",
-                        column: x => x.PlayersId,
-                        principalTable: "Players",
+                        name: "FK_GameUser_Games_GamesId",
+                        column: x => x.GamesId,
+                        principalTable: "Games",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -450,15 +430,9 @@ namespace SWN.Data.Migrations
                 column: "SkillsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GamePlayer_PlayersId",
-                table: "GamePlayer",
+                name: "IX_GameUser_PlayersId",
+                table: "GameUser",
                 column: "PlayersId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Players_UserId",
-                table: "Players",
-                column: "UserId",
-                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -485,7 +459,7 @@ namespace SWN.Data.Migrations
                 name: "CharacterSkill");
 
             migrationBuilder.DropTable(
-                name: "GamePlayer");
+                name: "GameUser");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -500,7 +474,7 @@ namespace SWN.Data.Migrations
                 name: "Skills");
 
             migrationBuilder.DropTable(
-                name: "Players");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Backgrounds");
@@ -510,9 +484,6 @@ namespace SWN.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Games");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
         }
     }
 }

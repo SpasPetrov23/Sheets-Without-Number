@@ -25,7 +25,26 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Characters" asp-action="All">Characters</a>
                         </li>
                     </ul>
-                    <partial name="_LoginPartial" />
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav flex-grow-1 flex-row-reverse">
+                            <li class="nav-item">
+                                <a class="nav-item nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Register">Register</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-item nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Login">Login</a>
+                            </li>
+                        </ul>
+                    }
+                    else
+                    {
+                        <ul class="navbar-nav flex-grow-1 flex-row-reverse">
+                            <li class="nav-item">
+                                <a class="nav-item nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Logout">Logout</a>
+                            </li>
+                        </ul>
+                    }
                 </div>
             </div>
         </nav>

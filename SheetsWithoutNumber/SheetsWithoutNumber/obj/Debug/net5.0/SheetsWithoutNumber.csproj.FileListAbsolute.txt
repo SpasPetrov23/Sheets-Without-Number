@@ -1146,3 +1146,4 @@ C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\bin\De
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Characters\All.cshtml.g.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Characters\Create.cshtml.g.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Games\All.cshtml.g.cs
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Users\Login.cshtml.g.cs

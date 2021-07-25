@@ -40,8 +40,15 @@ using SheetsWithoutNumber.Models.Characters;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
+using SWN.Data.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4ad7d0a18a3139f22f8d7fb76abceb2990023e37", @"/Views/Games/All.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6451dedc8b9c48b5ae2c679c5b7fe38b2773aa55", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d10f70d7c66f77d469d411f32746ac365ad3b34c", @"/Views/_ViewImports.cshtml")]
     public class Views_Games_All : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

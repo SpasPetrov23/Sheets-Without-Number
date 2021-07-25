@@ -8,6 +8,7 @@ namespace SheetsWithoutNumber
     using Microsoft.Extensions.Hosting;
     using SheetsWithoutNumber.Infrastructure;
     using SWN.Data;
+    using SWN.Data.Models;
 
     public class Startup
     {
@@ -25,12 +26,13 @@ namespace SheetsWithoutNumber
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services
-                .AddDefaultIdentity<IdentityUser>(options =>
+                .AddDefaultIdentity<User>(options =>
                 {
                     options.Password.RequireDigit = false;
                     options.Password.RequireLowercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
+                    options.SignIn.RequireConfirmedEmail = true;
                 })
                 .AddEntityFrameworkStores<SWNDbContext>();
 

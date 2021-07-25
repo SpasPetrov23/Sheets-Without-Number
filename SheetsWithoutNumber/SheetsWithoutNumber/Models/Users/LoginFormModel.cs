@@ -1,15 +1,15 @@
 ﻿namespace SheetsWithoutNumber.Models.Users
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
-    public class RegisterUserFormModel
+    public class LoginFormModel
     {
-        public string Username { get; init; }
 
+        [Required]
         public string Email { get; init; }
 
+        [Required]
         public string Password { get; init; }
-
-        public string ConfirmPassword { get; init; }
     }
 }

@@ -29,7 +29,7 @@
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
-        public ICollection<Player> Players { get; init; } = new HashSet<Player>();
+        public ICollection<User> Users { get; init; } = new HashSet<User>();
 
         public ICollection<Character> Characters { get; init; } = new HashSet<Character>();
     }
