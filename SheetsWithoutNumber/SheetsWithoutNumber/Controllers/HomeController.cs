@@ -20,7 +20,7 @@ namespace SheetsWithoutNumber.Controllers
 
         public IActionResult Index()
         {
-            return Redirect("Games/All");
+            return RedirectToAction("All", "Games");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

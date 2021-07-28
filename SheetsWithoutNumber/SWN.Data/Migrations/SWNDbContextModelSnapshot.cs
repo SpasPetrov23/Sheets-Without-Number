@@ -54,12 +54,12 @@ namespace SWN.Data.Migrations
                     b.Property<int>("GamesId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PlayersId")
+                    b.Property<string>("UsersId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("GamesId", "PlayersId");
+                    b.HasKey("GamesId", "UsersId");
 
-                    b.HasIndex("PlayersId");
+                    b.HasIndex("UsersId");
 
                     b.ToTable("GameUser");
                 });
@@ -401,25 +401,27 @@ namespace SWN.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("GameImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GameMasterId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<DateTime?>("NextSession")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("PlayersMax")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SessionFrequency")
                         .HasColumnType("int");
 
                     b.Property<int>("SessionsCount")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("StartDate")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("StartDate")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -559,7 +561,7 @@ namespace SWN.Data.Migrations
 
                     b.HasOne("SWN.Data.Models.User", null)
                         .WithMany()
-                        .HasForeignKey("PlayersId")
+                        .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

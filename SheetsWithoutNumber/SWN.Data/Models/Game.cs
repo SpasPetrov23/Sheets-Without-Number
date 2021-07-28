@@ -17,13 +17,15 @@
 
         public int PlayersMax { get; set; }
 
-        public int? SessionFrequency { get; set; }
-
-        public DateTime? NextSession { get; set; }
-
-        public DateTime? StartDate { get; init; }
+        [Required]
+        public string StartDate { get; init; }
 
         public int SessionsCount { get; set; }
+
+        public string GameImage { get; set; }
+
+        [Required]
+        public string GameMasterId { get; set; }
 
         [Required]
         [MaxLength(DescriptionMaxLength)]

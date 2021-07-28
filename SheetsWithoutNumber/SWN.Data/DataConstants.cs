@@ -11,12 +11,7 @@
         public class Game
         {
             public const int NameMaxLength = 50;
-            public const int DescriptionMaxLength = 200;
-        }
-
-        public class GameMaster
-        {
-            public const int NameMaxLength = 30;
+            public const int DescriptionMaxLength = 1000;
         }
 
         public class Focus

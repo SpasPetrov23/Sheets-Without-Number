@@ -1,26 +1,41 @@
-﻿<div class="list-group col-sm-12 offset-md-1 col-md-10 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8">
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-info">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">In the Wake of Dreams</h5>
-            <small>Joined</small>
+﻿@model ICollection<GamePreviewModel>
+
+<section>
+    <div class="row mx-1">
+        <div class="list-group col-12">
+            <div class="card card-image card" style="background-image: url(https://wallpaperaccess.com/full/45416.jpg); ">
+                <div class="text-white text-center align-items-center rgba-black-strong py-5 px-3">
+                    <div>
+                        <h2 class="card-title py-3 font-weight-bold"><strong>Sheets Without Number</strong></h2>
+                        <p>
+                            Below you can find a list of all currently ongoing games.
+                        </p>
+                        <button type="button" class="btn btn-info">Info</button>
+                        <button type="button" class="btn btn-info">Info</button>
+                        <button type="button" class="btn btn-info">Info</button>
+                    </div>
+                </div>
+
+                @foreach (var gamePreview in Model)
+                {
+                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">@gamePreview.Name</h5>
+                            <small>Joined</small>
+                        </div>
+                        <p class="mb-1">@gamePreview.Description</p>
+                        <small>Players: @gamePreview.PlayersCurrent / @gamePreview.PlayersMax</small>
+                    </a>
+                }
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">In the Wake of Dreams</h5>
+                        <small>Joined</small>
+                    </div>
+                    <p class="mb-1">When the definition of reality becomes unclear...</p>
+                    <small>Players: 3</small>
+                </a>
+            </div>
         </div>
-        <p class="mb-1">When the definition of reality becomes unclear...</p>
-        <small>Players: 3</small>
-    </a>
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">List group item heading</h5>
-            <small class="text-muted">3 days ago</small>
-        </div>
-        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-        <small class="text-muted">Donec id elit non mi porta.</small>
-    </a>
-    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">List group item heading</h5>
-            <small class="text-muted">3 days ago</small>
-        </div>
-        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-        <small class="text-muted">Donec id elit non mi porta.</small>
-    </a>
-</div>
+    </div>
+</section>

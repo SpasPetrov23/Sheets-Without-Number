@@ -73,3 +73,9 @@ body {
 
 /* Custom Styles
 -------------------------------------------------- */
+.banner {
+    height: 100vh;
+    /* Flexbox */
+    display: flex;
+    align-items: center;
+}

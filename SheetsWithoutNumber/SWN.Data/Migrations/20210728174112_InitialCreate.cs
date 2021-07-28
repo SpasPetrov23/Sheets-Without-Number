@@ -98,10 +98,10 @@ namespace SWN.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PlayersMax = table.Column<int>(type: "int", nullable: false),
-                    SessionFrequency = table.Column<int>(type: "int", nullable: true),
-                    NextSession = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    StartDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SessionsCount = table.Column<int>(type: "int", nullable: false),
+                    GameImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    GameMasterId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
@@ -298,14 +298,14 @@ namespace SWN.Data.Migrations
                 columns: table => new
                 {
                     GamesId = table.Column<int>(type: "int", nullable: false),
-                    PlayersId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    UsersId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_GameUser", x => new { x.GamesId, x.PlayersId });
+                    table.PrimaryKey("PK_GameUser", x => new { x.GamesId, x.UsersId });
                     table.ForeignKey(
-                        name: "FK_GameUser_AspNetUsers_PlayersId",
-                        column: x => x.PlayersId,
+                        name: "FK_GameUser_AspNetUsers_UsersId",
+                        column: x => x.UsersId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -430,9 +430,9 @@ namespace SWN.Data.Migrations
                 column: "SkillsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_GameUser_PlayersId",
+                name: "IX_GameUser_UsersId",
                 table: "GameUser",
-                column: "PlayersId");
+                column: "UsersId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
