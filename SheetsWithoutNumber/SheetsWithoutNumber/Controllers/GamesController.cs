@@ -41,6 +41,10 @@
                 GameMasterId = this.User.GetId(),
             };
 
+            var currentUser = data.Users.FirstOrDefault(u => u.Id == this.User.GetId());
+
+            game.Users.Add(currentUser);
+
             data.Add(game);
             data.SaveChanges();
 

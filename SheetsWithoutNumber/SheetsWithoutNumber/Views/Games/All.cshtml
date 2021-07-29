@@ -19,12 +19,15 @@
                 @foreach (var gamePreview in Model)
                 {
                     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">@gamePreview.Name</h5>
+                        <div class="d-flex justify-content-between">
+                            <img src="@gamePreview.GameImage" class="img-thumbnail flex-shrink-0" alt="Cinque Terre" style="width: 150px; height: 100px; object-fit: cover">
+                            <div class="flex-grow-1" style="padding-left: 10px; padding-right: 10px">
+                                <h5 class="mb-1">@gamePreview.Name</h5>
+                                <p class="mb-1">@gamePreview.Description</p>
+                                <small>Players: @gamePreview.PlayersCurrent / @gamePreview.PlayersMax</small>
+                            </div>
                             <small>Joined</small>
                         </div>
-                        <p class="mb-1">@gamePreview.Description</p>
-                        <small>Players: @gamePreview.PlayersCurrent / @gamePreview.PlayersMax</small>
                     </a>
                 }
                 <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
