@@ -53,10 +53,11 @@
 
         public IActionResult All()
         {
-            var characters = data
+            var games = data
                 .Games
                 .Select(g => new GamePreviewModel
                 {
+                    Id = g.Id,
                     Name = g.Name,
                     PlayersCurrent = g.Users.Count,
                     PlayersMax = g.PlayersMax,
@@ -65,7 +66,28 @@
                 })
                 .ToList();
 
-            return View(characters);
+            return View(games);
+        }
+        public IActionResult Details(int gameId)
+        {
+            ViewBag.UserId = this.User.GetId();
+
+            var game = data
+                .Games
+                .Where(g => g.Id == gameId)
+                .Select(g => new GameDetailsModel
+                {
+                    Id = g.Id,
+                    Name = g.Name,
+                    Description = g.Description,
+                    GameImage = g.GameImage,
+                    Players = g.Users,
+                    Characters = g.Characters,
+                    GameMasterId = g.GameMasterId
+                })
+                .FirstOrDefault();
+
+            return View(game);
         }
     }
 }

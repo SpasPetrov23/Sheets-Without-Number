@@ -44,7 +44,7 @@
         });
 
         [HttpPost]
-        public IActionResult Create(CharacterCreateModel characterModel)
+        public IActionResult Create(CharacterCreateModel characterModel, int gameId)
         {
             if (!this.data.Classes.Any(c => c.Id == characterModel.ClassId))
             {
@@ -64,20 +64,6 @@
                 return View(characterModel);
             }
 
-            if (!data.Games.Any())
-            {
-                var game = new Game
-                {
-                    Name = "In the Wake of Dreams",
-                    SessionsCount = 0,
-                    Description = "About to start.",
-                    PlayersMax = 4,
-                };
-
-                data.Add(game);
-                data.SaveChanges();
-            }
-
             var character = new Character
             {
                 Name = characterModel.Name,
@@ -93,7 +79,7 @@
                 Homeworld = characterModel.Homeworld,
                 Species = characterModel.Species,
                 OwnerId = this.User.GetId(),
-                GameId = data.Games.FirstOrDefault(x => x.Name == "In the Wake of Dreams").Id,
+                GameId = gameId,
                 Level = 1,
                 Experience = 0,
                 HitPoints = 0,
@@ -116,6 +102,12 @@
             };
 
             data.Characters.Add(character);
+
+            data.Games
+                .FirstOrDefault(g => g.Id == gameId)
+                .Characters
+                .Add(character);
+
             data.SaveChanges();
 
             return RedirectToAction("All", "Characters");

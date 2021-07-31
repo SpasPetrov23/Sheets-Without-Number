@@ -1,4 +1,4 @@
-﻿@model ICollection<GamePreviewModel>
+﻿@model IEnumerable<GamePreviewModel>
 
 <section>
     <div class="row mx-1">
@@ -10,15 +10,13 @@
                         <p>
                             Below you can find a list of all currently ongoing games.
                         </p>
-                        <button type="button" class="btn btn-info">Info</button>
-                        <button type="button" class="btn btn-info">Info</button>
-                        <button type="button" class="btn btn-info">Info</button>
+                        <input type="button" class="btn btn-info" style="width:200px" value="Create Game" onclick="location.href='@Url.Action("Create", "Games")'" />
                     </div>
                 </div>
 
                 @foreach (var gamePreview in Model)
                 {
-                    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a asp-controller="Games" asp-action="Details" asp-route-gameId="@gamePreview.Id" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex justify-content-between">
                             <img src="@gamePreview.GameImage" class="img-thumbnail flex-shrink-0" alt="Cinque Terre" style="width: 150px; height: 100px; object-fit: cover">
                             <div class="flex-grow-1" style="padding-left: 10px; padding-right: 10px">
