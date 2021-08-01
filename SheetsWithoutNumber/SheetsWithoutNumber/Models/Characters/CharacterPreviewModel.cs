@@ -2,6 +2,8 @@
 {
     public class CharacterPreviewModel
     {
+        public int Id { get; init; }
+
         public string Name { get; init; }
 
         public string Species { get; init; }

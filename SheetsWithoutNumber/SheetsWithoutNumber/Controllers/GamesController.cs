@@ -83,7 +83,8 @@
                     GameImage = g.GameImage,
                     Players = g.Users,
                     Characters = g.Characters,
-                    GameMasterId = g.GameMasterId
+                    GameMasterId = g.GameMasterId,
+                    
                 })
                 .FirstOrDefault();
 

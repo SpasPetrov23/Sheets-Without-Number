@@ -1,0 +1,115 @@
+﻿@model CharacterDetailsModel
+
+<div class="d-flex">
+    <div class="col-3">
+        <img src="@Model.CharacterImage" class="img-thumbnail" alt="Character Image" style="width: 240px; height: 320px; object-fit: cover">
+    </div>
+    <div class="col-9">
+        <div class="card" style="border: 1px solid #dee2e6; padding:0.80rem">
+            <div class="d-flex justify-content-between">
+                <h2>@Model.Name [Level @Model.Level]</h2>
+                <small><b>Game:</b> <a asp-controller="Games" asp-action="Details" asp-route-gameId="@Model.GameId">@Model.Game.Name</a></small>
+            </div>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 25%; background-color: mediumpurple" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+            </div>
+        </div>
+
+        <br />
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr style="background-color: lightblue">
+                        <td><b>Species</b></td>
+                        <td><b>Homeworld</b></td>
+                        <td><b>Class</b></td>
+                        <td><b>Background</b></td>
+                    </tr>
+                    <tr>
+                        <td>@Model.Species</td>
+                        <td>@Model.Homeworld</td>
+                        <td>@Model.Class</td>
+                        <td>@Model.Background</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex" style="margin-top:20px">
+    <div class="col-3">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr style="background-color: lightblue">
+                        <td><b>Attribute</b></td>
+                        <td><b>Score</b></td>
+                        <td><b>Mod</b></td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: aliceblue">Strength</td>
+                        <td>@Model.Strength</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: aliceblue">Dexterity</td>
+                        <td>@Model.Dexterity</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: aliceblue ">Constitution</td>
+                        <td>@Model.Constitution</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: aliceblue">Intelligence</td>
+                        <td>@Model.Intelligence</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: aliceblue">Wisdom</td>
+                        <td>@Model.Wisdom</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: aliceblue">Charisma</td>
+                        <td>@Model.Charisma</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="card" style="height: 100px; margin-bottom: 20px">
+        </div>
+        <div class="card" style="height: 100px;">
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex" style="margin-top:20px">
+    <div class="col-4">
+        <div class="card" style="height: 400px; margin-bottom: 20px">
+        </div>
+        <div class="card" style="height: 200px; margin-bottom: 20px">
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="d-flex flex-row" style="height: 300px; margin-bottom: 20px">
+            <div class="card" style="margin-right:20px; width: 200px; height: 300px"></div>
+            <div class="card flex-grow-1" style="height: 300px"></div>
+        </div>
+        <div class="card" style="height: 120px; margin-bottom: 20px">
+        </div>
+        <div class="card" style="height: 160px;">
+        </div>
+    </div>
+</div>
+
+<div class="card" style="height: 300px">
+
+</div>

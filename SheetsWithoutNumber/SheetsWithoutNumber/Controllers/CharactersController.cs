@@ -24,6 +24,7 @@
                 .Characters
                 .Select(c => new CharacterPreviewModel
                 {
+                    Id = c.Id,
                     Name = c.Name,
                     Class = c.Class.Name,
                     Background = c.Background.Name,
@@ -111,6 +112,39 @@
             data.SaveChanges();
 
             return RedirectToAction("All", "Characters");
+        }
+
+        public IActionResult Details(int characterId)
+        {
+            var characterGame = data
+                .Characters
+                .Where(c => c.Id == characterId).FirstOrDefault().Game;
+
+            var character = data
+                .Characters
+                .Where(c => c.Id == characterId)
+                .Select(c => new CharacterDetailsModel
+                {
+                    Name = c.Name,
+                    Homeworld = c.Homeworld,
+                    Species = c.Species,
+                    Class = c.Class.Name,
+                    Background = c.Background.Name,
+                    CharacterImage = c.CharacterImage,
+                    Charisma = c.Charisma,
+                    Constitution = c.Constitution,
+                    Dexterity = c.Dexterity,
+                    Intelligence = c.Intelligence,
+                    Strength = c.Strength,
+                    Wisdom = c.Wisdom,
+                    Level = c.Level,
+                    GameId = c.GameId,
+                    Game = c.Game
+                })
+                .FirstOrDefault();
+
+            return View(character);
+
         }
 
         private IEnumerable<CharacterClassViewModel> GetCharacterClasses()

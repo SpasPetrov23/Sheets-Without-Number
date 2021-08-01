@@ -13,7 +13,7 @@
                         <div></div>
                         <b>Species:</b> @classPreview.Species
                     </p>
-                    <a href="#" class="btn btn-primary">View</a>
+                    <a asp-controller="Characters" asp-action="Details" asp-route-characterId="@classPreview.Id" class="btn btn-primary">View</a>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Last updated 3 mins ago</small>
