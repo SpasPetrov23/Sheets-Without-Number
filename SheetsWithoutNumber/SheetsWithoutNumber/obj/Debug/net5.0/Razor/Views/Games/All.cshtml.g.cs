@@ -49,13 +49,20 @@ using SheetsWithoutNumber.Models.Games;
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
+using SheetsWithoutNumber.Infrastructure;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
 using SWN.Data.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"13ac8258c42d385eb303c78cda9a1ef84be8ab6f", @"/Views/Games/All.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ee0bb91199811591498eb248a0ca7599eb2ad95a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1132ad274c8974eda3b1ebcbd7539fda7548c74f", @"/Views/_ViewImports.cshtml")]
     public class Views_Games_All : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<GamePreviewModel>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Games", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -118,7 +125,7 @@ WriteAttributeValue("", 762, Url.Action("Create", "Games"), 762, 30, false);
 #line hidden
 #nullable disable
             WriteLiteral("                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "13ac8258c42d385eb303c78cda9a1ef84be8ab6f6667", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "13ac8258c42d385eb303c78cda9a1ef84be8ab6f6890", async() => {
                 WriteLiteral("\r\n                        <div class=\"d-flex justify-content-between\">\r\n                            <img");
                 BeginWriteAttribute("src", " src=\"", 1208, "\"", 1236, 1);
 #nullable restore

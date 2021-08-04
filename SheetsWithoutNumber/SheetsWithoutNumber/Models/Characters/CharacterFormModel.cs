@@ -6,7 +6,7 @@
 
     using static SWN.Data.DataConstants.Character;
 
-    public class CharacterCreateModel
+    public class CharacterFormModel
     {
         [Required]
         [StringLength(NameMaxLength, MinimumLength = 2)]

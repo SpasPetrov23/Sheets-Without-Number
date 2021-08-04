@@ -1,6 +1,6 @@
 ﻿namespace SheetsWithoutNumber.Models.Characters
 {
-    public class CharacterPreviewModel
+    public class CharacterListingModel
     {
         public int Id { get; init; }
 

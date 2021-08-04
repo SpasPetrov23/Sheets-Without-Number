@@ -2,7 +2,7 @@
 {
     using System.Security.Claims;
 
-    public static class ClaimsPrincipleExtensions
+    public static class ClaimsPrincipalExtensions
     {
         public static string GetId(this ClaimsPrincipal user) => user.FindFirst(ClaimTypes.NameIdentifier).Value;
     }

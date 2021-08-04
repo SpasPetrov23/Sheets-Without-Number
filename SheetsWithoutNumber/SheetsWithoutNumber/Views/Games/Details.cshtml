@@ -28,7 +28,7 @@
                 </p>
             }
 
-            @if (!Model.Characters.Any(c => c.OwnerId == ViewBag.UserId))
+            @if (!Model.Characters.Any(c => c.OwnerId == User.GetId()))
             {
             <a asp-controller="Characters" asp-action="Create" asp-route-gameId="@Model.Id">
                 <div class="text-center">

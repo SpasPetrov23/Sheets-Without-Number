@@ -34,47 +34,47 @@
         [MaxLength(HomeworldMaxLength)]
         public string Homeworld { get; set; }
 
-        public int Level { get; set; }
+        public int Level { get; set; } = 1;
 
-        public int Experience { get; set; }
+        public int Experience { get; set; } = 0;
 
-        public int HitPoints { get; set; }
+        public int HitPoints { get; set; } = 0;
 
-        public int MaxHitPoints { get; set; }
+        public int MaxHitPoints { get; set; } = 0;
 
-        public int Effort { get; set; }
+        public int Effort { get; set; } = 0;
 
-        public int MaxEffort { get; set; }
+        public int MaxEffort { get; set; } = 0;
 
-        public int SystemStrain { get; set; }
+        public int SystemStrain { get; set; } = 0;
 
-        public int MaxSystemStrain { get; set; }
+        public int MaxSystemStrain { get; set; } = 0;
 
-        public int Speed { get; set; }
+        public int Speed { get; set; } = 0;
 
-        public int Initiative { get; set; }
+        public int Initiative { get; set; } = 0;
 
-        public int AttackBonus { get; set; }
+        public int AttackBonus { get; set; } = 0;
 
-        public int ArmorClass { get; set; }
+        public int ArmorClass { get; set; } = 10;
 
-        public int UnspentSkillPoints { get; set; }
+        public int UnspentSkillPoints { get; set; } = 0;
 
-        public int ReadiedEncumbrance { get; set; }
+        public int ReadiedEncumbrance { get; set; } = 0;
 
-        public int StowedEncumbrance { get; set; }
+        public int StowedEncumbrance { get; set; } = 0;
 
         [Required]
         [MaxLength(EncumbranceMaxLength)]
-        public string Encumbrance { get; set; }
+        public string Encumbrance { get; set; } = string.Empty;
 
-        public int Credits { get; set; }
+        public int Credits { get; set; } = 0;
 
-        public string Notes { get; set; }
+        public string Notes { get; set; } = string.Empty;
 
-        public string Goal { get; set; }
+        public string Goal { get; set; } = string.Empty;
 
-        public string CharacterImage { get; set; }
+        public string CharacterImage { get; set; } = string.Empty;
 
         /// <summary>
         /// Table Relations Below

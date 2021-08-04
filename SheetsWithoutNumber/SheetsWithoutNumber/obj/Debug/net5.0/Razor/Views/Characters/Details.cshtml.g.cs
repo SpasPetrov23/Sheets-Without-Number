@@ -49,13 +49,20 @@ using SheetsWithoutNumber.Models.Games;
 #nullable disable
 #nullable restore
 #line 6 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
+using SheetsWithoutNumber.Infrastructure;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 7 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
 using SWN.Data.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"907a08bc63473b2c42c0216dc6d6a87f993e2546", @"/Views/Characters/Details.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ee0bb91199811591498eb248a0ca7599eb2ad95a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1132ad274c8974eda3b1ebcbd7539fda7548c74f", @"/Views/_ViewImports.cshtml")]
     public class Views_Characters_Details : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<CharacterDetailsModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Games", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -116,7 +123,7 @@ WriteAttributeValue("", 97, Model.CharacterImage, 97, 21, false);
 #line hidden
 #nullable disable
             WriteLiteral("]</h2>\r\n                <small><b>Game:</b> ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "907a08bc63473b2c42c0216dc6d6a87f993e25466017", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "907a08bc63473b2c42c0216dc6d6a87f993e25466240", async() => {
 #nullable restore
 #line 11 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\Characters\Details.cshtml"
                                                                                                                Write(Model.Game.Name);

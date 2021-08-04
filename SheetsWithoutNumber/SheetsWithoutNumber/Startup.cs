@@ -2,11 +2,12 @@ namespace SheetsWithoutNumber
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using SheetsWithoutNumber.Infrastructure;
+    using SheetsWithoutNumber.Services.Character;
+    using SheetsWithoutNumber.Services.Game;
     using SWN.Data;
     using SWN.Data.Models;
 
@@ -37,6 +38,14 @@ namespace SheetsWithoutNumber
                 .AddEntityFrameworkStores<SWNDbContext>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Users/Login";
+            });
+
+            services.AddTransient<ICharacterService, CharacterService>();
+            services.AddTransient<IGameService, GameService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -53,6 +62,7 @@ namespace SheetsWithoutNumber
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
             app
                 .UseHttpsRedirection()
                 .UseStaticFiles()

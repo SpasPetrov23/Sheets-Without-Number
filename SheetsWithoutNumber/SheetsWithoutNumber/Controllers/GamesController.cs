@@ -1,5 +1,6 @@
 ﻿namespace SheetsWithoutNumber.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Models.Games;
@@ -17,12 +18,14 @@
             this.data = data;
         }
 
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Create(GameCreateFormModel gameModel)
         {
             if (!ModelState.IsValid)
@@ -68,10 +71,10 @@
 
             return View(games);
         }
+
+        [Authorize]
         public IActionResult Details(int gameId)
         {
-            ViewBag.UserId = this.User.GetId();
-
             var game = data
                 .Games
                 .Where(g => g.Id == gameId)
