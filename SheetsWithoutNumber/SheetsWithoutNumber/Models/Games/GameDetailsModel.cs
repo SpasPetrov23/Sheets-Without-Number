@@ -15,6 +15,8 @@
 
         public string GameMasterId { get; set; }
 
+        public int PlayersMax { get; set; }
+
         public ICollection<User> Players { get; set; }
 
         public ICollection<Character> Characters { get; set; }

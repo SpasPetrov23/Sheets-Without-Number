@@ -18,9 +18,9 @@
         public int PlayersMax { get; set; }
 
         [Required]
-        public string StartDate { get; init; }
+        public string StartDate { get; init; } = DateTime.Now.ToString("d");
 
-        public int SessionsCount { get; set; }
+        public int SessionsCount { get; set; } = 0;
 
         public string GameImage { get; set; }
 

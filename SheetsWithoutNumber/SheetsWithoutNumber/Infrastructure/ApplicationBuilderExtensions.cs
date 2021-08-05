@@ -19,7 +19,7 @@
 
             var data = scopedServices.ServiceProvider.GetService<SWNDbContext>();
 
-            //data.Database.EnsureDeleted();
+            data.Database.EnsureDeleted();
             data.Database.Migrate();
 
             SeedClasses(data);

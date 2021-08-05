@@ -1,6 +1,7 @@
 ﻿namespace SheetsWithoutNumber.Models.Games
 {
-    using System;
+    using SWN.Data.Models;
+    using System.Collections.Generic;
 
     public class GamePreviewModel
     {
@@ -15,5 +16,7 @@
         public string Description { get; set; }
 
         public string GameImage { get; set; }
+
+        public IEnumerable<User> Users { get; set; }
     }
 }

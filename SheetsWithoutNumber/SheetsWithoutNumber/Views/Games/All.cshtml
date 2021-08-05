@@ -1,5 +1,23 @@
 ﻿@model IEnumerable<GamePreviewModel>
 
+@{ 
+    if (User.Identity.IsAuthenticated)
+    {
+        if (Model.Any(g => g.Users.Any(u => u.Id == User.GetId())))
+        {
+            ViewBag.Joined = true;
+        }
+        else
+        {
+            ViewBag.Joined = false;
+        }
+    }
+    else
+    {
+        ViewBag.Joined = false;
+    }
+}
+
 <section>
     <div class="row mx-1">
         <div class="list-group col-12">
@@ -24,7 +42,21 @@
                                 <p class="mb-1">@gamePreview.Description</p>
                                 <small>Players: @gamePreview.PlayersCurrent / @gamePreview.PlayersMax</small>
                             </div>
-                            <small>Joined</small>
+                            @if (ViewBag.Joined)
+                            {
+                                <small class="text-success">Joined</small>
+                            }
+                            else
+                            {
+                                if (@gamePreview.PlayersCurrent < @gamePreview.PlayersMax)
+                                {
+                                    <small class="text-info">Free slot available!</small>
+                                }
+                                else
+                                {
+                                    <small class="text-danger">Full</small>
+                                }
+                            }
                         </div>
                     </a>
                 }

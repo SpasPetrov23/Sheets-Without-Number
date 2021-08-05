@@ -4,6 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Models.Games;
+    using SheetsWithoutNumber.Services.Game;
     using SWN.Data;
     using SWN.Data.Models;
     using System;
@@ -12,10 +13,12 @@
     public class GamesController : Controller
     {
         private readonly SWNDbContext data;
+        private readonly IGameService game;
 
-        public GamesController(SWNDbContext data)
+        public GamesController(IGameService game, SWNDbContext data)
         {
             this.data = data;
+            this.game = game;
         }
 
         [Authorize]
@@ -33,23 +36,9 @@
                 return View(gameModel);
             }
 
-            var game = new Game
-            {
-                Name = gameModel.Name,
-                Description = gameModel.Description,
-                PlayersMax = gameModel.PlayersMax,
-                StartDate = DateTime.Now.ToString("d"),
-                SessionsCount = 0,
-                GameImage = gameModel.GameImage,
-                GameMasterId = this.User.GetId(),
-            };
+            var currentUserId = this.User.GetId();
 
-            var currentUser = data.Users.FirstOrDefault(u => u.Id == this.User.GetId());
-
-            game.Users.Add(currentUser);
-
-            data.Add(game);
-            data.SaveChanges();
+            game.Create(gameModel.Name, gameModel.Description, gameModel.PlayersMax, gameModel.GameImage, currentUserId);
 
             return RedirectToAction("Index", "Home");
         }
@@ -65,7 +54,8 @@
                     PlayersCurrent = g.Users.Count,
                     PlayersMax = g.PlayersMax,
                     Description = g.Description,
-                    GameImage = g.GameImage
+                    GameImage = g.GameImage,
+                    Users = g.Users
                 })
                 .ToList();
 
@@ -87,11 +77,25 @@
                     Players = g.Users,
                     Characters = g.Characters,
                     GameMasterId = g.GameMasterId,
-                    
+                    PlayersMax = g.PlayersMax
                 })
                 .FirstOrDefault();
 
             return View(game);
+        }
+
+        [Authorize]
+        public IActionResult Join(int gameId)
+        {
+            var game = data.Games.FirstOrDefault(g => g.Id == gameId);
+
+            var currentUser = data.Users.FirstOrDefault(u => u.Id == this.User.GetId());
+
+            game.Users.Add(currentUser);
+
+            data.SaveChanges();
+
+            return RedirectToAction("Details", "Games", new { gameId = gameId });
         }
     }
 }
