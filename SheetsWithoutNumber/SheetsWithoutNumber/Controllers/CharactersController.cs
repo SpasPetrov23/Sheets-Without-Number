@@ -13,13 +13,11 @@
 
     public class CharactersController : Controller
     {
-        private readonly SWNDbContext data;
         private readonly ICharacterService characters;
 
-        public CharactersController(ICharacterService characters, SWNDbContext data)
+        public CharactersController(ICharacterService characters)
         {
             this.characters = characters;
-            this.data = data;
         }
 
         [Authorize]
@@ -44,12 +42,12 @@
         [Authorize]
         public IActionResult Create(CharacterFormModel characterModel, int gameId)
         {
-            if (!this.data.Classes.Any(c => c.Id == characterModel.ClassId))
+            if (!this.characters.ClassExists(characterModel.ClassId))
             {
                 this.ModelState.AddModelError(nameof(characterModel.ClassId), "Class does not exist.");
             }
 
-            if (!this.data.Backgrounds.Any(b => b.Id == characterModel.BackgroundId))
+            if (!this.characters.BackgroundExists(characterModel.BackgroundId))
             {
                 this.ModelState.AddModelError(nameof(characterModel.BackgroundId), "Background does not exist.");
             }

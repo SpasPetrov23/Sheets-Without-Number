@@ -12,13 +12,11 @@
 
     public class GamesController : Controller
     {
-        private readonly SWNDbContext data;
-        private readonly IGameService game;
+        private readonly IGameService games;
 
-        public GamesController(IGameService game, SWNDbContext data)
+        public GamesController(IGameService game)
         {
-            this.data = data;
-            this.game = game;
+            this.games = game;
         }
 
         [Authorize]
@@ -38,62 +36,32 @@
 
             var currentUserId = this.User.GetId();
 
-            game.Create(gameModel.Name, gameModel.Description, gameModel.PlayersMax, gameModel.GameImage, currentUserId);
+            games.Create(gameModel.Name, gameModel.Description, gameModel.PlayersMax, gameModel.GameImage, currentUserId);
 
             return RedirectToAction("Index", "Home");
         }
 
         public IActionResult All()
         {
-            var games = data
-                .Games
-                .Select(g => new GamePreviewModel
-                {
-                    Id = g.Id,
-                    Name = g.Name,
-                    PlayersCurrent = g.Users.Count,
-                    PlayersMax = g.PlayersMax,
-                    Description = g.Description,
-                    GameImage = g.GameImage,
-                    Users = g.Users
-                })
-                .ToList();
+            var allGames = this.games.All();
 
-            return View(games);
+            return View(allGames);
         }
 
         [Authorize]
         public IActionResult Details(int gameId)
         {
-            var game = data
-                .Games
-                .Where(g => g.Id == gameId)
-                .Select(g => new GameDetailsModel
-                {
-                    Id = g.Id,
-                    Name = g.Name,
-                    Description = g.Description,
-                    GameImage = g.GameImage,
-                    Players = g.Users,
-                    Characters = g.Characters,
-                    GameMasterId = g.GameMasterId,
-                    PlayersMax = g.PlayersMax
-                })
-                .FirstOrDefault();
+            var gameDetails = games.Details(gameId);
 
-            return View(game);
+            return View(gameDetails);
         }
 
         [Authorize]
         public IActionResult Join(int gameId)
         {
-            var game = data.Games.FirstOrDefault(g => g.Id == gameId);
+            var currentUser = this.User.GetId();
 
-            var currentUser = data.Users.FirstOrDefault(u => u.Id == this.User.GetId());
-
-            game.Users.Add(currentUser);
-
-            data.SaveChanges();
+            this.games.Join(gameId, currentUser);
 
             return RedirectToAction("Details", "Games", new { gameId = gameId });
         }

@@ -9,6 +9,15 @@
     {
         ViewBag.Joined = false;
     }
+
+    if (Model.GameMasterId == User.GetId())
+    {
+        ViewBag.IsGM = true;
+    }
+    else
+    {
+        ViewBag.IsGM = false;
+    }
 }
 
 <div class="list-group-item flex-column align-items-start">
@@ -40,7 +49,7 @@
             }
             @if (ViewBag.Joined)
             {
-                @if (!Model.Characters.Any(c => c.OwnerId == User.GetId()))
+                @if (!Model.Characters.Any(c => c.OwnerId == User.GetId()) && !ViewBag.IsGM)
                 {
                     <a asp-controller="Characters" asp-action="Create" asp-route-gameId="@Model.Id">
                         <div class="text-center">

@@ -115,5 +115,11 @@
                 Name = b.Name
             })
             .ToList();
+
+        public bool ClassExists(int classId)
+            => this.data.Classes.Any(c => c.Id == classId);
+
+        public bool BackgroundExists(int backgroundId)
+            => this.data.Backgrounds.Any(b => b.Id == backgroundId);
     }
 }

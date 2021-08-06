@@ -1,16 +1,40 @@
 ﻿namespace SheetsWithoutNumber.Services.Game
 {
+    using SheetsWithoutNumber.Models.Games;
+    using SheetsWithoutNumber.Services.User;
     using SWN.Data;
     using SWN.Data.Models;
+    using System.Collections.Generic;
     using System.Linq;
 
     public class GameService : IGameService
     {
         private readonly SWNDbContext data;
+        private readonly IUserService users;
 
-        public GameService(SWNDbContext data)
+        public GameService(IUserService users, SWNDbContext data)
         {
             this.data = data;
+            this.users = users;
+        }
+
+        public IEnumerable<GamePreviewModel> All()
+        {
+            var games = data
+               .Games
+               .Select(g => new GamePreviewModel
+               {
+                   Id = g.Id,
+                   Name = g.Name,
+                   PlayersCurrent = g.Users.Count,
+                   PlayersMax = g.PlayersMax,
+                   Description = g.Description,
+                   GameImage = g.GameImage,
+                   Users = g.Users
+               })
+               .ToList();
+
+            return games;
         }
 
         public int Create(string name, string description, int maxPlayers, string gameImage, string gameMasterId)
@@ -29,6 +53,40 @@
             game.Users.Add(gameMaster);
 
             data.Add(game);
+            data.SaveChanges();
+
+            return game.Id;
+        }
+
+        public GameDetailsModel Details(int gameId)
+        {
+            var game = data
+                .Games
+                .Where(g => g.Id == gameId)
+                .Select(g => new GameDetailsModel
+                {
+                    Id = g.Id,
+                    Name = g.Name,
+                    Description = g.Description,
+                    GameImage = g.GameImage,
+                    Players = g.Users,
+                    Characters = g.Characters,
+                    GameMasterId = g.GameMasterId,
+                    PlayersMax = g.PlayersMax
+                })
+                .FirstOrDefault();
+
+            return game;
+        }
+
+        public int Join(int gameId, string userId)
+        {
+            var game = data.Games.FirstOrDefault(g => g.Id == gameId);
+
+            var currentUser = this.users.GetUserById(userId);
+
+            game.Users.Add(currentUser);
+
             data.SaveChanges();
 
             return game.Id;

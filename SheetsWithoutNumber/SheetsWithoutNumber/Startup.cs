@@ -8,6 +8,7 @@ namespace SheetsWithoutNumber
     using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Services.Character;
     using SheetsWithoutNumber.Services.Game;
+    using SheetsWithoutNumber.Services.User;
     using SWN.Data;
     using SWN.Data.Models;
 
@@ -46,6 +47,7 @@ namespace SheetsWithoutNumber
 
             services.AddTransient<ICharacterService, CharacterService>();
             services.AddTransient<IGameService, GameService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

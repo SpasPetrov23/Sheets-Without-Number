@@ -14,5 +14,9 @@
         public IEnumerable<CharacterClassViewModel> GetCharacterClasses();
 
         public IEnumerable<CharacterBackgroundView> GetCharacterBackgrounds();
+
+        public bool ClassExists(int classId);
+
+        public bool BackgroundExists(int backgroundId);
     }
 }
