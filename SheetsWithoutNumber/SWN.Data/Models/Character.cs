@@ -36,7 +36,11 @@
 
         public int Level { get; set; } = 1;
 
-        public int Experience { get; set; } = 0;
+        public int CurrentXP { get; set; } = 0;
+
+        public int MinimumXP { get; set; } = 0;
+
+        public int MaximumXP { get; set; } = 3;
 
         public int HitPoints { get; set; } = 0;
 

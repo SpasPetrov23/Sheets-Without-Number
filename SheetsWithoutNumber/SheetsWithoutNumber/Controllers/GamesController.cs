@@ -1,22 +1,21 @@
 ﻿namespace SheetsWithoutNumber.Controllers
 {
+    using AutoMapper;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Models.Games;
     using SheetsWithoutNumber.Services.Game;
-    using SWN.Data;
-    using SWN.Data.Models;
-    using System;
-    using System.Linq;
 
     public class GamesController : Controller
     {
         private readonly IGameService games;
+        private readonly IMapper mapper;
 
-        public GamesController(IGameService game)
+        public GamesController(IGameService game, IMapper mapper)
         {
             this.games = game;
+            this.mapper = mapper;
         }
 
         [Authorize]
@@ -68,13 +67,7 @@
                 return Unauthorized();
             }
 
-            var carForm = new GameFormModel
-            {
-                Name = game.Name,
-                Description =  game.Description,
-                GameImage = game.GameImage,
-                PlayersMax = game.PlayersMax
-            };
+            var carForm = this.mapper.Map<GameFormModel>(game);
 
             return View(carForm);
         }

@@ -10,6 +10,8 @@
     {
         public MappingProfile()
         {
+            this.CreateMap<CharacterDetailsModel, CharacterFormModel>();
+
             this.CreateMap<Character, CharacterListingModel>()
                 .ForMember(c => c.Class, cfg => cfg.MapFrom(c => c.Class.Name))
                 .ForMember(c => c.Background, cfg => cfg.MapFrom(c => c.Background.Name));

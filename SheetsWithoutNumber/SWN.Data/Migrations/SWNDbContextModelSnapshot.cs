@@ -247,6 +247,9 @@ namespace SWN.Data.Migrations
                     b.Property<int>("Credits")
                         .HasColumnType("int");
 
+                    b.Property<int>("CurrentXP")
+                        .HasColumnType("int");
+
                     b.Property<int>("Dexterity")
                         .HasColumnType("int");
 
@@ -257,9 +260,6 @@ namespace SWN.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
-
-                    b.Property<int>("Experience")
-                        .HasColumnType("int");
 
                     b.Property<int>("GameId")
                         .HasColumnType("int");
@@ -291,6 +291,12 @@ namespace SWN.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("MaxSystemStrain")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaximumXP")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MinimumXP")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")

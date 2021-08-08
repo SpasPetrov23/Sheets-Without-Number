@@ -14,6 +14,9 @@
                         <b>Species:</b> @classPreview.Species
                     </p>
                     <a asp-controller="Characters" asp-action="Details" asp-route-characterId="@classPreview.Id" class="btn btn-primary">View</a>
+                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteCharacterModal">Delete</a>
+
+                    <partial name="_CharacterDeletePopupPartial" model="@classPreview" />
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Last updated 3 mins ago</small>

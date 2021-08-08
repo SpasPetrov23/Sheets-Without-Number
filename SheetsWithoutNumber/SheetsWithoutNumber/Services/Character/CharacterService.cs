@@ -19,10 +19,11 @@
             this.mapper = mapper.ConfigurationProvider;
         }
 
-        public IEnumerable<CharacterListingModel> All()
+        public IEnumerable<CharacterListingModel> ByUser(string userId)
         {
             var characters = data
                 .Characters
+                .Where(c => c.OwnerId == userId)
                 .ProjectTo<CharacterListingModel>(this.mapper)
                 .ToList();
 
@@ -69,7 +70,23 @@
                 .ProjectTo<CharacterDetailsModel>(this.mapper)
                 .FirstOrDefault();
 
+            character.XPBarWidth = this.CalculateXP(character.CurrentXP, character.MinimumXP, character.MaximumXP);
+
             return character;
+        }
+
+        public int Delete(int characterId)
+        {
+            var character = data
+                .Characters
+                .Where(c => c.Id == characterId)
+                .FirstOrDefault();
+
+            data.Characters.Remove(character);
+
+            data.SaveChanges();
+
+            return character.Id;
         }
 
         public IEnumerable<CharacterClassViewModel> GetCharacterClasses()
@@ -90,5 +107,14 @@
 
         public bool BackgroundExists(int backgroundId)
             => this.data.Backgrounds.Any(b => b.Id == backgroundId);
+
+        public int CalculateXP(int currentXP, int minimumXP, int maximumXP)
+        {
+            var result = (currentXP - minimumXP) * 100 / (maximumXP - minimumXP);
+
+            var percentage = result;
+
+            return percentage;
+        }
     }
 }
