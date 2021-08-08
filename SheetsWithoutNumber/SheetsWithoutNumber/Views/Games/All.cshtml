@@ -1,21 +1,10 @@
 ﻿@model IEnumerable<GamePreviewModel>
 
-@{ 
-    if (User.Identity.IsAuthenticated)
-    {
-        if (Model.Any(g => g.Users.Any(u => u.Id == User.GetId())))
-        {
-            ViewBag.Joined = true;
-        }
-        else
-        {
-            ViewBag.Joined = false;
-        }
-    }
-    else
-    {
-        ViewBag.Joined = false;
-    }
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+
+@{
+    var userId = UserManager.GetUserId(User);
 }
 
 <section>
@@ -42,7 +31,7 @@
                                 <p class="mb-1">@gamePreview.Description</p>
                                 <small>Players: @gamePreview.PlayersCurrent / @gamePreview.PlayersMax</small>
                             </div>
-                            @if (ViewBag.Joined)
+                            @if (gamePreview.Users.Any(u => u.Id == userId))
                             {
                                 <small class="text-success">Joined</small>
                             }

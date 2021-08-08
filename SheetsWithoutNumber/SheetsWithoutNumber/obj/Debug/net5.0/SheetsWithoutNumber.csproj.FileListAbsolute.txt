@@ -1150,3 +1150,5 @@ C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\De
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Games\All.cshtml.g.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Games\Details.cshtml.g.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Characters\Details.cshtml.g.cs
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Games\Edit.cshtml.g.cs
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Games\_GameFormPartial.cshtml.g.cs

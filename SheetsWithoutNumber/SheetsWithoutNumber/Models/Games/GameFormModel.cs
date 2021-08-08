@@ -5,7 +5,7 @@ using static SWN.Data.DataConstants.Game;
 
 namespace SheetsWithoutNumber.Models.Games
 {
-    public class GameCreateFormModel
+    public class GameFormModel
     {
         [Required]
         [MaxLength(NameMaxLength)]

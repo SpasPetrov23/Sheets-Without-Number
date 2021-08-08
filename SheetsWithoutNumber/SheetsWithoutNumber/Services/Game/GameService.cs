@@ -30,6 +30,7 @@
                    PlayersMax = g.PlayersMax,
                    Description = g.Description,
                    GameImage = g.GameImage,
+                   GameMasterId = g.GameMasterId,
                    Users = g.Users
                })
                .ToList();
@@ -79,6 +80,25 @@
             return game;
         }
 
+        public bool Edit(int gameId, string name, string description, string gameImage, int maxPlayers)
+        {
+            var gameData = this.data.Games.Find(gameId);
+
+            if (gameData == null)
+            {
+                return false;
+            }
+
+            gameData.Name = name;
+            gameData.Description = description;
+            gameData.GameImage = gameImage;
+            gameData.PlayersMax = maxPlayers;
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
         public int Join(int gameId, string userId)
         {
             var game = data.Games.FirstOrDefault(g => g.Id == gameId);
@@ -90,6 +110,28 @@
             data.SaveChanges();
 
             return game.Id;
+        }
+
+        public bool PlayerMaxIsValid(int gameId, int playersMax)
+        {
+            var game = data.Games
+                .Where(g => g.Id == gameId).
+                Select(g => new GameEditServiceModel
+                { 
+                    Name = g.Name,
+                    Description = g.Description,
+                    GameImage = g.GameImage,
+                    PlayersMax = g.PlayersMax,
+                    Users = g.Users
+                })
+                .FirstOrDefault();
+
+            if (game.Users.Count > playersMax)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

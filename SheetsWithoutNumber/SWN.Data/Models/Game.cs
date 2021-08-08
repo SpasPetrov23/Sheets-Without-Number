@@ -31,8 +31,8 @@
         [MaxLength(DescriptionMaxLength)]
         public string Description { get; set; }
 
-        public ICollection<User> Users { get; init; } = new HashSet<User>();
+        public ICollection<User> Users { get; init; } = new List<User>();
 
-        public ICollection<Character> Characters { get; init; } = new HashSet<Character>();
+        public ICollection<Character> Characters { get; init; } = new List<Character>();
     }
 }

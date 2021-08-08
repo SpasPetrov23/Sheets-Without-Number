@@ -27,7 +27,7 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Create(GameCreateFormModel gameModel)
+        public IActionResult Create(GameFormModel gameModel)
         {
             if (!ModelState.IsValid)
             {
@@ -54,6 +54,48 @@
             var gameDetails = games.Details(gameId);
 
             return View(gameDetails);
+        }
+
+        [Authorize]
+        public IActionResult Edit(int gameId)
+        {
+            var userId = this.User.GetId();
+
+            var game = this.games.Details(gameId);
+
+            if (game.GameMasterId != userId)
+            {
+                return Unauthorized();
+            }
+
+            var carForm = new GameFormModel
+            {
+                Name = game.Name,
+                Description =  game.Description,
+                GameImage = game.GameImage,
+                PlayersMax = game.PlayersMax
+            };
+
+            return View(carForm);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Edit(int gameId, GameFormModel game)
+        {
+            if (!games.PlayerMaxIsValid(gameId, game.PlayersMax))
+            {
+                this.ModelState.AddModelError(nameof(game.PlayersMax), "Max Players cannot be lower than current Players in the game.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(game);
+            }
+
+            this.games.Edit(gameId, game.Name, game.Description, game.GameImage, game.PlayersMax);
+
+            return RedirectToAction("Details", "Games", new { gameId = gameId });
         }
 
         [Authorize]
