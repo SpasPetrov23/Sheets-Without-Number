@@ -1,5 +1,7 @@
 ﻿namespace SheetsWithoutNumber.Services.Game
 {
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
     using SheetsWithoutNumber.Models.Games;
     using SheetsWithoutNumber.Services.User;
     using SWN.Data;
@@ -11,28 +13,20 @@
     {
         private readonly SWNDbContext data;
         private readonly IUserService users;
+        private readonly IConfigurationProvider mapper;
 
-        public GameService(IUserService users, SWNDbContext data)
+        public GameService(IUserService users, SWNDbContext data, IConfigurationProvider mapper)
         {
             this.data = data;
             this.users = users;
+            this.mapper = mapper;
         }
 
         public IEnumerable<GamePreviewModel> All()
         {
             var games = data
                .Games
-               .Select(g => new GamePreviewModel
-               {
-                   Id = g.Id,
-                   Name = g.Name,
-                   PlayersCurrent = g.Users.Count,
-                   PlayersMax = g.PlayersMax,
-                   Description = g.Description,
-                   GameImage = g.GameImage,
-                   GameMasterId = g.GameMasterId,
-                   Users = g.Users
-               })
+               .ProjectTo<GamePreviewModel>(this.mapper)
                .ToList();
 
             return games;
@@ -64,17 +58,7 @@
             var game = data
                 .Games
                 .Where(g => g.Id == gameId)
-                .Select(g => new GameDetailsModel
-                {
-                    Id = g.Id,
-                    Name = g.Name,
-                    Description = g.Description,
-                    GameImage = g.GameImage,
-                    Players = g.Users,
-                    Characters = g.Characters,
-                    GameMasterId = g.GameMasterId,
-                    PlayersMax = g.PlayersMax
-                })
+                .ProjectTo<GameDetailsModel>(this.mapper)
                 .FirstOrDefault();
 
             return game;
@@ -115,15 +99,8 @@
         public bool PlayerMaxIsValid(int gameId, int playersMax)
         {
             var game = data.Games
-                .Where(g => g.Id == gameId).
-                Select(g => new GameEditServiceModel
-                { 
-                    Name = g.Name,
-                    Description = g.Description,
-                    GameImage = g.GameImage,
-                    PlayersMax = g.PlayersMax,
-                    Users = g.Users
-                })
+                .Where(g => g.Id == gameId)
+                .ProjectTo<GameEditServiceModel>(this.mapper)
                 .FirstOrDefault();
 
             if (game.Users.Count > playersMax)

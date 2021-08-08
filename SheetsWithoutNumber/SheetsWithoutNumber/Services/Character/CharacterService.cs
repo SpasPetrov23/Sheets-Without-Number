@@ -1,35 +1,29 @@
 ﻿namespace SheetsWithoutNumber.Services.Character
 {
-    using SheetsWithoutNumber.Models.Characters;
-    using SWN.Data;
     using System.Collections.Generic;
     using System.Linq;
+    using SWN.Data;
     using SWN.Data.Models;
+    using SheetsWithoutNumber.Models.Characters;
+    using AutoMapper;
+    using AutoMapper.QueryableExtensions;
 
     public class CharacterService : ICharacterService
     {
         private readonly SWNDbContext data;
+        private readonly IConfigurationProvider mapper;
 
-        public CharacterService(SWNDbContext data)
+        public CharacterService(SWNDbContext data, IMapper mapper)
         {
             this.data = data;
+            this.mapper = mapper.ConfigurationProvider;
         }
 
         public IEnumerable<CharacterListingModel> All()
         {
             var characters = data
                 .Characters
-                .Select(c => new CharacterListingModel
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    Class = c.Class.Name,
-                    Background = c.Background.Name,
-                    Level = c.Level,
-                    Homeworld = c.Homeworld,
-                    Species = c.Species,
-                    CharacterImage = c.CharacterImage
-                })
+                .ProjectTo<CharacterListingModel>(this.mapper)
                 .ToList();
 
             return characters;
@@ -72,24 +66,7 @@
             var character = data
                 .Characters
                 .Where(c => c.Id == characterId)
-                .Select(c => new CharacterDetailsModel
-                {
-                    Name = c.Name,
-                    Homeworld = c.Homeworld,
-                    Species = c.Species,
-                    Class = c.Class.Name,
-                    Background = c.Background.Name,
-                    CharacterImage = c.CharacterImage,
-                    Charisma = c.Charisma,
-                    Constitution = c.Constitution,
-                    Dexterity = c.Dexterity,
-                    Intelligence = c.Intelligence,
-                    Strength = c.Strength,
-                    Wisdom = c.Wisdom,
-                    Level = c.Level,
-                    GameId = c.GameId,
-                    Game = c.Game
-                })
+                .ProjectTo<CharacterDetailsModel>(this.mapper)
                 .FirstOrDefault();
 
             return character;
@@ -98,22 +75,14 @@
         public IEnumerable<CharacterClassViewModel> GetCharacterClasses()
             => this.data
              .Classes
-             .Select(c => new CharacterClassViewModel
-             {
-                 Id = c.Id,
-                 Name = c.Name
-             })
+             .ProjectTo<CharacterClassViewModel>(this.mapper)
              .ToList();
 
         public IEnumerable<CharacterBackgroundView> GetCharacterBackgrounds()
             => this.data
             .Backgrounds
             .OrderBy(b => b.Name)
-            .Select(b => new CharacterBackgroundView
-            {
-                Id = b.Id,
-                Name = b.Name
-            })
+            .ProjectTo<CharacterBackgroundView>(this.mapper)
             .ToList();
 
         public bool ClassExists(int classId)

@@ -1,7 +1,7 @@
 ﻿@model GameDetailsModel
 
 @{
-    if (Model.Players.Any(p => p.Id == User.GetId()))
+    if (Model.Users.Any(p => p.Id == User.GetId()))
     {
         ViewBag.Joined = true;
     }
@@ -30,7 +30,7 @@
             <hr />
 
             <h4>Players:</h4>
-            @foreach (var user in Model.Players)
+            @foreach (var user in Model.Users)
             {
                 <p class="mb-1">
                     @user.UserName
@@ -71,7 +71,7 @@
             }
             else
             {
-                @if (Model.Players.Count < Model.PlayersMax && !Model.Players.Any(u => u.Id == this.User.GetId()))
+                @if (Model.Users.Count < Model.PlayersMax && !Model.Users.Any(u => u.Id == this.User.GetId()))
                 {
                     <a asp-controller="Games" asp-action="Join" asp-route-gameId="@Model.Id">
                         <div class="text-center">

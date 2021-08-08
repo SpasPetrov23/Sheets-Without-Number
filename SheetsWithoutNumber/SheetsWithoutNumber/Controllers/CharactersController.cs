@@ -1,15 +1,10 @@
 ﻿namespace SheetsWithoutNumber.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Models.Characters;
     using SheetsWithoutNumber.Services.Character;
-    using SWN.Data;
-    using SWN.Data.Models;
 
     public class CharactersController : Controller
     {
@@ -65,7 +60,6 @@
             this.characters.Create(characterModel.Name, characterModel.BackgroundId, characterModel.ClassId, characterModel.CharacterImage, characterModel.Strength, characterModel.Constitution, characterModel.Dexterity, characterModel.Wisdom, characterModel.Intelligence, characterModel.Charisma, characterModel.Homeworld, characterModel.Species, characterOwnerId, gameId);
 
             return RedirectToAction("All", "Characters");
-
         }
 
         public IActionResult Details(int characterId)

@@ -45,6 +45,8 @@ namespace SheetsWithoutNumber
                 options.LoginPath = "/Users/Login";
             });
 
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddTransient<ICharacterService, CharacterService>();
             services.AddTransient<IGameService, GameService>();
             services.AddTransient<IUserService, UserService>();
