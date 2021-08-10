@@ -75,6 +75,29 @@
             return character;
         }
 
+        public bool Edit(int characterId, string name, string characterImage, int strength, int dexterity, int constitution, int intelligence, int charisma, int wisdom)
+        {
+            var characterData = this.data.Characters.Find(characterId);
+
+            if (characterData == null)
+            {
+                return false;
+            }
+
+            characterData.Name = name;
+            characterData.CharacterImage = characterImage;
+            characterData.Strength = strength;
+            characterData.Dexterity = dexterity;
+            characterData.Constitution = constitution;
+            characterData.Intelligence = intelligence;
+            characterData.Charisma = charisma;
+            characterData.Wisdom = wisdom;
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
         public int Delete(int characterId)
         {
             var character = data

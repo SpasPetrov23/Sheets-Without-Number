@@ -51,11 +51,14 @@
             {
                 if (ViewBag.IsGm)
                 {
-                    <a asp-controller="Games" asp-action="Edit" asp-route-gameId="@Model.Id">
-                        <div class="text-center">
+                    <div class="text-center">
+                        <a asp-controller="Games" asp-action="Edit" asp-route-gameId="@Model.Id">
                             <input type="button" class="btn btn-info" style="width:200px" value="Edit Game" />
-                        </div>
-                    </a>
+                        </a>
+
+                        <a class="btn btn-danger" data-toggle="modal" data-target="#deleteGameModal">Delete</a>
+                        <partial name="_GameDeletePopupPartial" model="@Model" />
+                    </div>
                 }
                 else
                 {

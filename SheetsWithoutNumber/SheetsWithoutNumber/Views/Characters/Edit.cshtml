@@ -1,4 +1,4 @@
-﻿@model CharacterFormModel
+﻿@model CharacterEditFormModel
 <h2 class="text-center">Edit Character</h2>
 <hr />
 
@@ -16,41 +16,6 @@
                     <input asp-for="CharacterImage" class="form-control form-control-lg" placeholder="Enter an image url for your character" />
                     <span asp-validation-for="CharacterImage" class="small text-danger"></span>
                 </div>
-            </div>
-
-            <div class="form-row col-12">
-                <div class="form-group col-6">
-                    <label asp-for="Homeworld"></label>
-                    <input asp-for="Homeworld" class="form-control" placeholder="Enter your character's homeworld" />
-                    <span asp-validation-for="Homeworld" class="small text-danger"></span>
-                </div>
-                <div class="form-group col-6">
-                    <label asp-for="Species"></label>
-                    <input asp-for="Species" class="form-control" placeholder="Enter your character's species" />
-                    <span asp-validation-for="Species" class="small text-danger"></span>
-                </div>
-            </div>
-
-            <div class="form-group col-6">
-                <label asp-for="ClassId">Class</label>
-                <select asp-for="ClassId" class="form-control">
-                    @foreach (var characterClass in Model.Classes)
-                    {
-        <option value="@characterClass.Id">@characterClass.Name</option>
-}
-                </select>
-                <span asp-validation-for="ClassId" class="small text-danger"></span>
-            </div>
-
-            <div class="form-group col-6">
-                <label asp-for="BackgroundId">Background</label>
-                <select asp-for="BackgroundId" class="form-control">
-                    @foreach (var characterBackground in Model.Backgrounds)
-                    {
-        <option value="@characterBackground.Id">@characterBackground.Name</option>
-}
-                </select>
-                <span asp-validation-for="BackgroundId" class="small text-danger"></span>
             </div>
 
             <div class="form-row col-12">
@@ -96,3 +61,7 @@
         </form>
     </div>
 </div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -11,6 +11,8 @@
 
         public GameDetailsModel Details(int gameId);
 
+        public int Delete(int gameId);
+
         public bool Edit(int gameId, string name, string description, string gameImage, int maxPlayers);
 
         public int Join(int gameId, string userId);

@@ -11,6 +11,8 @@
 
         public CharacterDetailsModel Details(int characterId);
 
+        public bool Edit(int characterId, string name, string characterImage, int strength, int dexterity, int constitution, int intelligence, int charisma, int wisdom);
+
         public int Delete(int characterId);
 
         public IEnumerable<CharacterClassViewModel> GetCharacterClasses();

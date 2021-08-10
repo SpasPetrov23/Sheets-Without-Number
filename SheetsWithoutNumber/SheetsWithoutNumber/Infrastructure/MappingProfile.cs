@@ -10,7 +10,7 @@
     {
         public MappingProfile()
         {
-            this.CreateMap<CharacterDetailsModel, CharacterFormModel>();
+            this.CreateMap<CharacterDetailsModel, CharacterEditFormModel>();
 
             this.CreateMap<Character, CharacterListingModel>()
                 .ForMember(c => c.Class, cfg => cfg.MapFrom(c => c.Class.Name))
@@ -26,6 +26,8 @@
 
             this.CreateMap<Game, GamePreviewModel>()
                 .ForMember(g => g.PlayersCurrent, cfg => cfg.MapFrom(u => u.Users.Count));
+            
+            this.CreateMap<GameDetailsModel, GameFormModel>();
 
             this.CreateMap<Game, GameDetailsModel>();
 

@@ -29,7 +29,7 @@
         [Authorize]
         public IActionResult Create() 
         {
-            return View(new CharacterFormModel
+            return View(new CharacterCreateFormModel
             {
                 Classes = this.characters.GetCharacterClasses(),
                 Backgrounds = this.characters.GetCharacterBackgrounds()
@@ -38,7 +38,7 @@
 
         [HttpPost]
         [Authorize]
-        public IActionResult Create(CharacterFormModel characterModel, int gameId)
+        public IActionResult Create(CharacterCreateFormModel characterModel, int gameId)
         {
             if (!this.characters.ClassExists(characterModel.ClassId))
             {
@@ -73,7 +73,6 @@
             return View(characterDetails);
         }
 
-
         [Authorize]
         public IActionResult Edit(int characterId)
         {
@@ -86,12 +85,23 @@
                 return Unauthorized();
             }
 
-            var characterForm = this.mapper.Map<CharacterFormModel>(character);
-
-            characterForm.Classes = this.characters.GetCharacterClasses();
-            characterForm.Backgrounds = this.characters.GetCharacterBackgrounds();
+            var characterForm = this.mapper.Map<CharacterEditFormModel>(character);
 
             return View(characterForm);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Edit(int characterId, CharacterEditFormModel characterEdit)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(characterEdit);
+            }
+
+            this.characters.Edit(characterId, characterEdit.Name, characterEdit.CharacterImage, characterEdit.Strength, characterEdit.Dexterity, characterEdit.Constitution, characterEdit.Intelligence, characterEdit.Charisma, characterEdit.Wisdom);
+
+            return RedirectToAction("Details", "Characters", new { characterId = characterId });
         }
 
         [Authorize]

@@ -1156,3 +1156,4 @@ C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\bin\De
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Characters\_CharacterDeletePopupPartial.cshtml.g.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Characters\Mine.cshtml.g.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Characters\Edit.cshtml.g.cs
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Games\_GameDeletePopupPartial.cshtml.g.cs

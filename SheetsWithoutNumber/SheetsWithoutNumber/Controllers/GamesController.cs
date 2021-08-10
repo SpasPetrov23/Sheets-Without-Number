@@ -67,9 +67,9 @@
                 return Unauthorized();
             }
 
-            var carForm = this.mapper.Map<GameFormModel>(game);
+            var gameForm = this.mapper.Map<GameFormModel>(game);
 
-            return View(carForm);
+            return View(gameForm);
         }
 
         [Authorize]
@@ -89,6 +89,15 @@
             this.games.Edit(gameId, game.Name, game.Description, game.GameImage, game.PlayersMax);
 
             return RedirectToAction("Details", "Games", new { gameId = gameId });
+        }
+
+
+        [Authorize]
+        public IActionResult Delete(int gameId)
+        {
+            games.Delete(gameId);
+
+            return RedirectToAction("All", "Games");
         }
 
         [Authorize]

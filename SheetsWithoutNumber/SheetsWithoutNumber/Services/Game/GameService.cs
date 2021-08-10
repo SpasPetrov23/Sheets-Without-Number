@@ -64,6 +64,28 @@
             return game;
         }
 
+        public int Delete(int gameId)
+        {
+            var game = data
+                .Games
+                .Where(g => g.Id == gameId)
+                .FirstOrDefault();
+
+            foreach (var character in data.Characters)
+            {
+                if (character.GameId == gameId)
+                {
+                    data.Characters.Remove(character);
+                }
+            }
+
+            data.Games.Remove(game);
+
+            data.SaveChanges();
+
+            return game.Id;
+        }
+
         public bool Edit(int gameId, string name, string description, string gameImage, int maxPlayers)
         {
             var gameData = this.data.Games.Find(gameId);
