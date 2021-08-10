@@ -1,11 +1,24 @@
 ﻿@model CharacterDetailsModel
 
+@{ 
+    if (Model.OwnerId != Model.UserId && Model.Game.GameMasterId != Model.UserId && !User.IsAdmin())
+    {
+        ViewBag.DisabledButton = "disabled";
+        ViewBag.ButtonColor = "btn-secondary";
+    }
+    else
+    {
+        ViewBag.DisabledButton = string.Empty;
+        ViewBag.ButtonColor = "btn-info";
+    }
+}
+
 <div class="d-flex">
     <div class="col-3">
         <img src="@Model.CharacterImage" class="img-thumbnail" alt="Character Image" style="height: 320px; object-fit: cover">
         <a asp-controller="Characters" asp-action="Edit" asp-route-characterId="@Model.Id" class="text-decoration-none">
             <div class="text-center">
-                <input type="button" class="btn btn-block btn-info" value="Edit" />
+                <input type="button" class="btn btn-block @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Edit" />
             </div>
         </a>
     </div>

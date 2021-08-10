@@ -68,7 +68,9 @@
         [Authorize]
         public IActionResult Details(int characterId)
         {
-            var characterDetails = characters.Details(characterId);
+            var currentUserId = this.User.GetId();
+
+            var characterDetails = characters.Details(characterId, currentUserId);
 
             return View(characterDetails);
         }
@@ -78,9 +80,9 @@
         {
             var userId = this.User.GetId();
 
-            var character = this.characters.Details(characterId);
+            var character = this.characters.Details(characterId, userId);
 
-            if (character.OwnerId != userId)
+            if (character.OwnerId != character.UserId && character.Game.GameMasterId != userId)
             {
                 return Unauthorized();
             }

@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Mvc;
     using SheetsWithoutNumber.Models.Users;
     using SWN.Data.Models;
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -35,7 +36,8 @@
             var registeredUser = new User
             {
                 Email = user.Email,
-                UserName = user.Username
+                UserName = user.Username,
+                JoinDate = DateTime.Now
             };
 
             var registerUser = await this.userManager.FindByEmailAsync(user.Email);

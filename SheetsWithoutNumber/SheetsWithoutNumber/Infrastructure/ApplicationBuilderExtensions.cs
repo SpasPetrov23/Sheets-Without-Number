@@ -7,7 +7,10 @@
     using SWN.Data.Models;
     using System;
     using System.Linq;
+    using Microsoft.AspNetCore.Identity;
+    using System.Threading.Tasks;
 
+    using static Areas.Admin.AdminConstants;
     using static SWN.Data.DataConstants.ClassData;
     using static SWN.Data.DataConstants.Background;
 
@@ -15,21 +18,66 @@
     {
         public static IApplicationBuilder PrepareDatabase(this IApplicationBuilder app)
         {
-            var scopedServices = app.ApplicationServices.CreateScope();
+            var serviceScope = app.ApplicationServices.CreateScope();
+            var services = serviceScope.ServiceProvider;
 
-            var data = scopedServices.ServiceProvider.GetService<SWNDbContext>();
+            MigrateDatabase(services);
 
-            //data.Database.EnsureDeleted();
-            data.Database.Migrate();
-
-            SeedClasses(data);
-            SeedBackgrounds(data);
+            SeedAdministrators(services);
+            SeedClasses(services);
+            SeedBackgrounds(services);
 
             return app;
         }
 
-        private static void SeedClasses(SWNDbContext data)
+        private static void MigrateDatabase(IServiceProvider services)
         {
+
+            var data = services.GetRequiredService<SWNDbContext>();
+
+            //data.Database.EnsureDeleted();
+            data.Database.Migrate();
+        }
+
+        private static void SeedAdministrators(IServiceProvider services)
+        {
+            var userManager = services.GetRequiredService<UserManager<User>>();
+            var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+            Task
+                .Run(async () =>
+                {
+                    if (await roleManager.RoleExistsAsync(AdministratorRoleName))
+                    {
+                        return;
+                    }
+
+                    var role = new IdentityRole { Name = AdministratorRoleName };
+
+                    await roleManager.CreateAsync(role);
+
+                    const string adminEmail = "admin@swn.com";
+                    const string adminUsername = "Admin";
+                    const string adminPassword = "admin123";
+
+                    var user = new User
+                    {
+                        Email = adminEmail,
+                        UserName = adminUsername,
+                    };
+
+                    await userManager.CreateAsync(user, adminPassword);
+
+                    await userManager.AddToRoleAsync(user, role.Name);
+                })
+                .GetAwaiter()
+                .GetResult();
+        }
+
+        private static void SeedClasses(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<SWNDbContext>();
+
             if (data.Classes.Any())
             {
                 return;
@@ -78,8 +126,10 @@
             data.SaveChanges();
         }
 
-        private static void SeedBackgrounds(SWNDbContext data)
+        private static void SeedBackgrounds(IServiceProvider services)
         {
+            var data = services.GetRequiredService<SWNDbContext>();
+
             if (data.Backgrounds.Any())
             {
                 return;

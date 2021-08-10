@@ -36,6 +36,8 @@
 
         public string OwnerId { get; init; }
 
+        public string UserId { get; set; }
+
         public int GameId { get; init; }
 
         public Game Game { get; init; }

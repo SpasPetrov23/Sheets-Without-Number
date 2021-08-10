@@ -27,29 +27,61 @@
             <h3 class="mb-1 text-center">@Model.Name</h3>
             <p class="mb-1">@Model.Description</p>
 
-            <hr />
+            <br/>
 
-            <h4>Players:</h4>
-            @foreach (var user in Model.Users)
-            {
-                <p class="mb-1">
-                    @user.UserName
-                    @if (user.Id == Model.GameMasterId)
-                    {
-                        <b>(GM)</b>
-                    }
-                    @foreach (var character in Model.Characters)
-                    {
-                        if (character.OwnerId == user.Id)
-                        {
-                            @character.Name @Html.Raw(" "); @character.Level
-                        }
-                    }
-                </p>
+            @{
+                var userCount = 0;
             }
-            @if (ViewBag.Joined)
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Player</th>
+                        <th scope="col">Character</th>
+                        <th scope="col">Level</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        userCount = userCount + 1;
+                        <tr>
+                            <th scope="row">@userCount</th>
+                            <td>
+                                @user.UserName
+                                @if (user.Id == Model.GameMasterId)
+                                {
+                                    <b>(GM)</b>
+                                }
+                            </td>
+                            @foreach (var character in Model.Characters)
+                            {
+                                <td>
+                                    @if (character.OwnerId == user.Id && character.GameId == Model.Id)
+                                    {
+                                        <a asp-controller="Characters" asp-action="Details" asp-route-characterId="@character.Id">@character.Name</a>
+                                    }
+                                </td>
+                                <td>
+                                    @if (user.Id == Model.GameMasterId)
+                                    {
+                                        @Html.Raw("N/A");
+                                    }
+                                    else
+                                    {
+                                        @character.Level
+                                    }
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            @if (ViewBag.Joined || User.IsAdmin())
             {
-                if (ViewBag.IsGm)
+                if (ViewBag.IsGm || User.IsAdmin())
                 {
                     <div class="text-center">
                         <a asp-controller="Games" asp-action="Edit" asp-route-gameId="@Model.Id">

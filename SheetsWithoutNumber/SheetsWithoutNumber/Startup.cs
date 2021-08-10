@@ -2,6 +2,7 @@ namespace SheetsWithoutNumber
 {
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +38,7 @@ namespace SheetsWithoutNumber
                     options.Password.RequireUppercase = false;
                     options.SignIn.RequireConfirmedEmail = true;
                 })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<SWNDbContext>();
 
             services
@@ -85,6 +87,9 @@ namespace SheetsWithoutNumber
                     endpoints.MapControllerRoute(
                         name: "default",
                         pattern: "{controller=Home}/{action=Index}/{id?}");
+                    endpoints.MapControllerRoute(
+                        name: "areas",
+                        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 });
         }
     }

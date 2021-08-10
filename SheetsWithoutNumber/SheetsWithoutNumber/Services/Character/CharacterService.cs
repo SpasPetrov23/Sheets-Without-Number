@@ -62,13 +62,15 @@
             return character.Id;
         }
 
-        public CharacterDetailsModel Details(int characterId)
+        public CharacterDetailsModel Details(int characterId, string userId)
         {
             var character = data
                 .Characters
                 .Where(c => c.Id == characterId)
                 .ProjectTo<CharacterDetailsModel>(this.mapper)
                 .FirstOrDefault();
+
+            character.UserId = userId;
 
             character.XPBarWidth = this.CalculateXP(character.CurrentXP, character.MinimumXP, character.MaximumXP);
 
