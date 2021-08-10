@@ -5,7 +5,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.User;
+    using static DataConstants.UserData;
 
     public class User : IdentityUser
     {

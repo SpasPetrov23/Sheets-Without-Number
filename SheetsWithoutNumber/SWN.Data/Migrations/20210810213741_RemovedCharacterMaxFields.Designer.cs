@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SWN.Data;
 
 namespace SWN.Data.Migrations
 {
     [DbContext(typeof(SWNDbContext))]
-    partial class SWNDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210810213741_RemovedCharacterMaxFields")]
+    partial class RemovedCharacterMaxFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

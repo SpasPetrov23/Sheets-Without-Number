@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static SWN.Data.DataConstants.Character;
+    using static SWN.Data.DataConstants.CharacterData;
 
     public class CharacterCreateFormModel
     {

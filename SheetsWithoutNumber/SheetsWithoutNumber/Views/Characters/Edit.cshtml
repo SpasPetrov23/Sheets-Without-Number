@@ -18,6 +18,9 @@
                 </div>
             </div>
 
+            <h4 class="text-center">Attributes</h4>
+            <hr />
+
             <div class="form-row col-12">
                 <div class="form-group col-sm-12 col-md-6 col-lg-4 col-xl-2">
                     <label asp-for="Strength"></label>
@@ -48,6 +51,37 @@
                     <label asp-for="Charisma"></label>
                     <input asp-for="Charisma" class="form-control form-control-sm" style="width:75px" />
                     <span asp-validation-for="Charisma" class="small text-danger"></span>
+                </div>
+            </div>
+
+            <h4 class="text-center">Status Points</h4>
+            <hr />
+
+            <div class="form-row col-12">
+                <div class="form-group col-sm-12 col-md-6 col-lg-4 col-xl-2">
+                    <label asp-for="CurrentXP"></label>
+                    <input asp-for="CurrentXP" class="form-control form-control-sm" style="width:75px" />
+                    <span asp-validation-for="CurrentXP" class="small text-danger"></span>
+                </div>
+                <div class="form-group col-sm-12 col-md-6 col-lg-4 col-xl-2">
+                    <label asp-for="HitPoints"></label>
+                    <input asp-for="HitPoints" class="form-control form-control-sm" style="width:75px" />
+                    <span asp-validation-for="HitPoints" class="small text-danger"></span>
+                </div>
+                <div class="form-group col-sm-12 col-md-6 col-lg-4 col-xl-2">
+                    <label asp-for="MaxHitPoints"></label>
+                    <input asp-for="MaxHitPoints" class="form-control form-control-sm" style="width:75px" />
+                    <span asp-validation-for="MaxHitPoints" class="small text-danger"></span>
+                </div>
+                <div class="form-group col-sm-12 col-md-6 col-lg-4 col-xl-2">
+                    <label asp-for="Effort"></label>
+                    <input asp-for="Effort" class="form-control form-control-sm" style="width:75px" />
+                    <span asp-validation-for="Effort" class="small text-danger"></span>
+                </div>
+                <div class="form-group col-sm-12 col-md-6 col-lg-4 col-xl-2">
+                    <label asp-for="SystemStrain"></label>
+                    <input asp-for="SystemStrain" class="form-control form-control-sm" style="width:75px" />
+                    <span asp-validation-for="SystemStrain" class="small text-danger"></span>
                 </div>
             </div>
 

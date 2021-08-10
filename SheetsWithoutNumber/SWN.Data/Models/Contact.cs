@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Contact;
+    using static DataConstants.ContactData;
 
     public class Contact
     {

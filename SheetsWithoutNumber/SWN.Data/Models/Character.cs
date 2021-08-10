@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Character;
+    using static DataConstants.CharacterData;
 
     public class Character
     {
@@ -38,9 +38,11 @@
 
         public int CurrentXP { get; set; } = 0;
 
-        public int MinimumXP { get; set; } = 0;
+        public int SavingThrowPhysical { get; set; } = 0;
 
-        public int MaximumXP { get; set; } = 3;
+        public int SavingThrowMental { get; set; } = 0;
+
+        public int SavingThrowEvasion { get; set; } = 0;
 
         public int HitPoints { get; set; } = 0;
 
@@ -48,11 +50,7 @@
 
         public int Effort { get; set; } = 0;
 
-        public int MaxEffort { get; set; } = 0;
-
         public int SystemStrain { get; set; } = 0;
-
-        public int MaxSystemStrain { get; set; } = 0;
 
         public int Speed { get; set; } = 0;
 

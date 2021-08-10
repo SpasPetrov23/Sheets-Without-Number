@@ -96,12 +96,17 @@
         [HttpPost]
         public IActionResult Edit(int characterId, CharacterEditFormModel characterEdit)
         {
+            if (characterEdit.HitPoints > characterEdit.MaxHitPoints)
+            {
+                this.ModelState.AddModelError(nameof(characterEdit.HitPoints), "Hit Points cannot be higher than maximum Hit Points.");
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(characterEdit);
             }
 
-            this.characters.Edit(characterId, characterEdit.Name, characterEdit.CharacterImage, characterEdit.Strength, characterEdit.Dexterity, characterEdit.Constitution, characterEdit.Intelligence, characterEdit.Charisma, characterEdit.Wisdom);
+            this.characters.Edit(characterId, characterEdit.Name, characterEdit.CharacterImage, characterEdit.Strength, characterEdit.Dexterity, characterEdit.Constitution, characterEdit.Intelligence, characterEdit.Charisma, characterEdit.Wisdom, characterEdit.CurrentXP, characterEdit.HitPoints, characterEdit.MaxHitPoints, characterEdit.Effort, characterEdit.SystemStrain);
 
             return RedirectToAction("Details", "Characters", new { characterId = characterId });
         }

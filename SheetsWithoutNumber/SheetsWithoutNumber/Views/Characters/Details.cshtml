@@ -38,13 +38,13 @@
         <div class="table-responsive">
             <table class="table table-bordered">
                 <tbody>
-                    <tr style="background-color: lightblue">
+                    <tr class="text-center" style="background-color: lightblue">
                         <td><b>Species</b></td>
                         <td><b>Homeworld</b></td>
                         <td><b>Class</b></td>
                         <td><b>Background</b></td>
                     </tr>
-                    <tr>
+                    <tr class="text-center">
                         <td>@Model.Species</td>
                         <td>@Model.Homeworld</td>
                         <td>@Model.Class</td>
@@ -53,13 +53,29 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="table-sm table-responsive">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr class="text-center" style="background-color: lightblue">
+                        <td><b>Hit Points</b></td>
+                        <td><b>Effort</b></td>
+                        <td><b>System Strain</b></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td>@Model.HitPoints / @Model.MaxHitPoints</td>
+                        <td>@Model.Effort</td>
+                        <td>@Model.SystemStrain / @Model.MaxSystemStrain</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
-
 <div class="d-flex" style="margin-top:20px">
     <div class="col-3">
-        <div class="table-responsive">
+        <div class="table-sm table-responsive">
             <table class="table table-bordered">
                 <tbody>
                     <tr style="background-color: lightblue">
@@ -67,35 +83,54 @@
                         <td><b>Score</b></td>
                         <td><b>Mod</b></td>
                     </tr>
-                    <tr>
-                        <td style="background-color: aliceblue">Strength</td>
+                    <tr class="text-center">
+                        <td class="text-left" style="background-color: aliceblue">Strength</td>
                         <td>@Model.Strength</td>
-                        <td>0</td>
+                        <td>@Model.StrengthMod</td>
                     </tr>
-                    <tr>
-                        <td style="background-color: aliceblue">Dexterity</td>
+                    <tr class="text-center">
+                        <td class="text-left" style="background-color: aliceblue">Dexterity</td>
                         <td>@Model.Dexterity</td>
-                        <td>0</td>
+                        <td>@Model.DexterityMod</td>
                     </tr>
-                    <tr>
-                        <td style="background-color: aliceblue ">Constitution</td>
+                    <tr class="text-center">
+                        <td class="text-left" style="background-color: aliceblue ">Constitution</td>
                         <td>@Model.Constitution</td>
-                        <td>0</td>
+                        <td>@Model.ConstitutionMod</td>
                     </tr>
-                    <tr>
-                        <td style="background-color: aliceblue">Intelligence</td>
+                    <tr class="text-center">
+                        <td class="text-left" style="background-color: aliceblue">Intelligence</td>
                         <td>@Model.Intelligence</td>
-                        <td>0</td>
+                        <td>@Model.IntelligenceMod</td>
                     </tr>
-                    <tr>
-                        <td style="background-color: aliceblue">Wisdom</td>
+                    <tr class="text-center">
+                        <td class="text-left" style="background-color: aliceblue">Wisdom</td>
                         <td>@Model.Wisdom</td>
-                        <td>0</td>
+                        <td>@Model.WisdomMod</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td class="text-left" style="background-color: aliceblue">Charisma</td>
+                        <td>@Model.Charisma</td>
+                        <td>@Model.CharismaMod</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="table-sm table-responsive">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr style="padding:0.25rem">
+                        <td style="background-color: lightblue"><b>Speed</b></td>
+                        <td>@Model.Speed</td>
+                        <td style="background-color: lightblue"><b>Attack Bonus</b></td>
+                        <td>@Model.AttackBonus</td>
                     </tr>
                     <tr>
-                        <td style="background-color: aliceblue">Charisma</td>
-                        <td>@Model.Charisma</td>
-                        <td>0</td>
+                        <td style="background-color: lightblue;"><b>Initiative</b></td>
+                        <td>@Model.Initiative</td>
+                        <td style="background-color: lightblue;"><b>Armor Class</b></td>
+                        <td>@Model.ArmorClass</td>
                     </tr>
                 </tbody>
             </table>

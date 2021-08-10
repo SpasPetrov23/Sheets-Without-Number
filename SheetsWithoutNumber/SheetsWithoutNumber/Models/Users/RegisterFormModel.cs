@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using static SWN.Data.DataConstants.User;
+    using static SWN.Data.DataConstants.UserData;
 
     public class RegisterFormModel
     {

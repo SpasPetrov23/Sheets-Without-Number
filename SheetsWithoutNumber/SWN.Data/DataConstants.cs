@@ -2,19 +2,19 @@
 {
     public class DataConstants
     {
-        public class User
+        public class UserData
         {
             public const int UsernameMaxLength = 30;
             public const string EmailRegularExpression = @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
         }
 
-        public class Game
+        public class GameData
         {
             public const int NameMaxLength = 50;
             public const int DescriptionMaxLength = 1000;
         }
 
-        public class Focus
+        public class FocusData
         {
             public const int NameMaxLength = 25;
         }
@@ -49,24 +49,36 @@
         {
             public const int NameMaxLength = 40;
 
+            public const string ExpertClassName = "Expert";
             public const string ExpertAbility = "•You gain a free level in a non-combat focus related to your background. Most concepts will take Specialist in their main skill, though Diplomat, Starfarer, Healer, or some other focus might suit better. You may not take a combat-oriented focus with this perk. In case of uncertainty, the GM decides whether or not a focus is permitted.\n•Once per scene, you can reroll a failed skill check, taking the new roll if it’s better.\n•When you advance an experience level, you gain a bonus skill point that can be spent on any non-combat, non-psychic skill. You can save this point to spend later if you wish.";
             public const string ExpertDescription = "Your hero is exceptionally good at a useful skill. Doctors, cat burglars, starship pilots, grifters, technicians, or any other concept that focuses on expertise in a non-combat skill should pick the Expert class. Experts are the best at such skills and gain more of them than other classes do. Just as a Warrior can be relied upon to make a shot when the chips are down, an Expert has a knack for succeeding at the moments of greatest importance. Once per scene, an Expert can reroll a failed skill check, taking the new result if it’s better.This benefit can be applied to any skill check, even those that the Expert isn’t specially focused in. Their natural talent bleeds over into everything they do. In their chosen field, however, the Expert is exceptionally gifted. Aside from the free focus level that all PCs get at the start of the game, an Expert can choose an additional level in a non-combat focus related to their background. They can spend both of these levels on the same focus if they wish, thus starting the game with level 2 in that particular knack.";
+
+            public const string PsychicClassName = "Psychic";
             public const string PsychicAbility = "•Unlike Warriors or Experts, you are capable of learning psychic disciplines and their associated techniques.\n•When you pick this class, choose any two psychic skills as bonus skills. You can pick the same one twice to obtain level-1 proficiency in it and a free level-1 technique from that discipline.\n•You have an Effort score, which can be used to fuel psychic abilities. Your maximum Effort is equal to 1 plus your highest psychic skill plus the better of your Wisdom or Constitution modifiers. Even with a penalty, your maximum Effort cannot be lower than 1.";
             public const string PsychicDescription = "Your hero has received training in controlling their natural Metadimensional Extroversion Syndrome, and can wield the psychic powers that come from that strange affliction. Controlling and developing psychic abilities is an extremely demanding process but allows for feats wholly impossible to ordinary men and women. Psychics are extremely rare in the general population. Averages vary with worlds, but most range from one in ten thousand to one in a hundred thousand who have the MES condition that make them amenable to psychic training. Some of these go their entire lives without realizing their capabilities. Others end up exploiting their native abilities without training, almost inevitably ending up seriously brain-damaged or crazed by the effects of unmediated metadimensional energy. Your hero has been fortunate enough to find a psychic academy or other training institution capable of molding and directing these abilities.They may have come to this later in life, or been recruited young by a society that carefully watches for MES symptoms. Some societies deal with their psychics more generously than others. On some worlds, psychic powers are accepted and their possessors can look forward to lucrative and respected employment.On others, fear of these uncanny powers and memories of the horrors of the Scream lead to less welcoming treatment.";
+
+            public const string WarriorClassName = "Warrior";
             public const string WarriorAbility = "•You gain a free level in a combat-related focus associated with your background. The GM decides if a focus qualifies if it’s an ambiguous case.\n•Warriors are lucky in combat. Once per scene, as an Instant ability, you can either choose to negate a successful attack roll against you or turn a missed attack roll you made into a successful hit. You can use this ability after the dice are rolled, but it cannot be used against environmental damage, effects without an attack roll, or hits on a vehicle you’re occupying.\n•You gain two extra maximum hit points at each character level.";
             public const string WarriorDescription = "Whether a hiveworld thug, barbarian lostworlder, gengineered combat hominid, or a natural-born killer wasting their potential in a desk job, your hero has a real talent for inflicting mayhem. Combat in Stars Without Number is extremely dangerous, but your hero has the talents to survive situations that would kill a less martial adventurer. As a gifted purveyor of violence, you get to pick an extra combat-related focus associated with your special brand of havoc.While a character of any class can take these special combat talents, you get this additional pick and a better natural hit bonus than heroes of other classes. Most importantly, however, Warriors have an uncanny gift for making a shot when a hit is desperately needed, or dodging a bullet when their life is on the line.Once per scene, a Warrior can either automatically negate a successful combat hit they just received, taking no damage from it, or else they can turn one of their own missed attack rolls into an automatic hit.This versatility makes Warriors exceptionally dangerous enemies in a one-on-one fight, and significantly more likely to survive the gory chaos of a general melee.";
+
+            public const string ExpertPsychicClassName = "Expert Psychic";
             public const string AdventurerAbilityExpertPsychic = "•You gain a free level in a non-combat focus related to your background. Most concepts will take Specialist, though Diplomat, Starfarer, Healer, or some other focus might suit better. Gain an extra skill point every time you gain a character level which can be spent on any non-psychic, non-combat skill.\n•You are a restricted psychic. Pick one psychic discipline as a bonus skill at level-0. You can improve this skill with foci or skill points gained from advancing a level, but you cannot learn or improve any other psychic skill. Your maximum Effort equals 1 plus this psychic skill’s level plus the best of your Wisdom or Constitution modifiers, down to a minimum of 1.";
+
+            public const string ExpertWarriorClassName = "Expert Warrior";
             public const string AdventurerAbilityExpertWarrior = "•You gain a free level in a non-combat focus related to your background. Most concepts will take Specialist, though Diplomat, Starfarer, Healer, or some other focus might suit better. Gain an extra skill point every time you gain a character level which can be spent on any non-psychic, non-combat skill.\n•You gain a free level in a combat focus related to your background. Gain +1 to your attack bonus at first and fifth levels. Gain 2 extra maximum hit points each level. Thus, at first level, you’d roll 1d6+2 for your maximum hit points. At second, you’d roll 2d6+4, and so forth.";
+
+            public const string PsychicWarriorClassName = "Psychic Warrior";
             public const string AdventurerAbilityPsychicWarrior = "•You are a restricted psychic. Pick one psychic discipline as a bonus skill at level-0. You can improve this skill with foci or skill points gained from advancing a level, but you cannot learn or improve any other psychic skill. Your maximum Effort equals 1 plus this psychic skill’s level plus the best of your Wisdom or Constitution modifiers, down to a minimum of 1.\n•You gain a free level in a combat focus related to your background. Gain +1 to your attack bonus at first and fifth levels. Gain 2 extra maximum hit points each level. Thus, at first level, you’d roll 1d6+2 for your maximum hit points. At second, you’d roll 2d6+4, and so forth.";
+
             public const string AdventurerDescription = "The Adventurer class is the catch-all for heroes who don’t fit so neatly into the other three categories. Perhaps your mercenary spent her girlhood at a psychic academy, or maybe your combat medic knows more about using a laser rifle than most physicians do. You can use the Adventurer class to customize your hero’s abilities, trading focus for wider versatility. Adventurers split their focus between different spheres, gaining weaker versions of each class’ benefits.For example, an Adventurer who is a psionic warrior-adept might have considerable powers of telekinetic force and a brutal expertise at bare-handed combat, but they won’t have access to the wider psionic potential of an unrestricted Psychic or the death-defying combat luck of a hardened Warrior. To define your Adventurer’s abilities, pick two of the following three partial classes.";
         }
 
-        public class Skill
+        public class SkillData
         {
             public const int NameMaxLength = 25;
         }
 
-        public class Item
+        public class ItemData
         {
             //Constants for Item Entities (Equipment, Armor, Melee & Ranged Weapons, Item Locations)
             public const int NameMaxLength = 40;
@@ -76,12 +88,12 @@
             public const int DamageMaxLength = 5;
         }
 
-        public class Contact
+        public class ContactData
         {
             public const int NameMaxLength = 50;
         }
 
-        public class Character
+        public class CharacterData
         {
             public const int NameMaxLength = 30;
             public const int SpeciesMaxLength = 20;

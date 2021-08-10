@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Item;
+    using static DataConstants.ItemData;
 
     public class ItemLocation
     {

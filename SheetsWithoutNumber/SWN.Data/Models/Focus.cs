@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Focus;
+    using static DataConstants.FocusData;
 
     public class Focus
     {

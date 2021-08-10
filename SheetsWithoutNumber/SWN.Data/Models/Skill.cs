@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.Skill;
+    using static DataConstants.SkillData;
 
     public class Skill
     {
