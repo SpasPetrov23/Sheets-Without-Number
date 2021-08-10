@@ -42,7 +42,13 @@
 
         public IActionResult All()
         {
-            var allGames = this.games.All();
+            var currentUserId = User.Identity.IsAuthenticated 
+                ? this.User.GetId() 
+                : null;
+
+            ViewBag.UserIsSignedIn = User.Identity.IsAuthenticated;
+
+            var allGames = this.games.All(currentUserId);
 
             return View(allGames);
         }
@@ -58,11 +64,11 @@
         [Authorize]
         public IActionResult Edit(int gameId)
         {
-            var userId = this.User.GetId();
+            var currentUserId = this.User.GetId();
 
             var game = this.games.Details(gameId);
 
-            if (game.GameMasterId != userId)
+            if (game.GameMasterId != currentUserId)
             {
                 return Unauthorized();
             }
@@ -103,9 +109,9 @@
         [Authorize]
         public IActionResult Join(int gameId)
         {
-            var currentUser = this.User.GetId();
+            var currentUserId = this.User.GetId();
 
-            this.games.Join(gameId, currentUser);
+            this.games.Join(gameId, currentUserId);
 
             return RedirectToAction("Details", "Games", new { gameId = gameId });
         }

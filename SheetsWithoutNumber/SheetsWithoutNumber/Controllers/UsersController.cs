@@ -95,7 +95,6 @@
 
                 return View(user);
             }
-
             var shouldRemember = false;
             await this.signinManager.SignInAsync(loggedInUser, shouldRemember);
 

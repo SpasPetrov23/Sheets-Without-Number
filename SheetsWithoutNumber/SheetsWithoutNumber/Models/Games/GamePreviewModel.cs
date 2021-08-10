@@ -19,6 +19,8 @@
 
         public string GameMasterId { get; set; }
 
+        public string CurrentUserId { get; set; }
+
         public IEnumerable<User> Users { get; set; }
     }
 }

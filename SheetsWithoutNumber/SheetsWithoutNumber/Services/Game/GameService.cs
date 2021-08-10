@@ -22,12 +22,17 @@
             this.mapper = mapper;
         }
 
-        public IEnumerable<GamePreviewModel> All()
+        public IEnumerable<GamePreviewModel> All(string currentUserId)
         {
             var games = data
                .Games
                .ProjectTo<GamePreviewModel>(this.mapper)
                .ToList();
+
+            foreach (var game in games)
+            {
+                game.CurrentUserId = currentUserId;
+            }
 
             return games;
         }

@@ -1,12 +1,5 @@
 ﻿@model IEnumerable<GamePreviewModel>
 
-@using Microsoft.AspNetCore.Identity
-@inject UserManager<User> UserManager
-
-@{
-    var userId = UserManager.GetUserId(User);
-}
-
 <section>
     <div class="row mx-1">
         <div class="list-group col-12">
@@ -31,7 +24,7 @@
                                 <p class="mb-1">@gamePreview.Description</p>
                                 <small>Players: @gamePreview.PlayersCurrent / @gamePreview.PlayersMax</small>
                             </div>
-                            @if (gamePreview.Users.Any(u => u.Id == userId))
+                            @if (gamePreview.Users.Any(u => u.Id == gamePreview.CurrentUserId))
                             {
                                 <small class="text-success">Joined</small>
                             }
