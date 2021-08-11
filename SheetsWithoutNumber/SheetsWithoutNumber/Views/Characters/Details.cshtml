@@ -1,6 +1,6 @@
 ﻿@model CharacterDetailsModel
 
-@{ 
+@{
     if (Model.OwnerId != Model.UserId && Model.Game.GameMasterId != Model.UserId && !User.IsAdmin())
     {
         ViewBag.DisabledButton = "disabled";
@@ -35,115 +35,144 @@
         </div>
 
         <br />
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr class="text-center" style="background-color: lightblue">
-                        <td><b>Species</b></td>
-                        <td><b>Homeworld</b></td>
-                        <td><b>Class</b></td>
-                        <td><b>Background</b></td>
-                    </tr>
-                    <tr class="text-center">
-                        <td>@Model.Species</td>
-                        <td>@Model.Homeworld</td>
-                        <td>@Model.Class</td>
-                        <td>@Model.Background</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
-        <div class="table-sm table-responsive">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr class="text-center" style="background-color: lightblue">
-                        <td><b>Hit Points</b></td>
-                        <td><b>Effort</b></td>
-                        <td><b>System Strain</b></td>
-                    </tr>
-                    <tr class="text-center">
-                        <td>@Model.HitPoints / @Model.MaxHitPoints</td>
-                        <td>@Model.Effort</td>
-                        <td>@Model.SystemStrain / @Model.MaxSystemStrain</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="d-flex">
+            <div class="col-10" style="padding-left:0px; padding-right:7.5px">
+                <div class="table table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr class="text-center" style="background-color: lightblue">
+                                <td><b>Species</b></td>
+                                <td><b>Homeworld</b></td>
+                                <td><b>Class</b></td>
+                                <td><b>Background</b></td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>@Model.Species</td>
+                                <td>@Model.Homeworld</td>
+                                <td>@Model.Class</td>
+                                <td>@Model.Background</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-sm table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr class="text-center" style="background-color: lightblue">
+                                <td><b>Hit Points</b></td>
+                                <td><b>Effort</b></td>
+                                <td><b>System Strain</b></td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>@Model.HitPoints / @Model.MaxHitPoints</td>
+                                <td>@Model.Effort</td>
+                                <td>@Model.SystemStrain / @Model.MaxSystemStrain</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-2" style="padding-left:7.5px; padding-right:0px">
+                <div class="table table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr class="text-center" style="background-color: lightblue">
+                                <td colspan="2"><b>Saving Throws</b></td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>Physical</td>
+                                <td>@Model.SavingThrowPhysical</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>Mental</td>
+                                <td>@Model.SavingThrowMental</td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>Evasion</td>
+                                <td>@Model.SavingThrowEvasion</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="d-flex" style="margin-top:20px">
     <div class="col-3">
-        <div class="table-sm table-responsive">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr style="background-color: lightblue">
-                        <td><b>Attribute</b></td>
-                        <td><b>Score</b></td>
-                        <td><b>Mod</b></td>
-                    </tr>
-                    <tr class="text-center">
-                        <td class="text-left" style="background-color: aliceblue">Strength</td>
-                        <td>@Model.Strength</td>
-                        <td>@Model.StrengthMod</td>
-                    </tr>
-                    <tr class="text-center">
-                        <td class="text-left" style="background-color: aliceblue">Dexterity</td>
-                        <td>@Model.Dexterity</td>
-                        <td>@Model.DexterityMod</td>
-                    </tr>
-                    <tr class="text-center">
-                        <td class="text-left" style="background-color: aliceblue ">Constitution</td>
-                        <td>@Model.Constitution</td>
-                        <td>@Model.ConstitutionMod</td>
-                    </tr>
-                    <tr class="text-center">
-                        <td class="text-left" style="background-color: aliceblue">Intelligence</td>
-                        <td>@Model.Intelligence</td>
-                        <td>@Model.IntelligenceMod</td>
-                    </tr>
-                    <tr class="text-center">
-                        <td class="text-left" style="background-color: aliceblue">Wisdom</td>
-                        <td>@Model.Wisdom</td>
-                        <td>@Model.WisdomMod</td>
-                    </tr>
-                    <tr class="text-center">
-                        <td class="text-left" style="background-color: aliceblue">Charisma</td>
-                        <td>@Model.Charisma</td>
-                        <td>@Model.CharismaMod</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <partial name="_CharacterAttributesView" model="@Model" />
 
-        <div class="table-sm table-responsive">
-            <table class="table table-bordered">
-                <tbody>
-                    <tr style="padding:0.25rem">
-                        <td style="background-color: lightblue"><b>Speed</b></td>
-                        <td>@Model.Speed</td>
-                        <td style="background-color: lightblue"><b>Attack Bonus</b></td>
-                        <td>@Model.AttackBonus</td>
-                    </tr>
-                    <tr>
-                        <td style="background-color: lightblue;"><b>Initiative</b></td>
-                        <td>@Model.Initiative</td>
-                        <td style="background-color: lightblue;"><b>Armor Class</b></td>
-                        <td>@Model.ArmorClass</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <partial name="_CharacterCombatStatsView" model="@Model" />
     </div>
     <div class="col-9">
-        <div class="card" style="height: 100px; margin-bottom: 20px">
-        </div>
-        <div class="card" style="height: 100px;">
+        <div class="d-flex">
+            <div class="col-6" style="padding-left:0px; padding-right:7.5px">
+                <div class="table-sm table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <tbody>
+                            <tr class="text-center" style="background-color: lightblue">
+                                <td><b>Skills</b></td>
+                                <td class="col-1"><b>Level</b></td>
+                            </tr>
+                            <tr class="text-center">
+                                @if (Model.CharactersSkills.Any(cs => cs.CharacterId == Model.Id))
+                                {
+                                    @foreach (var characterSkill in @Model.CharactersSkills.Where(cs => cs.CharacterId == Model.Id))
+                                    {
+                                        <tr class="text-center">
+                                            <td>
+                                                <a asp-controller="Skills" asp-action="Edit" asp-route-skillId="@characterSkill.SkillId" class="text-decoration-none">
+                                                    @characterSkill.SkillName
+                                                </a>
+                                            </td>
+                                            <td>@characterSkill.Level</td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="text-center">
+                                        <td>No skills selected</td>
+                                        <td>N/A</td>
+                                    </tr>
+                                }
+                            </tbody>
+                    </table>
+                </div>
+                <a asp-controller="Skills" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
+                    <div class="text-center">
+                        <input type="button" class="btn btn-block @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Add" />
+                    </div>
+                </a>
+            </div>
+            <div class="col-6" style="padding-left:7.5px; padding-right:0px">
+                <div class="table-sm table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr class="text-center" style="background-color: lightblue">
+                                <td><b>Foci</b></td>
+                                <td class="col-1"><b>Level</b></td>
+                            </tr>
+                            <tr class="text-center">
+                                <td>@Model.HitPoints / @Model.MaxHitPoints</td>
+                                <td>@Model.Effort</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <a asp-controller="Skills" asp-action="Edit" asp-route-characterId="@Model.Id" class="text-decoration-none">
+                    <div class="text-center">
+                        <input type="button" class="btn btn-block @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Edit" />
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
 </div>
-
 
 <div class="d-flex" style="margin-top:20px">
     <div class="col-4">

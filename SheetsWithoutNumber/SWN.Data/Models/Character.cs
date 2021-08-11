@@ -52,7 +52,7 @@
 
         public int SystemStrain { get; set; } = 0;
 
-        public int Speed { get; set; } = 0;
+        public int Speed { get; set; } = 10;
 
         public int Initiative { get; set; } = 0;
 
@@ -85,7 +85,7 @@
         [Required]
         public string OwnerId { get; init; }
 
-        public ICollection<Skill> Skills { get; init; } = new HashSet<Skill>();
+        public ICollection<CharactersSkills> CharactersSkills { get; init; } = new HashSet<CharactersSkills>();
 
         public int ClassId { get; set; }
 

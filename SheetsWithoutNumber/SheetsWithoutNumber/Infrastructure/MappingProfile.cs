@@ -3,6 +3,7 @@
     using AutoMapper;
     using SheetsWithoutNumber.Models.Characters;
     using SheetsWithoutNumber.Models.Games;
+    using SheetsWithoutNumber.Models.Skills;
     using SheetsWithoutNumber.Services.Game;
     using SWN.Data.Models;
 
@@ -22,7 +23,7 @@
 
             this.CreateMap<Class, CharacterClassViewModel>();
 
-            this.CreateMap<Background, CharacterBackgroundView>();
+            this.CreateMap<Background, CharacterBackgroundViewModel>();
 
             this.CreateMap<Game, GamePreviewModel>()
                 .ForMember(g => g.PlayersCurrent, cfg => cfg.MapFrom(u => u.Users.Count));
@@ -32,6 +33,8 @@
             this.CreateMap<Game, GameDetailsModel>();
 
             this.CreateMap<Game, GameEditServiceModel>();
+
+            this.CreateMap<Skill, SkillListingViewModel>();
         }
     }
 }

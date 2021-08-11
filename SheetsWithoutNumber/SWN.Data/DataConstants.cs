@@ -76,6 +76,85 @@
         public class SkillData
         {
             public const int NameMaxLength = 25;
+
+            public const string SkillAdministerName = "Administer";
+            public const string SkillAdministerDescription = "Manage an organization, handle paperwork, analyze records, and keep an institution functioning on a daily basis. Roll it for bureaucratic expertise, organizational management, legal knowledge, dealing with government agencies, and understanding how institutions really work.";
+
+            public const string SkillConnectName = "Connect";
+            public const string SkillConnectDescription = "Find people who can be helpful to your purposes and get them to cooperate with you. Roll it to make useful connections with others, find people you know, know where to get illicit goods and services, and be familiar with foreign cultures and languages. You can use it in place of Talk for persuading people you find via this skill.";
+
+            public const string SkillExertName = "Exert";
+            public const string SkillExertDescription = "Apply trained speed, strength, or stamina in some feat of physical exertion. Roll it to run, jump, lift, swim, climb, throw, and so forth. You can use it as a combat skill when throwing things, though it doesn't qualify as a combat skill for other ends.";
+
+            public const string SkillFixName = "Fix";
+            public const string SkillFixDescription = "Create and repair devices both simple and complex. How complex will depend on your character's background; a lostworlder blacksmith is going to need some study time before he's ready to fix that broken fusion reactor, though he can do it eventually. Roll it to fix things, build things, and identify what something is supposed to do.";
+
+            public const string SkillHealName = "Heal";
+            public const string SkillHealDescription = "Employ medical and psychological treatment for the injured or disturbed. Roll it to cure diseases, stabilize the critically injured, treat psychological disorders, or diagnose illnesses.";
+
+            public const string SkillKnowName = "Know";
+            public const string SkillKnowDescription = "Know facts about academic or scientific fields. Roll it to understand planetary ecologies, remember relevant history, solve science mysteries, and know the basic facts about rare or esoteric topics.";
+
+            public const string SkillLeadName = "Lead";
+            public const string SkillLeadDescription = "Convince others to also do whatever it is you're trying to do. Talk might persuade them that following you is smart, but Lead can make them do it even when they think it's a bad idea. Roll it to lead troops in combat, convince others to follow you, or maintain morale and discipline.";
+
+            public const string SkillNoticeName = "Notice";
+            public const string SkillNoticeDescription = "Spot anomalies or interesting facts about your environment. Roll it for searching places, detecting ambushes, spotting things, and reading the emotional state of other people.";
+
+            public const string SkillPerformName = "Perform";
+            public const string SkillPerformDescription = "Exhibit some performative skill. Roll it to dance, sing, orate, act, or otherwise put on a convincing or emotionally moving performance.";
+
+            public const string SkillPilotName = "Pilot";
+            public const string SkillPilotDescription = "Use this skill to pilot vehicles or ride beasts. Roll it to fly spaceships, drive vehicles, ride animals, or tend to basic vehicle repair. This skill doesn’t help you with things entirely outside the scope of your background or experience, though with some practice a PC can expand their expertise.";
+
+            public const string SkillProgramName = "Program";
+            public const string SkillProgramDescription = "Operating or hacking computing and communications hardware. Roll it to program or hack computers, control computer-operated hardware, operate communications tech, or decrypt things.";
+
+            public const string SkillPunchName = "Punch";
+            public const string SkillPunchDescription = "Use it as a combat skill when fighting unarmed. If your PC means to make a habit of this rather than as a recourse of desperation, you should take the Unarmed Fighter focus described later.";
+
+            public const string SkillShootName = "Shoot";
+            public const string SkillShootDescription = "Use it as a combat skill when using ranged weaponry, whether hurled rocks, bows, laser pistols, combat rifles, or ship’s gunnery.";
+
+            public const string SkillSneakName = "Sneak";
+            public const string SkillSneakDescription = "Move without drawing notice. Roll it for stealth, disguise, infiltration, manual legerdemain, pickpocketing, and the defeat of security measures.";
+
+            public const string SkillStabName = "Stab";
+            public const string SkillStabDescription = "Use it as a combat skill when wielding melee weapons, whether primitive or complex.";
+
+            public const string SkillSurviveName = "Survive";
+            public const string SkillSurviveDescription = "Obtain the basics of food, water, and shelter in hostile environments, along with avoiding their natural perils. Roll it to handle animals, navigate difficult terrain, scrounge urban resources, make basic tools, and avoid wild beasts or gangs.";
+
+            public const string SkillTalkName = "Talk";
+            public const string SkillTalkDescription = "Convince other people of the facts you want them to believe. What they do with that conviction may not be completely predictable. Roll it to persuade, charm, or deceive others in conversation.";
+
+            public const string SkillTradeName = "Trade";
+            public const string SkillTradeDescription = "Find what you need on the market and sell what you have. Roll it to sell or buy things, figure out where to purchase hard-to-get or illicit goods, deal with customs agents, or run a business.";
+
+            public const string SkillWorkName = "Work";
+            public const string SkillWorkDescription = "This is a catch-all skill for professions not represented by other skills. Roll it to work at a particular profession, art, or trade.";
+
+            /// <summary>
+            /// Psychic Skills
+            /// </summary>
+
+            public const string SkillBiopsionicsName = "Biopsionics";
+            public const string SkillBiopsionicsDescription = "Master powers of physical repair, body augmentation, and shapeshifting.";
+
+            public const string SkillMetapsionicsName = "Metapsionics";
+            public const string SkillMetapsionicsDescription = "Master powers that nullify, boost, and shape the use of other psychic abilities.";
+
+            public const string SkillPrecognitionName = "Precognition";
+            public const string SkillPrecognitionDescription = "Master the ability to sense future events and control probability.";
+
+            public const string SkillTelekinesisName = "Telekinesis";
+            public const string SkillTelekinesisDescription = "Master the remote control of kinetic energy to move objects and fabricate force constructs.";
+
+            public const string SkillTelepathyName = "Telepathy";
+            public const string SkillTelepathyDescription = "Master the reading and influencing of other sapient minds.";
+
+            public const string SkillTeleportationName = "Teleportation";
+            public const string SkillTeleportationDescription = "Spot anomalies or interesting facts about your environment. Roll it for searching places, detecting ambushes, spotting things, and reading the emotional state of other people.";
         }
 
         public class ItemData

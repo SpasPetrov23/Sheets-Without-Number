@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class CharacterBackgroundView
+    public class CharacterBackgroundViewModel
     {
         public int Id { get; init; }
 

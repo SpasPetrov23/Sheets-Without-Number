@@ -36,8 +36,8 @@
                 <select asp-for="ClassId" class="form-control">
                     @foreach (var characterClass in Model.Classes)
                     {
-        <option value="@characterClass.Id">@characterClass.Name</option>
-}
+                        <option value="@characterClass.Id">@characterClass.Name</option>
+                    }
                 </select>
                 <span asp-validation-for="ClassId" class="small text-danger"></span>
             </div>
@@ -47,8 +47,8 @@
                 <select asp-for="BackgroundId" class="form-control">
                     @foreach (var characterBackground in Model.Backgrounds)
                     {
-        <option value="@characterBackground.Id">@characterBackground.Name</option>
-}
+                        <option value="@characterBackground.Id">@characterBackground.Name</option>
+                    }
                 </select>
                 <span asp-validation-for="BackgroundId" class="small text-danger"></span>
             </div>

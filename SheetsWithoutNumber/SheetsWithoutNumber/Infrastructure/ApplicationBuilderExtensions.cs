@@ -13,6 +13,7 @@
     using static Areas.Admin.AdminConstants;
     using static SWN.Data.DataConstants.ClassData;
     using static SWN.Data.DataConstants.Background;
+    using static SWN.Data.DataConstants.SkillData;
 
     public static class ApplicationBuilderExtensions
     {
@@ -26,6 +27,7 @@
             SeedAdministrators(services);
             SeedClasses(services);
             SeedBackgrounds(services);
+            SeedSkills(services);
 
             return app;
         }
@@ -237,6 +239,172 @@
                     Name = "Worker",
                     Description = WorkerDescription
                 }
+            });
+
+            data.SaveChanges();
+        }
+
+        private static void SeedSkills(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<SWNDbContext>();
+
+            if (data.Skills.Any())
+            {
+                return;
+            }
+
+            data.Skills.AddRange(new[]
+            {
+                new Skill
+                {
+                    Name = SkillAdministerName,
+                    Description = SkillAdministerDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillConnectName,
+                    Description = SkillConnectDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillExertName,
+                    Description = SkillExertDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillFixName,
+                    Description = SkillFixDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillHealName,
+                    Description = SkillHealDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillKnowName,
+                    Description = SkillKnowDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillLeadName,
+                    Description = SkillLeadDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillNoticeName,
+                    Description = SkillNoticeDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillPerformName,
+                    Description = SkillPerformDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillPilotName,
+                    Description = SkillPilotDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillProgramName,
+                    Description = SkillProgramDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillPunchName,
+                    Description = SkillPunchDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillShootName,
+                    Description = SkillShootDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillSneakName,
+                    Description = SkillSneakDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillStabName,
+                    Description = SkillStabDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillSurviveName,
+                    Description = SkillSurviveDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillTalkName,
+                    Description = SkillTalkDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillTradeName,
+                    Description = SkillTradeDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillWorkName,
+                    Description = SkillWorkDescription,
+                    IsPsychic = false
+                },
+                new Skill
+                {
+                    Name = SkillBiopsionicsName,
+                    Description = SkillBiopsionicsDescription,
+                    IsPsychic = true
+                },
+                new Skill
+                {
+                    Name = SkillMetapsionicsName,
+                    Description = SkillMetapsionicsDescription,
+                    IsPsychic = true
+                },
+                new Skill
+                {
+                    Name = SkillPrecognitionName,
+                    Description = SkillPrecognitionDescription,
+                    IsPsychic = true
+                },
+                new Skill
+                {
+                    Name = SkillTelekinesisName,
+                    Description = SkillTelekinesisDescription,
+                    IsPsychic = true
+                },
+                new Skill
+                {
+                    Name = SkillTelepathyName,
+                    Description = SkillTelepathyDescription,
+                    IsPsychic = true
+                },
+                new Skill
+                {
+                    Name = SkillTeleportationName,
+                    Description = SkillTeleportationDescription,
+                    IsPsychic = true
+                },
             });
 
             data.SaveChanges();

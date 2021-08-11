@@ -1,0 +1,20 @@
+﻿@model CharacterDetailsModel
+
+<div class="table-sm table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+            <tr style="padding:0.25rem">
+                <td style="background-color: lightblue"><b>Speed</b></td>
+                <td>@Model.Speed<span>m</span></td>
+                <td style="background-color: lightblue"><b>Attack Bonus</b></td>
+                <td>@Model.AttackBonus</td>
+            </tr>
+            <tr>
+                <td style="background-color: lightblue;"><b>Initiative</b></td>
+                <td>@Model.Initiative</td>
+                <td style="background-color: lightblue;"><b>Armor Class</b></td>
+                <td>@Model.ArmorClass</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

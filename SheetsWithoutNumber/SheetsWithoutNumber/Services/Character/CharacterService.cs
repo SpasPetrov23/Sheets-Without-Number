@@ -7,7 +7,6 @@
     using SheetsWithoutNumber.Models.Characters;
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
-    using System;
 
     using static SWN.Data.DataConstants;
 
@@ -82,6 +81,10 @@
             character.WisdomMod = this.CalculateAttributeModifier(character.Wisdom);
             character.Initiative = character.DexterityMod;
             character.MaxSystemStrain = character.Constitution;
+            character.CharactersSkills
+                .Select(cs => cs.Skill)
+                .OrderBy(s => s.IsPsychic)
+                .ThenBy(s => s.Name);
 
             character.MinimumXP = this.CalculateMinimumXP(character.Level);
             character.MaximumXP = this.CalculateMaximumXP(character.Level);
@@ -141,11 +144,11 @@
              .ProjectTo<CharacterClassViewModel>(this.mapper)
              .ToList();
 
-        public IEnumerable<CharacterBackgroundView> GetCharacterBackgrounds()
+        public IEnumerable<CharacterBackgroundViewModel> GetCharacterBackgrounds()
             => this.data
             .Backgrounds
             .OrderBy(b => b.Name)
-            .ProjectTo<CharacterBackgroundView>(this.mapper)
+            .ProjectTo<CharacterBackgroundViewModel>(this.mapper)
             .ToList();
 
         public bool ClassExists(int classId)

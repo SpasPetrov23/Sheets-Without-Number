@@ -34,21 +34,6 @@ namespace SWN.Data.Migrations
                     b.ToTable("CharacterFocus");
                 });
 
-            modelBuilder.Entity("CharacterSkill", b =>
-                {
-                    b.Property<int>("CharactersId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SkillsId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("CharactersId", "SkillsId");
-
-                    b.HasIndex("SkillsId");
-
-                    b.ToTable("CharacterSkill");
-                });
-
             modelBuilder.Entity("GameUser", b =>
                 {
                     b.Property<int>("GamesId")
@@ -345,6 +330,42 @@ namespace SWN.Data.Migrations
                     b.ToTable("Characters");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.CharactersSkills", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsSkillPsychic")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SkillDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SkillName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("SkillId");
+
+                    b.ToTable("CharactersSkills");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.Class", b =>
                 {
                     b.Property<int>("Id")
@@ -433,18 +454,16 @@ namespace SWN.Data.Migrations
 
             modelBuilder.Entity("SWN.Data.Models.Skill", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsPsychic")
                         .HasColumnType("bit");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -535,21 +554,6 @@ namespace SWN.Data.Migrations
                     b.HasOne("SWN.Data.Models.Focus", null)
                         .WithMany()
                         .HasForeignKey("FociId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("CharacterSkill", b =>
-                {
-                    b.HasOne("SWN.Data.Models.Character", null)
-                        .WithMany()
-                        .HasForeignKey("CharactersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SWN.Data.Models.Skill", null)
-                        .WithMany()
-                        .HasForeignKey("SkillsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -647,9 +651,33 @@ namespace SWN.Data.Migrations
                     b.Navigation("Game");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.CharactersSkills", b =>
+                {
+                    b.HasOne("SWN.Data.Models.Character", "Character")
+                        .WithMany("CharactersSkills")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SWN.Data.Models.Skill", "Skill")
+                        .WithMany("CharactersSkills")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Skill");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.Background", b =>
                 {
                     b.Navigation("Characters");
+                });
+
+            modelBuilder.Entity("SWN.Data.Models.Character", b =>
+                {
+                    b.Navigation("CharactersSkills");
                 });
 
             modelBuilder.Entity("SWN.Data.Models.Class", b =>
@@ -660,6 +688,11 @@ namespace SWN.Data.Migrations
             modelBuilder.Entity("SWN.Data.Models.Game", b =>
                 {
                     b.Navigation("Characters");
+                });
+
+            modelBuilder.Entity("SWN.Data.Models.Skill", b =>
+                {
+                    b.Navigation("CharactersSkills");
                 });
 #pragma warning restore 612, 618
         }

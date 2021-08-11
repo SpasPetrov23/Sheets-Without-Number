@@ -113,10 +113,10 @@ namespace SWN.Data.Migrations
                 name: "Skills",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Level = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsPsychic = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -247,14 +247,13 @@ namespace SWN.Data.Migrations
                     Homeworld = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Level = table.Column<int>(type: "int", nullable: false),
                     CurrentXP = table.Column<int>(type: "int", nullable: false),
-                    MinimumXP = table.Column<int>(type: "int", nullable: false),
-                    MaximumXP = table.Column<int>(type: "int", nullable: false),
+                    SavingThrowPhysical = table.Column<int>(type: "int", nullable: false),
+                    SavingThrowMental = table.Column<int>(type: "int", nullable: false),
+                    SavingThrowEvasion = table.Column<int>(type: "int", nullable: false),
                     HitPoints = table.Column<int>(type: "int", nullable: false),
                     MaxHitPoints = table.Column<int>(type: "int", nullable: false),
                     Effort = table.Column<int>(type: "int", nullable: false),
-                    MaxEffort = table.Column<int>(type: "int", nullable: false),
                     SystemStrain = table.Column<int>(type: "int", nullable: false),
-                    MaxSystemStrain = table.Column<int>(type: "int", nullable: false),
                     Speed = table.Column<int>(type: "int", nullable: false),
                     Initiative = table.Column<int>(type: "int", nullable: false),
                     AttackBonus = table.Column<int>(type: "int", nullable: false),
@@ -344,27 +343,30 @@ namespace SWN.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CharacterSkill",
+                name: "CharactersSkills",
                 columns: table => new
                 {
-                    CharactersId = table.Column<int>(type: "int", nullable: false),
-                    SkillsId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    CharacterId = table.Column<int>(type: "int", nullable: false),
+                    SkillId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CharacterSkill", x => new { x.CharactersId, x.SkillsId });
+                    table.PrimaryKey("PK_CharactersSkills", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CharacterSkill_Characters_CharactersId",
-                        column: x => x.CharactersId,
+                        name: "FK_CharactersSkills_Characters_CharacterId",
+                        column: x => x.CharacterId,
                         principalTable: "Characters",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CharacterSkill_Skills_SkillsId",
-                        column: x => x.SkillsId,
+                        name: "FK_CharactersSkills_Skills_SkillId",
+                        column: x => x.SkillId,
                         principalTable: "Skills",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -427,9 +429,14 @@ namespace SWN.Data.Migrations
                 column: "GameId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CharacterSkill_SkillsId",
-                table: "CharacterSkill",
-                column: "SkillsId");
+                name: "IX_CharactersSkills_CharacterId",
+                table: "CharactersSkills",
+                column: "CharacterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharactersSkills_SkillId",
+                table: "CharactersSkills",
+                column: "SkillId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_GameUser_UsersId",
@@ -458,7 +465,7 @@ namespace SWN.Data.Migrations
                 name: "CharacterFocus");
 
             migrationBuilder.DropTable(
-                name: "CharacterSkill");
+                name: "CharactersSkills");
 
             migrationBuilder.DropTable(
                 name: "GameUser");

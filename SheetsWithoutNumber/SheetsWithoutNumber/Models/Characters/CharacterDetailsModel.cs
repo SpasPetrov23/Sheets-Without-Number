@@ -1,6 +1,7 @@
 ﻿namespace SheetsWithoutNumber.Models.Characters
 {
     using SWN.Data.Models;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class CharacterDetailsModel
@@ -63,6 +64,12 @@
 
         public int MaxSystemStrain { get; set; }
 
+        public int SavingThrowPhysical { get; set; } 
+
+        public int SavingThrowMental { get; set; }
+
+        public int SavingThrowEvasion { get; set; }
+
         public int Speed { get; set; }
 
         public int Initiative { get; set; }
@@ -76,6 +83,8 @@
         public Game Game { get; init; }
 
         public int Level { get; init; }
+
+        public ICollection<CharactersSkills> CharactersSkills { get; init; }
 
         public int CurrentXP { get; init; }
 

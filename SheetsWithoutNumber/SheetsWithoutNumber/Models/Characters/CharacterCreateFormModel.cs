@@ -49,6 +49,6 @@
 
         public int BackgroundId { get; init; }
 
-        public IEnumerable<CharacterBackgroundView> Backgrounds { get; set; }
+        public IEnumerable<CharacterBackgroundViewModel> Backgrounds { get; set; }
     }
 }

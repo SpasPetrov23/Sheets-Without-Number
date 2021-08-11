@@ -27,7 +27,7 @@
             <h3 class="mb-1 text-center">@Model.Name</h3>
             <p class="mb-1">@Model.Description</p>
 
-            <br/>
+            <br />
 
             @{
                 var userCount = 0;
@@ -55,23 +55,22 @@
                                     <b>(GM)</b>
                                 }
                             </td>
-                            @foreach (var character in Model.Characters)
+                            @if (user.Id == Model.GameMasterId)
                             {
                                 <td>
-                                    @if (character.OwnerId == user.Id && character.GameId == Model.Id)
-                                    {
-                                        <a asp-controller="Characters" asp-action="Details" asp-route-characterId="@character.Id">@character.Name</a>
-                                    }
+                                    @Html.Raw("N/A")
                                 </td>
                                 <td>
-                                    @if (user.Id == Model.GameMasterId)
-                                    {
-                                        @Html.Raw("N/A");
-                                    }
-                                    else
-                                    {
-                                        @character.Level
-                                    }
+                                    @Html.Raw("N/A")
+                                </td>
+                            }
+                            @foreach (var character in Model.Characters.Where(c => c.OwnerId == user.Id))
+                            {
+                                <td>
+                                    <a asp-controller="Characters" asp-action="Details" asp-route-characterId="@character.Id">@character.Name</a>
+                                </td>
+                                <td>
+                                    @character.Level
                                 </td>
                             }
                         </tr>
