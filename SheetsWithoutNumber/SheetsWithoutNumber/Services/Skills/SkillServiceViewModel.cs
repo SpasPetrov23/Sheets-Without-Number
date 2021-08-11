@@ -1,6 +1,6 @@
-﻿namespace SheetsWithoutNumber.Models.Skills
+﻿namespace SheetsWithoutNumber.Services.Skills
 {
-    public class SkillListingViewModel
+    public class SkillServiceViewModel
     {
         public int Id { get; init; }
 

@@ -118,29 +118,28 @@
                                 <td><b>Skills</b></td>
                                 <td class="col-1"><b>Level</b></td>
                             </tr>
-                            <tr class="text-center">
-                                @if (Model.CharactersSkills.Any(cs => cs.CharacterId == Model.Id))
-                                {
-                                    @foreach (var characterSkill in @Model.CharactersSkills.Where(cs => cs.CharacterId == Model.Id))
-                                    {
-                                        <tr class="text-center">
-                                            <td>
-                                                <a asp-controller="Skills" asp-action="Edit" asp-route-skillId="@characterSkill.SkillId" class="text-decoration-none">
-                                                    @characterSkill.SkillName
-                                                </a>
-                                            </td>
-                                            <td>@characterSkill.Level</td>
-                                        </tr>
-                                    }
-                                }
-                                else
+                            @if (Model.CharactersSkills.Any(cs => cs.CharacterId == Model.Id))
+                            {
+                                @foreach (var characterSkill in @Model.CharactersSkills.Where(cs => cs.CharacterId == Model.Id))
                                 {
                                     <tr class="text-center">
-                                        <td>No skills selected</td>
-                                        <td>N/A</td>
+                                        <td>
+                                            <a asp-controller="Skills" asp-action="Edit" asp-route-characterSkillId="@characterSkill.Id" class="text-decoration-none">
+                                                @characterSkill.SkillName
+                                            </a>
+                                        </td>
+                                        <td>@characterSkill.SkillLevel</td>
                                     </tr>
                                 }
-                            </tbody>
+                            }
+                            else
+                            {
+                                <tr class="text-center">
+                                    <td>No skills selected</td>
+                                    <td>N/A</td>
+                                </tr>
+                            }
+                        </tbody>
                     </table>
                 </div>
                 <a asp-controller="Skills" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">

@@ -5,6 +5,7 @@
     using SheetsWithoutNumber.Models.Games;
     using SheetsWithoutNumber.Models.Skills;
     using SheetsWithoutNumber.Services.Game;
+    using SheetsWithoutNumber.Services.Skills;
     using SWN.Data.Models;
 
     public class MappingProfile : Profile
@@ -34,7 +35,13 @@
 
             this.CreateMap<Game, GameEditServiceModel>();
 
-            this.CreateMap<Skill, SkillListingViewModel>();
+            this.CreateMap<Skill, SkillServiceViewModel>();
+
+            this.CreateMap<SkillServiceViewModel, SkillFormModel>();
+
+            this.CreateMap<CharacterSkillServiceModel, SkillFormModel>();
+
+            this.CreateMap<CharactersSkills, CharacterSkillServiceModel>();
         }
     }
 }

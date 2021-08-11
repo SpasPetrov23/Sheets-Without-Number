@@ -343,14 +343,14 @@ namespace SWN.Data.Migrations
                     b.Property<bool>("IsSkillPsychic")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
-
                     b.Property<string>("SkillDescription")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillLevel")
                         .HasColumnType("int");
 
                     b.Property<string>("SkillName")

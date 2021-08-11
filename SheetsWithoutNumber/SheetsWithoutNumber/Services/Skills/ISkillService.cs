@@ -7,7 +7,13 @@
     {
         public int Add(int characterId, int skillId, int level);
 
-        public IEnumerable<SkillListingViewModel> GetSkills();
+        public bool Edit(int level, int skillId, int chracterSkillId);
+
+        public SkillServiceViewModel GetSkillById(int skillId);
+
+        public CharacterSkillServiceModel GetCharacterSkillById(int characterSkillId);
+
+        public IEnumerable<SkillServiceViewModel> GetSkills();
 
         public bool SkillExists(int skillId);
 

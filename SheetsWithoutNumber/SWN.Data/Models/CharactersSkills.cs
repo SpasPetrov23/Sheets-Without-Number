@@ -7,7 +7,7 @@
         [Required]
         public int Id { get; set; }
 
-        public int Level { get; set; }
+        public int SkillLevel { get; set; }
 
         public int CharacterId { get; set; }
 

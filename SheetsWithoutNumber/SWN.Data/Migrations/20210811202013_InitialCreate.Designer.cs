@@ -10,7 +10,7 @@ using SWN.Data;
 namespace SWN.Data.Migrations
 {
     [DbContext(typeof(SWNDbContext))]
-    [Migration("20210811145629_InitialCreate")]
+    [Migration("20210811202013_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -342,11 +342,22 @@ namespace SWN.Data.Migrations
                     b.Property<int>("CharacterId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Level")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsSkillPsychic")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SkillDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
+
+                    b.Property<int>("SkillLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SkillName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

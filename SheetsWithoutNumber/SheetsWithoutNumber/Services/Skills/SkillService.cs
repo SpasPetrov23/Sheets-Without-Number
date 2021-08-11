@@ -29,7 +29,7 @@
             {
                 CharacterId = characterId,
                 SkillId = skillId,
-                Level = level,
+                SkillLevel = level,
                 SkillName = skill.Name,
                 IsSkillPsychic = skill.IsPsychic,
                 SkillDescription = skill.Description
@@ -42,10 +42,45 @@
             return characterSkills.Id;
         }
 
-        public IEnumerable<SkillListingViewModel> GetSkills()
+        public bool Edit(int level, int skillId, int chracterSkillId)
+        {
+            var characterSkill = data.CharactersSkills.Where(cs => cs.Id == chracterSkillId).FirstOrDefault();
+
+            var skillName = this.GetSkillById(skillId).Name;
+
+            characterSkill.SkillId = skillId;
+            characterSkill.SkillLevel = level;
+            characterSkill.SkillName = skillName;
+
+            this.data.SaveChanges();
+
+            return true;
+        }
+
+        public SkillServiceViewModel GetSkillById(int skillId)
+        {
+            var skill = data.Skills
+                .Where(s => s.Id == skillId)
+                .ProjectTo<SkillServiceViewModel>(this.mapper)
+                .FirstOrDefault();
+
+            return skill;
+        }
+
+        public CharacterSkillServiceModel GetCharacterSkillById(int characterSkillId)
+        {
+            var characterSkill = data.CharactersSkills
+                .Where(cs => cs.Id == characterSkillId)
+                .ProjectTo<CharacterSkillServiceModel>(this.mapper)
+                .FirstOrDefault();
+
+            return characterSkill;
+        }
+
+        public IEnumerable<SkillServiceViewModel> GetSkills()
             => this.data
              .Skills
-             .ProjectTo<SkillListingViewModel>(this.mapper)
+             .ProjectTo<SkillServiceViewModel>(this.mapper)
              .OrderBy(s => s.IsPsychic)
              .ThenBy(s => s.Name)
              .ToList();
