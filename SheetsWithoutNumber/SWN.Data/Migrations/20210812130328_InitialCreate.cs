@@ -80,7 +80,8 @@ namespace SWN.Data.Migrations
                 name: "Foci",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Level = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
@@ -319,27 +320,32 @@ namespace SWN.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CharacterFocus",
+                name: "CharactersFoci",
                 columns: table => new
                 {
-                    CharactersId = table.Column<int>(type: "int", nullable: false),
-                    FociId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CharacterId = table.Column<int>(type: "int", nullable: false),
+                    FocusId = table.Column<int>(type: "int", nullable: false),
+                    FocusName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FocusLevel = table.Column<int>(type: "int", nullable: false),
+                    FocusDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CharacterFocus", x => new { x.CharactersId, x.FociId });
+                    table.PrimaryKey("PK_CharactersFoci", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CharacterFocus_Characters_CharactersId",
-                        column: x => x.CharactersId,
+                        name: "FK_CharactersFoci_Characters_CharacterId",
+                        column: x => x.CharacterId,
                         principalTable: "Characters",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_CharacterFocus_Foci_FociId",
-                        column: x => x.FociId,
+                        name: "FK_CharactersFoci_Foci_FocusId",
+                        column: x => x.FocusId,
                         principalTable: "Foci",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -348,10 +354,10 @@ namespace SWN.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SkillLevel = table.Column<int>(type: "int", nullable: false),
                     CharacterId = table.Column<int>(type: "int", nullable: false),
                     SkillId = table.Column<int>(type: "int", nullable: false),
                     SkillName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SkillLevel = table.Column<int>(type: "int", nullable: false),
                     IsSkillPsychic = table.Column<bool>(type: "bit", nullable: false),
                     SkillDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -412,11 +418,6 @@ namespace SWN.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CharacterFocus_FociId",
-                table: "CharacterFocus",
-                column: "FociId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Characters_BackgroundId",
                 table: "Characters",
                 column: "BackgroundId");
@@ -430,6 +431,16 @@ namespace SWN.Data.Migrations
                 name: "IX_Characters_GameId",
                 table: "Characters",
                 column: "GameId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharactersFoci_CharacterId",
+                table: "CharactersFoci",
+                column: "CharacterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharactersFoci_FocusId",
+                table: "CharactersFoci",
+                column: "FocusId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CharactersSkills_CharacterId",
@@ -465,7 +476,7 @@ namespace SWN.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CharacterFocus");
+                name: "CharactersFoci");
 
             migrationBuilder.DropTable(
                 name: "CharactersSkills");

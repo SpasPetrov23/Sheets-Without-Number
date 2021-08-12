@@ -9,6 +9,7 @@ namespace SheetsWithoutNumber
     using Microsoft.Extensions.Hosting;
     using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Services.Character;
+    using SheetsWithoutNumber.Services.Focus;
     using SheetsWithoutNumber.Services.Game;
     using SheetsWithoutNumber.Services.Skills;
     using SheetsWithoutNumber.Services.User;
@@ -60,6 +61,7 @@ namespace SheetsWithoutNumber
             services.AddTransient<IGameService, GameService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ISkillService, SkillService>();
+            services.AddTransient<IFocusService, FocusService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

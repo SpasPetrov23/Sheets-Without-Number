@@ -2,8 +2,10 @@
 {
     using AutoMapper;
     using SheetsWithoutNumber.Models.Characters;
+    using SheetsWithoutNumber.Models.Foci;
     using SheetsWithoutNumber.Models.Games;
     using SheetsWithoutNumber.Models.Skills;
+    using SheetsWithoutNumber.Services.Focus;
     using SheetsWithoutNumber.Services.Game;
     using SheetsWithoutNumber.Services.Skills;
     using SWN.Data.Models;
@@ -45,6 +47,15 @@
                 .ForMember(sf => sf.CharacterSkillId, cfg => cfg.MapFrom(cs => cs.Id));
 
             this.CreateMap<CharactersSkills, CharacterSkillServiceModel>();
+
+            this.CreateMap<Focus, FocusServiceListingViewModel>();
+
+            this.CreateMap<CharactersFoci, CharacterFocusServiceModel>();
+
+            this.CreateMap<CharacterFocusServiceModel, FocusFormModel>()
+                .ForMember(ff => ff.Name, cfg => cfg.MapFrom(cf => cf.FocusName))
+                .ForMember(ff => ff.Level, cfg => cfg.MapFrom(cf => cf.FocusLevel))
+                .ForMember(ff => ff.CharacterFocusId, cfg => cfg.MapFrom(cf => cf.Id));
         }
     }
 }

@@ -24,6 +24,8 @@
 
         public DbSet<CharactersSkills> CharactersSkills { get; init; }
 
+        public DbSet<CharactersFoci> CharactersFoci { get; init; }
+
         public DbSet<Class> Classes { get; init; }
 
         public DbSet<Background> Backgrounds { get; init; }
@@ -70,6 +72,18 @@
                 .HasOne<Skill>(cs => cs.Skill)
                 .WithMany(c => c.CharactersSkills)
                 .HasForeignKey(cs => cs.SkillId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CharactersFoci>()
+                .HasOne<Character>(cf => cf.Character)
+                .WithMany(c => c.CharactersFoci)
+                .HasForeignKey(cf => cf.CharacterId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CharactersFoci>()
+                .HasOne<Focus>(cf => cf.Focus)
+                .WithMany(c => c.CharactersFoci)
+                .HasForeignKey(cf => cf.FocusId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);

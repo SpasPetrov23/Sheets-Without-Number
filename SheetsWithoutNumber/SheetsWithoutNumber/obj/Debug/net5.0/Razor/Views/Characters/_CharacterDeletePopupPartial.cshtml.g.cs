@@ -56,20 +56,27 @@ using SheetsWithoutNumber.Models.Skills;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
-using SheetsWithoutNumber.Infrastructure;
+using SheetsWithoutNumber.Models.Foci;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
+using SheetsWithoutNumber.Infrastructure;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
 using SWN.Data.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"07d8bb170a9b8559aa101afedecf149ebd29b78a", @"/Views/Characters/_CharacterDeletePopupPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9e9b53b6c00e872578ce92771e0f0296085da825", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b7900080c5330e3b6b75b7671712f7a6cb033eb6", @"/Views/_ViewImports.cshtml")]
     public class Views_Characters__CharacterDeletePopupPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<CharacterListingModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Characters", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -124,7 +131,7 @@ using SWN.Data.Models;
             <div class=""modal-footer"">
                 <button type=""button"" class=""btn btn-secondary"" data-dismiss=""modal"">Close</button>
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07d8bb170a9b8559aa101afedecf149ebd29b78a6821", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07d8bb170a9b8559aa101afedecf149ebd29b78a7041", async() => {
                 WriteLiteral("Delete");
             }
             );

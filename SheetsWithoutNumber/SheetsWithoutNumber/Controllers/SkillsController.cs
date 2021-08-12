@@ -4,20 +4,17 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using SheetsWithoutNumber.Models.Skills;
-    using SheetsWithoutNumber.Services.Character;
     using SheetsWithoutNumber.Services.Skills;
 
     public class SkillsController : Controller
     {
-        private readonly ICharacterService characters;
         private readonly ISkillService skills;
         private readonly IMapper mapper;
 
-        public SkillsController(ISkillService skills, IMapper mapper, ICharacterService characters)
+        public SkillsController(ISkillService skills, IMapper mapper)
         {
             this.skills = skills;
             this.mapper = mapper;
-            this.characters = characters;
         }
 
         [Authorize]
@@ -69,7 +66,6 @@
             var skillForm = this.mapper.Map<SkillFormModel>(characterSkill);
 
             skillForm.Skills = this.skills.GetSkills();
-            skillForm.PreviousSkillId = characterSkill.SkillId;
 
             return View(skillForm);
         }

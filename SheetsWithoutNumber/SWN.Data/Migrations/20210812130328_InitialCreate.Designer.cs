@@ -10,7 +10,7 @@ using SWN.Data;
 namespace SWN.Data.Migrations
 {
     [DbContext(typeof(SWNDbContext))]
-    [Migration("20210811202013_InitialCreate")]
+    [Migration("20210812130328_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,21 +20,6 @@ namespace SWN.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("CharacterFocus", b =>
-                {
-                    b.Property<int>("CharactersId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FociId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("CharactersId", "FociId");
-
-                    b.HasIndex("FociId");
-
-                    b.ToTable("CharacterFocus");
-                });
 
             modelBuilder.Entity("GameUser", b =>
                 {
@@ -332,6 +317,39 @@ namespace SWN.Data.Migrations
                     b.ToTable("Characters");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.CharactersFoci", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FocusDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("FocusId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FocusLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FocusName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("FocusId");
+
+                    b.ToTable("CharactersFoci");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.CharactersSkills", b =>
                 {
                     b.Property<int>("Id")
@@ -395,8 +413,10 @@ namespace SWN.Data.Migrations
 
             modelBuilder.Entity("SWN.Data.Models.Focus", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -545,21 +565,6 @@ namespace SWN.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("CharacterFocus", b =>
-                {
-                    b.HasOne("SWN.Data.Models.Character", null)
-                        .WithMany()
-                        .HasForeignKey("CharactersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SWN.Data.Models.Focus", null)
-                        .WithMany()
-                        .HasForeignKey("FociId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("GameUser", b =>
                 {
                     b.HasOne("SWN.Data.Models.Game", null)
@@ -653,6 +658,25 @@ namespace SWN.Data.Migrations
                     b.Navigation("Game");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.CharactersFoci", b =>
+                {
+                    b.HasOne("SWN.Data.Models.Character", "Character")
+                        .WithMany("CharactersFoci")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SWN.Data.Models.Focus", "Focus")
+                        .WithMany("CharactersFoci")
+                        .HasForeignKey("FocusId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Focus");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.CharactersSkills", b =>
                 {
                     b.HasOne("SWN.Data.Models.Character", "Character")
@@ -679,12 +703,19 @@ namespace SWN.Data.Migrations
 
             modelBuilder.Entity("SWN.Data.Models.Character", b =>
                 {
+                    b.Navigation("CharactersFoci");
+
                     b.Navigation("CharactersSkills");
                 });
 
             modelBuilder.Entity("SWN.Data.Models.Class", b =>
                 {
                     b.Navigation("Characters");
+                });
+
+            modelBuilder.Entity("SWN.Data.Models.Focus", b =>
+                {
+                    b.Navigation("CharactersFoci");
                 });
 
             modelBuilder.Entity("SWN.Data.Models.Game", b =>

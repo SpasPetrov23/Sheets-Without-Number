@@ -1,6 +1,5 @@
 ﻿namespace SWN.Data.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -9,17 +8,15 @@
     public class Focus
     {
         [Required]
-        public string Id { get; init; } = Guid.NewGuid().ToString();
+        public int Id { get; init; }
 
         [Required]
         [MaxLength(NameMaxLength)]
         public string Name { get; set; }
 
-        public int Level { get; set; }
-
         [Required]
         public string Description { get; set; }
 
-        public ICollection<Character> Characters { get; init; } = new HashSet<Character>();
+        public ICollection<CharactersFoci> CharactersFoci { get; init; } = new HashSet<CharactersFoci>();
     }
 }

@@ -14,6 +14,7 @@
     using static SWN.Data.DataConstants.ClassData;
     using static SWN.Data.DataConstants.Background;
     using static SWN.Data.DataConstants.SkillData;
+    using static SWN.Data.DataConstants.FocusData;
 
     public static class ApplicationBuilderExtensions
     {
@@ -28,6 +29,7 @@
             SeedClasses(services);
             SeedBackgrounds(services);
             SeedSkills(services);
+            SeedFoci(services);
 
             return app;
         }
@@ -404,6 +406,217 @@
                     Name = SkillTeleportationName,
                     Description = SkillTeleportationDescription,
                     IsPsychic = true
+                },
+            });
+
+            data.SaveChanges();
+        }
+
+        private static void SeedFoci(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<SWNDbContext>();
+
+            if (data.Foci.Any())
+            {
+                return;
+            }
+
+            data.Foci.AddRange(new[]
+            {
+                new Focus
+                { 
+                    Name = FocusAlertName,
+                    Description = FoucsAlertDescription
+                },
+                new Focus
+                {
+                    Name = FocusArmsmanName,
+                    Description = FoucsArmsmanDescription
+                },
+                new Focus
+                {
+                    Name = FocusAssassinName,
+                    Description = FoucsAssassinDescription
+                },
+                new Focus
+                {
+                    Name = FocusCloseCombatantName,
+                    Description = FoucsCloseCombatantDescription
+                },
+                new Focus
+                {
+                    Name = FocusConnectedName,
+                    Description = FoucsConnectedDescription
+                },
+                new Focus
+                {
+                    Name = FocusDieHardName,
+                    Description = FoucsDieHardDescription
+                },
+                new Focus
+                {
+                    Name = FocusDiplomatName,
+                    Description = FoucsDiplomatDescription
+                },
+                new Focus
+                {
+                    Name = FocusGunslingerName,
+                    Description = FoucsGunslingerDescription
+                },
+                new Focus
+                {
+                    Name = FocusHackerName,
+                    Description = FoucsHackerDescription
+                },
+                new Focus
+                {
+                    Name = FocusHealerName,
+                    Description = FoucsHealerDescription
+                },
+                new Focus
+                {
+                    Name = FocusHenchkeeperName,
+                    Description = FoucsHenchkeeperDescription
+                },
+                new Focus
+                {
+                    Name = FocusIronhideName,
+                    Description = FoucsIronhideDescription
+                },
+                new Focus
+                {
+                    Name = FocusPsychicTrainingName,
+                    Description = FoucsPsychicTrainingDescription
+                },
+                new Focus
+                {
+                    Name = FocusSavageFrayName,
+                    Description = FoucsSavageFrayDescription
+                },
+                new Focus
+                {
+                    Name = FocusShockingAssaultName,
+                    Description = FoucsShockingAssaultDescription
+                },
+                new Focus
+                {
+                    Name = FocusSniperName,
+                    Description = FoucsSniperDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistAdministerName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistConnectName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistExertName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistFixName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistHealName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistKnowName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistLeadName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistNoticeName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistPerformName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistPilotName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistProgramName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistSneakName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistSurviveName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistTalkName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistTradeName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusSpecialistWorkName,
+                    Description = FoucsSpecialistDescription
+                },
+                new Focus
+                {
+                    Name = FocusStarCaptainName,
+                    Description = FoucsStarCaptainDescription
+                },
+                new Focus
+                {
+                    Name = FocusStarfarerName,
+                    Description = FoucsStarfarerDescription
+                },
+                new Focus
+                {
+                    Name = FocusTinkerName,
+                    Description = FoucsTinkerDescription
+                },
+                new Focus
+                {
+                    Name = FocusUnarmedCombatantName,
+                    Description = FoucsUnarmedCombatantDescription
+                },
+                new Focus
+                {
+                    Name = FocusUniqueGiftName,
+                    Description = FoucsUniqueGiftDescription
+                },
+                new Focus
+                {
+                    Name = FocusWandererName,
+                    Description = FoucsWandererDescription
+                },
+                new Focus
+                {
+                    Name = FocusWildPsychicTalentName,
+                    Description = FocusWildPsychicTalentName
                 },
             });
 

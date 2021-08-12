@@ -96,7 +96,7 @@
 
         public Background Background { get; set; }
 
-        public ICollection<Focus> Foci { get; init; } = new HashSet<Focus>();
+        public ICollection<CharactersFoci> CharactersFoci { get; init; } = new HashSet<CharactersFoci>();
 
         public int GameId { get; init; }
 

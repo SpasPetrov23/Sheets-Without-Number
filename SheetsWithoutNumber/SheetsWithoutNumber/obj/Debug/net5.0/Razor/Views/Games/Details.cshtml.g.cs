@@ -56,20 +56,27 @@ using SheetsWithoutNumber.Models.Skills;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
-using SheetsWithoutNumber.Infrastructure;
+using SheetsWithoutNumber.Models.Foci;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 8 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
+using SheetsWithoutNumber.Infrastructure;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
 using SWN.Data.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e55423cf4b1c5e88d7874ee3e8aab652a1df4957", @"/Views/Games/Details.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9e9b53b6c00e872578ce92771e0f0296085da825", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b7900080c5330e3b6b75b7671712f7a6cb033eb6", @"/Views/_ViewImports.cshtml")]
     public class Views_Games_Details : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<GameDetailsModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Characters", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -261,7 +268,7 @@ WriteAttributeValue("", 467, Model.GameImage, 467, 16, false);
 #line hidden
 #nullable disable
             WriteLiteral("                                <td>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e55423cf4b1c5e88d7874ee3e8aab652a1df495712728", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e55423cf4b1c5e88d7874ee3e8aab652a1df495712948", async() => {
 #nullable restore
 #line 70 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\Games\Details.cshtml"
                                                                                                                          Write(character.Name);
@@ -335,7 +342,7 @@ WriteAttributeValue("", 467, Model.GameImage, 467, 16, false);
 #line hidden
 #nullable disable
             WriteLiteral("                    <div class=\"text-center\">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e55423cf4b1c5e88d7874ee3e8aab652a1df495716919", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e55423cf4b1c5e88d7874ee3e8aab652a1df495717139", async() => {
                 WriteLiteral("\r\n                            <input type=\"button\" class=\"btn btn-info\" style=\"width:200px\" value=\"Edit Game\" />\r\n                        ");
             }
             );
@@ -368,7 +375,7 @@ WriteAttributeValue("", 467, Model.GameImage, 467, 16, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n                        <a class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#deleteGameModal\">Delete</a>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e55423cf4b1c5e88d7874ee3e8aab652a1df495719641", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "e55423cf4b1c5e88d7874ee3e8aab652a1df495719861", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -403,7 +410,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper.Model = Model;
 #line hidden
 #nullable disable
             WriteLiteral("                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e55423cf4b1c5e88d7874ee3e8aab652a1df495721660", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e55423cf4b1c5e88d7874ee3e8aab652a1df495721880", async() => {
                 WriteLiteral("\r\n                            <div class=\"text-center\">\r\n                                <input type=\"button\" class=\"btn btn-primary\" style=\"width:200px\" value=\"Create Character\" />\r\n                            </div>\r\n                        ");
             }
             );
@@ -457,7 +464,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper.Model = Model;
 #line hidden
 #nullable disable
             WriteLiteral("                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e55423cf4b1c5e88d7874ee3e8aab652a1df495725007", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e55423cf4b1c5e88d7874ee3e8aab652a1df495725227", async() => {
                 WriteLiteral("\r\n                        <div class=\"text-center\">\r\n                            <input type=\"button\" class=\"btn btn-primary\" style=\"width:200px\" value=\"Join Game\" />\r\n                        </div>\r\n                    ");
             }
             );

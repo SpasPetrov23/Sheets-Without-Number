@@ -7,8 +7,6 @@
         [Required]
         public int Id { get; set; }
 
-        public int SkillLevel { get; set; }
-
         public int CharacterId { get; set; }
 
         public Character Character { get; set; }
@@ -19,6 +17,8 @@
 
         [Required]
         public string SkillName { get; set; }
+
+        public int SkillLevel { get; set; }
 
         public bool IsSkillPsychic { get; set; }
 

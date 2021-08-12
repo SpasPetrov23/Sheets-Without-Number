@@ -1,0 +1,52 @@
+﻿@model FocusFormModel
+
+@Html.Hidden("PreviousFocusId")
+
+<div class="row">
+    <div class="col-12">
+        <form method="post">
+            @{ Model.PreviousFocusId = Model.FocusId; }
+            <div class="form-group col-8 offset-2">
+                <div class="form-row">
+                    <div class="form-group col-9">
+                        <label asp-for="FocusId">Name</label>
+                        <select asp-for="FocusId" class="form-control">
+                            @foreach (var focus in Model.Foci)
+                            {
+                                <option value="@focus.Id">@focus.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="FocusId" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group col-2">
+                        <label asp-for="Level"></label>
+                        <select asp-for="Level" class="form-control">
+                            @for (int i = 1; i < 3; i++)
+                            {
+                <option>@i</option>}
+                        </select>
+                        <span asp-validation-for="Level" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group col-1">
+                        <label>Delete</label>
+                        <a asp-controller="Foci" asp-action="Delete" asp-route-characterFocusId="@Model.CharacterFocusId" class="text-decoration-none">
+                            <div class="text-center">
+                                <input type="button" class="btn-danger" value="X" />
+                            </div>
+                        </a>
+                    </div>
+
+                    <input asp-for="PreviousFocusId" name="PreviousFocusId" type="hidden" value="@Model.PreviousFocusId" />
+                </div>
+            </div>
+
+            <div class="col-12 text-center">
+                <input class="btn btn-primary" style="width: 120px" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

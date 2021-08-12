@@ -85,6 +85,9 @@
                 .OrderBy(cs => cs.SkillName)
                 .ThenBy(cs => cs.IsSkillPsychic)
                 .ToList();
+            character.CharactersFoci = character.CharactersFoci
+                .OrderBy(cs => cs.FocusName)
+                .ToList();
 
             character.MinimumXP = this.CalculateMinimumXP(character.Level);
             character.MaximumXP = this.CalculateMaximumXP(character.Level);

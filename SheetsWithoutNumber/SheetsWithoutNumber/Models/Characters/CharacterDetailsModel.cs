@@ -86,6 +86,8 @@
 
         public ICollection<CharactersSkills> CharactersSkills { get; set; }
 
+        public ICollection<CharactersFoci> CharactersFoci { get; set; }
+
         public int CurrentXP { get; init; }
 
         public int MinimumXP { get; set; }
