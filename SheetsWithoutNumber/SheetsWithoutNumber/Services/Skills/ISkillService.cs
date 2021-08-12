@@ -9,13 +9,17 @@
 
         public bool Edit(int level, int skillId, int chracterSkillId);
 
-        public SkillServiceViewModel GetSkillById(int skillId);
+        public int Delete(int characterSkillId);
+
+        public SkillServiceListingViewModel GetSkillById(int skillId);
 
         public CharacterSkillServiceModel GetCharacterSkillById(int characterSkillId);
 
-        public IEnumerable<SkillServiceViewModel> GetSkills();
+        public IEnumerable<SkillServiceListingViewModel> GetSkills();
 
         public bool SkillExists(int skillId);
+
+        public bool SkillIsLearned(int skillId, int characterId);
 
         public bool AllowSkill(int skillId, int characterId);
     }

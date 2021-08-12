@@ -35,11 +35,14 @@
 
             this.CreateMap<Game, GameEditServiceModel>();
 
-            this.CreateMap<Skill, SkillServiceViewModel>();
+            this.CreateMap<Skill, SkillServiceListingViewModel>();
 
-            this.CreateMap<SkillServiceViewModel, SkillFormModel>();
+            this.CreateMap<SkillServiceListingViewModel, SkillFormModel>();
 
-            this.CreateMap<CharacterSkillServiceModel, SkillFormModel>();
+            this.CreateMap<CharacterSkillServiceModel, SkillFormModel>()
+                .ForMember(sf => sf.Name, cfg => cfg.MapFrom(cs => cs.SkillName))
+                .ForMember(sf => sf.Level, cfg => cfg.MapFrom(cs => cs.SkillLevel))
+                .ForMember(sf => sf.CharacterSkillId, cfg => cfg.MapFrom(cs => cs.Id));
 
             this.CreateMap<CharactersSkills, CharacterSkillServiceModel>();
         }

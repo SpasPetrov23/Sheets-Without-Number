@@ -2,9 +2,12 @@
 
 @{ var psychicBool = string.Empty; }
 
+@Html.Hidden("PreviousSkillId")
+
 <div class="row">
     <div class="col-12">
         <form method="post">
+            @{ Model.PreviousSkillId = Model.SkillId; }
             <div class="form-group col-8 offset-2">
                 <div class="form-row">
                     <div class="form-group col-10">
@@ -12,12 +15,11 @@
                         <select asp-for="SkillId" class="form-control">
                             @foreach (var skill in Model.Skills)
                             {
-                                @if (skill.IsPsychic)
-                                {
-                                    psychicBool = "[Psychic Skill]";
-                                }
-                                <option value="@skill.Id">@skill.Name @psychicBool</option>
-                            }
+                @if (skill.IsPsychic)
+                {
+                    psychicBool = "[Psychic Skill]";
+                }
+                                <option value="@skill.Id">@skill.Name @psychicBool</option>}
                         </select>
                         <span asp-validation-for="SkillId" class="small text-danger"></span>
                     </div>
@@ -26,11 +28,12 @@
                         <select asp-for="Level" class="form-control">
                             @for (int i = 0; i < 5; i++)
                             {
-                                <option>@i</option>
-                            }
+                <option>@i</option>}
                         </select>
                         <span asp-validation-for="Level" class="small text-danger"></span>
                     </div>
+
+                    <input asp-for="PreviousSkillId" name="PreviousSkillId" type="hidden" value="@Model.PreviousSkillId" />
                 </div>
             </div>
 

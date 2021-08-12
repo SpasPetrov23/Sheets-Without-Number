@@ -13,8 +13,10 @@
 
         public int SkillId { get; set; }
 
+        public int? PreviousSkillId { get; set; }
+
         public int CharacterSkillId { get; set; }
 
-        public IEnumerable<SkillServiceViewModel> Skills { get; set; }
+        public IEnumerable<SkillServiceListingViewModel> Skills { get; set; }
     }
 }

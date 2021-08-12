@@ -3,7 +3,6 @@
     using AutoMapper;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Models.Skills;
     using SheetsWithoutNumber.Services.Character;
     using SheetsWithoutNumber.Services.Skills;
@@ -26,6 +25,7 @@
         {
             return View(new SkillFormModel
             {
+                PreviousSkillId = null,
                 Skills = this.skills.GetSkills(),
             });
         }
@@ -37,6 +37,11 @@
             if (!this.skills.SkillExists(skillModel.SkillId))
             {
                 this.ModelState.AddModelError(nameof(skillModel.SkillId), "Skill does not exist.");
+            }
+
+            if (this.skills.SkillIsLearned(skillModel.SkillId, characterId))
+            {
+                this.ModelState.AddModelError(nameof(skillModel.SkillId), "Skill is already learned.");
             }
 
             if (!this.skills.AllowSkill(skillModel.SkillId, characterId))
@@ -61,15 +66,10 @@
         {
             var characterSkill = this.skills.GetCharacterSkillById(characterSkillId);
 
-            var skillForm = new SkillFormModel
-            {
-                Name = characterSkill.SkillName,
-                Level = characterSkill.SkillLevel,
-                SkillId = characterSkill.SkillId,
-                CharacterSkillId = characterSkill.Id
-            };
+            var skillForm = this.mapper.Map<SkillFormModel>(characterSkill);
 
             skillForm.Skills = this.skills.GetSkills();
+            skillForm.PreviousSkillId = characterSkill.SkillId;
 
             return View(skillForm);
         }
@@ -85,6 +85,11 @@
                 this.ModelState.AddModelError(nameof(skillEdit.SkillId), "Skill does not exist.");
             }
 
+            if (this.skills.SkillIsLearned(skillEdit.SkillId, characterSkill.CharacterId) && skillEdit.PreviousSkillId != skillEdit.SkillId)
+            {
+                this.ModelState.AddModelError(nameof(skillEdit.SkillId), "Skill is already learned.");
+            }
+
             if (!this.skills.AllowSkill(skillEdit.SkillId, characterSkill.CharacterId))
             {
                 this.ModelState.AddModelError(nameof(skillEdit.SkillId), "This skill is not available to your Class.");
@@ -98,6 +103,16 @@
             }
 
             this.skills.Edit(skillEdit.Level, skillEdit.SkillId, skillEdit.CharacterSkillId);
+
+            return RedirectToAction("Details", "Characters", new { characterId = characterSkill.CharacterId });
+        }
+
+        [Authorize]
+        public IActionResult Delete(int characterSkillId)
+        {
+            var characterSkill = this.skills.GetCharacterSkillById(characterSkillId);
+
+            skills.Delete(characterSkillId);
 
             return RedirectToAction("Details", "Characters", new { characterId = characterSkill.CharacterId });
         }

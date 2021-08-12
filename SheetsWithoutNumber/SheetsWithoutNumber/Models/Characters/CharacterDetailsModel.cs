@@ -84,7 +84,7 @@
 
         public int Level { get; init; }
 
-        public ICollection<CharactersSkills> CharactersSkills { get; init; }
+        public ICollection<CharactersSkills> CharactersSkills { get; set; }
 
         public int CurrentXP { get; init; }
 

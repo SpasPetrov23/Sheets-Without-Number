@@ -57,11 +57,24 @@
             return true;
         }
 
-        public SkillServiceViewModel GetSkillById(int skillId)
+        public int Delete(int characterSkillId)
+        {
+            var characterSkill = data.CharactersSkills
+                .Where(cs => cs.Id == characterSkillId)
+                .FirstOrDefault();
+
+            data.CharactersSkills.Remove(characterSkill);
+
+            data.SaveChanges();
+
+            return characterSkill.Id;
+        }
+
+        public SkillServiceListingViewModel GetSkillById(int skillId)
         {
             var skill = data.Skills
                 .Where(s => s.Id == skillId)
-                .ProjectTo<SkillServiceViewModel>(this.mapper)
+                .ProjectTo<SkillServiceListingViewModel>(this.mapper)
                 .FirstOrDefault();
 
             return skill;
@@ -77,16 +90,23 @@
             return characterSkill;
         }
 
-        public IEnumerable<SkillServiceViewModel> GetSkills()
+        public IEnumerable<SkillServiceListingViewModel> GetSkills()
             => this.data
              .Skills
-             .ProjectTo<SkillServiceViewModel>(this.mapper)
+             .ProjectTo<SkillServiceListingViewModel>(this.mapper)
              .OrderBy(s => s.IsPsychic)
              .ThenBy(s => s.Name)
              .ToList();
 
         public bool SkillExists(int skillId)
-            => this.data.Skills.Any(s => s.Id == skillId);
+            => this.data
+            .Skills
+            .Any(s => s.Id == skillId);
+
+        public bool SkillIsLearned(int skillId, int characterId)
+            => this.data
+            .CharactersSkills
+            .Any(cs => cs.SkillId == skillId && cs.CharacterId == characterId);
 
         public bool AllowSkill(int skillId, int characterId)
         {

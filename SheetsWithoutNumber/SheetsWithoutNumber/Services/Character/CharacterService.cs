@@ -81,10 +81,10 @@
             character.WisdomMod = this.CalculateAttributeModifier(character.Wisdom);
             character.Initiative = character.DexterityMod;
             character.MaxSystemStrain = character.Constitution;
-            character.CharactersSkills
-                .Select(cs => cs.Skill)
-                .OrderBy(s => s.IsPsychic)
-                .ThenBy(s => s.Name);
+            character.CharactersSkills = character.CharactersSkills
+                .OrderBy(cs => cs.SkillName)
+                .ThenBy(cs => cs.IsSkillPsychic)
+                .ToList();
 
             character.MinimumXP = this.CalculateMinimumXP(character.Level);
             character.MaximumXP = this.CalculateMaximumXP(character.Level);
@@ -130,6 +130,17 @@
                 .Characters
                 .Where(c => c.Id == characterId)
                 .FirstOrDefault();
+
+            var characterSkills = data.CharactersSkills
+                .Where(cs => cs.CharacterId == characterId)
+                .ToList();
+
+            foreach (var characterSkill in characterSkills)
+            {
+                data.CharactersSkills.Remove(characterSkill);
+            }
+
+            character.CharactersSkills.Clear();
 
             data.Characters.Remove(character);
 
