@@ -3,18 +3,23 @@
     using AutoMapper;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Models.Foci;
+    using SheetsWithoutNumber.Services.Character;
     using SheetsWithoutNumber.Services.Focus;
+    using System.Linq;
 
     public class FociController : Controller
     {
+        private readonly ICharacterService characters;
         private readonly IFocusService foci;
         private readonly IMapper mapper;
 
-        public FociController(IFocusService foci, IMapper mapper)
+        public FociController(IFocusService foci, IMapper mapper, ICharacterService characters)
         {
             this.foci = foci;
             this.mapper = mapper;
+            this.characters = characters;
         }
 
         [Authorize]
@@ -41,6 +46,11 @@
                 this.ModelState.AddModelError(nameof(formModel.FocusId), "Focus is already learned.");
             }
 
+            if (!this.foci.AllowFocus(formModel.FocusId, characterId))
+            {
+                this.ModelState.AddModelError(nameof(formModel.FocusId), "This Focus is not available to your class.");
+            }
+
             if (!ModelState.IsValid)
             {
                 formModel.Foci = this.foci.GetFociListing();
@@ -58,6 +68,14 @@
         public IActionResult Edit(int characterFocusId)
         {
             var characterFocus = this.foci.GetCharacterFocusById(characterFocusId);
+
+            var currentUserId = this.User.GetId();
+            var currentCharacter = this.characters.GetCharacterById(characterFocus.CharacterId);
+
+            if (currentCharacter.OwnerId != currentUserId)
+            {
+                return Unauthorized();
+            }
 
             var focusForm = this.mapper.Map<FocusFormModel>(characterFocus);
 
@@ -80,6 +98,11 @@
             if (this.foci.FocusIsLearned(focusEdit.FocusId, chracterFocus.CharacterId) && focusEdit.PreviousFocusId != focusEdit.FocusId)
             {
                 this.ModelState.AddModelError(nameof(focusEdit.FocusId), "Focus is already learned.");
+            }
+
+            if (!this.foci.AllowFocus(focusEdit.FocusId, chracterFocus.CharacterId))
+            {
+                this.ModelState.AddModelError(nameof(focusEdit.FocusId), "This Focus is not available to your class.");
             }
 
             if (!ModelState.IsValid)

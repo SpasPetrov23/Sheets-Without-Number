@@ -1,5 +1,6 @@
 ﻿namespace SheetsWithoutNumber.Services.Character
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using SWN.Data;
@@ -9,6 +10,8 @@
     using AutoMapper.QueryableExtensions;
 
     using static SWN.Data.DataConstants;
+    using static SWN.Data.DataConstants.ClassData;
+    using static SWN.Data.DataConstants.FocusData;
 
     public class CharacterService : ICharacterService
     {
@@ -19,17 +22,6 @@
         {
             this.data = data;
             this.mapper = mapper.ConfigurationProvider;
-        }
-
-        public IEnumerable<CharacterListingModel> ByUser(string userId)
-        {
-            var characters = data
-                .Characters
-                .Where(c => c.OwnerId == userId)
-                .ProjectTo<CharacterListingModel>(this.mapper)
-                .ToList();
-
-            return characters;
         }
 
         public int Create(string name, int backgroundId, int classId, string characterImage, int strength, int constitution, int dexterity, int wisdom, int intelligence, int charisma, string homeworld, string species, string ownerId, int gameId)
@@ -89,11 +81,35 @@
                 .OrderBy(cs => cs.FocusName)
                 .ToList();
 
+            character.SavingThrowEvasion = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Evasion");
+            character.SavingThrowPhysical = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Physical");
+            character.SavingThrowMental = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Mental");
+
             character.MinimumXP = this.CalculateMinimumXP(character.Level);
             character.MaximumXP = this.CalculateMaximumXP(character.Level);
             character.XPBarWidth = this.CalculateExperiencePercentage(character.CurrentXP, character.MinimumXP, character.MaximumXP);
-
             character.AttackBonus = this.CalculateAttackBonus(character.Class, character.Level);
+
+            var highestPsychicLevel = 0;
+            if (character.CharactersSkills.Where(cs => cs.IsSkillPsychic).Any())
+            {
+                highestPsychicLevel = character.CharactersSkills
+                .Where(cs => cs.IsSkillPsychic)
+                .OrderByDescending(cs => cs.SkillLevel)
+                .FirstOrDefault().SkillLevel;
+            }
+            var hasPsychicTrainingFocus = false;
+            var wildTalentFocusLevel = 0;
+            if (character.CharactersFoci.Any())
+            {
+                hasPsychicTrainingFocus = character.CharactersFoci.Any(cf => cf.FocusName == FocusPsychicTrainingName);
+
+                if (character.CharactersFoci.Any(cf => cf.FocusName == FocusWildPsychicTalentName))
+                {
+                    wildTalentFocusLevel = character.CharactersFoci.Where(cf => cf.FocusName == FocusWildPsychicTalentName).FirstOrDefault().FocusLevel;
+                }
+            }
+            character.MaxEffort = this.CalculateMaxEffort(character.Class, character.WisdomMod, character.ConstitutionMod, highestPsychicLevel, hasPsychicTrainingFocus, wildTalentFocusLevel);
 
             return character;
         }
@@ -152,6 +168,17 @@
             return character.Id;
         }
 
+        public IEnumerable<CharacterListingModel> ByUser(string userId)
+        {
+            var characters = data
+                .Characters
+                .Where(c => c.OwnerId == userId)
+                .ProjectTo<CharacterListingModel>(this.mapper)
+                .ToList();
+
+            return characters;
+        }
+
         public IEnumerable<CharacterClassViewModel> GetCharacterClasses()
             => this.data
              .Classes
@@ -164,6 +191,13 @@
             .OrderBy(b => b.Name)
             .ProjectTo<CharacterBackgroundViewModel>(this.mapper)
             .ToList();
+
+        public CharacterOwnerModel GetCharacterById(int characterId)
+           => this.data
+            .Characters
+            .Where(c => c.Id == characterId)
+            .ProjectTo<CharacterOwnerModel>(this.mapper)
+            .FirstOrDefault();
 
         public bool ClassExists(int classId)
             => this.data.Classes.Any(c => c.Id == classId);
@@ -195,6 +229,55 @@
 
             return attackMod;
         }
+
+        public int CalculateMaxEffort(string characterClass, int wisdomMod, int constitutionMod, int highestPsychicLevel, bool hasPsychicTrainingFocus, int wildTalentFocusLevel)
+        {
+            var maxEffort = 0;
+
+            if (characterClass == PsychicClassName || characterClass == PsychicWarriorClassName || characterClass == ExpertPsychicClassName)
+            {
+                maxEffort += 1 + Math.Max(wisdomMod, constitutionMod) + highestPsychicLevel;
+
+                if (maxEffort < 1)
+                {
+                    maxEffort = 1;
+                }
+            }
+
+            if (hasPsychicTrainingFocus)
+            {
+                maxEffort += 1;
+            }
+
+            if (wildTalentFocusLevel > 0)
+            {
+                maxEffort += wildTalentFocusLevel;
+            }
+
+            return maxEffort;
+        }
+
+        public int CalculateSavingThrow(int level, int strengthMod, int constitutionMod, int dexterityMod, int wisdomMod, int charismaMod, int intelligenceMod, string savingThrowType)
+        {
+            var savingThrow = 15;
+            savingThrow -= level - 1;
+
+            if (savingThrowType == "Physical")
+            {
+                savingThrow -= Math.Max(strengthMod, constitutionMod);
+            }
+            else if (savingThrowType == "Evasion")
+            {
+                savingThrow -= Math.Max(dexterityMod, intelligenceMod);
+            }
+            else if (savingThrowType == "Mental")
+            {
+                savingThrow -= Math.Max(wisdomMod, charismaMod);
+            }
+
+            return savingThrow;
+        }
+
         public int CalculateExperiencePercentage(int currentXP, int minimumXP, int maximumXP)
         {
             var result = (currentXP - minimumXP) * 100 / (maximumXP - minimumXP);

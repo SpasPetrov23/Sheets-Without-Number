@@ -7,6 +7,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using static SWN.Data.DataConstants.FocusData;
+    using static SWN.Data.DataConstants.ClassData;
+
     public class FocusService : IFocusService
     {
         private readonly SWNDbContext data;
@@ -52,6 +55,7 @@
 
             return true;
         }
+
         public int Delete(int focusSkillId)
         {
             var characterFocus = data.CharactersFoci
@@ -100,6 +104,31 @@
                 .FirstOrDefault();
 
             return focus;
+        }
+
+        public bool AllowFocus(int focusId, int characterId)
+        {
+            var focus = this.data.Foci.Where(f => f.Id == focusId).FirstOrDefault();
+            var character = this.data.Characters.Where(c => c.Id == characterId).FirstOrDefault();
+            var className = this.data.Classes.Where(cl => cl.Id == character.ClassId).FirstOrDefault().Name;
+
+            if (focus.Name == FocusPsychicTrainingName && 
+                (className == PsychicClassName ||
+                className == PsychicWarriorClassName ||
+                className == ExpertPsychicClassName))
+            {
+                return true;
+            }
+
+            if (focus.Name == FocusWildPsychicTalentName && 
+                className != PsychicClassName && 
+                className != PsychicWarriorClassName && 
+                className != ExpertPsychicClassName)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

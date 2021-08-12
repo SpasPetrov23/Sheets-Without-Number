@@ -19,5 +19,7 @@
         public CharacterFocusServiceModel GetCharacterFocusById(int characterFocusId);
 
         public FocusServiceListingViewModel GetFocusById(int focusId);
+
+        public bool AllowFocus(int focusId, int characterId);
     }
 }

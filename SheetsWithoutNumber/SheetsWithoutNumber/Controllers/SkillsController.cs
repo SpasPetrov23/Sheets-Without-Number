@@ -3,18 +3,22 @@
     using AutoMapper;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Models.Skills;
+    using SheetsWithoutNumber.Services.Character;
     using SheetsWithoutNumber.Services.Skills;
 
     public class SkillsController : Controller
     {
+        private readonly ICharacterService characters;
         private readonly ISkillService skills;
         private readonly IMapper mapper;
 
-        public SkillsController(ISkillService skills, IMapper mapper)
+        public SkillsController(ISkillService skills, IMapper mapper, ICharacterService characters)
         {
             this.skills = skills;
             this.mapper = mapper;
+            this.characters = characters;
         }
 
         [Authorize]
@@ -62,6 +66,14 @@
         public IActionResult Edit(int characterSkillId)
         {
             var characterSkill = this.skills.GetCharacterSkillById(characterSkillId);
+
+            var currentUserId = this.User.GetId();
+            var currentCharacter = this.characters.GetCharacterById(characterSkill.CharacterId);
+
+            if (currentCharacter.OwnerId != currentUserId)
+            {
+                return Unauthorized();
+            }
 
             var skillForm = this.mapper.Map<SkillFormModel>(characterSkill);
 
