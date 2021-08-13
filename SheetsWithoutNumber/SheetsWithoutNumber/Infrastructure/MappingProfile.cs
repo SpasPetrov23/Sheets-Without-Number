@@ -1,11 +1,13 @@
 ﻿namespace SheetsWithoutNumber.Infrastructure
 {
     using AutoMapper;
+    using SheetsWithoutNumber.Models.Armors;
     using SheetsWithoutNumber.Models.Characters;
     using SheetsWithoutNumber.Models.Equipments;
     using SheetsWithoutNumber.Models.Foci;
     using SheetsWithoutNumber.Models.Games;
     using SheetsWithoutNumber.Models.Skills;
+    using SheetsWithoutNumber.Services.Armor;
     using SheetsWithoutNumber.Services.Equipments;
     using SheetsWithoutNumber.Services.Focus;
     using SheetsWithoutNumber.Services.Game;
@@ -70,6 +72,15 @@
                 .ForMember(ef => ef.Count, cfg => cfg.MapFrom(ce => ce.EquipmentCount))
                 .ForMember(ef => ef.Location, cfg => cfg.MapFrom(ce => ce.EquipmentLocation))
                 .ForMember(ef => ef.CharacterEquipmentId, cfg => cfg.MapFrom(ce => ce.Id));
+
+            this.CreateMap<Armor, ArmorServiceListingViewModel>();
+
+            this.CreateMap<CharactersArmors, CharacterArmorServiceModel>();
+
+            this.CreateMap<CharacterArmorServiceModel, ArmorFormModel>()
+                .ForMember(af => af.Name, cfg => cfg.MapFrom(ca => ca.ArmorName))
+                .ForMember(af => af.Location, cfg => cfg.MapFrom(ca => ca.ArmorLocation))
+                .ForMember(af => af.CharacterArmorId, cfg => cfg.MapFrom(ca => ca.Id));
         }
     }
 }

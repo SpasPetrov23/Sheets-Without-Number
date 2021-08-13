@@ -1,0 +1,18 @@
+﻿@model CharacterDetailsModel
+
+<div class="table-sm table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+            <tr class="text-center" style="background-color: lightblue">
+                <td><b>Hit Points</b></td>
+                <td><b>Effort</b></td>
+                <td><b>System Strain</b></td>
+            </tr>
+            <tr class="text-center">
+                <td>@Model.HitPoints / @Model.MaxHitPoints</td>
+                <td>@Model.Effort / @Model.MaxEffort</td>
+                <td>@Model.SystemStrain / @Model.MaxSystemStrain</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

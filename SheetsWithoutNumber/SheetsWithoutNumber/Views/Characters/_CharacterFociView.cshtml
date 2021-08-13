@@ -1,0 +1,38 @@
+﻿@model CharacterDetailsModel
+
+<div class="table-sm table-responsive">
+    <table class="table table-hover table-bordered">
+        <tbody>
+            <tr class="text-center" style="background-color: lightblue">
+                <td><b>Foci</b></td>
+                <td class="col-1"><b>Level</b></td>
+            </tr>
+            @if (Model.CharactersFoci.Any(cf => cf.CharacterId == Model.Id))
+            {
+                @foreach (var characterFocus in @Model.CharactersFoci.Where(cf => cf.CharacterId == Model.Id))
+                {
+                    <tr class="text-center">
+                        <td>
+                            <a asp-controller="Foci" asp-action="Edit" asp-route-characterFocusId="@characterFocus.Id" class="text-decoration-none">
+                                @characterFocus.FocusName
+                            </a>
+                        </td>
+                        <td>@characterFocus.FocusLevel</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="text-center">
+                    <td>No foci selected</td>
+                    <td>N/A</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<a asp-controller="Foci" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
+    <div class="text-center">
+        <input type="button" class="btn btn-block @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Add" />
+    </div>
+</a>

@@ -79,7 +79,7 @@
 
             if (!this.equipments.EquipmentExists(equipmentEdit.EquipmentId))
             {
-                this.ModelState.AddModelError(nameof(equipmentEdit.EquipmentId), "Focus does not exist.");
+                this.ModelState.AddModelError(nameof(equipmentEdit.EquipmentId), "Equipment does not exist.");
             }
 
             if (!ModelState.IsValid)

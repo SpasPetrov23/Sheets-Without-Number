@@ -7,7 +7,6 @@
 
     public class Skill
     {
-        [Required]
         public int Id { get; set; }
 
         [Required]

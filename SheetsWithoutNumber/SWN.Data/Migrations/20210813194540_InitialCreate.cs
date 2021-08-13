@@ -8,6 +8,25 @@ namespace SWN.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Armors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    ArmorClass = table.Column<int>(type: "int", nullable: false),
+                    Cost = table.Column<int>(type: "int", nullable: false),
+                    Encumbrance = table.Column<int>(type: "int", nullable: false),
+                    TechLevel = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Armors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -277,8 +296,6 @@ namespace SWN.Data.Migrations
                     AttackBonus = table.Column<int>(type: "int", nullable: false),
                     ArmorClass = table.Column<int>(type: "int", nullable: false),
                     UnspentSkillPoints = table.Column<int>(type: "int", nullable: false),
-                    ReadiedEncumbrance = table.Column<int>(type: "int", nullable: false),
-                    StowedEncumbrance = table.Column<int>(type: "int", nullable: false),
                     Encumbrance = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Credits = table.Column<int>(type: "int", nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -334,6 +351,40 @@ namespace SWN.Data.Migrations
                         principalTable: "Games",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CharactersArmors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CharacterId = table.Column<int>(type: "int", nullable: false),
+                    ArmorId = table.Column<int>(type: "int", nullable: false),
+                    ArmorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ArmorType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ArmorClass = table.Column<int>(type: "int", nullable: false),
+                    ArmorCost = table.Column<int>(type: "int", nullable: false),
+                    ArmorEncumbrance = table.Column<int>(type: "int", nullable: false),
+                    ArmorTechLevel = table.Column<int>(type: "int", nullable: false),
+                    ArmorLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ArmorDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CharactersArmors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CharactersArmors_Armors_ArmorId",
+                        column: x => x.ArmorId,
+                        principalTable: "Armors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CharactersArmors_Characters_CharacterId",
+                        column: x => x.CharacterId,
+                        principalTable: "Characters",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -484,6 +535,16 @@ namespace SWN.Data.Migrations
                 column: "GameId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CharactersArmors_ArmorId",
+                table: "CharactersArmors",
+                column: "ArmorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharactersArmors_CharacterId",
+                table: "CharactersArmors",
+                column: "CharacterId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CharactersEquipments_CharacterId",
                 table: "CharactersEquipments",
                 column: "CharacterId");
@@ -537,6 +598,9 @@ namespace SWN.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "CharactersArmors");
+
+            migrationBuilder.DropTable(
                 name: "CharactersEquipments");
 
             migrationBuilder.DropTable(
@@ -550,6 +614,9 @@ namespace SWN.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Armors");
 
             migrationBuilder.DropTable(
                 name: "Equipments");

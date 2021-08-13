@@ -12,6 +12,7 @@
         ViewBag.ButtonColor = "btn-info";
     }
 }
+
 <div class="d-flex">
     <div class="col-3">
         <img src="@Model.CharacterImage" class="img-thumbnail" alt="Character Image" style="height: 320px; object-fit: cover">
@@ -37,41 +38,9 @@
 
         <div class="d-flex">
             <div class="col-10" style="padding-left:7.5px; padding-right:7.5px">
-                <div class="table table-responsive">
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr class="text-center" style="background-color: lightblue">
-                                <td><b>Species</b></td>
-                                <td><b>Homeworld</b></td>
-                                <td><b>Class</b></td>
-                                <td><b>Background</b></td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>@Model.Species</td>
-                                <td>@Model.Homeworld</td>
-                                <td>@Model.Class</td>
-                                <td>@Model.Background</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <partial name="_CharacterMainInfoView" model="@Model" />
 
-                <div class="table-sm table-responsive">
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr class="text-center" style="background-color: lightblue">
-                                <td><b>Hit Points</b></td>
-                                <td><b>Effort</b></td>
-                                <td><b>System Strain</b></td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>@Model.HitPoints / @Model.MaxHitPoints</td>
-                                <td>@Model.Effort / @Model.MaxEffort</td>
-                                <td>@Model.SystemStrain / @Model.MaxSystemStrain</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <partial name="_CharacterStatusInfoView" model="@Model" />
             </div>
 
             <div class="col-2" style="padding-left:7.5px; padding-right:0px">
@@ -110,146 +79,65 @@
     <div class="col-9">
         <div class="d-flex">
             <div class="col-6" style="padding-left:0px; padding-right:7.5px">
-                <div class="table-sm table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <tbody>
-                            <tr class="text-center" style="background-color: lightblue">
-                                <td><b>Skills</b></td>
-                                <td class="col-1"><b>Level</b></td>
-                            </tr>
-                            @if (Model.CharactersSkills.Any(cs => cs.CharacterId == Model.Id))
-                            {
-                                @foreach (var characterSkill in @Model.CharactersSkills.Where(cs => cs.CharacterId == Model.Id))
-                                {
-                                    <tr class="text-center">
-                                        <td>
-                                            <a asp-controller="Skills" asp-action="Edit" asp-route-characterSkillId="@characterSkill.Id" class="text-decoration-none">
-                                                @characterSkill.SkillName
-                                            </a>
-                                        </td>
-                                        <td>@characterSkill.SkillLevel</td>
-                                    </tr>
-                                }
-                            }
-                            else
-                            {
-                                <tr class="text-center">
-                                    <td>No skills selected</td>
-                                    <td>N/A</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <a asp-controller="Skills" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
-                    <div class="text-center">
-                        <input type="button" class="btn btn-block @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Add" />
-                    </div>
-                </a>
+                <partial name="_CharacterSkillsView" model="@Model" />
             </div>
             <div class="col-6" style="padding-left:7.5px; padding-right:0px">
-                <div class="table-sm table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <tbody>
-                            <tr class="text-center" style="background-color: lightblue">
-                                <td><b>Foci</b></td>
-                                <td class="col-1"><b>Level</b></td>
-                            </tr>
-                            @if (Model.CharactersFoci.Any(cf => cf.CharacterId == Model.Id))
-                            {
-                                @foreach (var characterFocus in @Model.CharactersFoci.Where(cf => cf.CharacterId == Model.Id))
-                                {
-                                    <tr class="text-center">
-                                        <td>
-                                            <a asp-controller="Foci" asp-action="Edit" asp-route-characterFocusId="@characterFocus.Id" class="text-decoration-none">
-                                                @characterFocus.FocusName
-                                            </a>
-                                        </td>
-                                        <td>@characterFocus.FocusLevel</td>
-                                    </tr>
-                                }
-                            }
-                            else
-                            {
-                                <tr class="text-center">
-                                    <td>No foci selected</td>
-                                    <td>N/A</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <a asp-controller="Foci" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
-                    <div class="text-center">
-                        <input type="button" class="btn btn-block @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Add" />
-                    </div>
-                </a>
+                <partial name="_CharacterFociView" model="@Model" />
             </div>
         </div>
     </div>
 </div>
 
 <div class="d-flex" style="margin-top:20px">
-    <div class="col-4">
-        <div class="card" style="height: 400px; margin-bottom: 20px">
-        </div>
-        <div class="card" style="height: 200px; margin-bottom: 20px">
-        </div>
-    </div>
-    <div class="col-8">
+    <div class="col-6">
         <div class="table-sm table-responsive">
             <table class="table table-hover table-bordered">
                 <tbody>
                     <tr class="text-center" style="background-color: lightblue">
-                        <td><b>Equipment</b></td>
-                        <td class="col-1"><b>Count</b></td>
+                        <td><b>Armor</b></td>
+                        <td class="col-1"><b>AC</b></td>
                         <td class="col-1"><b>Enc.</b></td>
+                        <td class="col-1"><b>TL</b></td>
                         <td class="col-2"><b>Location</b></td>
                     </tr>
-                    @if (Model.CharactersEquipments.Any(ce => ce.CharacterId == Model.Id))
+                    @if (Model.CharactersArmors.Any(ca => ca.CharacterId == Model.Id))
                     {
-                        @foreach (var characterEquipment in @Model.CharactersEquipments.Where(ce => ce.CharacterId == Model.Id))
+                        @foreach (var characterArmor in @Model.CharactersArmors.Where(ca => ca.CharacterId == Model.Id))
                         {
                             <tr class="text-center">
                                 <td>
-                                    <a asp-controller="Equipments" asp-action="Edit" asp-route-characterEquipmentId="@characterEquipment.Id" class="text-decoration-none">
-                                        @characterEquipment.EquipmentName
+                                    <a asp-controller="Armors" asp-action="Edit" asp-route-characterArmorId="@characterArmor.Id" class="text-decoration-none">
+                                        @characterArmor.ArmorName
                                     </a>
                                 </td>
-                                <td>@Html.Raw("x")@characterEquipment.EquipmentCount</td>
-                                <td>@characterEquipment.EquipmentEncumbrance</td>
-                                <td>@characterEquipment.EquipmentLocation</td>
+                                <td>@characterArmor.ArmorClass</td>
+                                <td>@characterArmor.ArmorEncumbrance</td>
+                                <td>@characterArmor.ArmorTechLevel</td>
+                                <td>@characterArmor.ArmorLocation</td>
                             </tr>
                         }
                     }
                     else
                     {
                         <tr class="text-center">
-                            <td>No equipment chosen</td>
+                            <td>No equipped Armor</td>
+                            <td>N/A</td>
                             <td>N/A</td>
                             <td>N/A</td>
                             <td>N/A</td>
                         </tr>
                     }
                 </tbody>
-                <tfoot>
-                    <tr class="text-center" style="background-color: lightblue">
-                        <td colspan="1">Encumbrance: @Model.Encumbrance</td>
-                        <td colspan="2">Readied: @Model.CurrentReadiedEncumbrance / @Model.MaxReadiedEncumbrance</td>
-                        <td colspan="1">Stowed: @Model.CurrentStowedEncumbrance / @Model.MaxStowedEncumbrance</td>
-                    </tr>
-                    <tr class="text-center">
-                        <td colspan="1" style="background-color:antiquewhite">Credits:</td>
-                        <td colspan="2">₡@Model.Credits</td>
-                    </tr>
-                </tfoot>
             </table>
         </div>
-        <a asp-controller="Equipments" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
+        <a asp-controller="Armors" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
             <div class="text-center">
                 <input type="button" class="btn btn-block @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Add" />
             </div>
         </a>
+    </div>
+    <div class="col-6">
+        <partial name="_CharacterEquipmentView" model="@Model" />
         <div class="card" style="height: 120px; margin-bottom: 20px; margin-top: 20px">
         </div>
         <div class="card" style="height: 160px;">
@@ -257,6 +145,6 @@
     </div>
 </div>
 
-<div class="card" style="height: 300px">
+<div class="card" style="height: 300px; margin-top: 20px">
 
 </div>

@@ -16,6 +16,7 @@
     using static SWN.Data.DataConstants.SkillData;
     using static SWN.Data.DataConstants.FocusData;
     using static SWN.Data.DataConstants.EquipmentData;
+    using static SWN.Data.DataConstants.ArmorData;
 
     public static class ApplicationBuilderExtensions
     {
@@ -32,6 +33,7 @@
             SeedSkills(services);
             SeedFoci(services);
             SeedEquipment(services);
+            SeedArmor(services);
 
             return app;
         }
@@ -426,7 +428,7 @@
             data.Foci.AddRange(new[]
             {
                 new Focus
-                { 
+                {
                     Name = FocusAlertName,
                     Description = FoucsAlertDescription
                 },
@@ -1229,6 +1231,272 @@
                     Cost = RutterCost,
                     Encumbrance = RutterEncumbrance,
                     TechLevel = RutterTL
+                }
+            });
+
+            data.SaveChanges();
+        }
+
+        private static void SeedArmor(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<SWNDbContext>();
+
+            if (data.Armors.Any())
+            {
+                return;
+            }
+
+            data.Armors.AddRange(new[]
+            {
+                new Armor
+                {
+                    Name = ShieldName,
+                    Description = ShieldDescription,
+                    ArmorClass = ShieldAC,
+                    Type = ShieldType,
+                    Cost = ShieldCost,
+                    Encumbrance = ShieldEncumbrance,
+                    TechLevel = ShieldTL
+                },
+                new Armor
+                {
+                    Name = LeatherJackName,
+                    Description = LeatherJackDescription,
+                    ArmorClass = LeatherJackAC,
+                    Type = LeatherJackType,
+                    Cost = LeatherJackCost,
+                    Encumbrance = LeatherJackEncumbrance,
+                    TechLevel = LeatherJackTL
+                },
+                new Armor
+                {
+                    Name = ThickHideName,
+                    Description = ThickHideDescription,
+                    ArmorClass = ThickHideAC,
+                    Type = ThickHideType,
+                    Cost = ThickHideCost,
+                    Encumbrance = ThickHideEncumbrance,
+                    TechLevel = ThickHideTL
+                },
+                new Armor
+                {
+                    Name = QuiltedArmorName,
+                    Description = QuiltedArmorDescription,
+                    ArmorClass = QuiltedArmorAC,
+                    Type = QuiltedArmorType,
+                    Cost = QuiltedArmorCost,
+                    Encumbrance = QuiltedArmorEncumbrance,
+                    TechLevel = QuiltedArmorTL
+                },
+                new Armor
+                {
+                    Name = CuriassName,
+                    Description = CuriassDescription,
+                    ArmorClass = CuriassAC,
+                    Type = CuriassType,
+                    Cost = CuriassCost,
+                    Encumbrance = CuriassEncumbrance,
+                    TechLevel = CuriassTL
+                },
+                new Armor
+                {
+                    Name = BrigandineName,
+                    Description = BrigandineDescription,
+                    ArmorClass = BrigandineAC,
+                    Type = BrigandineType,
+                    Cost = BrigandineCost,
+                    Encumbrance = BrigandineEncumbrance,
+                    TechLevel = BrigandineTL
+                },
+                new Armor
+                {
+                    Name = LinothoraxName,
+                    Description = LinothoraxDescription,
+                    ArmorClass = LinothoraxAC,
+                    Type = LinothoraxType,
+                    Cost = LinothoraxCost,
+                    Encumbrance = LinothoraxEncumbrance,
+                    TechLevel = LinothoraxTL
+                },
+                new Armor
+                {
+                    Name = HalfPlateName,
+                    Description = HalfPlateDescription,
+                    ArmorClass = HalfPlateAC,
+                    Type = HalfPlateType,
+                    Cost = HalfPlateCost,
+                    Encumbrance = HalfPlateEncumbrance,
+                    TechLevel = HalfPlateTL
+                },
+                new Armor
+                {
+                    Name = FullPlateName,
+                    Description = FullPlateDescription,
+                    ArmorClass = FullPlateAC,
+                    Type = FullPlateType,
+                    Cost = FullPlateCost,
+                    Encumbrance = FullPlateEncumbrance,
+                    TechLevel = FullPlateTL
+                },
+                new Armor
+                {
+                    Name = LayeredMailName,
+                    Description = LayeredMailDescription,
+                    ArmorClass = LayeredMailAC,
+                    Type = LayeredMailType,
+                    Cost = LayeredMailCost,
+                    Encumbrance = LayeredMailEncumbrance,
+                    TechLevel = LayeredMailTL
+                },
+                new Armor
+                {
+                    Name = WarpaintName,
+                    Description = WarpaintDescription,
+                    ArmorClass = WarpaintAC,
+                    Type = WarpaintType,
+                    Cost = WarpaintCost,
+                    Encumbrance = WarpaintEncumbrance,
+                    TechLevel = WarpaintTL
+                },
+                new Armor
+                {
+                    Name = ArmoredUndersuitName,
+                    Description = ArmoredUndersuitDescription,
+                    ArmorClass = ArmoredUndersuitAC,
+                    Type = ArmoredUndersuitType,
+                    Cost = ArmoredUndersuitCost,
+                    Encumbrance = ArmoredUndersuitEncumbrance,
+                    TechLevel = ArmoredUndersuitTL
+                },
+                new Armor
+                {
+                    Name = SecureClothingName,
+                    Description = SecureClothingDescription,
+                    ArmorClass = SecureClothingAC,
+                    Type = SecureClothingType,
+                    Cost = SecureClothingCost,
+                    Encumbrance = SecureClothingEncumbrance,
+                    TechLevel = SecureClothingTL
+                },
+                new Armor
+                {
+                    Name = ArmoredVaccSuitName,
+                    Description = ArmoredVaccSuitDescription,
+                    ArmorClass = ArmoredVaccSuitAC,
+                    Type = ArmoredVaccSuitType,
+                    Cost = ArmoredVaccSuitCost,
+                    Encumbrance = ArmoredVaccSuitEncumbrance,
+                    TechLevel = ArmoredVaccSuitTL
+                },
+                new Armor
+                {
+                    Name = DeflectorArrayName,
+                    Description = DeflectorArrayDescription,
+                    ArmorClass = DeflectorArrayAC,
+                    Type = DeflectorArrayType,
+                    Cost = DeflectorArrayCost,
+                    Encumbrance = DeflectorArrayEncumbrance,
+                    TechLevel = DeflectorArrayTL
+                },
+                new Armor
+                {
+                    Name = ForcePavisName,
+                    Description = ForcePavisDescription,
+                    ArmorClass = ForcePavisAC,
+                    Type = ForcePavisType,
+                    Cost = ForcePavisCost,
+                    Encumbrance = ForcePavisEncumbrance,
+                    TechLevel = ForcePavisTL
+                },
+                new Armor
+                {
+                    Name = SecurityArmorName,
+                    Description = SecurityArmorDescription,
+                    ArmorClass = SecurityArmorAC,
+                    Type = SecurityArmorType,
+                    Cost = SecurityArmorCost,
+                    Encumbrance = SecurityArmorEncumbrance,
+                    TechLevel = SecurityArmorTL
+                },
+                new Armor
+                {
+                    Name = WovenBodyArmorName,
+                    Description = WovenBodyArmorDescription,
+                    ArmorClass = WovenBodyArmorAC,
+                    Type = WovenBodyArmorType,
+                    Cost = WovenBodyArmorCost,
+                    Encumbrance = WovenBodyArmorEncumbrance,
+                    TechLevel = WovenBodyArmorTL
+                },
+                new Armor
+                {
+                    Name = CombatFieldUniformName,
+                    Description = CombatFieldUniformDescription,
+                    ArmorClass = CombatFieldUniformAC,
+                    Type = CombatFieldUniformType,
+                    Cost = CombatFieldUniformCost,
+                    Encumbrance = CombatFieldUniformEncumbrance,
+                    TechLevel = CombatFieldUniformTL
+                },
+                new Armor
+                {
+                    Name = IcarusHarnessName,
+                    Description = IcarusHarnessDescription,
+                    ArmorClass = IcarusHarnessAC,
+                    Type = IcarusHarnessType,
+                    Cost = IcarusHarnessCost,
+                    Encumbrance = IcarusHarnessEncumbrance,
+                    TechLevel = IcarusHarnessTL
+                },
+                new Armor
+                {
+                    Name = VestimentumName,
+                    Description = VestimentumDescription,
+                    ArmorClass = VestimentumAC,
+                    Type = VestimentumType,
+                    Cost = VestimentumCost,
+                    Encumbrance = VestimentumEncumbrance,
+                    TechLevel = VestimentumTL
+                },
+                new Armor
+                {
+                    Name = AssaultSuitName,
+                    Description = AssaultSuitDescription,
+                    ArmorClass = AssaultSuitAC,
+                    Type = AssaultSuitType,
+                    Cost = AssaultSuitCost,
+                    Encumbrance = AssaultSuitEncumbrance,
+                    TechLevel = AssaultSuitTL
+                },
+                new Armor
+                {
+                    Name = StormArmorName,
+                    Description = StormArmorDescription,
+                    ArmorClass = StormArmorAC,
+                    Type = StormArmorType,
+                    Cost = StormArmorCost,
+                    Encumbrance = StormArmorEncumbrance,
+                    TechLevel = StormArmorTL
+                },
+                new Armor
+                {
+                    Name = FieldEmitterPanoplyName,
+                    Description = FieldEmitterPanoplyDescription,
+                    ArmorClass = FieldEmitterPanoplyAC,
+                    Type = FieldEmitterPanoplyType,
+                    Cost = FieldEmitterPanoplyCost,
+                    Encumbrance = FieldEmitterPanoplyEncumbrance,
+                    TechLevel = FieldEmitterPanoplyTL
+                },
+                new Armor
+                {
+                    Name = ArmorVaccSuitName,
+                    Description = ArmorVaccSuitDescription,
+                    ArmorClass = ArmorVaccSuitAC,
+                    Type = ArmorVaccSuitType,
+                    Cost = ArmorVaccSuitCost,
+                    Encumbrance = ArmorVaccSuitEncumbrance,
+                    TechLevel = ArmorVaccSuitTL
                 }
             });
 

@@ -1,6 +1,5 @@
 ﻿namespace SWN.Data.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -94,6 +93,8 @@
         public ICollection<CharactersFoci> CharactersFoci { get; init; } = new HashSet<CharactersFoci>();
 
         public ICollection<CharactersEquipments> CharactersEquipments { get; init; } = new HashSet<CharactersEquipments>();
+
+        public ICollection<CharactersArmors> CharactersArmors { get; init; } = new HashSet<CharactersArmors>();
 
         public int GameId { get; init; }
 

@@ -1,0 +1,55 @@
+﻿@model CharacterDetailsModel
+
+<div class="table-sm table-responsive">
+    <table class="table table-hover table-bordered">
+        <tbody>
+            <tr class="text-center" style="background-color: lightblue">
+                <td><b>Equipment</b></td>
+                <td class="col-1"><b>Count</b></td>
+                <td class="col-1"><b>Enc.</b></td>
+                <td class="col-2"><b>Location</b></td>
+            </tr>
+            @if (Model.CharactersEquipments.Any(ce => ce.CharacterId == Model.Id))
+            {
+                @foreach (var characterEquipment in @Model.CharactersEquipments.Where(ce => ce.CharacterId == Model.Id))
+                {
+                    <tr class="text-center">
+                        <td>
+                            <a asp-controller="Equipments" asp-action="Edit" asp-route-characterEquipmentId="@characterEquipment.Id" class="text-decoration-none">
+                                @characterEquipment.EquipmentName
+                            </a>
+                        </td>
+                        <td>@Html.Raw("x")@characterEquipment.EquipmentCount</td>
+                        <td>@characterEquipment.EquipmentEncumbrance</td>
+                        <td>@characterEquipment.EquipmentLocation</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="text-center">
+                    <td>Empty Inventory</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr class="text-center" style="background-color: lightblue">
+                <td colspan="1"><b>Encumbrance:</b> @Model.Encumbrance</td>
+                <td colspan="2">R: @Model.CurrentReadiedEncumbrance / @Model.MaxReadiedEncumbrance</td>
+                <td colspan="1">S: @Model.CurrentStowedEncumbrance / @Model.MaxStowedEncumbrance</td>
+            </tr>
+            <tr class="text-center">
+                <td colspan="1" style="background-color:antiquewhite">Credits:</td>
+                <td colspan="2">₡@Model.Credits</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<a asp-controller="Equipments" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
+    <div class="text-center">
+        <input type="button" class="btn btn-block @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Add" />
+    </div>
+</a>

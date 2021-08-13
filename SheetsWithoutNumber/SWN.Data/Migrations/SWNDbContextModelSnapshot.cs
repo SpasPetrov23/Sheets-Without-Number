@@ -165,6 +165,44 @@ namespace SWN.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.Armor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ArmorClass")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Cost")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Encumbrance")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<int>("TechLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Armors");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.Background", b =>
                 {
                     b.Property<int>("Id")
@@ -269,9 +307,6 @@ namespace SWN.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ReadiedEncumbrance")
-                        .HasColumnType("int");
-
                     b.Property<int>("SavingThrowEvasion")
                         .HasColumnType("int");
 
@@ -287,9 +322,6 @@ namespace SWN.Data.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("Speed")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StowedEncumbrance")
                         .HasColumnType("int");
 
                     b.Property<int>("Strength")
@@ -313,6 +345,56 @@ namespace SWN.Data.Migrations
                     b.HasIndex("GameId");
 
                     b.ToTable("Characters");
+                });
+
+            modelBuilder.Entity("SWN.Data.Models.CharactersArmors", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ArmorClass")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArmorCost")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ArmorDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ArmorEncumbrance")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ArmorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ArmorLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ArmorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ArmorTechLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ArmorType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArmorId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.ToTable("CharactersArmors");
                 });
 
             modelBuilder.Entity("SWN.Data.Models.CharactersEquipments", b =>
@@ -738,6 +820,25 @@ namespace SWN.Data.Migrations
                     b.Navigation("Game");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.CharactersArmors", b =>
+                {
+                    b.HasOne("SWN.Data.Models.Armor", "Armor")
+                        .WithMany("CharactersArmors")
+                        .HasForeignKey("ArmorId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SWN.Data.Models.Character", "Character")
+                        .WithMany("CharactersArmors")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Armor");
+
+                    b.Navigation("Character");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.CharactersEquipments", b =>
                 {
                     b.HasOne("SWN.Data.Models.Character", "Character")
@@ -795,6 +896,11 @@ namespace SWN.Data.Migrations
                     b.Navigation("Skill");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.Armor", b =>
+                {
+                    b.Navigation("CharactersArmors");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.Background", b =>
                 {
                     b.Navigation("Characters");
@@ -802,6 +908,8 @@ namespace SWN.Data.Migrations
 
             modelBuilder.Entity("SWN.Data.Models.Character", b =>
                 {
+                    b.Navigation("CharactersArmors");
+
                     b.Navigation("CharactersEquipments");
 
                     b.Navigation("CharactersFoci");

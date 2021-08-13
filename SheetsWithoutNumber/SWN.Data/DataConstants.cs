@@ -725,12 +725,219 @@
 
         public class ItemData
         {
-            //Constants for Item Entities (Armor, Melee & Ranged Weapons)
+            //Constants for Item Entities (Melee & Ranged Weapons)
             public const int NameMaxLength = 40;
             public const int TypeMaxLength = 30;
             public const int AttributeMaxLength = 10;
             public const int MagazineMaxLength = 5;
             public const int DamageMaxLength = 5;
+        }
+        public class ArmorData
+        {
+            //Constants for Armor Entity
+            public const int NameMaxLength = 40;
+            public const int TypeMaxLength = 30;
+            public const int AttributeMaxLength = 10;
+
+            public const string ShieldName = "Shield";
+            public const string ShieldType = "Primitive";
+            public const string ShieldDescription = "";
+            public const int ShieldAC = 12;
+            public const int ShieldCost = 10;
+            public const int ShieldTL = 0;
+            public const int ShieldEncumbrance = 2;
+
+            public const string LeatherJackName = "Leather Jack";
+            public const string LeatherJackType = "Primitive";
+            public const string LeatherJackDescription = "";
+            public const int LeatherJackAC = 13;
+            public const int LeatherJackCost = 10;
+            public const int LeatherJackTL = 0;
+            public const int LeatherJackEncumbrance = 1;
+
+            public const string ThickHideName = "Thick Hide";
+            public const string ThickHideType = "Primitive";
+            public const string ThickHideDescription = "";
+            public const int ThickHideAC = 13;
+            public const int ThickHideCost = 10;
+            public const int ThickHideTL = 0;
+            public const int ThickHideEncumbrance = 1;
+
+            public const string QuiltedArmorName = "Quilted Armor";
+            public const string QuiltedArmorType = "Primitive";
+            public const string QuiltedArmorDescription = "";
+            public const int QuiltedArmorAC = 13;
+            public const int QuiltedArmorCost = 10;
+            public const int QuiltedArmorTL = 0;
+            public const int QuiltedArmorEncumbrance = 1;
+
+            public const string CuriassName = "Curiass";
+            public const string CuriassType = "Primitive";
+            public const string CuriassDescription = "";
+            public const int CuriassAC = 15;
+            public const int CuriassCost = 50;
+            public const int CuriassTL = 1;
+            public const int CuriassEncumbrance = 1;
+
+            public const string BrigandineName = "Brigandine";
+            public const string BrigandineType = "Primitive";
+            public const string BrigandineDescription = "";
+            public const int BrigandineAC = 15;
+            public const int BrigandineCost = 50;
+            public const int BrigandineTL = 1;
+            public const int BrigandineEncumbrance = 1;
+
+            public const string LinothoraxName = "Linothorax";
+            public const string LinothoraxType = "Primitive";
+            public const string LinothoraxDescription = "";
+            public const int LinothoraxAC = 15;
+            public const int LinothoraxCost = 50;
+            public const int LinothoraxTL = 1;
+            public const int LinothoraxEncumbrance = 1;
+
+            public const string HalfPlateName = "Half-Plate";
+            public const string HalfPlateType = "Primitive";
+            public const string HalfPlateDescription = "";
+            public const int HalfPlateAC = 15;
+            public const int HalfPlateCost = 50;
+            public const int HalfPlateTL = 1;
+            public const int HalfPlateEncumbrance = 1;
+
+            public const string FullPlateName = "Fulll Plate";
+            public const string FullPlateType = "Primitive";
+            public const string FullPlateDescription = "";
+            public const int FullPlateAC = 17;
+            public const int FullPlateCost = 100;
+            public const int FullPlateTL = 1;
+            public const int FullPlateEncumbrance = 2;
+
+            public const string LayeredMailName = "Layered Mail";
+            public const string LayeredMailType = "Primitive";
+            public const string LayeredMailDescription = "";
+            public const int LayeredMailAC = 17;
+            public const int LayeredMailCost = 100;
+            public const int LayeredMailTL = 1;
+            public const int LayeredMailEncumbrance = 2;
+
+            public const string WarpaintName = "Warpaint";
+            public const string WarpaintType = "Street";
+            public const string WarpaintDescription = "";
+            public const int WarpaintAC = 12;
+            public const int WarpaintCost = 300;
+            public const int WarpaintTL = 4;
+            public const int WarpaintEncumbrance = 0;
+
+            public const string ArmoredUndersuitName = "Armored Undersuit";
+            public const string ArmoredUndersuitType = "Street";
+            public const string ArmoredUndersuitDescription = "";
+            public const int ArmoredUndersuitAC = 13;
+            public const int ArmoredUndersuitCost = 600;
+            public const int ArmoredUndersuitTL = 4;
+            public const int ArmoredUndersuitEncumbrance = 0;
+
+            public const string SecureClothingName = "Secure Clothing";
+            public const string SecureClothingType = "Street";
+            public const string SecureClothingDescription = "";
+            public const int SecureClothingAC = 13;
+            public const int SecureClothingCost = 300;
+            public const int SecureClothingTL = 4;
+            public const int SecureClothingEncumbrance = 1;
+
+            public const string ArmoredVaccSuitName = "Armored Vacc Suit";
+            public const string ArmoredVaccSuitType = "Street";
+            public const string ArmoredVaccSuitDescription = "";
+            public const int ArmoredVaccSuitAC = 13;
+            public const int ArmoredVaccSuitCost = 400;
+            public const int ArmoredVaccSuitTL = 4;
+            public const int ArmoredVaccSuitEncumbrance = 2;
+
+            public const string DeflectorArrayName = "Deflector Array";
+            public const string DeflectorArrayType = "Street";
+            public const string DeflectorArrayDescription = "";
+            public const int DeflectorArrayAC = 18;
+            public const int DeflectorArrayCost = 30000;
+            public const int DeflectorArrayTL = 5;
+            public const int DeflectorArrayEncumbrance = 0;
+
+            public const string ForcePavisName = "Force Pavis";
+            public const string ForcePavisType = "Combat";
+            public const string ForcePavisDescription = "";
+            public const int ForcePavisAC = 14;
+            public const int ForcePavisCost = 10000;
+            public const int ForcePavisTL = 5;
+            public const int ForcePavisEncumbrance = 1;
+
+            public const string SecurityArmorName = "Security Armor";
+            public const string SecurityArmorType = "Combat";
+            public const string SecurityArmorDescription = "";
+            public const int SecurityArmorAC = 14;
+            public const int SecurityArmorCost = 700;
+            public const int SecurityArmorTL = 4;
+            public const int SecurityArmorEncumbrance = 1;
+
+            public const string WovenBodyArmorName = "Woven Body Armor";
+            public const string WovenBodyArmorType = "Combat";
+            public const string WovenBodyArmorDescription = "";
+            public const int WovenBodyArmorAC = 15;
+            public const int WovenBodyArmorCost = 400;
+            public const int WovenBodyArmorTL = 3;
+            public const int WovenBodyArmorEncumbrance = 2;
+
+            public const string CombatFieldUniformName = "Combat Field Uniform";
+            public const string CombatFieldUniformType = "Combat";
+            public const string CombatFieldUniformDescription = "";
+            public const int CombatFieldUniformAC = 16;
+            public const int CombatFieldUniformCost = 1000;
+            public const int CombatFieldUniformTL = 4;
+            public const int CombatFieldUniformEncumbrance = 1;
+
+            public const string IcarusHarnessName = "Icarus Harness";
+            public const string IcarusHarnessType = "Combat";
+            public const string IcarusHarnessDescription = "";
+            public const int IcarusHarnessAC = 16;
+            public const int IcarusHarnessCost = 8000;
+            public const int IcarusHarnessTL = 4;
+            public const int IcarusHarnessEncumbrance = 1;
+
+            public const string VestimentumName = "Vestimentum";
+            public const string VestimentumType = "Powered";
+            public const string VestimentumDescription = "";
+            public const int VestimentumAC = 18;
+            public const int VestimentumCost = 15000;
+            public const int VestimentumTL = 5;
+            public const int VestimentumEncumbrance = 0;
+
+            public const string AssaultSuitName = "Assault Suit";
+            public const string AssaultSuitType = "Powered";
+            public const string AssaultSuitDescription = "";
+            public const int AssaultSuitAC = 18;
+            public const int AssaultSuitCost = 10000;
+            public const int AssaultSuitTL = 4;
+            public const int AssaultSuitEncumbrance = 2;
+
+            public const string StormArmorName = "Storm Armor";
+            public const string StormArmorType = "Powered";
+            public const string StormArmorDescription = "";
+            public const int StormArmorAC = 19;
+            public const int StormArmorCost = 20000;
+            public const int StormArmorTL = 5;
+            public const int StormArmorEncumbrance = 2;
+
+            public const string FieldEmitterPanoplyName = "Field Emitter Panoply";
+            public const string FieldEmitterPanoplyType = "Powered";
+            public const string FieldEmitterPanoplyDescription = "";
+            public const int FieldEmitterPanoplyAC = 20;
+            public const int FieldEmitterPanoplyCost = 40000;
+            public const int FieldEmitterPanoplyTL = 5;
+            public const int FieldEmitterPanoplyEncumbrance = 1;
+
+            public const string ArmorVaccSuitName = "Vacc Suit";
+            public const string ArmorVaccSuitType = "Equipment";
+            public const string ArmorVaccSuitDescription = "";
+            public const int ArmorVaccSuitAC = 13;
+            public const int ArmorVaccSuitCost = 100;
+            public const int ArmorVaccSuitTL = 4;
+            public const int ArmorVaccSuitEncumbrance = 2;
         }
 
         public class ContactData

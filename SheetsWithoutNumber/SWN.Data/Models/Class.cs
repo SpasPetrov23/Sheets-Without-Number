@@ -9,7 +9,6 @@
 
     public class Class
     {
-        [Required]
         public int Id { get; set; }
 
         [Required]

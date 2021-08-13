@@ -4,7 +4,6 @@
 
     public class CharactersSkills
     {
-        [Required]
         public int Id { get; set; }
 
         public int CharacterId { get; set; }

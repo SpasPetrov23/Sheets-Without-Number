@@ -4,7 +4,6 @@
 
     public class CharactersEquipments
     {
-        [Required]
         public int Id { get; set; }
 
         public int CharacterId { get; set; }

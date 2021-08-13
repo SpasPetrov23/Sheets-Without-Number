@@ -7,7 +7,6 @@
 
     public class Focus
     {
-        [Required]
         public int Id { get; init; }
 
         [Required]

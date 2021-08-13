@@ -12,6 +12,7 @@
     using static SWN.Data.DataConstants;
     using static SWN.Data.DataConstants.ClassData;
     using static SWN.Data.DataConstants.FocusData;
+    using static SWN.Data.DataConstants.ArmorData;
 
     public class CharacterService : ICharacterService
     {
@@ -84,14 +85,20 @@
                 .OrderBy(ce => ce.EquipmentType)
                 .ThenBy(ce => ce.EquipmentName)
                 .ToList();
+            character.CharactersArmors = character.CharactersArmors
+                .OrderBy(ca => ca.ArmorClass)
+                .ThenBy(ca => ca.ArmorName)
+                .ToList();
 
-            character.CurrentReadiedEncumbrance = this.CalculateCurrentReadiedEncumbrance(character.CharactersEquipments);
-            character.MaxReadiedEncumbrance = this.CalculateMaxReadiedEncumbrance(character.Strength);
-            character.CurrentStowedEncumbrance = this.CalculateCurrentStowedEncumbrance(character.CharactersEquipments);
-            character.MaxStowedEncumbrance = this.CalculateMaxStowedEncumbrance(character.Strength);
+            character.CurrentReadiedEncumbrance = this.CalculateCurrentReadiedEncumbrance(character.CharactersEquipments, character.CharactersArmors);
+            character.MaxReadiedEncumbrance = this.CalculateMaxReadiedEncumbrance(character.Strength, character.CharactersArmors);
+            character.CurrentStowedEncumbrance = this.CalculateCurrentStowedEncumbrance(character.CharactersEquipments, character.CharactersArmors);
+            character.MaxStowedEncumbrance = this.CalculateMaxStowedEncumbrance(character.Strength, character.CharactersArmors);
             character.Encumbrance = this.CalculateEncumbrance(character.CurrentReadiedEncumbrance, character.MaxReadiedEncumbrance, character.CurrentStowedEncumbrance, character.MaxStowedEncumbrance);
 
             character.Speed = this.CalculateSpeed(character.Encumbrance);
+
+            character.ArmorClass = this.CalculateArmorClass(character.DexterityMod, character.CharactersFoci, character.Level, character.CharactersArmors);
 
             character.SavingThrowEvasion = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Evasion");
             character.SavingThrowPhysical = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Physical");
@@ -243,11 +250,11 @@
             return attackMod;
         }
 
-        public int CalculateCurrentReadiedEncumbrance(ICollection<CharactersEquipments> characterEquipments)
+        public int CalculateCurrentReadiedEncumbrance(ICollection<CharactersEquipments> charactersEquipments, ICollection<CharactersArmors> charactersArmors)
         {
             var readiedEncumbrance = 0;
 
-            foreach (var characterEquipment in characterEquipments)
+            foreach (var characterEquipment in charactersEquipments)
             {
                 if (characterEquipment.EquipmentLocation == "Readied")
                 {
@@ -255,17 +262,30 @@
                 }
             }
 
+            foreach (var characterArmor in charactersArmors)
+            {
+                if (characterArmor.ArmorLocation == "Readied")
+                {
+                    readiedEncumbrance += characterArmor.ArmorEncumbrance;
+                }
+            }
+
             return readiedEncumbrance;
         }
 
-        public int CalculateMaxReadiedEncumbrance(int strength)
+        public int CalculateMaxReadiedEncumbrance(int strength, ICollection<CharactersArmors> charactersArmors)
         {
+            if (charactersArmors.Any(ca => ca.ArmorName == StormArmorName))
+            {
+                strength += 4;
+            }
+
             var maxReadiedEncumbrance = strength / 2;
 
             return maxReadiedEncumbrance;
         }
 
-        public int CalculateCurrentStowedEncumbrance(ICollection<CharactersEquipments> characterEquipments)
+        public int CalculateCurrentStowedEncumbrance(ICollection<CharactersEquipments> characterEquipments, ICollection<CharactersArmors> charactersArmors)
         {
             var stowedEncumbrance = 0;
 
@@ -277,11 +297,24 @@
                 }
             }
 
+            foreach (var characterArmor in charactersArmors)
+            {
+                if (characterArmor.ArmorLocation == "Stowed" || characterArmor.ArmorLocation == "Backpack")
+                {
+                    stowedEncumbrance += characterArmor.ArmorEncumbrance;
+                }
+            }
+
             return stowedEncumbrance;
         }
 
-        public int CalculateMaxStowedEncumbrance(int strength)
+        public int CalculateMaxStowedEncumbrance(int strength, ICollection<CharactersArmors> charactersArmors)
         {
+            if (charactersArmors.Any(ca => ca.ArmorName == StormArmorName))
+            {
+                strength += 4;
+            }
+
             var maxStowedEncumbrance = strength;
 
             return maxStowedEncumbrance;
@@ -311,6 +344,7 @@
 
             return encumbrance;
         }
+
         public int CalculateSpeed(string encumbrance)
         {
             var speed = 10;
@@ -460,6 +494,29 @@
             };
 
             return maximumXP;
+        }
+
+        public int CalculateArmorClass(int dexterityMod, ICollection<CharactersFoci> characterFoci, int characterLevel, ICollection<CharactersArmors> characterArmors)
+        {
+            var hasIronhide = characterFoci.Any(cf => cf.FocusName == FocusIronhideName);
+
+            double characterLevelReal = Math.Ceiling((double)characterLevel / 2);
+
+            var armorClass = 10;
+
+            if (hasIronhide)
+            {
+                armorClass = 15 + (int)characterLevelReal;
+            }
+
+            if (characterArmors.Any())
+            {
+                armorClass = characterArmors.Max(ca => ca.ArmorClass);
+            }
+
+            armorClass += dexterityMod;
+
+            return armorClass;
         }
     }
 }

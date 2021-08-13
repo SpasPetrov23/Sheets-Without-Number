@@ -9,7 +9,6 @@
 
     public class Background
     {
-        [Required]
         public int Id { get; set; }
 
         [Required]

@@ -8,6 +8,7 @@ namespace SheetsWithoutNumber
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using SheetsWithoutNumber.Infrastructure;
+    using SheetsWithoutNumber.Services.Armor;
     using SheetsWithoutNumber.Services.Character;
     using SheetsWithoutNumber.Services.Equipments;
     using SheetsWithoutNumber.Services.Focus;
@@ -64,6 +65,7 @@ namespace SheetsWithoutNumber
             services.AddTransient<ISkillService, SkillService>();
             services.AddTransient<IFocusService, FocusService>();
             services.AddTransient<IEquipmentService, EquipmentService>();
+            services.AddTransient<IArmorService, ArmorService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

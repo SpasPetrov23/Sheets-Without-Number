@@ -24,11 +24,15 @@
 
         public DbSet<Equipment> Equipments { get; init; }
 
+        public DbSet<Armor> Armors { get; init; }
+
         public DbSet<CharactersSkills> CharactersSkills { get; init; }
 
         public DbSet<CharactersFoci> CharactersFoci { get; init; }
 
         public DbSet<CharactersEquipments> CharactersEquipments { get; init; }
+
+        public DbSet<CharactersArmors> CharactersArmors { get; init; }
 
         public DbSet<Class> Classes { get; init; }
 
@@ -100,6 +104,18 @@
                 .HasOne<Equipment>(ce => ce.Equipment)
                 .WithMany(e => e.CharactersEquipments)
                 .HasForeignKey(ce => ce.EquipmentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CharactersArmors>()
+                .HasOne<Character>(ca => ca.Character)
+                .WithMany(c => c.CharactersArmors)
+                .HasForeignKey(ca => ca.CharacterId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CharactersArmors>()
+                .HasOne<Armor>(ca => ca.Armor)
+                .WithMany(a => a.CharactersArmors)
+                .HasForeignKey(ca => ca.ArmorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);
