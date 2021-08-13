@@ -247,9 +247,485 @@
             public const string SkillTeleportationDescription = "Spot anomalies or interesting facts about your environment. Roll it for searching places, detecting ambushes, spotting things, and reading the emotional state of other people.";
         }
 
+        public class EquipmentData
+        {
+            //Constants for Equipment Entity
+            public const int NameMaxLength = 40;
+            public const int TypeMaxLength = 30;
+
+            public const string Ammo20RoundsName = "Ammo, 20 Rounds";
+            public const string Ammo20RoundsType = "Ammo and Power";
+            public const string Ammo20RoundsDescription = "";
+            public const int Ammo20RoundsCost = 10;
+            public const int Ammo20RoundsTL = 2;
+            public const int Ammo20RoundsEncumbrance = 0;
+
+            public const string AmmoMissileName = "Ammo, Missile";
+            public const string AmmoMissileType = "Ammo and Power";
+            public const string AmmoMissileDescription = "";
+            public const int AmmoMissileCost = 50;
+            public const int AmmoMissileTL = 3;
+            public const int AmmoMissileEncumbrance = 1;
+
+            public const string PowerCellTypeAName = "Power Cell, Type A";
+            public const string PowerCellTypeAType = "Ammo and Power";
+            public const string PowerCellTypeADescription = "";
+            public const int PowerCellTypeACost = 10;
+            public const int PowerCellTypeATL = 4;
+            public const int PowerCellTypeAEncumbrance = 0;
+
+            public const string PowerCellTypeBName = "Power Cell, Type B";
+            public const string PowerCellTypeBType = "Ammo and Power";
+            public const string PowerCellTypeBDescription = "";
+            public const int PowerCellTypeBCost = 100;
+            public const int PowerCellTypeBTL = 4;
+            public const int PowerCellTypeBEncumbrance = 1;
+
+            public const string SolarRechargerName = "Solar Recharger";
+            public const string SolarRechargerType = "Ammo and Power";
+            public const string SolarRechargerDescription = "";
+            public const int SolarRechargerCost = 500;
+            public const int SolarRechargerTL = 4;
+            public const int SolarRechargerEncumbrance = 3;
+
+            public const string TelekineticGeneratorName = "Telekinetic Generator";
+            public const string TelekineticGeneratorType = "Ammo and Power";
+            public const string TelekineticGeneratorDescription = "";
+            public const int TelekineticGeneratorCost = 250;
+            public const int TelekineticGeneratorTL = 4;
+            public const int TelekineticGeneratorEncumbrance = 2;
+
+            public const string CommServerName = "Comm Server";
+            public const string CommServerType = "Communications";
+            public const string CommServerDescription = "";
+            public const int CommServerCost = 1000;
+            public const int CommServerTL = 4;
+            public const int CommServerEncumbrance = 3;
+
+            public const string CompadName = "Compad";
+            public const string CompadType = "Communications";
+            public const string CompadDescription = "";
+            public const int CompadCost = 100;
+            public const int CompadTL = 4;
+            public const int CompadEncumbrance = 0;
+
+            public const string FieldRadioName = "Field Radio";
+            public const string FieldRadioType = "Communications";
+            public const string FieldRadioDescription = "";
+            public const int FieldRadioCost = 200;
+            public const int FieldRadioTL = 4;
+            public const int FieldRadioEncumbrance = 1;
+
+            public const string TranslatorTorcName = "Translator Torc";
+            public const string TranslatorTorcType = "Communications";
+            public const string TranslatorTorcDescription = "";
+            public const int TranslatorTorcCost = 200;
+            public const int TranslatorTorcTL = 4;
+            public const int TranslatorTorcEncumbrance = 0;
+
+            public const string BlackSlabName = "Black Slab";
+            public const string BlackSlabType = "Computing Gear";
+            public const string BlackSlabDescription = "";
+            public const int BlackSlabCost = 10000;
+            public const int BlackSlabTL = 4;
+            public const int BlackSlabEncumbrance = 1;
+
+            public const string DataPhaseTapName = "Data Phase Tap";
+            public const string DataPhaseTapType = "Computing Gear";
+            public const string DataPhaseTapDescription = "";
+            public const int DataPhaseTapCost = 5000;
+            public const int DataPhaseTapTL = 4;
+            public const int DataPhaseTapEncumbrance = 1;
+
+            public const string DataProtocolName = "Data Protocol";
+            public const string DataProtocolType = "Computing Gear";
+            public const string DataProtocolDescription = "";
+            public const int DataProtocolCost = 1000;
+            public const int DataProtocolTL = 4;
+            public const int DataProtocolEncumbrance = 0;
+
+            public const string DataslabName = "Dataslab";
+            public const string DataslabType = "Computing Gear";
+            public const string DataslabDescription = "";
+            public const int DataslabCost = 300;
+            public const int DataslabTL = 4;
+            public const int DataslabEncumbrance = 1;
+
+            public const string LineShuntName = "Line Shunt";
+            public const string LineShuntType = "Computing Gear";
+            public const string LineShuntDescription = "";
+            public const int LineShuntCost = 100;
+            public const int LineShuntTL = 4;
+            public const int LineShuntEncumbrance = 0;
+
+            public const string RemoteLinkUnitName = "Remote Link Unit";
+            public const string RemoteLinkUnitType = "Computing Gear";
+            public const string RemoteLinkUnitDescription = "";
+            public const int RemoteLinkUnitCost = 250;
+            public const int RemoteLinkUnitTL = 4;
+            public const int RemoteLinkUnitEncumbrance = 1;
+
+            public const string StilettoChargeName = "Stiletto Charge";
+            public const string StilettoChargeType = "Computing Gear";
+            public const string StilettoChargeDescription = "";
+            public const int StilettoChargeCost = 0;
+            public const int StilettoChargeTL = 5;
+            public const int StilettoChargeEncumbrance = 1;
+
+            public const string StorageUnitName = "Storage Unit";
+            public const string StorageUnitType = "Computing Gear";
+            public const string StorageUnitDescription = "";
+            public const int StorageUnitCost = 500;
+            public const int StorageUnitTL = 4;
+            public const int StorageUnitEncumbrance = 3;
+
+            public const string TightbeamLinkUnitName = "Tightbeam Link Unit";
+            public const string TightbeamLinkUnitType = "Computing Gear";
+            public const string TightbeamLinkUnitDescription = "";
+            public const int TightbeamLinkUnitCost = 1000;
+            public const int TightbeamLinkUnitTL = 4;
+            public const int TightbeamLinkUnitEncumbrance = 1;
+
+            public const string AtmofilterName = "Atmofilter";
+            public const string AtmofilterType = "Field Equipment";
+            public const string AtmofilterDescription = "";
+            public const int AtmofilterCost = 100;
+            public const int AtmofilterTL = 4;
+            public const int AtmofilterEncumbrance = 1;
+
+            public const string BackpackTL0Name = "Backpack, TL 0";
+            public const string BackpackTL0Type = "Field Equipment";
+            public const string BackpackTL0Description = "";
+            public const int BackpackTL0Cost = 5;
+            public const int BackpackTL0TL = 0;
+            public const int BackpackTL0Encumbrance = 1;
+
+            public const string BackpackTL4Name = "Backpack, TL 4";
+            public const string BackpackTL4Type = "Field Equipment";
+            public const string BackpackTL4Description = "";
+            public const int BackpackTL4Cost = 50;
+            public const int BackpackTL4TL = 4;
+            public const int BackpackTL4Encumbrance = 0;
+
+            public const string BinocularsTL3Name = "Binoculars, TL 3";
+            public const string BinocularsTL3Type = "Field Equipment";
+            public const string BinocularsTL3Description = "";
+            public const int BinocularsTL3Cost = 20;
+            public const int BinocularsTL3TL = 3;
+            public const int BinocularsTL3Encumbrance = 1;
+
+            public const string BinocularsTL4Name = "Binoculars, TL 4";
+            public const string BinocularsTL4Type = "Field Equipment";
+            public const string BinocularsTL4Description = "";
+            public const int BinocularsTL4Cost = 200;
+            public const int BinocularsTL4TL = 4;
+            public const int BinocularsTL4Encumbrance = 1;
+
+            public const string ClimbingHarnessName = "Climbing Harness";
+            public const string ClimbingHarnessType = "Field Equipment";
+            public const string ClimbingHarnessDescription = "";
+            public const int ClimbingHarnessCost = 50;
+            public const int ClimbingHarnessTL = 3;
+            public const int ClimbingHarnessEncumbrance = 1;
+
+            public const string GlowbugName = "Glowbug";
+            public const string GlowbugType = "Field Equipment";
+            public const string GlowbugDescription = "";
+            public const int GlowbugCost = 5;
+            public const int GlowbugTL = 3;
+            public const int GlowbugEncumbrance = 0;
+
+            public const string GrapnelLauncherName = "Grapnel Launcher";
+            public const string GrapnelLauncherType = "Field Equipment";
+            public const string GrapnelLauncherDescription = "";
+            public const int GrapnelLauncherCost = 200;
+            public const int GrapnelLauncherTL = 3;
+            public const int GrapnelLauncherEncumbrance = 1;
+
+            public const string GravChuteTL4Name = "Grav Chute, TL 4";
+            public const string GravChuteTL4Type = "Field Equipment";
+            public const string GravChuteTL4Description = "";
+            public const int GravChuteTL4Cost = 300;
+            public const int GravChuteTL4TL = 4;
+            public const int GravChuteTL4Encumbrance = 1;
+
+            public const string GravChuteTL5Name = "Grav Chute, TL 5";
+            public const string GravChuteTL5Type = "Field Equipment";
+            public const string GravChuteTL5Description = "";
+            public const int GravChuteTL5Cost = 1000;
+            public const int GravChuteTL5TL = 5;
+            public const int GravChuteTL5Encumbrance = 1;
+
+            public const string GravHarnessName = "Grav Harness";
+            public const string GravHarnessType = "Field Equipment";
+            public const string GravHarnessDescription = "";
+            public const int GravHarnessCost = 5000;
+            public const int GravHarnessTL = 5;
+            public const int GravHarnessEncumbrance = 3;
+
+            public const string InstapanelName = "Instapanel";
+            public const string InstapanelType = "Field Equipment";
+            public const string InstapanelDescription = "";
+            public const int InstapanelCost = 50;
+            public const int InstapanelTL = 4;
+            public const int InstapanelEncumbrance = 0;
+
+            public const string LowlightgogglesName = "Lowlight goggles";
+            public const string LowlightgogglesType = "Field Equipment";
+            public const string LowlightgogglesDescription = "";
+            public const int LowlightgogglesCost = 200;
+            public const int LowlightgogglesTL = 3;
+            public const int LowlightgogglesEncumbrance = 1;
+
+            public const string NavcompName = "Navcomp";
+            public const string NavcompType = "Field Equipment";
+            public const string NavcompDescription = "";
+            public const int NavcompCost = 500;
+            public const int NavcompTL = 4;
+            public const int NavcompEncumbrance = 1;
+
+            public const string PortaboxName = "Portabox";
+            public const string PortaboxType = "Field Equipment";
+            public const string PortaboxDescription = "";
+            public const int PortaboxCost = 50;
+            public const int PortaboxTL = 4;
+            public const int PortaboxEncumbrance = 1;
+
+            public const string PressureTentName = "Pressure Tent";
+            public const string PressureTentType = "Field Equipment";
+            public const string PressureTentDescription = "";
+            public const int PressureTentCost = 100;
+            public const int PressureTentTL = 3;
+            public const int PressureTentEncumbrance = 4;
+
+            public const string Rations1dayName = "Rations, 1 day";
+            public const string Rations1dayType = "Field Equipment";
+            public const string Rations1dayDescription = "";
+            public const int Rations1dayCost = 5;
+            public const int Rations1dayTL = 1;
+            public const int Rations1dayEncumbrance = 0;
+
+            public const string RopeTL020metersName = "Rope, TL0, 20 meters";
+            public const string RopeTL020metersType = "Field Equipment";
+            public const string RopeTL020metersDescription = "";
+            public const int RopeTL020metersCost = 4;
+            public const int RopeTL020metersTL = 0;
+            public const int RopeTL020metersEncumbrance = 2;
+
+            public const string RopeTL420metersName = "Rope, TL4, 20 meters";
+            public const string RopeTL420metersType = "Field Equipment";
+            public const string RopeTL420metersDescription = "";
+            public const int RopeTL420metersCost = 40;
+            public const int RopeTL420metersTL = 4;
+            public const int RopeTL420metersEncumbrance = 1;
+
+            public const string ScoutReportName = "Scout Report";
+            public const string ScoutReportType = "Field Equipment";
+            public const string ScoutReportDescription = "";
+            public const int ScoutReportCost = 200;
+            public const int ScoutReportTL = 4;
+            public const int ScoutReportEncumbrance = 0;
+
+            public const string SurveyScannerName = "Survey Scanner";
+            public const string SurveyScannerType = "Field Equipment";
+            public const string SurveyScannerDescription = "";
+            public const int SurveyScannerCost = 250;
+            public const int SurveyScannerTL = 4;
+            public const int SurveyScannerEncumbrance = 1;
+
+            public const string SurvivalKitName = "Survival Kit";
+            public const string SurvivalKitType = "Field Equipment";
+            public const string SurvivalKitDescription = "";
+            public const int SurvivalKitCost = 60;
+            public const int SurvivalKitTL = 4;
+            public const int SurvivalKitEncumbrance = 1;
+
+            public const string TelescopingPoleName = "Telescoping Pole";
+            public const string TelescopingPoleType = "Field Equipment";
+            public const string TelescopingPoleDescription = "";
+            public const int TelescopingPoleCost = 10;
+            public const int TelescopingPoleTL = 4;
+            public const int TelescopingPoleEncumbrance = 0;
+
+            public const string ThermalFlareName = "Thermal Flare";
+            public const string ThermalFlareType = "Field Equipment";
+            public const string ThermalFlareDescription = "";
+            public const int ThermalFlareCost = 5;
+            public const int ThermalFlareTL = 3;
+            public const int ThermalFlareEncumbrance = 0;
+
+            public const string TradeGoodsName = "Trade Goods";
+            public const string TradeGoodsType = "Field Equipment";
+            public const string TradeGoodsDescription = "";
+            public const int TradeGoodsCost = 50;
+            public const int TradeGoodsTL = 4;
+            public const int TradeGoodsEncumbrance = 0;
+
+            public const string TradeMetalsName = "Trade Metals";
+            public const string TradeMetalsType = "Field Equipment";
+            public const string TradeMetalsDescription = "";
+            public const int TradeMetalsCost = 10;
+            public const int TradeMetalsTL = 4;
+            public const int TradeMetalsEncumbrance = 0;
+
+            public const string VaccFresherName = "Vacc Fresher";
+            public const string VaccFresherType = "Field Equipment";
+            public const string VaccFresherDescription = "";
+            public const int VaccFresherCost = 400;
+            public const int VaccFresherTL = 4;
+            public const int VaccFresherEncumbrance = 1;
+
+            public const string VaccSkinName = "Vacc Skin";
+            public const string VaccSkinType = "Field Equipment";
+            public const string VaccSkinDescription = "";
+            public const int VaccSkinCost = 1000;
+            public const int VaccSkinTL = 5;
+            public const int VaccSkinEncumbrance = 1;
+
+            public const string VaccSuitName = "Vacc Suit";
+            public const string VaccSuitType = "Field Equipment";
+            public const string VaccSuitDescription = "";
+            public const int VaccSuitCost = 100;
+            public const int VaccSuitTL = 4;
+            public const int VaccSuitEncumbrance = 2;
+
+            public const string OxygenTankName = "Oxygen Tank";
+            public const string OxygenTankType = "Field Equipment";
+            public const string OxygenTankDescription = "";
+            public const int OxygenTankCost = 0;
+            public const int OxygenTankTL = 4;
+            public const int OxygenTankEncumbrance = 1;
+
+            public const string BezoarName = "Bezoar";
+            public const string BezoarType = "Pharmaceuticals";
+            public const string BezoarDescription = "";
+            public const int BezoarCost = 200;
+            public const int BezoarTL = 4;
+            public const int BezoarEncumbrance = 0;
+
+            public const string BrainwaveName = "Brainwave";
+            public const string BrainwaveType = "Pharmaceuticals";
+            public const string BrainwaveDescription = "";
+            public const int BrainwaveCost = 1000;
+            public const int BrainwaveTL = 5;
+            public const int BrainwaveEncumbrance = 0;
+
+            public const string HushName = "Hush";
+            public const string HushType = "Pharmaceuticals";
+            public const string HushDescription = "";
+            public const int HushCost = 200;
+            public const int HushTL = 4;
+            public const int HushEncumbrance = 0;
+
+            public const string LiftName = "Lift";
+            public const string LiftType = "Pharmaceuticals";
+            public const string LiftDescription = "";
+            public const int LiftCost = 50;
+            public const int LiftTL = 4;
+            public const int LiftEncumbrance = 0;
+
+            public const string PsychName = "Psych";
+            public const string PsychType = "Pharmaceuticals";
+            public const string PsychDescription = "";
+            public const int PsychCost = 25;
+            public const int PsychTL = 4;
+            public const int PsychEncumbrance = 0;
+
+            public const string PretechCosmeticName = "Pretech Cosmetic";
+            public const string PretechCosmeticType = "Pharmaceuticals";
+            public const string PretechCosmeticDescription = "";
+            public const int PretechCosmeticCost = 1000;
+            public const int PretechCosmeticTL = 5;
+            public const int PretechCosmeticEncumbrance = 0;
+
+            public const string ReverieName = "Reverie";
+            public const string ReverieType = "Pharmaceuticals";
+            public const string ReverieDescription = "";
+            public const int ReverieCost = 100;
+            public const int ReverieTL = 4;
+            public const int ReverieEncumbrance = 0;
+
+            public const string SquealName = "Squeal";
+            public const string SquealType = "Pharmaceuticals";
+            public const string SquealDescription = "";
+            public const int SquealCost = 300;
+            public const int SquealTL = 4;
+            public const int SquealEncumbrance = 0;
+
+            public const string TsunamiName = "Tsunami";
+            public const string TsunamiType = "Pharmaceuticals";
+            public const string TsunamiDescription = "";
+            public const int TsunamiCost = 50;
+            public const int TsunamiTL = 4;
+            public const int TsunamiEncumbrance = 0;
+
+            public const string BiosacannerName = "Biosacanner";
+            public const string BiosacannerType = "Tools and Medical";
+            public const string BiosacannerDescription = "";
+            public const int BiosacannerCost = 300;
+            public const int BiosacannerTL = 4;
+            public const int BiosacannerEncumbrance = 1;
+
+            public const string LazarusPatchName = "Lazarus Patch";
+            public const string LazarusPatchType = "Tools and Medical";
+            public const string LazarusPatchDescription = "";
+            public const int LazarusPatchCost = 30;
+            public const int LazarusPatchTL = 4;
+            public const int LazarusPatchEncumbrance = 0;
+
+            public const string MedkitName = "Medkit";
+            public const string MedkitType = "Tools and Medical";
+            public const string MedkitDescription = "";
+            public const int MedkitCost = 100;
+            public const int MedkitTL = 4;
+            public const int MedkitEncumbrance = 2;
+
+            public const string MetatoolName = "Metatool";
+            public const string MetatoolType = "Tools and Medical";
+            public const string MetatoolDescription = "";
+            public const int MetatoolCost = 200;
+            public const int MetatoolTL = 4;
+            public const int MetatoolEncumbrance = 1;
+
+            public const string SparePartsName = "Spare Parts";
+            public const string SparePartsType = "Tools and Medical";
+            public const string SparePartsDescription = "";
+            public const int SparePartsCost = 50;
+            public const int SparePartsTL = 4;
+            public const int SparePartsEncumbrance = 0;
+
+            public const string TailoredAntiallergensName = "Tailored Antiallergens";
+            public const string TailoredAntiallergensType = "Tools and Medical";
+            public const string TailoredAntiallergensDescription = "";
+            public const int TailoredAntiallergensCost = 5;
+            public const int TailoredAntiallergensTL = 4;
+            public const int TailoredAntiallergensEncumbrance = 0;
+
+            public const string ToolkitPostechName = "Toolkit/Postech";
+            public const string ToolkitPostechType = "Tools and Medical";
+            public const string ToolkitPostechDescription = "";
+            public const int ToolkitPostechCost = 300;
+            public const int ToolkitPostechTL = 4;
+            public const int ToolkitPostechEncumbrance = 3;
+
+            public const string ToolkitPretechName = "Toolkit/Pretech";
+            public const string ToolkitPretechType = "Tools and Medical";
+            public const string ToolkitPretechDescription = "";
+            public const int ToolkitPretechCost = 1000;
+            public const int ToolkitPretechTL = 5;
+            public const int ToolkitPretechEncumbrance = 1;
+
+            public const string RutterName = "Rutter";
+            public const string RutterType = "Custom";
+            public const string RutterDescription = "";
+            public const int RutterCost = 1500;
+            public const int RutterTL = 4;
+            public const int RutterEncumbrance = 0;
+        }
+
         public class ItemData
         {
-            //Constants for Item Entities (Equipment, Armor, Melee & Ranged Weapons, Item Locations)
+            //Constants for Item Entities (Armor, Melee & Ranged Weapons)
             public const int NameMaxLength = 40;
             public const int TypeMaxLength = 30;
             public const int AttributeMaxLength = 10;

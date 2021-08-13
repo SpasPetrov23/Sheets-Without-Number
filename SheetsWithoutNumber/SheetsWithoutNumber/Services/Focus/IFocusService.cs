@@ -8,7 +8,7 @@
 
         public bool Edit(int level, int focusId, int characterFocusId);
 
-        public int Delete(int focusSkillId);
+        public int Delete(int characterFocusId);
 
         public IEnumerable<FocusServiceListingViewModel> GetFociListing();
 

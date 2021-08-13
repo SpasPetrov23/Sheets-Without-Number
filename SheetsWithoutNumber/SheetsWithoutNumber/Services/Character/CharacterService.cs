@@ -80,6 +80,18 @@
             character.CharactersFoci = character.CharactersFoci
                 .OrderBy(cs => cs.FocusName)
                 .ToList();
+            character.CharactersEquipments = character.CharactersEquipments
+                .OrderBy(ce => ce.EquipmentType)
+                .ThenBy(ce => ce.EquipmentName)
+                .ToList();
+
+            character.CurrentReadiedEncumbrance = this.CalculateCurrentReadiedEncumbrance(character.CharactersEquipments);
+            character.MaxReadiedEncumbrance = this.CalculateMaxReadiedEncumbrance(character.Strength);
+            character.CurrentStowedEncumbrance = this.CalculateCurrentStowedEncumbrance(character.CharactersEquipments);
+            character.MaxStowedEncumbrance = this.CalculateMaxStowedEncumbrance(character.Strength);
+            character.Encumbrance = this.CalculateEncumbrance(character.CurrentReadiedEncumbrance, character.MaxReadiedEncumbrance, character.CurrentStowedEncumbrance, character.MaxStowedEncumbrance);
+
+            character.Speed = this.CalculateSpeed(character.Encumbrance);
 
             character.SavingThrowEvasion = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Evasion");
             character.SavingThrowPhysical = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Physical");
@@ -114,7 +126,7 @@
             return character;
         }
 
-        public bool Edit(int characterId, string name, string characterImage, int strength, int dexterity, int constitution, int intelligence, int charisma, int wisdom, int currentXP, int hitPoints, int maxHitPoints, int effort, int systemStrain)
+        public bool Edit(int characterId, string name, string characterImage, int strength, int dexterity, int constitution, int intelligence, int charisma, int wisdom, int currentXP, int hitPoints, int maxHitPoints, int effort, int systemStrain, int credits)
         {
             var characterData = this.data.Characters.Find(characterId);
 
@@ -137,6 +149,7 @@
             characterData.MaxHitPoints = maxHitPoints;
             characterData.Effort = effort;
             characterData.SystemStrain = systemStrain;
+            characterData.Credits = credits;
 
             this.data.SaveChanges();
 
@@ -228,6 +241,94 @@
             }
 
             return attackMod;
+        }
+
+        public int CalculateCurrentReadiedEncumbrance(ICollection<CharactersEquipments> characterEquipments)
+        {
+            var readiedEncumbrance = 0;
+
+            foreach (var characterEquipment in characterEquipments)
+            {
+                if (characterEquipment.EquipmentLocation == "Readied")
+                {
+                    readiedEncumbrance += characterEquipment.EquipmentEncumbrance;
+                }
+            }
+
+            return readiedEncumbrance;
+        }
+
+        public int CalculateMaxReadiedEncumbrance(int strength)
+        {
+            var maxReadiedEncumbrance = strength / 2;
+
+            return maxReadiedEncumbrance;
+        }
+
+        public int CalculateCurrentStowedEncumbrance(ICollection<CharactersEquipments> characterEquipments)
+        {
+            var stowedEncumbrance = 0;
+
+            foreach (var characterEquipment in characterEquipments)
+            {
+                if (characterEquipment.EquipmentLocation == "Stowed" || characterEquipment.EquipmentLocation == "Backpack")
+                {
+                    stowedEncumbrance += characterEquipment.EquipmentEncumbrance;
+                }
+            }
+
+            return stowedEncumbrance;
+        }
+
+        public int CalculateMaxStowedEncumbrance(int strength)
+        {
+            var maxStowedEncumbrance = strength;
+
+            return maxStowedEncumbrance;
+        }
+
+        public string CalculateEncumbrance(int currentReadiedEncumbrance, int maxReadiedEncumbrance, int currentStowedEncumbrance, int maxStowedEncumbrance)
+        {
+            var encumbrance = "Normal";
+
+            var surplusReadiedEncumbrance = currentReadiedEncumbrance - maxReadiedEncumbrance;
+            var surplusStowedEncumbrance = currentStowedEncumbrance - maxStowedEncumbrance;
+
+            if (surplusReadiedEncumbrance > 4 || surplusStowedEncumbrance > 8)
+            {
+                encumbrance = "Overburdened!";
+            }
+            else if ((surplusReadiedEncumbrance > 2 && surplusReadiedEncumbrance <= 4) ||
+                (surplusStowedEncumbrance > 4 && surplusStowedEncumbrance <= 8))
+            {
+                encumbrance = "Heavily Encumbered";
+            }
+            else if ((surplusReadiedEncumbrance > 0 && surplusReadiedEncumbrance <= 2) ||
+                (surplusStowedEncumbrance > 0 && surplusStowedEncumbrance <= 4))
+            {
+                encumbrance = "Lightly Encumbered";
+            }
+
+            return encumbrance;
+        }
+        public int CalculateSpeed(string encumbrance)
+        {
+            var speed = 10;
+
+            if (encumbrance == "Lightly Encumbered")
+            {
+                speed = 7;
+            }
+            else if (encumbrance == "Heavily Encumbered")
+            {
+                speed = 5;
+            }
+            else if (encumbrance == "Overburdened")
+            {
+                speed = 0;
+            }
+
+            return speed;
         }
 
         public int CalculateMaxEffort(string characterClass, int wisdomMod, int constitutionMod, int highestPsychicLevel, bool hasPsychicTrainingFocus, int wildTalentFocusLevel)

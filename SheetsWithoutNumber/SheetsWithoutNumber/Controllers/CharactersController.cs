@@ -106,7 +106,7 @@
                 return View(characterEdit);
             }
 
-            this.characters.Edit(characterId, characterEdit.Name, characterEdit.CharacterImage, characterEdit.Strength, characterEdit.Dexterity, characterEdit.Constitution, characterEdit.Intelligence, characterEdit.Charisma, characterEdit.Wisdom, characterEdit.CurrentXP, characterEdit.HitPoints, characterEdit.MaxHitPoints, characterEdit.Effort, characterEdit.SystemStrain);
+            this.characters.Edit(characterId, characterEdit.Name, characterEdit.CharacterImage, characterEdit.Strength, characterEdit.Dexterity, characterEdit.Constitution, characterEdit.Intelligence, characterEdit.Charisma, characterEdit.Wisdom, characterEdit.CurrentXP, characterEdit.HitPoints, characterEdit.MaxHitPoints, characterEdit.Effort, characterEdit.SystemStrain, characterEdit.Credits);
 
             return RedirectToAction("Details", "Characters", new { characterId = characterId });
         }

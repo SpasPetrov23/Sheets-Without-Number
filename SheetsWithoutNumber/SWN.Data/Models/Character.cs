@@ -62,10 +62,6 @@
 
         public int UnspentSkillPoints { get; set; } = 0;
 
-        public int ReadiedEncumbrance { get; set; } = 0;
-
-        public int StowedEncumbrance { get; set; } = 0;
-
         [Required]
         [MaxLength(EncumbranceMaxLength)]
         public string Encumbrance { get; set; } = string.Empty;
@@ -85,18 +81,19 @@
         [Required]
         public string OwnerId { get; init; }
 
-        public ICollection<CharactersSkills> CharactersSkills { get; init; } = new HashSet<CharactersSkills>();
-
         public int ClassId { get; set; }
 
         public Class Class { get; set; }
 
-        [Required]
         public int BackgroundId { get; set; }
 
         public Background Background { get; set; }
 
+        public ICollection<CharactersSkills> CharactersSkills { get; init; } = new HashSet<CharactersSkills>();
+
         public ICollection<CharactersFoci> CharactersFoci { get; init; } = new HashSet<CharactersFoci>();
+
+        public ICollection<CharactersEquipments> CharactersEquipments { get; init; } = new HashSet<CharactersEquipments>();
 
         public int GameId { get; init; }
 

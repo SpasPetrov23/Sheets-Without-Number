@@ -315,6 +315,56 @@ namespace SWN.Data.Migrations
                     b.ToTable("Characters");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.CharactersEquipments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EquipmentCost")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EquipmentCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EquipmentDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EquipmentEncumbrance")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EquipmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EquipmentLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EquipmentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EquipmentTechLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EquipmentType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("EquipmentId");
+
+                    b.ToTable("CharactersEquipments");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.CharactersFoci", b =>
                 {
                     b.Property<int>("Id")
@@ -407,6 +457,41 @@ namespace SWN.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Classes");
+                });
+
+            modelBuilder.Entity("SWN.Data.Models.Equipment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Cost")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Encumbrance")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<int>("TechLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Equipments");
                 });
 
             modelBuilder.Entity("SWN.Data.Models.Focus", b =>
@@ -653,6 +738,25 @@ namespace SWN.Data.Migrations
                     b.Navigation("Game");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.CharactersEquipments", b =>
+                {
+                    b.HasOne("SWN.Data.Models.Character", "Character")
+                        .WithMany("CharactersEquipments")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SWN.Data.Models.Equipment", "Equipment")
+                        .WithMany("CharactersEquipments")
+                        .HasForeignKey("EquipmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Equipment");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.CharactersFoci", b =>
                 {
                     b.HasOne("SWN.Data.Models.Character", "Character")
@@ -698,6 +802,8 @@ namespace SWN.Data.Migrations
 
             modelBuilder.Entity("SWN.Data.Models.Character", b =>
                 {
+                    b.Navigation("CharactersEquipments");
+
                     b.Navigation("CharactersFoci");
 
                     b.Navigation("CharactersSkills");
@@ -706,6 +812,11 @@ namespace SWN.Data.Migrations
             modelBuilder.Entity("SWN.Data.Models.Class", b =>
                 {
                     b.Navigation("Characters");
+                });
+
+            modelBuilder.Entity("SWN.Data.Models.Equipment", b =>
+                {
+                    b.Navigation("CharactersEquipments");
                 });
 
             modelBuilder.Entity("SWN.Data.Models.Focus", b =>

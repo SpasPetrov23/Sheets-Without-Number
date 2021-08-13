@@ -23,7 +23,7 @@
 
         public int Add(int characterId, int focusId, int level)
         {
-            var focus = data.Foci.Where(s => s.Id == focusId).FirstOrDefault();
+            var focus = data.Foci.Where(f => f.Id == focusId).FirstOrDefault();
 
             var characterFocus = new CharactersFoci
             {
@@ -56,10 +56,10 @@
             return true;
         }
 
-        public int Delete(int focusSkillId)
+        public int Delete(int characterFocusId)
         {
             var characterFocus = data.CharactersFoci
-                .Where(cf => cf.Id == focusSkillId)
+                .Where(cf => cf.Id == characterFocusId)
                 .FirstOrDefault();
 
             data.CharactersFoci.Remove(characterFocus);
@@ -113,22 +113,22 @@
             var className = this.data.Classes.Where(cl => cl.Id == character.ClassId).FirstOrDefault().Name;
 
             if (focus.Name == FocusPsychicTrainingName && 
-                (className == PsychicClassName ||
-                className == PsychicWarriorClassName ||
-                className == ExpertPsychicClassName))
+                (className != PsychicClassName ||
+                className != PsychicWarriorClassName ||
+                className != ExpertPsychicClassName))
             {
-                return true;
+                return false;
             }
 
             if (focus.Name == FocusWildPsychicTalentName && 
-                className != PsychicClassName && 
-                className != PsychicWarriorClassName && 
-                className != ExpertPsychicClassName)
+                className == PsychicClassName && 
+                className == PsychicWarriorClassName && 
+                className == ExpertPsychicClassName)
             {
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
     }
 }

@@ -77,15 +77,29 @@
 
         public int ArmorClass { get; set; }
 
+        public int Credits { get; set; }
+
         public int GameId { get; init; }
 
         public Game Game { get; init; }
 
         public int Level { get; init; }
 
+        public int CurrentReadiedEncumbrance { get; set; }
+
+        public int MaxReadiedEncumbrance { get; set; }
+
+        public int CurrentStowedEncumbrance { get; set; }
+
+        public int MaxStowedEncumbrance { get; set; }
+
+        public string Encumbrance { get; set; }
+
         public ICollection<CharactersSkills> CharactersSkills { get; set; }
 
         public ICollection<CharactersFoci> CharactersFoci { get; set; }
+
+        public ICollection<CharactersEquipments> CharactersEquipments { get; set; }
 
         public int CurrentXP { get; init; }
 

@@ -77,13 +77,30 @@ namespace SWN.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Equipments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Cost = table.Column<int>(type: "int", nullable: false),
+                    Encumbrance = table.Column<int>(type: "int", nullable: false),
+                    TechLevel = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Equipments", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Foci",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Level = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -320,6 +337,40 @@ namespace SWN.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CharactersEquipments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CharacterId = table.Column<int>(type: "int", nullable: false),
+                    EquipmentId = table.Column<int>(type: "int", nullable: false),
+                    EquipmentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EquipmentEncumbrance = table.Column<int>(type: "int", nullable: false),
+                    EquipmentTechLevel = table.Column<int>(type: "int", nullable: false),
+                    EquipmentLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EquipmentCost = table.Column<int>(type: "int", nullable: false),
+                    EquipmentCount = table.Column<int>(type: "int", nullable: false),
+                    EquipmentType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EquipmentDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CharactersEquipments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CharactersEquipments_Characters_CharacterId",
+                        column: x => x.CharacterId,
+                        principalTable: "Characters",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CharactersEquipments_Equipments_EquipmentId",
+                        column: x => x.EquipmentId,
+                        principalTable: "Equipments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CharactersFoci",
                 columns: table => new
                 {
@@ -433,6 +484,16 @@ namespace SWN.Data.Migrations
                 column: "GameId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CharactersEquipments_CharacterId",
+                table: "CharactersEquipments",
+                column: "CharacterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharactersEquipments_EquipmentId",
+                table: "CharactersEquipments",
+                column: "EquipmentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CharactersFoci_CharacterId",
                 table: "CharactersFoci",
                 column: "CharacterId");
@@ -476,6 +537,9 @@ namespace SWN.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "CharactersEquipments");
+
+            migrationBuilder.DropTable(
                 name: "CharactersFoci");
 
             migrationBuilder.DropTable(
@@ -486,6 +550,9 @@ namespace SWN.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Equipments");
 
             migrationBuilder.DropTable(
                 name: "Foci");

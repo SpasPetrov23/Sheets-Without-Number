@@ -7,7 +7,6 @@
     using SheetsWithoutNumber.Models.Foci;
     using SheetsWithoutNumber.Services.Character;
     using SheetsWithoutNumber.Services.Focus;
-    using System.Linq;
 
     public class FociController : Controller
     {

@@ -1,0 +1,45 @@
+﻿@model EquipmentFormModel
+
+<div class="row">
+    <div class="col-12">
+        <form method="post">
+            <div class="form-group col-8 offset-2">
+                <div class="form-row">
+                    <div class="form-group col-8">
+                        <label asp-for="EquipmentId">Name</label>
+                        <select asp-for="EquipmentId" class="form-control">
+                            @foreach (var equipment in Model.Equipments)
+                            {
+                <option value="@equipment.Id">@equipment.Name</option>}
+                        </select>
+                        <span asp-validation-for="EquipmentId" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group col-2">
+                        <label asp-for="Count"></label>
+                        <input asp-for="Count" class="form-control" />
+                        <span asp-validation-for="Count" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group col-2">
+                        <label asp-for="Location">Location</label>
+                        <select asp-for="Location" class="form-control">
+                            <option>Readied</option>
+                            <option>Backpack</option>
+                            <option>Stowed</option>
+                            <option>Ship</option>
+                            <option>Deployed</option>
+                        </select>
+                        <span asp-validation-for="Location" class="small text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 text-center">
+                <input class="btn btn-primary" style="width: 120px" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

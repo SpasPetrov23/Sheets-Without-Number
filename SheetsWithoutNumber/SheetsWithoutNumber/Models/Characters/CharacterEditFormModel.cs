@@ -57,5 +57,9 @@
         [Display(Name = "System Strain")]
         [Range(0, int.MaxValue, ErrorMessage = "System Strain cannot be lower than 0.")]
         public int SystemStrain { get; init; }
+
+        [Required]
+        [Range(0, int.MaxValue, ErrorMessage = "Credits cannot be lower than 0.")]
+        public int Credits { get; init; }
     }
 }
