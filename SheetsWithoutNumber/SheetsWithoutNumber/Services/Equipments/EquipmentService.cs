@@ -47,6 +47,11 @@
         {
             var characterEquipment = data.CharactersEquipments.Where(ce => ce.Id == characterEquipmentId).FirstOrDefault();
 
+            if (characterEquipment == null)
+            {
+                return false;
+            }
+
             var equipmentName = this.GetEquipmentById(equipmentId).Name;
 
             characterEquipment.EquipmentId = equipmentId;

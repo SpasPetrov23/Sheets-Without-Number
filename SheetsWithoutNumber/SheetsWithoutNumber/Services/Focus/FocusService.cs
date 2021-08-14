@@ -45,6 +45,11 @@
         {
             var characterFocus = data.CharactersFoci.Where(cf => cf.Id == characterFocusId).FirstOrDefault();
 
+            if (characterFocus == null)
+            {
+                return false;
+            }
+
             var focusName = this.GetFocusById(focusId).Name;
 
             characterFocus.FocusId = focusId;
@@ -120,10 +125,10 @@
                 return false;
             }
 
-            if (focus.Name == FocusWildPsychicTalentName && 
-                className == PsychicClassName && 
-                className == PsychicWarriorClassName && 
-                className == ExpertPsychicClassName)
+            if (focus.Name == FocusWildPsychicTalentName && ( 
+                className == PsychicClassName || 
+                className == PsychicWarriorClassName ||
+                className == ExpertPsychicClassName))
             {
                 return false;
             }

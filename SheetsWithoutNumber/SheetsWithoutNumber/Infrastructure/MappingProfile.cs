@@ -11,7 +11,7 @@
     using SheetsWithoutNumber.Services.Equipments;
     using SheetsWithoutNumber.Services.Focus;
     using SheetsWithoutNumber.Services.Game;
-    using SheetsWithoutNumber.Services.Skills;
+    using SheetsWithoutNumber.Services.Skill;
     using SWN.Data.Models;
 
     public class MappingProfile : Profile

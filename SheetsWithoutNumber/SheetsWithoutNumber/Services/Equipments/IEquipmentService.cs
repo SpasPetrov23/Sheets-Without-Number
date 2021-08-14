@@ -15,5 +15,7 @@
         public bool EquipmentExists(int equipmentId);
 
         public CharacterEquipmentServiceModel GetCharacterEquipmentById(int characterEquipmentId);
+
+        public EquipmentServiceListingViewModel GetEquipmentById(int equipmentId);
     }
 }

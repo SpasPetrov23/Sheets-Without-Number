@@ -6,7 +6,7 @@
     using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Models.Skills;
     using SheetsWithoutNumber.Services.Character;
-    using SheetsWithoutNumber.Services.Skills;
+    using SheetsWithoutNumber.Services.Skill;
 
     public class SkillsController : Controller
     {
@@ -27,7 +27,7 @@
             return View(new SkillFormModel
             {
                 PreviousSkillId = null,
-                Skills = this.skills.GetSkills(),
+                Skills = this.skills.GetSkillListing(),
             });
         }
 
@@ -52,7 +52,7 @@
 
             if (!ModelState.IsValid)
             {
-                skillModel.Skills = this.skills.GetSkills();
+                skillModel.Skills = this.skills.GetSkillListing();
 
                 return View(skillModel);
             }
@@ -77,7 +77,7 @@
 
             var skillForm = this.mapper.Map<SkillFormModel>(characterSkill);
 
-            skillForm.Skills = this.skills.GetSkills();
+            skillForm.Skills = this.skills.GetSkillListing();
 
             return View(skillForm);
         }
@@ -105,7 +105,7 @@
 
             if (!ModelState.IsValid)
             {
-                skillEdit.Skills = this.skills.GetSkills();
+                skillEdit.Skills = this.skills.GetSkillListing();
 
                 return View(skillEdit);
             }

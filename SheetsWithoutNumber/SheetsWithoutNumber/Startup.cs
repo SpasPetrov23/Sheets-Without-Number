@@ -13,7 +13,7 @@ namespace SheetsWithoutNumber
     using SheetsWithoutNumber.Services.Equipments;
     using SheetsWithoutNumber.Services.Focus;
     using SheetsWithoutNumber.Services.Game;
-    using SheetsWithoutNumber.Services.Skills;
+    using SheetsWithoutNumber.Services.Skill;
     using SheetsWithoutNumber.Services.User;
     using SWN.Data;
     using SWN.Data.Models;

@@ -1,0 +1,15 @@
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\obj\Debug\net5.0\SWN.Services.csproj.AssemblyReference.cache
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\obj\Debug\net5.0\SWN.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\obj\Debug\net5.0\SWN.Services.AssemblyInfoInputs.cache
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\obj\Debug\net5.0\SWN.Services.AssemblyInfo.cs
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\obj\Debug\net5.0\SWN.Services.csproj.CoreCompileInputs.cache
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\bin\Debug\net5.0\SWN.Services.deps.json
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\bin\Debug\net5.0\SWN.Services.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\bin\Debug\net5.0\ref\SWN.Services.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\bin\Debug\net5.0\SWN.Services.pdb
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\bin\Debug\net5.0\SWN.Data.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\bin\Debug\net5.0\SWN.Data.pdb
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\obj\Debug\net5.0\SWN.Services.csproj.CopyComplete
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\obj\Debug\net5.0\SWN.Services.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\obj\Debug\net5.0\ref\SWN.Services.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Services\obj\Debug\net5.0\SWN.Services.pdb

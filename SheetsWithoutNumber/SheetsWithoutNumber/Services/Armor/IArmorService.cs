@@ -16,5 +16,6 @@
 
         public CharacterArmorServiceModel GetCharacterArmorById(int characterArmorId);
 
+        public ArmorServiceListingViewModel GetArmorById(int armorId);
     }
 }

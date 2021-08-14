@@ -35,7 +35,7 @@
 
             var currentUserId = this.User.GetId();
 
-            games.Create(gameModel.Name, gameModel.Description, gameModel.PlayersMax, gameModel.GameImage, currentUserId);
+            games.Create(gameModel.Name, gameModel.Description, gameModel.GameImage, gameModel.PlayersMax, currentUserId);
 
             return RedirectToAction("Index", "Home");
         }

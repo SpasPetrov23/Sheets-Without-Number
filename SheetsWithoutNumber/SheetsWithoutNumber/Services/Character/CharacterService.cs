@@ -47,6 +47,8 @@
 
             data.Characters.Add(character);
 
+            data.SaveChanges();
+
             data.Games
                 .FirstOrDefault(g => g.Id == gameId)
                 .Characters
@@ -216,7 +218,13 @@
            => this.data
             .Characters
             .Where(c => c.Id == characterId)
-            .ProjectTo<CharacterOwnerModel>(this.mapper)
+            //.ProjectTo<CharacterOwnerModel>(mapper) ---> Automapper disabled here because it returns null for the in-memory Database.
+            .Select(c => new CharacterOwnerModel
+            {
+                Id = c.Id,
+                Level = c.Level,
+                OwnerId = c.OwnerId
+            })
             .FirstOrDefault();
 
         public bool ClassExists(int classId)

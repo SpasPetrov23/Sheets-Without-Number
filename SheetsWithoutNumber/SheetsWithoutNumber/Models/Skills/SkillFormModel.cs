@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using SheetsWithoutNumber.Services.Skills;
+    using SheetsWithoutNumber.Services.Skill;
 
     public class SkillFormModel
     {

@@ -199,3 +199,8 @@ C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.ConsoleApplication\obj
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.ConsoleApplication\obj\Debug\net5.0\ref\SWN.ConsoleApplication.dll
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.ConsoleApplication\obj\Debug\net5.0\SWN.ConsoleApplication.pdb
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.ConsoleApplication\obj\Debug\net5.0\SWN.ConsoleApplication.genruntimeconfig.cache
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.ConsoleApplication\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.ConsoleApplication\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.ConsoleApplication\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.ConsoleApplication\bin\Debug\net5.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.ConsoleApplication\bin\Debug\net5.0\Microsoft.Extensions.Identity.Stores.dll

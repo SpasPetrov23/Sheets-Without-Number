@@ -15,11 +15,11 @@
         private readonly IUserService users;
         private readonly IConfigurationProvider mapper;
 
-        public GameService(IUserService users, SWNDbContext data, IConfigurationProvider mapper)
+        public GameService(IUserService users, SWNDbContext data, IMapper mapper)
         {
             this.data = data;
             this.users = users;
-            this.mapper = mapper;
+            this.mapper = mapper.ConfigurationProvider;
         }
 
         public IEnumerable<GamePreviewModel> All(string currentUserId)
@@ -37,7 +37,7 @@
             return games;
         }
 
-        public int Create(string name, string description, int maxPlayers, string gameImage, string gameMasterId)
+        public int Create(string name, string description, string gameImage, int maxPlayers, string gameMasterId)
         {
             var game = new Game
             {
@@ -110,7 +110,7 @@
             return true;
         }
 
-        public int Join(int gameId, string userId)
+        public string Join(int gameId, string userId)
         {
             var game = data.Games.FirstOrDefault(g => g.Id == gameId);
 
@@ -120,7 +120,7 @@
 
             data.SaveChanges();
 
-            return game.Id;
+            return userId;
         }
 
         public bool PlayerMaxIsValid(int gameId, int playersMax)

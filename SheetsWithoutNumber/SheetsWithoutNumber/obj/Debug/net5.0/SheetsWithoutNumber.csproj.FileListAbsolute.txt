@@ -1103,7 +1103,6 @@ C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\De
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\SheetsWithoutNumber.AssemblyInfoInputs.cache
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\SheetsWithoutNumber.AssemblyInfo.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\SheetsWithoutNumber.csproj.CoreCompileInputs.cache
-C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\SheetsWithoutNumber.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\SheetsWithoutNumber.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\SheetsWithoutNumber.RazorAssemblyInfo.cache
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\SheetsWithoutNumber.RazorAssemblyInfo.cs
@@ -1173,3 +1172,4 @@ C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\De
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Characters\_CharacterStatusInfoView.cshtml.g.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Armors\Add.cshtml.g.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Armors\Edit.cshtml.g.cs
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\SheetsWithoutNumber.MvcApplicationPartsAssemblyInfo.cs

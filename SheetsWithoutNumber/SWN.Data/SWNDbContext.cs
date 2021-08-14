@@ -18,7 +18,7 @@
 
         public DbSet<Game> Games { get; init; }
 
-        public DbSet<Character> Characters { get; init; }
+        public DbSet<Character> Characters { get; set; }
 
         public DbSet<Skill> Skills { get; init; }
 

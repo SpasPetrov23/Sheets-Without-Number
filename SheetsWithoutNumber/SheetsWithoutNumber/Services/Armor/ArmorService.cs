@@ -47,6 +47,11 @@
         {
             var characterArmor = data.CharactersArmors.Where(ca => ca.Id == characterArmorId).FirstOrDefault();
 
+            if (characterArmor == null)
+            {
+                return false;
+            }
+
             var armorName = this.GetArmorById(armorId).Name;
 
             characterArmor.ArmorId = armorId;
