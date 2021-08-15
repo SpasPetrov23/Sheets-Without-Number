@@ -17,6 +17,7 @@
     using static SWN.Data.DataConstants.FocusData;
     using static SWN.Data.DataConstants.EquipmentData;
     using static SWN.Data.DataConstants.ArmorData;
+    using static SWN.Data.DataConstants.MeleeWeaponData;
 
     public static class ApplicationBuilderExtensions
     {
@@ -34,6 +35,7 @@
             SeedFoci(services);
             SeedEquipment(services);
             SeedArmor(services);
+            SeedMeleeWeapons(services);
 
             return app;
         }
@@ -1500,6 +1502,232 @@
                 }
             });
 
+            data.SaveChanges();
+        }
+
+        private static void SeedMeleeWeapons(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<SWNDbContext>();
+        
+            if (data.MeleeWeapons.Any())
+            {
+                return;
+            }
+        
+            data.MeleeWeapons.AddRange(new[]
+            {
+                new MeleeWeapon
+                {
+                    Name = SmallPrimitiveWeaponName,
+                    Description = SmallPrimitiveWeaponDescription,
+                    Attribute = SmallPrimitiveWeaponAttribute,
+                    Damage = SmallPrimitiveWeaponDamage,
+                    Skill = SmallPrimitiveWeaponSkill,
+                    ShockPoints = SmallPrimitiveWeaponShockPoints,
+                    ShockAC = SmallPrimitiveWeaponShockAC,
+                    Cost = SmallPrimitiveWeaponCost,
+                    ThrowRange = SmallPrimitiveWeaponThrowRange,
+                    Encumbrance = SmallPrimitiveWeaponEncumbrance,
+                    TechLevel = SmallPrimitiveWeaponTL
+                },
+                new MeleeWeapon
+                {
+                    Name = KnifeName,
+                    Description = KnifeDescription,
+                    Attribute = KnifeAttribute,
+                    Damage = KnifeDamage,
+                    Skill = KnifeSkill,
+                    ShockPoints = KnifeShockPoints,
+                    ShockAC = KnifeShockAC,
+                    Cost = KnifeCost,
+                    ThrowRange = KnifeThrowRange,
+                    Encumbrance = KnifeEncumbrance,
+                    TechLevel = KnifeTL
+                },
+                new MeleeWeapon
+                {
+                    Name = SpikedKnucklesName,
+                    Description = SpikedKnucklesDescription,
+                    Attribute = SpikedKnucklesAttribute,
+                    Damage = SpikedKnucklesDamage,
+                    Skill = SpikedKnucklesSkill,
+                    ShockPoints = SpikedKnucklesShockPoints,
+                    ShockAC = SpikedKnucklesShockAC,
+                    Cost = SpikedKnucklesCost,
+                    ThrowRange = SpikedKnucklesThrowRange,
+                    Encumbrance = SpikedKnucklesEncumbrance,
+                    TechLevel = SpikedKnucklesTL
+                },
+                new MeleeWeapon
+                {
+                    Name = MediumPrimitiveWeaponName,
+                    Description = MediumPrimitiveWeaponDescription,
+                    Attribute = MediumPrimitiveWeaponAttribute,
+                    Damage = MediumPrimitiveWeaponDamage,
+                    Skill = MediumPrimitiveWeaponSkill,
+                    ShockPoints = MediumPrimitiveWeaponShockPoints,
+                    ShockAC = MediumPrimitiveWeaponShockAC,
+                    Cost = MediumPrimitiveWeaponCost,
+                    ThrowRange = MediumPrimitiveWeaponThrowRange,
+                    Encumbrance = MediumPrimitiveWeaponEncumbrance,
+                    TechLevel = MediumPrimitiveWeaponTL
+                },
+                new MeleeWeapon
+                {
+                    Name = SpearName,
+                    Description = SpearDescription,
+                    Attribute = SpearAttribute,
+                    Damage = SpearDamage,
+                    Skill = SpearSkill,
+                    ShockPoints = SpearShockPoints,
+                    ShockAC = SpearShockAC,
+                    Cost = SpearCost,
+                    ThrowRange = SpearThrowRange,
+                    Encumbrance = SpearEncumbrance,
+                    TechLevel = SpearTL
+                },
+                new MeleeWeapon
+                {
+                    Name = LargePrimitiveWeaponName,
+                    Description = LargePrimitiveWeaponDescription,
+                    Attribute = LargePrimitiveWeaponAttribute,
+                    Damage = LargePrimitiveWeaponDamage,
+                    Skill = LargePrimitiveWeaponSkill,
+                    ShockPoints = LargePrimitiveWeaponShockPoints,
+                    ShockAC = LargePrimitiveWeaponShockAC,
+                    Cost = LargePrimitiveWeaponCost,
+                    ThrowRange = LargePrimitiveWeaponThrowRange,
+                    Encumbrance = LargePrimitiveWeaponEncumbrance,
+                    TechLevel = LargePrimitiveWeaponTL
+                },
+                new MeleeWeapon
+                {
+                    Name = SmallAdvancedWeaponName,
+                    Description = SmallAdvancedWeaponDescription,
+                    Attribute = SmallAdvancedWeaponAttribute,
+                    Damage = SmallAdvancedWeaponDamage,
+                    Skill = SmallAdvancedWeaponSkill,
+                    ShockPoints = SmallAdvancedWeaponShockPoints,
+                    ShockAC = SmallAdvancedWeaponShockAC,
+                    Cost = SmallAdvancedWeaponCost,
+                    ThrowRange = SmallAdvancedWeaponThrowRange,
+                    Encumbrance = SmallAdvancedWeaponEncumbrance,
+                    TechLevel = SmallAdvancedWeaponTL
+                },
+                new MeleeWeapon
+                {
+                    Name = MonobladeKnifeName,
+                    Description = MonobladeKnifeDescription,
+                    Attribute = MonobladeKnifeAttribute,
+                    Damage = MonobladeKnifeDamage,
+                    Skill = MonobladeKnifeSkill,
+                    ShockPoints = MonobladeKnifeShockPoints,
+                    ShockAC = MonobladeKnifeShockAC,
+                    Cost = MonobladeKnifeCost,
+                    ThrowRange = MonobladeKnifeThrowRange,
+                    Encumbrance = MonobladeKnifeEncumbrance,
+                    TechLevel = MonobladeKnifeTL
+                },
+                new MeleeWeapon
+                {
+                    Name = ThermalKnifeName,
+                    Description = ThermalKnifeDescription,
+                    Attribute = ThermalKnifeAttribute,
+                    Damage = ThermalKnifeDamage,
+                    Skill = ThermalKnifeSkill,
+                    ShockPoints = ThermalKnifeShockPoints,
+                    ShockAC = ThermalKnifeShockAC,
+                    Cost = ThermalKnifeCost,
+                    ThrowRange = ThermalKnifeThrowRange,
+                    Encumbrance = ThermalKnifeEncumbrance,
+                    TechLevel = ThermalKnifeTL
+                },
+                new MeleeWeapon
+                {
+                    Name = KinesisWrapsName,
+                    Description = KinesisWrapsDescription,
+                    Attribute = KinesisWrapsAttribute,
+                    Damage = KinesisWrapsDamage,
+                    Skill = KinesisWrapsSkill,
+                    ShockPoints = KinesisWrapsShockPoints,
+                    ShockAC = KinesisWrapsShockAC,
+                    Cost = KinesisWrapsCost,
+                    ThrowRange = KinesisWrapsThrowRange,
+                    Encumbrance = KinesisWrapsEncumbrance,
+                    TechLevel = KinesisWrapsTL
+                },
+                new MeleeWeapon
+                {
+                    Name = MediumAdvancedWeaponName,
+                    Description = MediumAdvancedWeaponDescription,
+                    Attribute = MediumAdvancedWeaponAttribute,
+                    Damage = MediumAdvancedWeaponDamage,
+                    Skill = MediumAdvancedWeaponSkill,
+                    ShockPoints = MediumAdvancedWeaponShockPoints,
+                    ShockAC = MediumAdvancedWeaponShockAC,
+                    Cost = MediumAdvancedWeaponCost,
+                    ThrowRange = MediumAdvancedWeaponThrowRange,
+                    Encumbrance = MediumAdvancedWeaponEncumbrance,
+                    TechLevel = MediumAdvancedWeaponTL
+                },
+                new MeleeWeapon
+                {
+                    Name = LargeAdvancedWeaponName,
+                    Description = LargeAdvancedWeaponDescription,
+                    Attribute = LargeAdvancedWeaponAttribute,
+                    Damage = LargeAdvancedWeaponDamage,
+                    Skill = LargeAdvancedWeaponSkill,
+                    ShockPoints = LargeAdvancedWeaponShockPoints,
+                    ShockAC = LargeAdvancedWeaponShockAC,
+                    Cost = LargeAdvancedWeaponCost,
+                    ThrowRange = LargeAdvancedWeaponThrowRange,
+                    Encumbrance = LargeAdvancedWeaponEncumbrance,
+                    TechLevel = LargeAdvancedWeaponTL
+                },
+                new MeleeWeapon
+                {
+                    Name = StunBatonName,
+                    Description = StunBatonDescription,
+                    Attribute = StunBatonAttribute,
+                    Damage = StunBatonDamage,
+                    Skill = StunBatonSkill,
+                    ShockPoints = StunBatonShockPoints,
+                    ShockAC = StunBatonShockAC,
+                    Cost = StunBatonCost,
+                    ThrowRange = StunBatonThrowRange,
+                    Encumbrance = StunBatonEncumbrance,
+                    TechLevel = StunBatonTL
+                },
+                new MeleeWeapon
+                {
+                    Name = SuitRipperName,
+                    Description = SuitRipperDescription,
+                    Attribute = SuitRipperAttribute,
+                    Damage = SuitRipperDamage,
+                    Skill = SuitRipperSkill,
+                    ShockPoints = SuitRipperShockPoints,
+                    ShockAC = SuitRipperShockAC,
+                    Cost = SuitRipperCost,
+                    ThrowRange = SuitRipperThrowRange,
+                    Encumbrance = SuitRipperEncumbrance,
+                    TechLevel = SuitRipperTL
+                },
+                new MeleeWeapon
+                {
+                    Name = UnarmedAttackName,
+                    Description = UnarmedAttackDescription,
+                    Attribute = UnarmedAttackAttribute,
+                    Damage = UnarmedAttackDamage,
+                    Skill = UnarmedAttackSkill,
+                    ShockPoints = UnarmedAttackShockPoints,
+                    ShockAC = UnarmedAttackShockAC,
+                    Cost = UnarmedAttackCost,
+                    ThrowRange = UnarmedAttackThrowRange,
+                    Encumbrance = UnarmedAttackEncumbrance,
+                    TechLevel = UnarmedAttackTL
+                }
+            });
+        
             data.SaveChanges();
         }
     }

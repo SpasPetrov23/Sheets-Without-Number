@@ -77,20 +77,27 @@ using SheetsWithoutNumber.Models.Armors;
 #nullable disable
 #nullable restore
 #line 10 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
-using SheetsWithoutNumber.Infrastructure;
+using SheetsWithoutNumber.Models.MeleeWeapons;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 11 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
+using SheetsWithoutNumber.Infrastructure;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 12 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\_ViewImports.cshtml"
 using SWN.Data.Models;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"6c91bacc3bd50941aad995bb5d6e346b8242ea29", @"/Views/Characters/_CharacterFociView.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"0afe8c88bb4d3017486364db10062d4de84dec4a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d22495d97dfdbf08978be54c03468167cb5480d9", @"/Views/_ViewImports.cshtml")]
     public class Views_Characters__CharacterFociView : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<CharacterDetailsModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Foci", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -148,7 +155,7 @@ using SWN.Data.Models;
 #line hidden
 #nullable disable
             WriteLiteral("                    <tr class=\"text-center\">\r\n                        <td>\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6c91bacc3bd50941aad995bb5d6e346b8242ea297579", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6c91bacc3bd50941aad995bb5d6e346b8242ea297808", async() => {
                 WriteLiteral("\r\n                                ");
 #nullable restore
 #line 17 "C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\Views\Characters\_CharacterFociView.cshtml"
@@ -224,7 +231,7 @@ using SWN.Data.Models;
 #line hidden
 #nullable disable
             WriteLiteral("        </tbody>\r\n    </table>\r\n</div>\r\n");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6c91bacc3bd50941aad995bb5d6e346b8242ea2911869", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6c91bacc3bd50941aad995bb5d6e346b8242ea2912098", async() => {
                 WriteLiteral("\r\n    <div class=\"text-center\">\r\n        <input type=\"button\"");
                 BeginWriteAttribute("class", " class=\"", 1424, "\"", 1466, 3);
                 WriteAttributeValue("", 1432, "btn", 1432, 3, true);

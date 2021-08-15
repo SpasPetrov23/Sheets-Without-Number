@@ -96,6 +96,8 @@
 
         public ICollection<CharactersArmors> CharactersArmors { get; init; } = new HashSet<CharactersArmors>();
 
+        public ICollection<CharactersMeleeWeapons> CharactersMeleeWeapons { get; init; } = new HashSet<CharactersMeleeWeapons>();
+
         public int GameId { get; init; }
 
         public Game Game { get; set; }

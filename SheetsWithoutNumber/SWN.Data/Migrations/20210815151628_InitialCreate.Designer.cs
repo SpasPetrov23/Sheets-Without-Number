@@ -10,7 +10,7 @@ using SWN.Data;
 namespace SWN.Data.Migrations
 {
     [DbContext(typeof(SWNDbContext))]
-    [Migration("20210813194540_InitialCreate")]
+    [Migration("20210815151628_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -482,6 +482,70 @@ namespace SWN.Data.Migrations
                     b.ToTable("CharactersFoci");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.CharactersMeleeWeapons", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MeleeWeaponAttribute")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MeleeWeaponCost")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MeleeWeaponDamage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MeleeWeaponDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MeleeWeaponEncumbrance")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MeleeWeaponId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MeleeWeaponLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MeleeWeaponName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MeleeWeaponShockAC")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MeleeWeaponShockPoints")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MeleeWeaponSkill")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MeleeWeaponTechLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MeleeWeaponThrowRange")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("MeleeWeaponId");
+
+                    b.ToTable("CharactersMeleeWeapons");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.CharactersSkills", b =>
                 {
                     b.Property<int>("Id")
@@ -636,6 +700,59 @@ namespace SWN.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Games");
+                });
+
+            modelBuilder.Entity("SWN.Data.Models.MeleeWeapon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Attribute")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<int>("Cost")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Damage")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Encumbrance")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<int>("ShockAC")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShockPoints")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Skill")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TechLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ThrowRange")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MeleeWeapons");
                 });
 
             modelBuilder.Entity("SWN.Data.Models.Skill", b =>
@@ -879,6 +996,25 @@ namespace SWN.Data.Migrations
                     b.Navigation("Focus");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.CharactersMeleeWeapons", b =>
+                {
+                    b.HasOne("SWN.Data.Models.Character", "Character")
+                        .WithMany("CharactersMeleeWeapons")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SWN.Data.Models.MeleeWeapon", "MeleeWeapon")
+                        .WithMany("CharactersMeleeWeapons")
+                        .HasForeignKey("MeleeWeaponId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("MeleeWeapon");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.CharactersSkills", b =>
                 {
                     b.HasOne("SWN.Data.Models.Character", "Character")
@@ -916,6 +1052,8 @@ namespace SWN.Data.Migrations
 
                     b.Navigation("CharactersFoci");
 
+                    b.Navigation("CharactersMeleeWeapons");
+
                     b.Navigation("CharactersSkills");
                 });
 
@@ -937,6 +1075,11 @@ namespace SWN.Data.Migrations
             modelBuilder.Entity("SWN.Data.Models.Game", b =>
                 {
                     b.Navigation("Characters");
+                });
+
+            modelBuilder.Entity("SWN.Data.Models.MeleeWeapon", b =>
+                {
+                    b.Navigation("CharactersMeleeWeapons");
                 });
 
             modelBuilder.Entity("SWN.Data.Models.Skill", b =>

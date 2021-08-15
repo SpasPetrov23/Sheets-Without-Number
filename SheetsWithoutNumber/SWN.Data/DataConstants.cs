@@ -723,15 +723,219 @@
             public const int RutterEncumbrance = 0;
         }
 
-        public class ItemData
+        public class MeleeWeaponData
         {
-            //Constants for Item Entities (Melee & Ranged Weapons)
+            //Constants for MeleeWeapon Entity
             public const int NameMaxLength = 40;
             public const int TypeMaxLength = 30;
             public const int AttributeMaxLength = 10;
             public const int MagazineMaxLength = 5;
-            public const int DamageMaxLength = 5;
+            public const int DamageMaxLength = 10;
+
+            public const string SmallPrimitiveWeaponName = "Small Primitive Weapon";
+            public const string SmallPrimitiveWeaponDescription = "";
+            public const string SmallPrimitiveWeaponAttribute = "Str/Dex";
+            public const string SmallPrimitiveWeaponDamage = "1d4";
+            public const string SmallPrimitiveWeaponSkill = "Stab";
+            public const int SmallPrimitiveWeaponShockPoints = 1;
+            public const int SmallPrimitiveWeaponShockAC = 15;
+            public const int SmallPrimitiveWeaponCost = 0;
+            public const int SmallPrimitiveWeaponThrowRange = 10;
+            public const int SmallPrimitiveWeaponEncumbrance = 1;
+            public const int SmallPrimitiveWeaponTL = 0;
+
+            public const string KnifeName = "Knife";
+            public const string KnifeDescription = "";
+            public const string KnifeAttribute = "Str/Dex";
+            public const string KnifeDamage = "1d4";
+            public const string KnifeSkill = "Stab";
+            public const int KnifeShockPoints = 1;
+            public const int KnifeShockAC = 15;
+            public const int KnifeCost = 0;
+            public const int KnifeThrowRange = 10;
+            public const int KnifeEncumbrance = 1;
+            public const int KnifeTL = 0;
+
+            public const string SpikedKnucklesName = "Spiked Knuckles";
+            public const string SpikedKnucklesDescription = "";
+            public const string SpikedKnucklesAttribute = "Str/Dex";
+            public const string SpikedKnucklesDamage = "1d4";
+            public const string SpikedKnucklesSkill = "Punch";
+            public const int SpikedKnucklesShockPoints = 1;
+            public const int SpikedKnucklesShockAC = 15;
+            public const int SpikedKnucklesCost = 0;
+            public const int SpikedKnucklesThrowRange = 10;
+            public const int SpikedKnucklesEncumbrance = 1;
+            public const int SpikedKnucklesTL = 0;
+
+            public const string MediumPrimitiveWeaponName = "Medium Primitive Weapon";
+            public const string MediumPrimitiveWeaponDescription = "";
+            public const string MediumPrimitiveWeaponAttribute = "Str/Dex";
+            public const string MediumPrimitiveWeaponDamage = "1d6+1";
+            public const string MediumPrimitiveWeaponSkill = "Stab";
+            public const int MediumPrimitiveWeaponShockPoints = 2;
+            public const int MediumPrimitiveWeaponShockAC = 13;
+            public const int MediumPrimitiveWeaponCost = 20;
+            public const int MediumPrimitiveWeaponThrowRange = 30;
+            public const int MediumPrimitiveWeaponEncumbrance = 1;
+            public const int MediumPrimitiveWeaponTL = 0;
+
+            public const string SpearName = "Spear";
+            public const string SpearDescription = "";
+            public const string SpearAttribute = "Str/Dex";
+            public const string SpearDamage = "1d6+1";
+            public const string SpearSkill = "Stab";
+            public const int SpearShockPoints = 2;
+            public const int SpearShockAC = 13;
+            public const int SpearCost = 20;
+            public const int SpearThrowRange = 30;
+            public const int SpearEncumbrance = 1;
+            public const int SpearTL = 0;
+
+            public const string LargePrimitiveWeaponName = "Large Primitive Weapon";
+            public const string LargePrimitiveWeaponDescription = "";
+            public const string LargePrimitiveWeaponAttribute = "Str";
+            public const string LargePrimitiveWeaponDamage = "1d8+1";
+            public const string LargePrimitiveWeaponSkill = "Stab";
+            public const int LargePrimitiveWeaponShockPoints = 2;
+            public const int LargePrimitiveWeaponShockAC = 15;
+            public const int LargePrimitiveWeaponCost = 30;
+            public const int LargePrimitiveWeaponThrowRange = 0;
+            public const int LargePrimitiveWeaponEncumbrance = 2;
+            public const int LargePrimitiveWeaponTL = 0;
+
+            public const string SmallAdvancedWeaponName = "Small Advanced Weapon";
+            public const string SmallAdvancedWeaponDescription = "";
+            public const string SmallAdvancedWeaponAttribute = "Str/Dex";
+            public const string SmallAdvancedWeaponDamage = "1d6";
+            public const string SmallAdvancedWeaponSkill = "Stab";
+            public const int SmallAdvancedWeaponShockPoints = 1;
+            public const int SmallAdvancedWeaponShockAC = 15;
+            public const int SmallAdvancedWeaponCost = 40;
+            public const int SmallAdvancedWeaponThrowRange = 10;
+            public const int SmallAdvancedWeaponEncumbrance = 1;
+            public const int SmallAdvancedWeaponTL = 4;
+
+            public const string MonobladeKnifeName = "Monoblade Knife";
+            public const string MonobladeKnifeDescription = "";
+            public const string MonobladeKnifeAttribute = "Str/Dex";
+            public const string MonobladeKnifeDamage = "1d6";
+            public const string MonobladeKnifeSkill = "Stab";
+            public const int MonobladeKnifeShockPoints = 1;
+            public const int MonobladeKnifeShockAC = 15;
+            public const int MonobladeKnifeCost = 40;
+            public const int MonobladeKnifeThrowRange = 10;
+            public const int MonobladeKnifeEncumbrance = 1;
+            public const int MonobladeKnifeTL = 4;
+
+            public const string ThermalKnifeName = "Thermal Knife";
+            public const string ThermalKnifeDescription = "";
+            public const string ThermalKnifeAttribute = "Str/Dex";
+            public const string ThermalKnifeDamage = "1d6";
+            public const string ThermalKnifeSkill = "Stab";
+            public const int ThermalKnifeShockPoints = 1;
+            public const int ThermalKnifeShockAC = 15;
+            public const int ThermalKnifeCost = 40;
+            public const int ThermalKnifeThrowRange = 10;
+            public const int ThermalKnifeEncumbrance = 1;
+            public const int ThermalKnifeTL = 4;
+
+            public const string KinesisWrapsName = "Kinesis Wraps";
+            public const string KinesisWrapsDescription = "";
+            public const string KinesisWrapsAttribute = "Str/Dex";
+            public const string KinesisWrapsDamage = "1d6";
+            public const string KinesisWrapsSkill = "Punch";
+            public const int KinesisWrapsShockPoints = 1;
+            public const int KinesisWrapsShockAC = 15;
+            public const int KinesisWrapsCost = 40;
+            public const int KinesisWrapsThrowRange = 10;
+            public const int KinesisWrapsEncumbrance = 1;
+            public const int KinesisWrapsTL = 4;
+
+            public const string MediumAdvancedWeaponName = "Medium Advanced Weapon";
+            public const string MediumAdvancedWeaponDescription = "";
+            public const string MediumAdvancedWeaponAttribute = "Str/Dex";
+            public const string MediumAdvancedWeaponDamage = "1d8+1";
+            public const string MediumAdvancedWeaponSkill = "Stab";
+            public const int MediumAdvancedWeaponShockPoints = 2;
+            public const int MediumAdvancedWeaponShockAC = 13;
+            public const int MediumAdvancedWeaponCost = 60;
+            public const int MediumAdvancedWeaponThrowRange = 30;
+            public const int MediumAdvancedWeaponEncumbrance = 1;
+            public const int MediumAdvancedWeaponTL = 4;
+
+            public const string LargeAdvancedWeaponName = "Large Advanced Weapon";
+            public const string LargeAdvancedWeaponDescription = "";
+            public const string LargeAdvancedWeaponAttribute = "Str";
+            public const string LargeAdvancedWeaponDamage = "1d10+1";
+            public const string LargeAdvancedWeaponSkill = "Stab";
+            public const int LargeAdvancedWeaponShockPoints = 2;
+            public const int LargeAdvancedWeaponShockAC = 15;
+            public const int LargeAdvancedWeaponCost = 80;
+            public const int LargeAdvancedWeaponThrowRange = 0;
+            public const int LargeAdvancedWeaponEncumbrance = 2;
+            public const int LargeAdvancedWeaponTL = 4;
+
+            public const string StunBatonName = "Stun Baton";
+            public const string StunBatonDescription = "";
+            public const string StunBatonAttribute = "Str/Dex";
+            public const string StunBatonDamage = "1d8";
+            public const string StunBatonSkill = "Stab";
+            public const int StunBatonShockPoints = 1;
+            public const int StunBatonShockAC = 15;
+            public const int StunBatonCost = 50;
+            public const int StunBatonThrowRange = 0;
+            public const int StunBatonEncumbrance = 1;
+            public const int StunBatonTL = 4;
+
+            public const string SuitRipperName = "Suit Ripper";
+            public const string SuitRipperDescription = "";
+            public const string SuitRipperAttribute = "Str/Dex";
+            public const string SuitRipperDamage = "1d6";
+            public const string SuitRipperSkill = "Stab";
+            public const int SuitRipperShockPoints = 0;
+            public const int SuitRipperShockAC = 0;
+            public const int SuitRipperCost = 75;
+            public const int SuitRipperThrowRange = 0;
+            public const int SuitRipperEncumbrance = 1;
+            public const int SuitRipperTL = 4;
+
+            public const string UnarmedAttackName = "Unarmed Attack";
+            public const string UnarmedAttackDescription = "";
+            public const string UnarmedAttackAttribute = "Str/Dex";
+            public const string UnarmedAttackDamage = "1d2";
+            public const string UnarmedAttackSkill = "Punch";
+            public const int UnarmedAttackShockPoints = 0;
+            public const int UnarmedAttackShockAC = 0;
+            public const int UnarmedAttackCost = 0;
+            public const int UnarmedAttackThrowRange = 0;
+            public const int UnarmedAttackEncumbrance = 0;
+            public const int UnarmedAttackTL = 0;
         }
+
+        public class RangedWeaponData
+        {
+            //Constants for RangedWeapon Entity
+            public const int NameMaxLength = 40;
+            public const int TypeMaxLength = 30;
+            public const int AttributeMaxLength = 10;
+            public const int MagazineMaxLength = 5;
+            public const int DamageMaxLength = 10;
+
+            //public const string PrimitiveBowName = "Primitive Bow";
+            //public const string PrimitiveBowDescription = "";
+            //public const string PrimitiveBowAttribute = "Dex";
+            //public const string PrimitiveBowDamage = "1d6";
+            //public const string PrimitiveBowAmmoType = "Projectile";
+            //public const int PrimitiveBowNormalRange = 50;
+            //public const int PrimitiveBowMaxRange = 75;
+            //public const int PrimitiveBowCost = 15;
+            //public const int PrimitiveBowMagazine = 1;
+            //public const int PrimitiveBowEncumbrance = 2;
+            //public const int PrimitiveBowTL = 1;
+            //public const bool PrimitiveBowIsHeavy = false;
+        }
+
         public class ArmorData
         {
             //Constants for Armor Entity

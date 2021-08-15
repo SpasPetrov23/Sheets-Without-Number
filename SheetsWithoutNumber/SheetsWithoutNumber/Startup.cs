@@ -13,6 +13,7 @@ namespace SheetsWithoutNumber
     using SheetsWithoutNumber.Services.Equipments;
     using SheetsWithoutNumber.Services.Focus;
     using SheetsWithoutNumber.Services.Game;
+    using SheetsWithoutNumber.Services.MeleeWeapon;
     using SheetsWithoutNumber.Services.Skill;
     using SheetsWithoutNumber.Services.User;
     using SWN.Data;
@@ -66,6 +67,7 @@ namespace SheetsWithoutNumber
             services.AddTransient<IFocusService, FocusService>();
             services.AddTransient<IEquipmentService, EquipmentService>();
             services.AddTransient<IArmorService, ArmorService>();
+            services.AddTransient<IMeleeWeaponService, MeleeWeaponService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

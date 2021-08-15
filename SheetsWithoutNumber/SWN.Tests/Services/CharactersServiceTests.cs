@@ -1,7 +1,8 @@
 ﻿namespace SWN.Tests.Services
 {
+    using AutoMapper;
+    using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Services.Character;
-    using SheetsWithoutNumber.Services.User;
     using SWN.Data.Models;
     using SWN.Tests.Mocks;
     using Xunit;
@@ -22,6 +23,19 @@
             Assert.NotNull(character);
         }
 
+        [Fact]
+        public void CreateDetailsShouldReturnACharacter()
+        {
+            //Arrange
+            var characterService = GetCharacterService();
+
+            //Act
+            var character = characterService.Details(5, "1");
+
+            //Assert
+            Assert.NotNull(character);
+        }
+
         private static ICharacterService GetCharacterService()
         {
             var data = DatabaseMock.Instance;
@@ -36,6 +50,25 @@
                 GameMasterId = "1",
                 Name = "Test Game"
             };
+
+            data.Characters.Add(new Character 
+            { 
+                Id = 5,
+                Name = "John Doe",
+                BackgroundId = 1,
+                ClassId = 1,
+                CharacterImage = "https://www.hiveworkshop.com/data/avatars///m/186/186388.jpg?1605866855",
+                Strength = 9,
+                Dexterity = 9,
+                Constitution = 9,
+                Intelligence = 9,
+                Charisma = 9,
+                Wisdom = 9,
+                Homeworld = "Terra",
+                Species = "Human",
+                OwnerId = "1",
+                GameId = 1
+            });
 
             data.Games.Add(game1);
 

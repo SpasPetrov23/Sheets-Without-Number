@@ -103,6 +103,8 @@
 
         public ICollection<CharactersArmors> CharactersArmors { get; set; }
 
+        public ICollection<CharactersMeleeWeapons> CharactersMeleeWeapons { get; set; }
+
         public int CurrentXP { get; init; }
 
         public int MinimumXP { get; set; }

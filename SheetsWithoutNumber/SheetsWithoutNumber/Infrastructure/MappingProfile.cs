@@ -6,11 +6,13 @@
     using SheetsWithoutNumber.Models.Equipments;
     using SheetsWithoutNumber.Models.Foci;
     using SheetsWithoutNumber.Models.Games;
+    using SheetsWithoutNumber.Models.MeleeWeapons;
     using SheetsWithoutNumber.Models.Skills;
     using SheetsWithoutNumber.Services.Armor;
     using SheetsWithoutNumber.Services.Equipments;
     using SheetsWithoutNumber.Services.Focus;
     using SheetsWithoutNumber.Services.Game;
+    using SheetsWithoutNumber.Services.MeleeWeapon;
     using SheetsWithoutNumber.Services.Skill;
     using SWN.Data.Models;
 
@@ -81,6 +83,15 @@
                 .ForMember(af => af.Name, cfg => cfg.MapFrom(ca => ca.ArmorName))
                 .ForMember(af => af.Location, cfg => cfg.MapFrom(ca => ca.ArmorLocation))
                 .ForMember(af => af.CharacterArmorId, cfg => cfg.MapFrom(ca => ca.Id));
+
+            this.CreateMap<MeleeWeapon, MeleeWeaponServiceListingViewModel>();
+
+            this.CreateMap<CharactersMeleeWeapons, CharacterMeleeWeaponServiceModel>();
+
+            this.CreateMap<CharacterMeleeWeaponServiceModel, MeleeWeaponFormModel>()
+                .ForMember(mwf => mwf.Name, cfg => cfg.MapFrom(cmw => cmw.MeleeWeaponName))
+                .ForMember(mwf => mwf.Location, cfg => cfg.MapFrom(cmw => cmw.MeleeWeaponLocation))
+                .ForMember(mwf => mwf.CharacterMeleeWeaponId, cfg => cfg.MapFrom(cmw => cmw.Id));
         }
     }
 }

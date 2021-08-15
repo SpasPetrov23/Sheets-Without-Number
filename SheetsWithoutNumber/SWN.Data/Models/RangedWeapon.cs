@@ -3,12 +3,11 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.ItemData;
+    using static DataConstants.RangedWeaponData;
 
     public class RangedWeapon
     {
-        [Required]
-        public string Id { get; init; } = Guid.NewGuid().ToString();
+        public int Id { get; init; }
 
         [Required]
         [MaxLength(NameMaxLength)]
@@ -23,6 +22,10 @@
         public int MaximumRange { get; set; }
 
         public int? Magazine { get; set; }
+
+        [Required]
+        [MaxLength(TypeMaxLength)]
+        public string AmmoType { get; set; }
 
         public bool IsHeavy { get; set; }
 

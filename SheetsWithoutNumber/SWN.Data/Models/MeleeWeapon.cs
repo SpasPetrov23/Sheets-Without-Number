@@ -1,14 +1,14 @@
 ﻿namespace SWN.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    using static DataConstants.ItemData;
+    using static DataConstants.MeleeWeaponData;
 
     public class MeleeWeapon
     {
-        [Required]
-        public string Id { get; init; } = Guid.NewGuid().ToString();
+        public int Id { get; init; }
 
         [Required]
         [MaxLength(NameMaxLength)]
@@ -22,6 +22,8 @@
 
         public int ShockAC { get; set; }
 
+        public int ThrowRange { get; set; }
+
         [Required]
         [MaxLength(AttributeMaxLength)]
         public string Attribute { get; set; }
@@ -33,6 +35,11 @@
         public int TechLevel { get; set; }
 
         [Required]
+        public string Skill { get; set; }
+
+        [Required]
         public string Description { get; set; }
+
+        public ICollection<CharactersMeleeWeapons> CharactersMeleeWeapons { get; init; } = new HashSet<CharactersMeleeWeapons>();
     }
 }

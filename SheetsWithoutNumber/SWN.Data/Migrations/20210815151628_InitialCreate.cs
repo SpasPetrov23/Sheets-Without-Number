@@ -147,6 +147,29 @@ namespace SWN.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MeleeWeapons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Damage = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    ShockPoints = table.Column<int>(type: "int", nullable: false),
+                    ShockAC = table.Column<int>(type: "int", nullable: false),
+                    ThrowRange = table.Column<int>(type: "int", nullable: false),
+                    Attribute = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Cost = table.Column<int>(type: "int", nullable: false),
+                    Encumbrance = table.Column<int>(type: "int", nullable: false),
+                    TechLevel = table.Column<int>(type: "int", nullable: false),
+                    Skill = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MeleeWeapons", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Skills",
                 columns: table => new
                 {
@@ -451,6 +474,44 @@ namespace SWN.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CharactersMeleeWeapons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CharacterId = table.Column<int>(type: "int", nullable: false),
+                    MeleeWeaponId = table.Column<int>(type: "int", nullable: false),
+                    MeleeWeaponName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MeleeWeaponDamage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MeleeWeaponShockPoints = table.Column<int>(type: "int", nullable: false),
+                    MeleeWeaponShockAC = table.Column<int>(type: "int", nullable: false),
+                    MeleeWeaponThrowRange = table.Column<int>(type: "int", nullable: false),
+                    MeleeWeaponAttribute = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MeleeWeaponCost = table.Column<int>(type: "int", nullable: false),
+                    MeleeWeaponEncumbrance = table.Column<int>(type: "int", nullable: false),
+                    MeleeWeaponTechLevel = table.Column<int>(type: "int", nullable: false),
+                    MeleeWeaponLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MeleeWeaponSkill = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MeleeWeaponDescription = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CharactersMeleeWeapons", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CharactersMeleeWeapons_Characters_CharacterId",
+                        column: x => x.CharacterId,
+                        principalTable: "Characters",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CharactersMeleeWeapons_MeleeWeapons_MeleeWeaponId",
+                        column: x => x.MeleeWeaponId,
+                        principalTable: "MeleeWeapons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CharactersSkills",
                 columns: table => new
                 {
@@ -565,6 +626,16 @@ namespace SWN.Data.Migrations
                 column: "FocusId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CharactersMeleeWeapons_CharacterId",
+                table: "CharactersMeleeWeapons",
+                column: "CharacterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharactersMeleeWeapons_MeleeWeaponId",
+                table: "CharactersMeleeWeapons",
+                column: "MeleeWeaponId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CharactersSkills_CharacterId",
                 table: "CharactersSkills",
                 column: "CharacterId");
@@ -607,6 +678,9 @@ namespace SWN.Data.Migrations
                 name: "CharactersFoci");
 
             migrationBuilder.DropTable(
+                name: "CharactersMeleeWeapons");
+
+            migrationBuilder.DropTable(
                 name: "CharactersSkills");
 
             migrationBuilder.DropTable(
@@ -623,6 +697,9 @@ namespace SWN.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Foci");
+
+            migrationBuilder.DropTable(
+                name: "MeleeWeapons");
 
             migrationBuilder.DropTable(
                 name: "Characters");

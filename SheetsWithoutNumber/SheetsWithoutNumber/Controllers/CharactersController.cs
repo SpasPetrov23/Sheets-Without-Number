@@ -72,6 +72,11 @@
 
             var characterDetails = characters.Details(characterId, currentUserId);
 
+            if (characterDetails == null)
+            {
+                return NotFound();
+            }
+
             return View(characterDetails);
         }
 

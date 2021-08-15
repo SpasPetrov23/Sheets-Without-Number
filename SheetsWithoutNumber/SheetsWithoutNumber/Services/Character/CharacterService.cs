@@ -17,12 +17,12 @@
     public class CharacterService : ICharacterService
     {
         private readonly SWNDbContext data;
-        private readonly IConfigurationProvider mapper;
+        private readonly IMapper mapper;
 
         public CharacterService(SWNDbContext data, IMapper mapper)
         {
             this.data = data;
-            this.mapper = mapper.ConfigurationProvider;
+            this.mapper = mapper;
         }
 
         public int Create(string name, int backgroundId, int classId, string characterImage, int strength, int constitution, int dexterity, int wisdom, int intelligence, int charisma, string homeworld, string species, string ownerId, int gameId)
@@ -64,73 +64,12 @@
             var character = data
                 .Characters
                 .Where(c => c.Id == characterId)
-                .ProjectTo<CharacterDetailsModel>(this.mapper)
+                .ProjectTo<CharacterDetailsModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefault();
 
             character.UserId = userId;
-            character.StrengthMod = this.CalculateAttributeModifier(character.Strength);
-            character.DexterityMod = this.CalculateAttributeModifier(character.Dexterity);
-            character.ConstitutionMod = this.CalculateAttributeModifier(character.Constitution);
-            character.IntelligenceMod = this.CalculateAttributeModifier(character.Intelligence);
-            character.CharismaMod = this.CalculateAttributeModifier(character.Charisma);
-            character.WisdomMod = this.CalculateAttributeModifier(character.Wisdom);
-            character.Initiative = character.DexterityMod;
-            character.MaxSystemStrain = character.Constitution;
-            character.CharactersSkills = character.CharactersSkills
-                .OrderBy(cs => cs.SkillName)
-                .ThenBy(cs => cs.IsSkillPsychic)
-                .ToList();
-            character.CharactersFoci = character.CharactersFoci
-                .OrderBy(cs => cs.FocusName)
-                .ToList();
-            character.CharactersEquipments = character.CharactersEquipments
-                .OrderBy(ce => ce.EquipmentType)
-                .ThenBy(ce => ce.EquipmentName)
-                .ToList();
-            character.CharactersArmors = character.CharactersArmors
-                .OrderBy(ca => ca.ArmorClass)
-                .ThenBy(ca => ca.ArmorName)
-                .ToList();
 
-            character.CurrentReadiedEncumbrance = this.CalculateCurrentReadiedEncumbrance(character.CharactersEquipments, character.CharactersArmors);
-            character.MaxReadiedEncumbrance = this.CalculateMaxReadiedEncumbrance(character.Strength, character.CharactersArmors);
-            character.CurrentStowedEncumbrance = this.CalculateCurrentStowedEncumbrance(character.CharactersEquipments, character.CharactersArmors);
-            character.MaxStowedEncumbrance = this.CalculateMaxStowedEncumbrance(character.Strength, character.CharactersArmors);
-            character.Encumbrance = this.CalculateEncumbrance(character.CurrentReadiedEncumbrance, character.MaxReadiedEncumbrance, character.CurrentStowedEncumbrance, character.MaxStowedEncumbrance);
-
-            character.Speed = this.CalculateSpeed(character.Encumbrance);
-
-            character.ArmorClass = this.CalculateArmorClass(character.DexterityMod, character.CharactersFoci, character.Level, character.CharactersArmors);
-
-            character.SavingThrowEvasion = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Evasion");
-            character.SavingThrowPhysical = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Physical");
-            character.SavingThrowMental = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Mental");
-
-            character.MinimumXP = this.CalculateMinimumXP(character.Level);
-            character.MaximumXP = this.CalculateMaximumXP(character.Level);
-            character.XPBarWidth = this.CalculateExperiencePercentage(character.CurrentXP, character.MinimumXP, character.MaximumXP);
-            character.AttackBonus = this.CalculateAttackBonus(character.Class, character.Level);
-
-            var highestPsychicLevel = 0;
-            if (character.CharactersSkills.Where(cs => cs.IsSkillPsychic).Any())
-            {
-                highestPsychicLevel = character.CharactersSkills
-                .Where(cs => cs.IsSkillPsychic)
-                .OrderByDescending(cs => cs.SkillLevel)
-                .FirstOrDefault().SkillLevel;
-            }
-            var hasPsychicTrainingFocus = false;
-            var wildTalentFocusLevel = 0;
-            if (character.CharactersFoci.Any())
-            {
-                hasPsychicTrainingFocus = character.CharactersFoci.Any(cf => cf.FocusName == FocusPsychicTrainingName);
-
-                if (character.CharactersFoci.Any(cf => cf.FocusName == FocusWildPsychicTalentName))
-                {
-                    wildTalentFocusLevel = character.CharactersFoci.Where(cf => cf.FocusName == FocusWildPsychicTalentName).FirstOrDefault().FocusLevel;
-                }
-            }
-            character.MaxEffort = this.CalculateMaxEffort(character.Class, character.WisdomMod, character.ConstitutionMod, highestPsychicLevel, hasPsychicTrainingFocus, wildTalentFocusLevel);
+            SetDetails(character);
 
             return character;
         }
@@ -195,7 +134,7 @@
             var characters = data
                 .Characters
                 .Where(c => c.OwnerId == userId)
-                .ProjectTo<CharacterListingModel>(this.mapper)
+                .ProjectTo<CharacterListingModel>(this.mapper.ConfigurationProvider)
                 .ToList();
 
             return characters;
@@ -204,21 +143,21 @@
         public IEnumerable<CharacterClassViewModel> GetCharacterClasses()
             => this.data
              .Classes
-             .ProjectTo<CharacterClassViewModel>(this.mapper)
+             .ProjectTo<CharacterClassViewModel>(this.mapper.ConfigurationProvider)
              .ToList();
 
         public IEnumerable<CharacterBackgroundViewModel> GetCharacterBackgrounds()
             => this.data
             .Backgrounds
             .OrderBy(b => b.Name)
-            .ProjectTo<CharacterBackgroundViewModel>(this.mapper)
+            .ProjectTo<CharacterBackgroundViewModel>(this.mapper.ConfigurationProvider)
             .ToList();
 
         public CharacterOwnerModel GetCharacterById(int characterId)
            => this.data
             .Characters
             .Where(c => c.Id == characterId)
-            //.ProjectTo<CharacterOwnerModel>(mapper) ---> Automapper disabled here because it returns null for the in-memory Database.
+            //.ProjectTo<CharacterOwnerModel>(mapper) ---> Automapper disabled here because it returns null for the in-memory Database during Testing.
             .Select(c => new CharacterOwnerModel
             {
                 Id = c.Id,
@@ -232,6 +171,77 @@
 
         public bool BackgroundExists(int backgroundId)
             => this.data.Backgrounds.Any(b => b.Id == backgroundId);
+
+        public void SetDetails(CharacterDetailsModel character)
+        {
+            character.StrengthMod = this.CalculateAttributeModifier(character.Strength);
+            character.DexterityMod = this.CalculateAttributeModifier(character.Dexterity);
+            character.ConstitutionMod = this.CalculateAttributeModifier(character.Constitution);
+            character.IntelligenceMod = this.CalculateAttributeModifier(character.Intelligence);
+            character.CharismaMod = this.CalculateAttributeModifier(character.Charisma);
+            character.WisdomMod = this.CalculateAttributeModifier(character.Wisdom);
+            character.Initiative = character.DexterityMod;
+            character.MaxSystemStrain = character.Constitution;
+            character.CharactersSkills = character.CharactersSkills
+                .OrderBy(cs => cs.SkillName)
+                .ThenBy(cs => cs.IsSkillPsychic)
+                .ToList();
+            character.CharactersFoci = character.CharactersFoci
+                .OrderBy(cs => cs.FocusName)
+                .ToList();
+            character.CharactersEquipments = character.CharactersEquipments
+                .OrderBy(ce => ce.EquipmentType)
+                .ThenBy(ce => ce.EquipmentName)
+                .ToList();
+            character.CharactersArmors = character.CharactersArmors
+                .OrderBy(ca => ca.ArmorClass)
+                .ThenBy(ca => ca.ArmorName)
+                .ToList();
+            character.CharactersMeleeWeapons = character.CharactersMeleeWeapons
+                .OrderBy(cmw => cmw.MeleeWeaponCost)
+                .ThenBy(cmw => cmw.MeleeWeaponName)
+                .ToList();
+
+            character.CurrentReadiedEncumbrance = this.CalculateCurrentReadiedEncumbrance(character.CharactersEquipments, character.CharactersArmors, character.CharactersMeleeWeapons);
+            character.MaxReadiedEncumbrance = this.CalculateMaxReadiedEncumbrance(character.Strength, character.CharactersArmors);
+            character.CurrentStowedEncumbrance = this.CalculateCurrentStowedEncumbrance(character.CharactersEquipments, character.CharactersArmors, character.CharactersMeleeWeapons);
+            character.MaxStowedEncumbrance = this.CalculateMaxStowedEncumbrance(character.Strength, character.CharactersArmors);
+            character.Encumbrance = this.CalculateEncumbrance(character.CurrentReadiedEncumbrance, character.MaxReadiedEncumbrance, character.CurrentStowedEncumbrance, character.MaxStowedEncumbrance);
+
+            character.Speed = this.CalculateSpeed(character.Encumbrance);
+
+            character.ArmorClass = this.CalculateArmorClass(character.DexterityMod, character.CharactersFoci, character.Level, character.CharactersArmors);
+
+            character.SavingThrowEvasion = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Evasion");
+            character.SavingThrowPhysical = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Physical");
+            character.SavingThrowMental = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Mental");
+
+            character.MinimumXP = this.CalculateMinimumXP(character.Level);
+            character.MaximumXP = this.CalculateMaximumXP(character.Level);
+            character.XPBarWidth = this.CalculateExperiencePercentage(character.CurrentXP, character.MinimumXP, character.MaximumXP);
+            character.AttackBonus = this.CalculateAttackBonus(character.Class, character.Level);
+
+            var highestPsychicLevel = 0;
+            if (character.CharactersSkills.Where(cs => cs.IsSkillPsychic).Any())
+            {
+                highestPsychicLevel = character.CharactersSkills
+                .Where(cs => cs.IsSkillPsychic)
+                .OrderByDescending(cs => cs.SkillLevel)
+                .FirstOrDefault().SkillLevel;
+            }
+            var hasPsychicTrainingFocus = false;
+            var wildTalentFocusLevel = 0;
+            if (character.CharactersFoci.Any())
+            {
+                hasPsychicTrainingFocus = character.CharactersFoci.Any(cf => cf.FocusName == FocusPsychicTrainingName);
+
+                if (character.CharactersFoci.Any(cf => cf.FocusName == FocusWildPsychicTalentName))
+                {
+                    wildTalentFocusLevel = character.CharactersFoci.Where(cf => cf.FocusName == FocusWildPsychicTalentName).FirstOrDefault().FocusLevel;
+                }
+            }
+            character.MaxEffort = this.CalculateMaxEffort(character.Class, character.WisdomMod, character.ConstitutionMod, highestPsychicLevel, hasPsychicTrainingFocus, wildTalentFocusLevel);
+        }
 
         public int CalculateAttackBonus(string className, int level)
         {
@@ -258,7 +268,7 @@
             return attackMod;
         }
 
-        public int CalculateCurrentReadiedEncumbrance(ICollection<CharactersEquipments> charactersEquipments, ICollection<CharactersArmors> charactersArmors)
+        public int CalculateCurrentReadiedEncumbrance(ICollection<CharactersEquipments> charactersEquipments, ICollection<CharactersArmors> charactersArmors, ICollection<CharactersMeleeWeapons> charactersMeleeWeapons)
         {
             var readiedEncumbrance = 0;
 
@@ -278,6 +288,14 @@
                 }
             }
 
+            foreach (var characterMeleeWeapon in charactersMeleeWeapons)
+            {
+                if (characterMeleeWeapon.MeleeWeaponLocation == "Readied")
+                {
+                    readiedEncumbrance += characterMeleeWeapon.MeleeWeaponEncumbrance;
+                }
+            }
+
             return readiedEncumbrance;
         }
 
@@ -293,7 +311,7 @@
             return maxReadiedEncumbrance;
         }
 
-        public int CalculateCurrentStowedEncumbrance(ICollection<CharactersEquipments> characterEquipments, ICollection<CharactersArmors> charactersArmors)
+        public int CalculateCurrentStowedEncumbrance(ICollection<CharactersEquipments> characterEquipments, ICollection<CharactersArmors> charactersArmors, ICollection<CharactersMeleeWeapons> charactersMeleeWeapons)
         {
             var stowedEncumbrance = 0;
 
@@ -310,6 +328,14 @@
                 if (characterArmor.ArmorLocation == "Stowed" || characterArmor.ArmorLocation == "Backpack")
                 {
                     stowedEncumbrance += characterArmor.ArmorEncumbrance;
+                }
+            }
+
+            foreach (var characterMeleeWeapon in charactersMeleeWeapons)
+            {
+                if (characterMeleeWeapon.MeleeWeaponLocation == "Stowed" || characterMeleeWeapon.MeleeWeaponLocation == "Backpack")
+                {
+                    stowedEncumbrance += characterMeleeWeapon.MeleeWeaponEncumbrance;
                 }
             }
 
