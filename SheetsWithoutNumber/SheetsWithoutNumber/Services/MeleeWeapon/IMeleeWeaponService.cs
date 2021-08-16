@@ -15,5 +15,7 @@
         public bool MeleeWeaponExists(int meleeWeaponId);
 
         public CharacterMeleeWeaponServiceModel GetCharacterMeleeWeaponById(int characterMeleeWeaponId);
+
+        public MeleeWeaponServiceListingViewModel GetMeleeWeaponById(int meleeWeaponId);
     }
 }

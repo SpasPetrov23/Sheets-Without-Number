@@ -19,6 +19,8 @@ namespace SheetsWithoutNumber.Services.RangedWeapon
 
         public CharacterRangedWeaponServiceModel GetCharacterRangedWeaponById(int characterRangedWeaponId);
 
+        public RangedWeaponServiceListingViewModel GetRangedWeaponById(int rangedWeaponId);
+
         public bool IsAmmoValid(int ammo, int rangedWeaponId);
 
     }

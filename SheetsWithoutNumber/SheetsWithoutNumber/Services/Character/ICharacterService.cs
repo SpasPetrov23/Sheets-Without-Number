@@ -24,5 +24,15 @@
         public bool ClassExists(int classId);
 
         public bool BackgroundExists(int backgroundId);
+
+        public int CalculateAttackBonus(string className, int level);
+
+        public int CalculateSpeed(string encumbrance);
+
+        public string CalculateEncumbrance(int currentReadiedEncumbrance, int maxReadiedEncumbrance, int currentStowedEncumbrance, int maxStowedEncumbrance);
+
+        public int CalculateSavingThrow(int level, int strengthMod, int constitutionMod, int dexterityMod, int wisdomMod, int charismaMod, int intelligenceMod, string savingThrowType);
+
+        public int CalculateLevel(int currentXP);
     }
 }

@@ -162,7 +162,7 @@
             {
                 Id = c.Id,
                 Level = c.Level,
-                OwnerId = c.OwnerId
+                OwnerId = c.OwnerId,
             })
             .FirstOrDefault();
 
@@ -261,21 +261,21 @@
         {
             var attackMod = className switch
             {
-                ClassData.WarriorClassName => level,
-                ClassData.ExpertWarriorClassName => level / 2,
-                ClassData.PsychicWarriorClassName => level / 2,
+                WarriorClassName => level,
+                ExpertWarriorClassName => level / 2,
+                PsychicWarriorClassName => level / 2,
                 _ => level / 2
             };
 
-            if (className == ClassData.ExpertWarriorClassName || className == ClassData.PsychicWarriorClassName)
+            if (className == ExpertWarriorClassName || className == PsychicWarriorClassName)
             {
                 if (level >= 5)
                 {
-                    attackMod += 1;
+                    attackMod += 2;
                 }
                 else
                 {
-                    attackMod += 2;
+                    attackMod += 1;
                 }
             }
 

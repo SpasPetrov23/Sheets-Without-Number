@@ -63,7 +63,16 @@
             var game = data
                 .Games
                 .Where(g => g.Id == gameId)
-                .ProjectTo<GameDetailsModel>(this.mapper)
+                //.ProjectTo<GameDetailsModel>(this.mapper)--->Automapper disabled here because it returns null for the in-memory Database during Testing.
+                .Select(g => new GameDetailsModel
+                {
+                    Id = g.Id,
+                    Name = g.Name,
+                    Description = g.Description,
+                    GameImage = g.GameImage,
+                    PlayersMax = g.PlayersMax,
+                    GameMasterId = g.GameMasterId
+                })
                 .FirstOrDefault();
 
             return game;

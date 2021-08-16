@@ -22,6 +22,19 @@
         }
 
         [Fact]
+        public void DetailsShouldReturnInfoForCorrectGame()
+        {
+            //Arrange
+            var gameService = GetGameService();
+
+            //Act
+            var game = gameService.Details(1);
+
+            //Assert
+            Assert.Equal(1, game.Id);
+        }
+
+        [Fact]
         public void EditShouldReturnTrueForEditedEntity()
         {
             //Arrange
