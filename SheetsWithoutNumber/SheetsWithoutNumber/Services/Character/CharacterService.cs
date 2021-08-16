@@ -201,16 +201,31 @@
                 .OrderBy(cmw => cmw.MeleeWeaponCost)
                 .ThenBy(cmw => cmw.MeleeWeaponName)
                 .ToList();
+            character.CharactersRangedWeapons = character.CharactersRangedWeapons
+                .OrderBy(crw => crw.RangedWeaponIsHeavy)
+                .ThenByDescending(crw => crw.RangedWeaponAmmoType)
+                .ThenBy(crw => crw.RangedWeaponCost)
+                .ToList();
 
-            character.CurrentReadiedEncumbrance = this.CalculateCurrentReadiedEncumbrance(character.CharactersEquipments, character.CharactersArmors, character.CharactersMeleeWeapons);
+            character.CurrentReadiedEncumbrance = this.CalculateCurrentReadiedEncumbrance(
+                character.CharactersEquipments, 
+                character.CharactersArmors, 
+                character.CharactersMeleeWeapons, 
+                character.CharactersRangedWeapons);
             character.MaxReadiedEncumbrance = this.CalculateMaxReadiedEncumbrance(character.Strength, character.CharactersArmors);
-            character.CurrentStowedEncumbrance = this.CalculateCurrentStowedEncumbrance(character.CharactersEquipments, character.CharactersArmors, character.CharactersMeleeWeapons);
+
+            character.CurrentStowedEncumbrance = this.CalculateCurrentStowedEncumbrance(
+                character.CharactersEquipments,
+                character.CharactersArmors,
+                character.CharactersMeleeWeapons,
+                character.CharactersRangedWeapons);
             character.MaxStowedEncumbrance = this.CalculateMaxStowedEncumbrance(character.Strength, character.CharactersArmors);
+
             character.Encumbrance = this.CalculateEncumbrance(character.CurrentReadiedEncumbrance, character.MaxReadiedEncumbrance, character.CurrentStowedEncumbrance, character.MaxStowedEncumbrance);
 
             character.Speed = this.CalculateSpeed(character.Encumbrance);
-
             character.ArmorClass = this.CalculateArmorClass(character.DexterityMod, character.CharactersFoci, character.Level, character.CharactersArmors);
+            character.AttackBonus = this.CalculateAttackBonus(character.Class, character.Level);
 
             character.SavingThrowEvasion = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Evasion");
             character.SavingThrowPhysical = this.CalculateSavingThrow(character.Level, character.StrengthMod, character.ConstitutionMod, character.DexterityMod, character.WisdomMod, character.CharismaMod, character.IntelligenceMod, "Physical");
@@ -219,7 +234,6 @@
             character.MinimumXP = this.CalculateMinimumXP(character.Level);
             character.MaximumXP = this.CalculateMaximumXP(character.Level);
             character.XPBarWidth = this.CalculateExperiencePercentage(character.CurrentXP, character.MinimumXP, character.MaximumXP);
-            character.AttackBonus = this.CalculateAttackBonus(character.Class, character.Level);
 
             var highestPsychicLevel = 0;
             if (character.CharactersSkills.Where(cs => cs.IsSkillPsychic).Any())
@@ -268,7 +282,11 @@
             return attackMod;
         }
 
-        public int CalculateCurrentReadiedEncumbrance(ICollection<CharactersEquipments> charactersEquipments, ICollection<CharactersArmors> charactersArmors, ICollection<CharactersMeleeWeapons> charactersMeleeWeapons)
+        public int CalculateCurrentReadiedEncumbrance(
+            ICollection<CharactersEquipments> charactersEquipments, 
+            ICollection<CharactersArmors> charactersArmors, 
+            ICollection<CharactersMeleeWeapons> charactersMeleeWeapons, 
+            ICollection<CharactersRangedWeapons> characterRangedWeapons)
         {
             var readiedEncumbrance = 0;
 
@@ -296,6 +314,14 @@
                 }
             }
 
+            foreach (var characterRangedWeapon in characterRangedWeapons)
+            {
+                if (characterRangedWeapon.RangedWeaponLocation == "Readied")
+                {
+                    readiedEncumbrance += characterRangedWeapon.RangedWeaponEncumbrance;
+                }
+            }
+
             return readiedEncumbrance;
         }
 
@@ -311,7 +337,11 @@
             return maxReadiedEncumbrance;
         }
 
-        public int CalculateCurrentStowedEncumbrance(ICollection<CharactersEquipments> characterEquipments, ICollection<CharactersArmors> charactersArmors, ICollection<CharactersMeleeWeapons> charactersMeleeWeapons)
+        public int CalculateCurrentStowedEncumbrance(
+            ICollection<CharactersEquipments> characterEquipments,
+            ICollection<CharactersArmors> charactersArmors,
+            ICollection<CharactersMeleeWeapons> charactersMeleeWeapons,
+            ICollection<CharactersRangedWeapons> charactersRangedWeapons)
         {
             var stowedEncumbrance = 0;
 
@@ -336,6 +366,14 @@
                 if (characterMeleeWeapon.MeleeWeaponLocation == "Stowed" || characterMeleeWeapon.MeleeWeaponLocation == "Backpack")
                 {
                     stowedEncumbrance += characterMeleeWeapon.MeleeWeaponEncumbrance;
+                }
+            }
+
+            foreach (var characterRangedWeapon in charactersRangedWeapons)
+            {
+                if (characterRangedWeapon.RangedWeaponLocation == "Stowed" || characterRangedWeapon.RangedWeaponLocation == "Backpack")
+                {
+                    stowedEncumbrance += characterRangedWeapon.RangedWeaponEncumbrance;
                 }
             }
 

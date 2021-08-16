@@ -7,12 +7,14 @@
     using SheetsWithoutNumber.Models.Foci;
     using SheetsWithoutNumber.Models.Games;
     using SheetsWithoutNumber.Models.MeleeWeapons;
+    using SheetsWithoutNumber.Models.RangedWeapons;
     using SheetsWithoutNumber.Models.Skills;
     using SheetsWithoutNumber.Services.Armor;
     using SheetsWithoutNumber.Services.Equipments;
     using SheetsWithoutNumber.Services.Focus;
     using SheetsWithoutNumber.Services.Game;
     using SheetsWithoutNumber.Services.MeleeWeapon;
+    using SheetsWithoutNumber.Services.RangedWeapon;
     using SheetsWithoutNumber.Services.Skill;
     using SWN.Data.Models;
 
@@ -92,6 +94,16 @@
                 .ForMember(mwf => mwf.Name, cfg => cfg.MapFrom(cmw => cmw.MeleeWeaponName))
                 .ForMember(mwf => mwf.Location, cfg => cfg.MapFrom(cmw => cmw.MeleeWeaponLocation))
                 .ForMember(mwf => mwf.CharacterMeleeWeaponId, cfg => cfg.MapFrom(cmw => cmw.Id));
+
+            this.CreateMap<RangedWeapon, RangedWeaponServiceListingViewModel>();
+
+            this.CreateMap<CharactersRangedWeapons, CharacterRangedWeaponServiceModel>();
+
+            this.CreateMap<CharacterRangedWeaponServiceModel, RangedWeaponFormModel>()
+                .ForMember(rwf => rwf.Name, cfg => cfg.MapFrom(crw => crw.RangedWeaponName))
+                .ForMember(rwf => rwf.Location, cfg => cfg.MapFrom(crw => crw.RangedWeaponLocation))
+                .ForMember(rwf => rwf.Ammo, cfg => cfg.MapFrom(crw => crw.RangedWeaponAmmo))
+                .ForMember(rwf => rwf.CharacterRangedWeaponId, cfg => cfg.MapFrom(crw => crw.Id));
         }
     }
 }

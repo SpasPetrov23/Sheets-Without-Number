@@ -170,6 +170,30 @@ namespace SWN.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RangedWeapons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    Damage = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    NormalRange = table.Column<int>(type: "int", nullable: false),
+                    MaximumRange = table.Column<int>(type: "int", nullable: false),
+                    Magazine = table.Column<int>(type: "int", nullable: false),
+                    AmmoType = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    IsHeavy = table.Column<bool>(type: "bit", nullable: false),
+                    Attribute = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Cost = table.Column<int>(type: "int", nullable: false),
+                    Encumbrance = table.Column<int>(type: "int", nullable: false),
+                    TechLevel = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RangedWeapons", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Skills",
                 columns: table => new
                 {
@@ -512,6 +536,46 @@ namespace SWN.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CharactersRangedWeapons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CharacterId = table.Column<int>(type: "int", nullable: false),
+                    RangedWeaponId = table.Column<int>(type: "int", nullable: false),
+                    RangedWeaponName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RangedWeaponDamage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RangedWeaponMagazine = table.Column<int>(type: "int", nullable: false),
+                    RangedWeaponAmmo = table.Column<int>(type: "int", nullable: false),
+                    RangedWeaponNormalRange = table.Column<int>(type: "int", nullable: false),
+                    RangedWeaponMaximumRange = table.Column<int>(type: "int", nullable: false),
+                    RangedWeaponAttribute = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RangedWeaponCost = table.Column<int>(type: "int", nullable: false),
+                    RangedWeaponEncumbrance = table.Column<int>(type: "int", nullable: false),
+                    RangedWeaponTechLevel = table.Column<int>(type: "int", nullable: false),
+                    RangedWeaponLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RangedWeaponAmmoType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RangedWeaponDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RangedWeaponIsHeavy = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CharactersRangedWeapons", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CharactersRangedWeapons_Characters_CharacterId",
+                        column: x => x.CharacterId,
+                        principalTable: "Characters",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_CharactersRangedWeapons_RangedWeapons_RangedWeaponId",
+                        column: x => x.RangedWeaponId,
+                        principalTable: "RangedWeapons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CharactersSkills",
                 columns: table => new
                 {
@@ -636,6 +700,16 @@ namespace SWN.Data.Migrations
                 column: "MeleeWeaponId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CharactersRangedWeapons_CharacterId",
+                table: "CharactersRangedWeapons",
+                column: "CharacterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CharactersRangedWeapons_RangedWeaponId",
+                table: "CharactersRangedWeapons",
+                column: "RangedWeaponId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CharactersSkills_CharacterId",
                 table: "CharactersSkills",
                 column: "CharacterId");
@@ -681,6 +755,9 @@ namespace SWN.Data.Migrations
                 name: "CharactersMeleeWeapons");
 
             migrationBuilder.DropTable(
+                name: "CharactersRangedWeapons");
+
+            migrationBuilder.DropTable(
                 name: "CharactersSkills");
 
             migrationBuilder.DropTable(
@@ -700,6 +777,9 @@ namespace SWN.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "MeleeWeapons");
+
+            migrationBuilder.DropTable(
+                name: "RangedWeapons");
 
             migrationBuilder.DropTable(
                 name: "Characters");

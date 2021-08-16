@@ -6,6 +6,6 @@
 
         public string Name { get; init; }
 
-        public string Cost { get; init; }
+        public int Cost { get; init; }
     }
 }

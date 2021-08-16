@@ -13,7 +13,5 @@
         public int SkillLevel { get; set; }
 
         public bool IsSkillPsychic { get; set; }
-
-        public string SkillDescription { get; init; }
     }
 }

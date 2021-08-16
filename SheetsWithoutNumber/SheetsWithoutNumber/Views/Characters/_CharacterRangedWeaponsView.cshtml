@@ -1,0 +1,63 @@
+﻿@model CharacterDetailsModel
+
+    <div class="table-sm table-responsive" style="margin-top:20px">
+        <table class="table table-hover table-bordered">
+            <tbody>
+                <tr class="text-center" style="background-color: lightblue">
+                    <td class="col-3"><b>Ranged Weapon</b></td>
+                    <td><b>Enc.</b></td>
+                    <td class="col-1"><b>Attribute</b></td>
+                    <td class="col-2"><b>Range (m)</b></td>
+                    <td class="col-1"><b>Damage</b></td>
+                    <td class="col-2"><b>Ammo</b></td>
+                    <td><b>TL</b></td>
+                    <td><b>Location</b></td>
+                </tr>
+                @if (Model.CharactersRangedWeapons.Any(crw => crw.CharacterId == Model.Id))
+                {
+                @foreach (var characterRangedWeapon in @Model.CharactersRangedWeapons.Where(ca => ca.CharacterId == Model.Id))
+                {
+                <tr class="text-center">
+                    <td>
+                        <a asp-controller="RangedWeapons" asp-action="Edit" asp-route-characterRangedWeaponId="@characterRangedWeapon.Id" class="text-decoration-none">
+                            @characterRangedWeapon.RangedWeaponName
+                        </a>
+                    </td>
+                    <td>@characterRangedWeapon.RangedWeaponEncumbrance</td>
+                    <td>@characterRangedWeapon.RangedWeaponAttribute</td>
+                    <td>@characterRangedWeapon.RangedWeaponNormalRange / @characterRangedWeapon.RangedWeaponMaximumRange</td>
+                    <td>@characterRangedWeapon.RangedWeaponDamage</td>
+                    <td>@characterRangedWeapon.RangedWeaponAmmo / @characterRangedWeapon.RangedWeaponMagazine</td>
+                    <td>@characterRangedWeapon.RangedWeaponTechLevel</td>
+                    <td>@characterRangedWeapon.RangedWeaponLocation</td>
+                </tr>
+                }
+                }
+                else
+                {
+                <tr class="text-center">
+                    <td>No equipped Ranged Weapon</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="1">
+                        <a asp-controller="RangedWeapons" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
+                            <div class="text-center">
+                                <input type="button" style="font-size: 0.85rem; padding-top:0.25rem" class="btn @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Add" />
+                            </div>
+                        </a>
+                    </td>
+                    <td colspan="7"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>

@@ -1,0 +1,45 @@
+﻿@model RangedWeaponFormModel
+
+<div class="row">
+    <div class="col-12">
+        <form method="post">
+            <div class="form-group col-8 offset-2">
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label asp-for="RangedWeaponId">Name</label>
+                        <select asp-for="RangedWeaponId" class="form-control">
+                            @foreach (var rangedWeapon in Model.RangedWeapons)
+                            {
+                <option value="@rangedWeapon.Id">@rangedWeapon.Name</option>}
+                        </select>
+                        <span asp-validation-for="RangedWeaponId" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group col-2">
+                        <label asp-for="Ammo"></label>
+                        <input asp-for="Ammo" class="form-control" />
+                        <span asp-validation-for="Ammo" class="small text-danger"></span>
+                    </div>
+                    <div class="form-group col-2">
+                        <label asp-for="Location">Location</label>
+                        <select asp-for="Location" class="form-control">
+                            <option>Readied</option>
+                            <option>Stowed</option>
+                            <option>Backpack</option>
+                            <option>Ship</option>
+                            <option>Deployed</option>
+                        </select>
+                        <span asp-validation-for="Location" class="small text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 text-center">
+                <input class="btn btn-primary" style="width: 120px" type="submit" value="Save" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -11,7 +11,5 @@
         public string FocusName { get; init; }
 
         public int FocusLevel { get; set; }
-
-        public string FocusDescription { get; init; }
     }
 }

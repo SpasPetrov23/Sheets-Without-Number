@@ -8,7 +8,7 @@
     {
         public string Name { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Count cannot be 0.")]
+        [Range(1, int.MaxValue, ErrorMessage = "Count cannot be 0 or lower.")]
         public int Count { get; set; }
 
         [Required]

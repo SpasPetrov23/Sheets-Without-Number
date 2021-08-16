@@ -1,6 +1,7 @@
 ﻿namespace SWN.Data.Models
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     using static DataConstants.RangedWeaponData;
@@ -21,7 +22,7 @@
 
         public int MaximumRange { get; set; }
 
-        public int? Magazine { get; set; }
+        public int Magazine { get; set; }
 
         [Required]
         [MaxLength(TypeMaxLength)]
@@ -41,5 +42,7 @@
 
         [Required]
         public string Description { get; set; }
+
+        public ICollection<CharactersRangedWeapons> CharactersRangedWeapons { get; init; } = new HashSet<CharactersRangedWeapons>();
     }
 }

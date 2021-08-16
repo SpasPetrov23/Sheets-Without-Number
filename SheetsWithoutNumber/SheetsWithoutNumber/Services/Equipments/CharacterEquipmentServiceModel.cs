@@ -13,7 +13,5 @@
         public int EquipmentCount { get; set; }
 
         public string EquipmentLocation { get; set; }
-
-        public string EquipmentDescription { get; init; }
     }
 }

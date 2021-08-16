@@ -544,6 +544,76 @@ namespace SWN.Data.Migrations
                     b.ToTable("CharactersMeleeWeapons");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.CharactersRangedWeapons", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RangedWeaponAmmo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RangedWeaponAmmoType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RangedWeaponAttribute")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RangedWeaponCost")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RangedWeaponDamage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RangedWeaponDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RangedWeaponEncumbrance")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RangedWeaponId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("RangedWeaponIsHeavy")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("RangedWeaponLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RangedWeaponMagazine")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RangedWeaponMaximumRange")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RangedWeaponName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RangedWeaponNormalRange")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RangedWeaponTechLevel")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("RangedWeaponId");
+
+                    b.ToTable("CharactersRangedWeapons");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.CharactersSkills", b =>
                 {
                     b.Property<int>("Id")
@@ -751,6 +821,63 @@ namespace SWN.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("MeleeWeapons");
+                });
+
+            modelBuilder.Entity("SWN.Data.Models.RangedWeapon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AmmoType")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("Attribute")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<int>("Cost")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Damage")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Encumbrance")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsHeavy")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Magazine")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaximumRange")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
+                    b.Property<int>("NormalRange")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TechLevel")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RangedWeapons");
                 });
 
             modelBuilder.Entity("SWN.Data.Models.Skill", b =>
@@ -1013,6 +1140,25 @@ namespace SWN.Data.Migrations
                     b.Navigation("MeleeWeapon");
                 });
 
+            modelBuilder.Entity("SWN.Data.Models.CharactersRangedWeapons", b =>
+                {
+                    b.HasOne("SWN.Data.Models.Character", "Character")
+                        .WithMany("CharactersRangedWeapons")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SWN.Data.Models.RangedWeapon", "RangedWeapon")
+                        .WithMany("CharactersRangedWeapons")
+                        .HasForeignKey("RangedWeaponId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("RangedWeapon");
+                });
+
             modelBuilder.Entity("SWN.Data.Models.CharactersSkills", b =>
                 {
                     b.HasOne("SWN.Data.Models.Character", "Character")
@@ -1052,6 +1198,8 @@ namespace SWN.Data.Migrations
 
                     b.Navigation("CharactersMeleeWeapons");
 
+                    b.Navigation("CharactersRangedWeapons");
+
                     b.Navigation("CharactersSkills");
                 });
 
@@ -1078,6 +1226,11 @@ namespace SWN.Data.Migrations
             modelBuilder.Entity("SWN.Data.Models.MeleeWeapon", b =>
                 {
                     b.Navigation("CharactersMeleeWeapons");
+                });
+
+            modelBuilder.Entity("SWN.Data.Models.RangedWeapon", b =>
+                {
+                    b.Navigation("CharactersRangedWeapons");
                 });
 
             modelBuilder.Entity("SWN.Data.Models.Skill", b =>

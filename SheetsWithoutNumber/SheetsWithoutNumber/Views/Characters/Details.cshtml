@@ -89,109 +89,14 @@
 </div>
 
 <div class="d-flex" style="margin-top:20px">
-    <div class="col-7">
-        <div class="table-sm table-responsive">
-            <table class="table table-hover table-bordered">
-                <tbody>
-                    <tr class="text-center" style="background-color: lightblue">
-                        <td><b>Armor</b></td>
-                        <td class="col-1"><b>AC</b></td>
-                        <td class="col-1"><b>Enc.</b></td>
-                        <td class="col-1"><b>TL</b></td>
-                        <td class="col-2"><b>Location</b></td>
-                    </tr>
-                    @if (Model.CharactersArmors.Any(ca => ca.CharacterId == Model.Id))
-                    {
-                        @foreach (var characterArmor in @Model.CharactersArmors.Where(ca => ca.CharacterId == Model.Id))
-                        {
-                            <tr class="text-center">
-                                <td>
-                                    <a asp-controller="Armors" asp-action="Edit" asp-route-characterArmorId="@characterArmor.Id" class="text-decoration-none">
-                                        @characterArmor.ArmorName
-                                    </a>
-                                </td>
-                                <td>@characterArmor.ArmorClass</td>
-                                <td>@characterArmor.ArmorEncumbrance</td>
-                                <td>@characterArmor.ArmorTechLevel</td>
-                                <td>@characterArmor.ArmorLocation</td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr class="text-center">
-                            <td>No equipped Armor</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <a asp-controller="Armors" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
-            <div class="text-center">
-                <input type="button" class="btn btn-block @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Add" />
-            </div>
-        </a>
+    <div class="col-8">
+        <partial name="_CharacterArmorView" model="@Model" />
 
-        <div class="table-sm table-responsive" style="margin-top:20px">
-            <table class="table table-hover table-bordered">
-                <tbody>
-                    <tr class="text-center" style="background-color: lightblue">
-                        <td class="col-3"><b>Melee Weapon</b></td>
-                        <td class="col-1"><b>Enc.</b></td>
-                        <td class="col-1"><b>Attribute</b></td>
-                        <td class="col-1"><b>Throw</b></td>
-                        <td class="col-1"><b>Damage</b></td>
-                        <td class="col-2"><b>Shock</b></td>
-                        <td class="col-1"><b>TL</b></td>
-                        <td class="col-2"><b>Location</b></td>
-                    </tr>
-                    @if (Model.CharactersMeleeWeapons.Any(cmw => cmw.CharacterId == Model.Id))
-                    {
-                        @foreach (var characterMeleeWeapon in @Model.CharactersMeleeWeapons.Where(ca => ca.CharacterId == Model.Id))
-                        {
-                            <tr class="text-center">
-                                <td>
-                                    <a asp-controller="MeleeWeapons" asp-action="Edit" asp-route-characterMeleeWeaponId="@characterMeleeWeapon.Id" class="text-decoration-none">
-                                        @characterMeleeWeapon.MeleeWeaponName
-                                    </a>
-                                </td>
-                                <td>@characterMeleeWeapon.MeleeWeaponEncumbrance</td>
-                                <td>@characterMeleeWeapon.MeleeWeaponAttribute</td>
-                                <td>@characterMeleeWeapon.MeleeWeaponThrowRange@Html.Raw("m")</td>
-                                <td>@characterMeleeWeapon.MeleeWeaponDamage</td>
-                                <td>@characterMeleeWeapon.MeleeWeaponShockPoints / @characterMeleeWeapon.MeleeWeaponShockAC AC</td>
-                                <td>@characterMeleeWeapon.MeleeWeaponTechLevel</td>
-                                <td>@characterMeleeWeapon.MeleeWeaponLocation</td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr class="text-center">
-                            <td>No equipped Melee Weapon</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                            <td>N/A</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <a asp-controller="MeleeWeapons" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
-            <div class="text-center">
-                <input type="button" class="btn btn-block @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Add" />
-            </div>
-        </a>
+        <partial name="_CharacterMeleeWeaponsView" model="@Model" />
+
+        <partial name="_CharacterRangedWeaponsView" model="@Model" />
     </div>
-    <div class="col-5">
+    <div class="col-4">
         <partial name="_CharacterEquipmentView" model="@Model" />
         <div class="card" style="height: 120px; margin-bottom: 20px; margin-top: 20px">
         </div>

@@ -18,7 +18,7 @@
 
         public DbSet<Game> Games { get; init; }
 
-        public DbSet<Character> Characters { get; set; }
+        public DbSet<Character> Characters { get; init; }
 
         public DbSet<Skill> Skills { get; init; }
 
@@ -27,6 +27,8 @@
         public DbSet<Armor> Armors { get; init; }
 
         public DbSet<MeleeWeapon> MeleeWeapons { get; init; }
+
+        public DbSet<RangedWeapon> RangedWeapons { get; init; }
 
         public DbSet<CharactersSkills> CharactersSkills { get; init; }
 
@@ -37,6 +39,8 @@
         public DbSet<CharactersArmors> CharactersArmors { get; init; }
 
         public DbSet<CharactersMeleeWeapons> CharactersMeleeWeapons { get; init; }
+
+        public DbSet<CharactersRangedWeapons> CharactersRangedWeapons { get; init; }
 
         public DbSet<Class> Classes { get; init; }
 
@@ -132,6 +136,18 @@
                 .HasOne<MeleeWeapon>(cmw => cmw.MeleeWeapon)
                 .WithMany(mw => mw.CharactersMeleeWeapons)
                 .HasForeignKey(cmw => cmw.MeleeWeaponId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CharactersRangedWeapons>()
+                .HasOne<Character>(crw => crw.Character)
+                .WithMany(c => c.CharactersRangedWeapons)
+                .HasForeignKey(crw => crw.CharacterId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<CharactersRangedWeapons>()
+                .HasOne<RangedWeapon>(crw => crw.RangedWeapon)
+                .WithMany(mw => mw.CharactersRangedWeapons)
+                .HasForeignKey(crw => crw.RangedWeaponId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);

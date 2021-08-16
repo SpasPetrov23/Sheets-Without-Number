@@ -11,7 +11,5 @@
         public string MeleeWeaponName { get; init; }
 
         public string MeleeWeaponLocation { get; set; }
-
-        public string MeleeWeaponDescription { get; init; }
     }
 }

@@ -18,6 +18,7 @@
     using static SWN.Data.DataConstants.EquipmentData;
     using static SWN.Data.DataConstants.ArmorData;
     using static SWN.Data.DataConstants.MeleeWeaponData;
+    using static SWN.Data.DataConstants.RangedWeaponData;
 
     public static class ApplicationBuilderExtensions
     {
@@ -36,6 +37,7 @@
             SeedEquipment(services);
             SeedArmor(services);
             SeedMeleeWeapons(services);
+            SeedRangedWeapons(services);
 
             return app;
         }
@@ -45,7 +47,7 @@
 
             var data = services.GetRequiredService<SWNDbContext>();
 
-            //data.Database.EnsureDeleted();
+            data.Database.EnsureDeleted();
             data.Database.Migrate();
         }
 
@@ -1728,6 +1730,517 @@
                 }
             });
         
+            data.SaveChanges();
+        }
+
+        private static void SeedRangedWeapons(IServiceProvider services)
+        {
+            var data = services.GetRequiredService<SWNDbContext>();
+
+            if (data.RangedWeapons.Any())
+            {
+                return;
+            }
+
+            data.RangedWeapons.AddRange(new[]
+            {
+                new RangedWeapon
+                {
+                    Name = PrimitiveBowName,
+                    Description = PrimitiveBowDescription,
+                    AmmoType = PrimitiveBowAmmoType,
+                    Damage = PrimitiveBowDamage,
+                    NormalRange = PrimitiveBowNormalRange,
+                    MaximumRange = PrimitiveBowMaxRange,
+                    Cost = PrimitiveBowCost,
+                    Magazine = PrimitiveBowMagazine,
+                    Attribute = PrimitiveBowAttribute,
+                    Encumbrance = PrimitiveBowEncumbrance,
+                    TechLevel = PrimitiveBowTL,
+                    IsHeavy = PrimitiveBowIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = AdvancedBowName,
+                    Description = AdvancedBowDescription,
+                    AmmoType = AdvancedBowAmmoType,
+                    Damage = AdvancedBowDamage,
+                    NormalRange = AdvancedBowNormalRange,
+                    MaximumRange = AdvancedBowMaxRange,
+                    Cost = AdvancedBowCost,
+                    Magazine = AdvancedBowMagazine,
+                    Attribute = AdvancedBowAttribute,
+                    Encumbrance = AdvancedBowEncumbrance,
+                    TechLevel = AdvancedBowTL,
+                    IsHeavy = AdvancedBowIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = ConversionBowName,
+                    Description = ConversionBowDescription,
+                    AmmoType = ConversionBowAmmoType,
+                    Damage = ConversionBowDamage,
+                    NormalRange = ConversionBowNormalRange,
+                    MaximumRange = ConversionBowMaxRange,
+                    Cost = ConversionBowCost,
+                    Magazine = ConversionBowMagazine,
+                    Attribute = ConversionBowAttribute,
+                    Encumbrance = ConversionBowEncumbrance,
+                    TechLevel = ConversionBowTL,
+                    IsHeavy = ConversionBowIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = GrenadeName,
+                    Description = GrenadeDescription,
+                    AmmoType = GrenadeAmmoType,
+                    Damage = GrenadeDamage,
+                    NormalRange = GrenadeNormalRange,
+                    MaximumRange = GrenadeMaxRange,
+                    Cost = GrenadeCost,
+                    Magazine = GrenadeMagazine,
+                    Attribute = GrenadeAttribute,
+                    Encumbrance = GrenadeEncumbrance,
+                    TechLevel = GrenadeTL,
+                    IsHeavy = GrenadeIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = CrudePistolName,
+                    Description = CrudePistolDescription,
+                    AmmoType = CrudePistolAmmoType,
+                    Damage = CrudePistolDamage,
+                    NormalRange = CrudePistolNormalRange,
+                    MaximumRange = CrudePistolMaxRange,
+                    Cost = CrudePistolCost,
+                    Magazine = CrudePistolMagazine,
+                    Attribute = CrudePistolAttribute,
+                    Encumbrance = CrudePistolEncumbrance,
+                    TechLevel = CrudePistolTL,
+                    IsHeavy = CrudePistolIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = MusketName,
+                    Description = MusketDescription,
+                    AmmoType = MusketAmmoType,
+                    Damage = MusketDamage,
+                    NormalRange = MusketNormalRange,
+                    MaximumRange = MusketMaxRange,
+                    Cost = MusketCost,
+                    Magazine = MusketMagazine,
+                    Attribute = MusketAttribute,
+                    Encumbrance = MusketEncumbrance,
+                    TechLevel = MusketTL,
+                    IsHeavy = MusketIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = RevolverName,
+                    Description = RevolverDescription,
+                    AmmoType = RevolverAmmoType,
+                    Damage = RevolverDamage,
+                    NormalRange = RevolverNormalRange,
+                    MaximumRange = RevolverMaxRange,
+                    Cost = RevolverCost,
+                    Magazine = RevolverMagazine,
+                    Attribute = RevolverAttribute,
+                    Encumbrance = RevolverEncumbrance,
+                    TechLevel = RevolverTL,
+                    IsHeavy = RevolverIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = RifleName,
+                    Description = RifleDescription,
+                    AmmoType = RifleAmmoType,
+                    Damage = RifleDamage,
+                    NormalRange = RifleNormalRange,
+                    MaximumRange = RifleMaxRange,
+                    Cost = RifleCost,
+                    Magazine = RifleMagazine,
+                    Attribute = RifleAttribute,
+                    Encumbrance = RifleEncumbrance,
+                    TechLevel = RifleTL,
+                    IsHeavy = RifleIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = ShotgunName,
+                    Description = ShotgunDescription,
+                    AmmoType = ShotgunAmmoType,
+                    Damage = ShotgunDamage,
+                    NormalRange = ShotgunNormalRange,
+                    MaximumRange = ShotgunMaxRange,
+                    Cost = ShotgunCost,
+                    Magazine = ShotgunMagazine,
+                    Attribute = ShotgunAttribute,
+                    Encumbrance = ShotgunEncumbrance,
+                    TechLevel = ShotgunTL,
+                    IsHeavy = ShotgunIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = SemiAutoPistolName,
+                    Description = SemiAutoPistolDescription,
+                    AmmoType = SemiAutoPistolAmmoType,
+                    Damage = SemiAutoPistolDamage,
+                    NormalRange = SemiAutoPistolNormalRange,
+                    MaximumRange = SemiAutoPistolMaxRange,
+                    Cost = SemiAutoPistolCost,
+                    Magazine = SemiAutoPistolMagazine,
+                    Attribute = SemiAutoPistolAttribute,
+                    Encumbrance = SemiAutoPistolEncumbrance,
+                    TechLevel = SemiAutoPistolTL,
+                    IsHeavy = SemiAutoPistolIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = SubmachineGunName,
+                    Description = SubmachineGunDescription,
+                    AmmoType = SubmachineGunAmmoType,
+                    Damage = SubmachineGunDamage,
+                    NormalRange = SubmachineGunNormalRange,
+                    MaximumRange = SubmachineGunMaxRange,
+                    Cost = SubmachineGunCost,
+                    Magazine = SubmachineGunMagazine,
+                    Attribute = SubmachineGunAttribute,
+                    Encumbrance = SubmachineGunEncumbrance,
+                    TechLevel = SubmachineGunTL,
+                    IsHeavy = SubmachineGunIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = CombatRifleName,
+                    Description = CombatRifleDescription,
+                    AmmoType = CombatRifleAmmoType,
+                    Damage = CombatRifleDamage,
+                    NormalRange = CombatRifleNormalRange,
+                    MaximumRange = CombatRifleMaxRange,
+                    Cost = CombatRifleCost,
+                    Magazine = CombatRifleMagazine,
+                    Attribute = CombatRifleAttribute,
+                    Encumbrance = CombatRifleEncumbrance,
+                    TechLevel = CombatRifleTL,
+                    IsHeavy = CombatRifleIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = CombatShotgunName,
+                    Description = CombatShotgunDescription,
+                    AmmoType = CombatShotgunAmmoType,
+                    Damage = CombatShotgunDamage,
+                    NormalRange = CombatShotgunNormalRange,
+                    MaximumRange = CombatShotgunMaxRange,
+                    Cost = CombatShotgunCost,
+                    Magazine = CombatShotgunMagazine,
+                    Attribute = CombatShotgunAttribute,
+                    Encumbrance = CombatShotgunEncumbrance,
+                    TechLevel = CombatShotgunTL,
+                    IsHeavy = CombatShotgunIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = SniperRifleName,
+                    Description = SniperRifleDescription,
+                    AmmoType = SniperRifleAmmoType,
+                    Damage = SniperRifleDamage,
+                    NormalRange = SniperRifleNormalRange,
+                    MaximumRange = SniperRifleMaxRange,
+                    Cost = SniperRifleCost,
+                    Magazine = SniperRifleMagazine,
+                    Attribute = SniperRifleAttribute,
+                    Encumbrance = SniperRifleEncumbrance,
+                    TechLevel = SniperRifleTL,
+                    IsHeavy = SniperRifleIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = VoidCarbineName,
+                    Description = VoidCarbineDescription,
+                    AmmoType = VoidCarbineAmmoType,
+                    Damage = VoidCarbineDamage,
+                    NormalRange = VoidCarbineNormalRange,
+                    MaximumRange = VoidCarbineMaxRange,
+                    Cost = VoidCarbineCost,
+                    Magazine = VoidCarbineMagazine,
+                    Attribute = VoidCarbineAttribute,
+                    Encumbrance = VoidCarbineEncumbrance,
+                    TechLevel = VoidCarbineTL,
+                    IsHeavy = VoidCarbineIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = MagPistolName,
+                    Description = MagPistolDescription,
+                    AmmoType = MagPistolAmmoType,
+                    Damage = MagPistolDamage,
+                    NormalRange = MagPistolNormalRange,
+                    MaximumRange = MagPistolMaxRange,
+                    Cost = MagPistolCost,
+                    Magazine = MagPistolMagazine,
+                    Attribute = MagPistolAttribute,
+                    Encumbrance = MagPistolEncumbrance,
+                    TechLevel = MagPistolTL,
+                    IsHeavy = MagPistolIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = MagRifleName,
+                    Description = MagRifleDescription,
+                    AmmoType = MagRifleAmmoType,
+                    Damage = MagRifleDamage,
+                    NormalRange = MagRifleNormalRange,
+                    MaximumRange = MagRifleMaxRange,
+                    Cost = MagRifleCost,
+                    Magazine = MagRifleMagazine,
+                    Attribute = MagRifleAttribute,
+                    Encumbrance = MagRifleEncumbrance,
+                    TechLevel = MagRifleTL,
+                    IsHeavy = MagRifleIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = SpikeThrowerName,
+                    Description = SpikeThrowerDescription,
+                    AmmoType = SpikeThrowerAmmoType,
+                    Damage = SpikeThrowerDamage,
+                    NormalRange = SpikeThrowerNormalRange,
+                    MaximumRange = SpikeThrowerMaxRange,
+                    Cost = SpikeThrowerCost,
+                    Magazine = SpikeThrowerMagazine,
+                    Attribute = SpikeThrowerAttribute,
+                    Encumbrance = SpikeThrowerEncumbrance,
+                    TechLevel = SpikeThrowerTL,
+                    IsHeavy = SpikeThrowerIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = LaserPistolName,
+                    Description = LaserPistolDescription,
+                    AmmoType = LaserPistolAmmoType,
+                    Damage = LaserPistolDamage,
+                    NormalRange = LaserPistolNormalRange,
+                    MaximumRange = LaserPistolMaxRange,
+                    Cost = LaserPistolCost,
+                    Magazine = LaserPistolMagazine,
+                    Attribute = LaserPistolAttribute,
+                    Encumbrance = LaserPistolEncumbrance,
+                    TechLevel = LaserPistolTL,
+                    IsHeavy = LaserPistolIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = LaserRifleName,
+                    Description = LaserRifleDescription,
+                    AmmoType = LaserRifleAmmoType,
+                    Damage = LaserRifleDamage,
+                    NormalRange = LaserRifleNormalRange,
+                    MaximumRange = LaserRifleMaxRange,
+                    Cost = LaserRifleCost,
+                    Magazine = LaserRifleMagazine,
+                    Attribute = LaserRifleAttribute,
+                    Encumbrance = LaserRifleEncumbrance,
+                    TechLevel = LaserRifleTL,
+                    IsHeavy = LaserRifleIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = ThermalPistolName,
+                    Description = ThermalPistolDescription,
+                    AmmoType = ThermalPistolAmmoType,
+                    Damage = ThermalPistolDamage,
+                    NormalRange = ThermalPistolNormalRange,
+                    MaximumRange = ThermalPistolMaxRange,
+                    Cost = ThermalPistolCost,
+                    Magazine = ThermalPistolMagazine,
+                    Attribute = ThermalPistolAttribute,
+                    Encumbrance = ThermalPistolEncumbrance,
+                    TechLevel = ThermalPistolTL,
+                    IsHeavy = ThermalPistolIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = PlasmaProjectorName,
+                    Description = PlasmaProjectorDescription,
+                    AmmoType = PlasmaProjectorAmmoType,
+                    Damage = PlasmaProjectorDamage,
+                    NormalRange = PlasmaProjectorNormalRange,
+                    MaximumRange = PlasmaProjectorMaxRange,
+                    Cost = PlasmaProjectorCost,
+                    Magazine = PlasmaProjectorMagazine,
+                    Attribute = PlasmaProjectorAttribute,
+                    Encumbrance = PlasmaProjectorEncumbrance,
+                    TechLevel = PlasmaProjectorTL,
+                    IsHeavy = PlasmaProjectorIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = ShearRifleName,
+                    Description = ShearRifleDescription,
+                    AmmoType = ShearRifleAmmoType,
+                    Damage = ShearRifleDamage,
+                    NormalRange = ShearRifleNormalRange,
+                    MaximumRange = ShearRifleMaxRange,
+                    Cost = ShearRifleCost,
+                    Magazine = ShearRifleMagazine,
+                    Attribute = ShearRifleAttribute,
+                    Encumbrance = ShearRifleEncumbrance,
+                    TechLevel = ShearRifleTL,
+                    IsHeavy = ShearRifleIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = ThunderGunName,
+                    Description = ThunderGunDescription,
+                    AmmoType = ThunderGunAmmoType,
+                    Damage = ThunderGunDamage,
+                    NormalRange = ThunderGunNormalRange,
+                    MaximumRange = ThunderGunMaxRange,
+                    Cost = ThunderGunCost,
+                    Magazine = ThunderGunMagazine,
+                    Attribute = ThunderGunAttribute,
+                    Encumbrance = ThunderGunEncumbrance,
+                    TechLevel = ThunderGunTL,
+                    IsHeavy = ThunderGunIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = DistortionCannonName,
+                    Description = DistortionCannonDescription,
+                    AmmoType = DistortionCannonAmmoType,
+                    Damage = DistortionCannonDamage,
+                    NormalRange = DistortionCannonNormalRange,
+                    MaximumRange = DistortionCannonMaxRange,
+                    Cost = DistortionCannonCost,
+                    Magazine = DistortionCannonMagazine,
+                    Attribute = DistortionCannonAttribute,
+                    Encumbrance = DistortionCannonEncumbrance,
+                    TechLevel = DistortionCannonTL,
+                    IsHeavy = DistortionCannonIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = HeavyMachineGunName,
+                    Description = HeavyMachineGunDescription,
+                    AmmoType = HeavyMachineGunAmmoType,
+                    Damage = HeavyMachineGunDamage,
+                    NormalRange = HeavyMachineGunNormalRange,
+                    MaximumRange = HeavyMachineGunMaxRange,
+                    Cost = HeavyMachineGunCost,
+                    Magazine = HeavyMachineGunMagazine,
+                    Attribute = HeavyMachineGunAttribute,
+                    Encumbrance = HeavyMachineGunEncumbrance,
+                    TechLevel = HeavyMachineGunTL,
+                    IsHeavy = HeavyMachineGunIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = RocketLauncherName,
+                    Description = RocketLauncherDescription,
+                    AmmoType = RocketLauncherAmmoType,
+                    Damage = RocketLauncherDamage,
+                    NormalRange = RocketLauncherNormalRange,
+                    MaximumRange = RocketLauncherMaxRange,
+                    Cost = RocketLauncherCost,
+                    Magazine = RocketLauncherMagazine,
+                    Attribute = RocketLauncherAttribute,
+                    Encumbrance = RocketLauncherEncumbrance,
+                    TechLevel = RocketLauncherTL,
+                    IsHeavy = RocketLauncherIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = DemoChargeName,
+                    Description = DemoChargeDescription,
+                    AmmoType = DemoChargeAmmoType,
+                    Damage = DemoChargeDamage,
+                    NormalRange = DemoChargeNormalRange,
+                    MaximumRange = DemoChargeMaxRange,
+                    Cost = DemoChargeCost,
+                    Magazine = DemoChargeMagazine,
+                    Attribute = DemoChargeAttribute,
+                    Encumbrance = DemoChargeEncumbrance,
+                    TechLevel = DemoChargeTL,
+                    IsHeavy = DemoChargeIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = RailgunName,
+                    Description = RailgunDescription,
+                    AmmoType = RailgunAmmoType,
+                    Damage = RailgunDamage,
+                    NormalRange = RailgunNormalRange,
+                    MaximumRange = RailgunMaxRange,
+                    Cost = RailgunCost,
+                    Magazine = RailgunMagazine,
+                    Attribute = RailgunAttribute,
+                    Encumbrance = RailgunEncumbrance,
+                    TechLevel = RailgunTL,
+                    IsHeavy = RailgunIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = AntiVehicleLaserName,
+                    Description = AntiVehicleLaserDescription,
+                    AmmoType = AntiVehicleLaserAmmoType,
+                    Damage = AntiVehicleLaserDamage,
+                    NormalRange = AntiVehicleLaserNormalRange,
+                    MaximumRange = AntiVehicleLaserMaxRange,
+                    Cost = AntiVehicleLaserCost,
+                    Magazine = AntiVehicleLaserMagazine,
+                    Attribute = AntiVehicleLaserAttribute,
+                    Encumbrance = AntiVehicleLaserEncumbrance,
+                    TechLevel = AntiVehicleLaserTL,
+                    IsHeavy = AntiVehicleLaserIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = HydraArrayName,
+                    Description = HydraArrayDescription,
+                    AmmoType = HydraArrayAmmoType,
+                    Damage = HydraArrayDamage,
+                    NormalRange = HydraArrayNormalRange,
+                    MaximumRange = HydraArrayMaxRange,
+                    Cost = HydraArrayCost,
+                    Magazine = HydraArrayMagazine,
+                    Attribute = HydraArrayAttribute,
+                    Encumbrance = HydraArrayEncumbrance,
+                    TechLevel = HydraArrayTL,
+                    IsHeavy = HydraArrayIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = WheatcutterBeltName,
+                    Description = WheatcutterBeltDescription,
+                    AmmoType = WheatcutterBeltAmmoType,
+                    Damage = WheatcutterBeltDamage,
+                    NormalRange = WheatcutterBeltNormalRange,
+                    MaximumRange = WheatcutterBeltMaxRange,
+                    Cost = WheatcutterBeltCost,
+                    Magazine = WheatcutterBeltMagazine,
+                    Attribute = WheatcutterBeltAttribute,
+                    Encumbrance = WheatcutterBeltEncumbrance,
+                    TechLevel = WheatcutterBeltTL,
+                    IsHeavy = WheatcutterBeltIsHeavy
+                },
+                new RangedWeapon
+                {
+                    Name = VortexCannonName,
+                    Description = VortexCannonDescription,
+                    AmmoType = VortexCannonAmmoType,
+                    Damage = VortexCannonDamage,
+                    NormalRange = VortexCannonNormalRange,
+                    MaximumRange = VortexCannonMaxRange,
+                    Cost = VortexCannonCost,
+                    Magazine = VortexCannonMagazine,
+                    Attribute = VortexCannonAttribute,
+                    Encumbrance = VortexCannonEncumbrance,
+                    TechLevel = VortexCannonTL,
+                    IsHeavy = VortexCannonIsHeavy
+                }
+            });
+
             data.SaveChanges();
         }
     }
