@@ -111,6 +111,8 @@
                 })
                 .FirstOrDefault();
 
+            game.Users.OrderBy(u => u.UserName);
+
             return game;
         }
 

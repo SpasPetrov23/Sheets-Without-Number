@@ -14,47 +14,47 @@
                 <td><b>Location</b></td>
             </tr>
             @if (Model.CharactersMeleeWeapons.Any(cmw => cmw.CharacterId == Model.Id))
-                    {
-            @foreach (var characterMeleeWeapon in @Model.CharactersMeleeWeapons.Where(ca => ca.CharacterId == Model.Id))
-                        {
-            <tr class="text-center">
-                <td>
-                    <a asp-controller="MeleeWeapons" asp-action="Edit" asp-route-characterMeleeWeaponId="@characterMeleeWeapon.Id" class="text-decoration-none">
-                        @characterMeleeWeapon.MeleeWeaponName
-                    </a>
-                </td>
-                <td>@characterMeleeWeapon.MeleeWeaponEncumbrance</td>
-                <td>@characterMeleeWeapon.MeleeWeaponAttribute</td>
-                <td>@characterMeleeWeapon.MeleeWeaponThrowRange@Html.Raw("m")</td>
-                <td>@characterMeleeWeapon.MeleeWeaponDamage</td>
-                <td>@characterMeleeWeapon.MeleeWeaponShockPoints / @characterMeleeWeapon.MeleeWeaponShockAC AC</td>
-                <td>@characterMeleeWeapon.MeleeWeaponTechLevel</td>
-                <td>@characterMeleeWeapon.MeleeWeaponLocation</td>
-            </tr>
-                        }
-                    }
-                    else
-                    {
-            <tr class="text-center">
-                <td>No equipped Melee Weapon</td>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
-                <td>N/A</td>
-            </tr>
-                    }
+            {
+                @foreach (var characterMeleeWeapon in @Model.CharactersMeleeWeapons.Where(ca => ca.CharacterId == Model.Id))
+                {
+                    <tr class="text-center">
+                        <td>
+                            <a asp-controller="MeleeWeapons" asp-action="Edit" asp-route-characterMeleeWeaponId="@characterMeleeWeapon.Id" class="text-decoration-none">
+                                @characterMeleeWeapon.MeleeWeaponName
+                            </a>
+                        </td>
+                        <td>@characterMeleeWeapon.MeleeWeaponEncumbrance</td>
+                        <td>@characterMeleeWeapon.MeleeWeaponAttribute</td>
+                        <td>@characterMeleeWeapon.MeleeWeaponThrowRange@Html.Raw("m")</td>
+                        <td>@characterMeleeWeapon.MeleeWeaponDamage</td>
+                        <td>@characterMeleeWeapon.MeleeWeaponShockPoints / @characterMeleeWeapon.MeleeWeaponShockAC AC</td>
+                        <td>@characterMeleeWeapon.MeleeWeaponTechLevel</td>
+                        <td>@characterMeleeWeapon.MeleeWeaponLocation</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr class="text-center">
+                    <td>No equipped Melee Weapon</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                </tr>
+            }
         </tbody>
         <tfoot>
             <tr>
                 <td colspan="1">
-                    <a asp-controller="MeleeWeapons" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
-                        <div class="text-center">
+                    <div class="text-center">
+                        <a asp-controller="MeleeWeapons" asp-action="Add" asp-route-characterId="@Model.Id" class="text-decoration-none">
                             <input type="button" style="font-size: 0.85rem; padding-top:0.25rem" class="btn @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Add" />
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </td>
                 <td colspan="7"></td>
             </tr>
