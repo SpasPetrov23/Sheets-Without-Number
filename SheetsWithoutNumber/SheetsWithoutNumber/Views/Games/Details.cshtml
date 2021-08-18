@@ -20,10 +20,10 @@
     }
 }
 
-<div class="list-group-item flex-column align-items-start">
-    <div class="d-flex justify-content-between">
+<div class="list-group-item align-items-start">
+    <div class="d-flex flex-wrap">
         <img src="@Model.GameImage" class="img-thumbnail flex-shrink-0" alt="Game Image" style="width: 375px; height: 300px; object-fit: cover">
-        <div class="flex-grow-1" style="padding-left: 10px; padding-right: 10px">
+        <div class="d-flex flex-column flex-grow-1" style="padding-left: 10px; padding-right: 10px">
             <h3 class="mb-1 text-center">@Model.Name</h3>
             <p class="mb-1">@Model.Description</p>
 
@@ -32,51 +32,53 @@
             @{
                 var userCount = 0;
             }
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Player</th>
-                        <th scope="col">Character</th>
-                        <th scope="col">Level</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach (var user in Model.Users)
-                    {
-                        userCount = userCount + 1;
+            <div class="table-sm table-responsive">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <th scope="row">@userCount</th>
-                            <td>
-                                @user.UserName
-                                @if (user.Id == Model.GameMasterId)
-                                {
-                                    <b>(GM)</b>
-                                }
-                            </td>
-                            @if (user.Id == Model.GameMasterId)
-                            {
-                                <td>
-                                    @Html.Raw("N/A")
-                                </td>
-                                <td>
-                                    @Html.Raw("N/A")
-                                </td>
-                            }
-                            @foreach (var character in Model.Characters.Where(c => c.OwnerId == user.Id))
-                            {
-                                <td>
-                                    <a asp-controller="Characters" asp-action="Details" asp-route-characterId="@character.Id">@character.Name</a>
-                                </td>
-                                <td>
-                                    @character.Level
-                                </td>
-                            }
+                            <th scope="col">#</th>
+                            <th scope="col">Player</th>
+                            <th scope="col">Character</th>
+                            <th scope="col">Level</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                            userCount = userCount + 1;
+                            <tr>
+                                <th scope="row">@userCount</th>
+                                <td>
+                                    @user.UserName
+                                    @if (user.Id == Model.GameMasterId)
+                                    {
+                                        <b>(GM)</b>
+                                    }
+                                </td>
+                                @if (user.Id == Model.GameMasterId || !Model.Characters.Any(c => c.OwnerId == user.Id))
+                                {
+                                    <td>
+                                        @Html.Raw("N/A")
+                                    </td>
+                                    <td>
+                                        @Html.Raw("N/A")
+                                    </td>
+                                }
+                                @foreach (var character in Model.Characters.Where(c => c.OwnerId == user.Id))
+                                {
+                                    <td>
+                                        <a asp-controller="Characters" asp-action="Details" asp-route-characterId="@character.Id">@character.Name</a>
+                                    </td>
+                                    <td>
+                                        @character.Level
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
             @if (ViewBag.Joined || User.IsAdmin())
             {
@@ -93,14 +95,33 @@
                 }
                 else
                 {
-                    if (!Model.Characters.Any(c => c.OwnerId == User.GetId()))
-                    {
-                        <a asp-controller="Characters" asp-action="Create" asp-route-gameId="@Model.Id">
-                            <div class="text-center">
-                                <input type="button" class="btn btn-primary" style="width:200px" value="Create Character" />
+                    <div class="d-flex justify-content-center">
+                        @if (!Model.Characters.Any(c => c.OwnerId == User.GetId()))
+                        {
+                            <div class="col-6">
+                                <a asp-controller="Characters" asp-action="Create" asp-route-gameId="@Model.Id">
+                                    <div class="text-right">
+                                        <input type="button" class="btn btn-info" value="Create Character" />
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    }
+                            <div class="col-6">
+                                <div class="text-left">
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#leaveGameModal">Leave</a>
+                                    <partial name="_GameLeavePopupPartial" model="@Model" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-12">
+                                <div class="text-center">
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#leaveGameModal">Leave</a>
+                                    <partial name="_GameLeavePopupPartial" model="@Model" />
+                                </div>
+                            </div>
+                        }
+                    </div>
                 }
             }
             else
@@ -109,7 +130,7 @@
                 {
                     <a asp-controller="Games" asp-action="Join" asp-route-gameId="@Model.Id">
                         <div class="text-center">
-                            <input type="button" class="btn btn-primary" style="width:200px" value="Join Game" />
+                            <input type="button" class="btn btn-info" style="width:200px" value="Join Game" />
                         </div>
                     </a>
                 }

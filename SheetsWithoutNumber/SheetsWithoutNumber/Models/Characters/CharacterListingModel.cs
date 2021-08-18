@@ -17,5 +17,7 @@
         public string Background { get; init; }
 
         public int Level { get; init; }
+
+        public string DateCreated { get; init; }
     }
 }

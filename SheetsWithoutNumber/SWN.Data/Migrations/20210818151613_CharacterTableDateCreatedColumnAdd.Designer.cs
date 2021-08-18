@@ -10,8 +10,8 @@ using SWN.Data;
 namespace SWN.Data.Migrations
 {
     [DbContext(typeof(SWNDbContext))]
-    [Migration("20210816162843_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210818151613_CharacterTableDateCreatedColumnAdd")]
+    partial class CharacterTableDateCreatedColumnAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -259,6 +259,9 @@ namespace SWN.Data.Migrations
 
                     b.Property<int>("CurrentXP")
                         .HasColumnType("int");
+
+                    b.Property<string>("DateCreated")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Dexterity")
                         .HasColumnType("int");

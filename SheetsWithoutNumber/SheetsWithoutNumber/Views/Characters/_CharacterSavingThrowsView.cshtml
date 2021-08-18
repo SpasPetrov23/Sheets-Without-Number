@@ -1,0 +1,23 @@
+﻿@model CharacterDetailsModel
+
+<div class="table table-responsive">
+    <table class="table-sm table-bordered">
+        <tbody>
+            <tr class="text-center" style="background-color: lightblue">
+                <td colspan="2"><b>Saving Throws</b></td>
+            </tr>
+            <tr class="text-center">
+                <td style="background-color: aliceblue">Physical</td>
+                <td>@Model.SavingThrowPhysical</td>
+            </tr>
+            <tr class="text-center">
+                <td style="background-color: aliceblue">Mental</td>
+                <td>@Model.SavingThrowMental</td>
+            </tr>
+            <tr class="text-center">
+                <td style="background-color: aliceblue">Evasion</td>
+                <td>@Model.SavingThrowEvasion</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

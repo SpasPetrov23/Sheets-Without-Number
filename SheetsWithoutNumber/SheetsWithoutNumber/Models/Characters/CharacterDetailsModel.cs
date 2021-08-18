@@ -1,9 +1,11 @@
 ﻿namespace SheetsWithoutNumber.Models.Characters
 {
+    using SheetsWithoutNumber.Models.Games;
+    using SheetsWithoutNumber.Services.Character;
     using SWN.Data.Models;
     using System.Collections.Generic;
 
-    public class CharacterDetailsModel
+    public class CharacterDetailsModel : ICharacterModel
     {
         public int Id { get; init; }
 
@@ -81,7 +83,7 @@
 
         public int GameId { get; init; }
 
-        public Game Game { get; init; }
+        public GameDetailsModel Game { get; set; }
 
         public int Level { get; init; }
 

@@ -462,4 +462,3 @@ C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Tests\obj\Debug\net5.0
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Tests\obj\Debug\net5.0\SWN.Tests.pdb
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Tests\obj\Debug\net5.0\SWN.Tests.genruntimeconfig.cache
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Tests\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.InMemory.dll
-C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Tests\bin\Debug\net5.0\SheetsWithoutNumber.StaticWebAssets.xml

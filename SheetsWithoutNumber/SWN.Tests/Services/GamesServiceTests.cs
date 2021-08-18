@@ -1,9 +1,11 @@
 ﻿namespace SWN.Tests.Services
 {
+    using Microsoft.Extensions.Caching.Memory;
     using SheetsWithoutNumber.Services.Game;
     using SheetsWithoutNumber.Services.User;
     using SWN.Data.Models;
     using SWN.Tests.Mocks;
+    using System;
     using Xunit;
 
     public class GamesServiceTests
@@ -131,7 +133,9 @@
 
             var userService = new UserService(data);
 
-            return new GameService(userService, data, mapper);
+            var cache = new MemoryCache(new MemoryCacheOptions());
+
+            return new GameService(userService, data, mapper, cache);
         }
     }
 }

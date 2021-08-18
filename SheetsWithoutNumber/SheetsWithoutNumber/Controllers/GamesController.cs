@@ -54,9 +54,14 @@
         }
 
         [Authorize]
-        public IActionResult Details(int gameId)
+        public IActionResult Details(int gameId, string information)
         {
             var gameDetails = games.Details(gameId);
+
+            if (information != gameDetails.GetGameUrlInfo())
+            {
+                return BadRequest();
+            }
 
             return View(gameDetails);
         }
@@ -94,7 +99,7 @@
 
             this.games.Edit(gameId, game.Name, game.Description, game.GameImage, game.PlayersMax);
 
-            return RedirectToAction("Details", "Games", new { gameId = gameId });
+            return RedirectToAction("Details", "Games", new { gameId = gameId, information = game.GetGameUrlInfo()});
         }
 
 
@@ -111,9 +116,19 @@
         {
             var currentUserId = this.User.GetId();
 
-            this.games.Join(gameId, currentUserId);
+            var game = this.games.Join(gameId, currentUserId);
 
-            return RedirectToAction("Details", "Games", new { gameId = gameId });
+            return RedirectToAction("Details", "Games", new { gameId = gameId, information = game.GetGameUrlInfo() });
+        }
+
+        [Authorize]
+        public IActionResult Leave(int gameId)
+        {
+            var currentUserId = this.User.GetId();
+
+            var game = this.games.Leave(gameId, currentUserId);
+
+            return RedirectToAction("Details", "Games", new { gameId = gameId, information = game.GetGameUrlInfo() });
         }
     }
 }

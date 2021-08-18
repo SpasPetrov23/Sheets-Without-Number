@@ -1,9 +1,10 @@
 ﻿namespace SheetsWithoutNumber.Models.Games
 {
+    using SheetsWithoutNumber.Services.Game;
     using SWN.Data.Models;
     using System.Collections.Generic;
 
-    public class GameDetailsModel
+    public class GameDetailsModel : IGameModel
     {
         public int Id { get; set; }
 

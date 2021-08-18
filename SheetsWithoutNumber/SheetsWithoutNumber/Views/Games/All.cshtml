@@ -16,7 +16,7 @@
 
                 @foreach (var gamePreview in Model)
                 {
-                    <a asp-controller="Games" asp-action="Details" asp-route-gameId="@gamePreview.Id" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <a asp-controller="Games" asp-action="Details" asp-route-gameId="@gamePreview.Id" asp-route-information="@gamePreview.GetGameUrlInfo()" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex justify-content-between">
                             <img src="@gamePreview.GameImage" class="img-thumbnail flex-shrink-0" alt="Cinque Terre" style="width: 150px; height: 100px; object-fit: cover">
                             <div class="flex-grow-1" style="padding-left: 10px; padding-right: 10px">
@@ -42,14 +42,6 @@
                         </div>
                     </a>
                 }
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">In the Wake of Dreams</h5>
-                        <small>Joined</small>
-                    </div>
-                    <p class="mb-1">When the definition of reality becomes unclear...</p>
-                    <small>Players: 3</small>
-                </a>
             </div>
         </div>
     </div>

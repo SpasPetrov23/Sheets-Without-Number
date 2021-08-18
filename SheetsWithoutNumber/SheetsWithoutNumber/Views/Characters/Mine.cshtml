@@ -1,11 +1,14 @@
 ﻿@model ICollection<CharacterListingModel>
 
+<h2 class="text-center">My Characters</h2>
+<hr />
+
 <div class="row">
     <div class="card-deck">
         @foreach (var classPreview in Model)
         {
             <div class="card" style="width: 18rem">
-                <img class="card-img-top" src="@classPreview.CharacterImage" alt="Card image">
+                <img class="card-img flex-shrink-0" alt="Character Image" style="width: 100%; height: 350px; object-fit: cover" src="@classPreview.CharacterImage">
                 <div class="card-body">
                     <h4 class="card-title">@classPreview.Name</h4> <h5>[Level @classPreview.Level @classPreview.Background @classPreview.Class]</h5>
                     <p class="card-text">
@@ -14,12 +17,11 @@
                         <b>Species:</b> @classPreview.Species
                     </p>
                     <a asp-controller="Characters" asp-action="Details" asp-route-characterId="@classPreview.Id" class="btn btn-primary">View</a>
-                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteCharacterModal">Delete</a>
-
+                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteCharacterModal_@classPreview.Id">Delete</a>
                     <partial name="_CharacterDeletePopupPartial" model="@classPreview" />
                 </div>
                 <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                    <small class="text-muted">Created on: @classPreview.DateCreated</small>
                 </div>
             </div>
         }

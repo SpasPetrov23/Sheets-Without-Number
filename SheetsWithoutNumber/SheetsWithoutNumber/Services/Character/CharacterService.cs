@@ -13,6 +13,7 @@
     using static SWN.Data.DataConstants.ClassData;
     using static SWN.Data.DataConstants.FocusData;
     using static SWN.Data.DataConstants.ArmorData;
+    using SheetsWithoutNumber.Models.Games;
 
     public class CharacterService : ICharacterService
     {
@@ -43,6 +44,7 @@
                 Species = species,
                 OwnerId = ownerId,
                 GameId = gameId,
+                DateCreated = DateTime.Now.ToString("d")
             };
 
             data.Characters.Add(character);
@@ -111,16 +113,7 @@
                 .Where(c => c.Id == characterId)
                 .FirstOrDefault();
 
-            var characterSkills = data.CharactersSkills
-                .Where(cs => cs.CharacterId == characterId)
-                .ToList();
-
-            foreach (var characterSkill in characterSkills)
-            {
-                data.CharactersSkills.Remove(characterSkill);
-            }
-
-            character.CharactersSkills.Clear();
+            this.ClearCharacterRelations(characterId);
 
             data.Characters.Remove(character);
 
@@ -325,7 +318,9 @@
             return readiedEncumbrance;
         }
 
-        public int CalculateMaxReadiedEncumbrance(int strength, ICollection<CharactersArmors> charactersArmors)
+        public int CalculateMaxReadiedEncumbrance(
+            int strength,
+            ICollection<CharactersArmors> charactersArmors)
         {
             if (charactersArmors.Any(ca => ca.ArmorName == StormArmorName))
             {
@@ -380,7 +375,9 @@
             return stowedEncumbrance;
         }
 
-        public int CalculateMaxStowedEncumbrance(int strength, ICollection<CharactersArmors> charactersArmors)
+        public int CalculateMaxStowedEncumbrance(
+            int strength,
+            ICollection<CharactersArmors> charactersArmors)
         {
             if (charactersArmors.Any(ca => ca.ArmorName == StormArmorName))
             {
@@ -392,7 +389,11 @@
             return maxStowedEncumbrance;
         }
 
-        public string CalculateEncumbrance(int currentReadiedEncumbrance, int maxReadiedEncumbrance, int currentStowedEncumbrance, int maxStowedEncumbrance)
+        public string CalculateEncumbrance(
+            int currentReadiedEncumbrance,
+            int maxReadiedEncumbrance,
+            int currentStowedEncumbrance,
+            int maxStowedEncumbrance)
         {
             var encumbrance = "Normal";
 
@@ -437,7 +438,65 @@
             return speed;
         }
 
-        public int CalculateMaxEffort(string characterClass, int wisdomMod, int constitutionMod, int highestPsychicLevel, bool hasPsychicTrainingFocus, int wildTalentFocusLevel)
+        public void ClearCharacterRelations(int characterId)
+        {
+            var characterSkills = data.CharactersSkills
+                .Where(cs => cs.CharacterId == characterId)
+                .ToList();
+
+            var characterFoci = data.CharactersFoci
+                .Where(cf => cf.CharacterId == characterId)
+                .ToList();
+
+            var characterEquipments = data.CharactersEquipments
+                .Where(ce => ce.CharacterId == characterId)
+                .ToList();
+
+            var characterArmors = data.CharactersArmors
+                .Where(ca => ca.CharacterId == characterId)
+                .ToList();
+
+            var characterMeleeWeapons = data.CharactersMeleeWeapons
+                .Where(cmw => cmw.CharacterId == characterId)
+                .ToList();
+
+            var characterRangedWeapons = data.CharactersRangedWeapons
+                .Where(crw => crw.CharacterId == characterId)
+                .ToList();
+
+            foreach (var characterSkill in characterSkills)
+            {
+                data.CharactersSkills.Remove(characterSkill);
+            }
+            foreach (var characterFocus in characterFoci)
+            {
+                data.CharactersFoci.Remove(characterFocus);
+            }
+            foreach (var characterEquipment in characterEquipments)
+            {
+                data.CharactersEquipments.Remove(characterEquipment);
+            }
+            foreach (var characterArmor in characterArmors)
+            {
+                data.CharactersArmors.Remove(characterArmor);
+            }
+            foreach (var characterMeleeWeapon in characterMeleeWeapons)
+            {
+                data.CharactersMeleeWeapons.Remove(characterMeleeWeapon);
+            }
+            foreach (var characterRangedWeapon in characterRangedWeapons)
+            {
+                data.CharactersRangedWeapons.Remove(characterRangedWeapon);
+            }
+        }
+
+        public int CalculateMaxEffort(
+            string characterClass,
+            int wisdomMod,
+            int constitutionMod,
+            int highestPsychicLevel,
+            bool hasPsychicTrainingFocus,
+            int wildTalentFocusLevel)
         {
             var maxEffort = 0;
 
@@ -464,7 +523,15 @@
             return maxEffort;
         }
 
-        public int CalculateSavingThrow(int level, int strengthMod, int constitutionMod, int dexterityMod, int wisdomMod, int charismaMod, int intelligenceMod, string savingThrowType)
+        public int CalculateSavingThrow(
+            int level,
+            int strengthMod,
+            int constitutionMod,
+            int dexterityMod,
+            int wisdomMod,
+            int charismaMod,
+            int intelligenceMod,
+            string savingThrowType)
         {
             var savingThrow = 15;
             savingThrow -= level - 1;
@@ -485,7 +552,10 @@
             return savingThrow;
         }
 
-        public int CalculateExperiencePercentage(int currentXP, int minimumXP, int maximumXP)
+        public int CalculateExperiencePercentage(
+            int currentXP,
+            int minimumXP,
+            int maximumXP)
         {
             var result = (currentXP - minimumXP) * 100 / (maximumXP - minimumXP);
 
@@ -568,7 +638,11 @@
             return maximumXP;
         }
 
-        public int CalculateArmorClass(int dexterityMod, ICollection<CharactersFoci> characterFoci, int characterLevel, ICollection<CharactersArmors> characterArmors)
+        public int CalculateArmorClass(
+            int dexterityMod,
+            ICollection<CharactersFoci> characterFoci,
+            int characterLevel,
+            ICollection<CharactersArmors> characterArmors)
         {
             var hasIronhide = characterFoci.Any(cf => cf.FocusName == FocusIronhideName);
 

@@ -1,47 +1,50 @@
 ﻿@model MeleeWeaponFormModel
 
-<div class="row">
-    <div class="col-12">
-        <form method="post">
-            <div class="form-group col-8 offset-2">
-                <div class="form-row">
-                    <div class="form-group col-9">
-                        <label asp-for="MeleeWeaponId">Name</label>
-                        <select asp-for="MeleeWeaponId" class="form-control">
-                            @foreach (var meleeWeapon in Model.MeleeWeapons)
-                            {
+    <h2 class="text-center">Edit Melee Weapon</h2>
+    <hr class="col-8" />
+
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                <div class="form-group col-8 offset-2">
+                    <div class="form-row">
+                        <div class="form-group col-9">
+                            <label asp-for="MeleeWeaponId">Name</label>
+                            <select asp-for="MeleeWeaponId" class="form-control">
+                                @foreach (var meleeWeapon in Model.MeleeWeapons)
+                                {
                     <option value="@meleeWeapon.Id">@meleeWeapon.Name</option>}
-                        </select>
-                        <span asp-validation-for="MeleeWeaponId" class="small text-danger"></span>
-                    </div>
-                    <div class="form-group col-2">
-                        <label asp-for="Location">Location</label>
-                        <select asp-for="Location" class="form-control">
-                            <option>Readied</option>
-                            <option>Stowed</option>
-                            <option>Backpack</option>
-                            <option>Ship</option>
-                        </select>
-                        <span asp-validation-for="Location" class="small text-danger"></span>
-                    </div>
-                    <div class="form-group col-1">
-                        <label>Delete</label>
-                        <a asp-controller="MeleeWeapons" asp-action="Delete" asp-route-characterMeleeWeaponId="@Model.CharacterMeleeWeaponId" class="text-decoration-none">
-                            <div class="text-center">
-                                <input type="button" class="btn-danger" value="X" />
-                            </div>
-                        </a>
+                            </select>
+                            <span asp-validation-for="MeleeWeaponId" class="small text-danger"></span>
+                        </div>
+                        <div class="form-group col-2">
+                            <label asp-for="Location">Location</label>
+                            <select asp-for="Location" class="form-control">
+                                <option>Readied</option>
+                                <option>Stowed</option>
+                                <option>Backpack</option>
+                                <option>Ship</option>
+                            </select>
+                            <span asp-validation-for="Location" class="small text-danger"></span>
+                        </div>
+                        <div class="form-group col-1">
+                            <label>Delete</label>
+                            <a asp-controller="MeleeWeapons" asp-action="Delete" asp-route-characterMeleeWeaponId="@Model.CharacterMeleeWeaponId" class="text-decoration-none">
+                                <div class="text-center">
+                                    <input type="button" class="btn-danger" value="X" />
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-12 text-center">
-                <input class="btn btn-primary" style="width: 120px" type="submit" value="Save" />
-            </div>
-        </form>
+                <div class="col-12 text-center">
+                    <input class="btn btn-primary" style="width: 120px" type="submit" value="Save" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-@section Scripts{
-    <partial name="_ValidationScriptsPartial" />
-}
+    @section Scripts{
+        <partial name="_ValidationScriptsPartial" />
+    }

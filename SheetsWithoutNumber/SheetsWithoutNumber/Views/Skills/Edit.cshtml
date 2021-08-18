@@ -4,6 +4,9 @@
 
 @Html.Hidden("PreviousSkillId")
 
+<h2 class="text-center">Edit Skill</h2>
+<hr class="col-8" />
+
 <div class="row">
     <div class="col-12">
         <form method="post">
@@ -19,8 +22,7 @@
                 {
                     psychicBool = "[Psychic Skill]";
                 }
-                                <option value="@skill.Id">@skill.Name @psychicBool</option>
-}
+                                <option value="@skill.Id">@skill.Name @psychicBool</option>}
                         </select>
                         <span asp-validation-for="SkillId" class="small text-danger"></span>
                     </div>
@@ -29,8 +31,7 @@
                         <select asp-for="Level" class="form-control">
                             @for (int i = 0; i < 5; i++)
                             {
-                <option>@i</option>
-}
+                <option>@i</option>}
                         </select>
                         <span asp-validation-for="Level" class="small text-danger"></span>
                     </div>

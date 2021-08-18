@@ -15,7 +15,7 @@
 
 <div class="d-flex">
     <div class="col-3">
-        <img src="@Model.CharacterImage" class="img-thumbnail" alt="Character Image" style="height: 320px; object-fit: cover">
+        <img src="@Model.CharacterImage" class="img-thumbnail" alt="Character Image" style="width:100%; height: 350px; object-fit: cover">
         <a asp-controller="Characters" asp-action="Edit" asp-route-characterId="@Model.Id" class="text-decoration-none">
             <div class="text-center">
                 <input type="button" class="btn btn-block @ViewBag.ButtonColor" @ViewBag.DisabledButton value="Edit" />
@@ -27,7 +27,7 @@
         <div class="card" style="border: 1px solid #dee2e6; padding:0.80rem">
             <div class="d-flex justify-content-between">
                 <h2>@Model.Name [Level @Model.Level]</h2>
-                <small><b>Game:</b> <a asp-controller="Games" asp-action="Details" asp-route-gameId="@Model.GameId">@Model.Game.Name</a></small>
+                <small><b>Game:</b> <a asp-controller="Games" asp-action="Details" asp-route-gameId="@Model.GameId" asp-route-information="@Model.Game.GetGameUrlInfo()">@Model.Game.Name</a></small>
             </div>
             <div class="progress">
                 <div class="progress-bar" role="progressbar" style="width: @Model.XPBarWidth@Html.Raw("%"); background-color: mediumpurple" aria-valuenow="@Model.CurrentXP" aria-valuemin="@Model.MinimumXP" aria-valuemax="@Model.MaximumXP"><span class="text-dark">@Model.XPBarWidth% (@Model.CurrentXP / @Model.MaximumXP)</span></div>
@@ -37,34 +37,13 @@
         <br />
 
         <div class="d-flex">
-            <div class="col-10" style="padding-left:7.5px; padding-right:7.5px">
+            <div class="col-9" style="padding-left:0px; padding-right:7.5px">
                 <partial name="_CharacterMainInfoView" model="@Model" />
-
                 <partial name="_CharacterStatusInfoView" model="@Model" />
             </div>
 
-            <div class="col-2" style="padding-left:7.5px; padding-right:0px">
-                <div class="table table-responsive">
-                    <table class="table table-bordered">
-                        <tbody>
-                            <tr class="text-center" style="background-color: lightblue">
-                                <td colspan="2"><b>Saving Throws</b></td>
-                            </tr>
-                            <tr class="text-center">
-                                <td style="background-color: aliceblue">Physical</td>
-                                <td>@Model.SavingThrowPhysical</td>
-                            </tr>
-                            <tr class="text-center">
-                                <td style="background-color: aliceblue">Mental</td>
-                                <td>@Model.SavingThrowMental</td>
-                            </tr>
-                            <tr class="text-center">
-                                <td style="background-color: aliceblue">Evasion</td>
-                                <td>@Model.SavingThrowEvasion</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="col-3" style="padding-left:7.5px; padding-right:0px">
+                <partial name="_CharacterSavingThrowsView" model="@Model" />
             </div>
         </div>
     </div>
@@ -73,15 +52,14 @@
 <div class="d-flex" style="margin-top:20px">
     <div class="col-3">
         <partial name="_CharacterAttributesView" model="@Model" />
-
         <partial name="_CharacterCombatStatsView" model="@Model" />
     </div>
     <div class="col-9">
         <div class="d-flex">
-            <div class="col-6" style="padding-left:0px; padding-right:7.5px">
+            <div class="col-6" style="padding-left: 0px; padding-right: 7.5px">
                 <partial name="_CharacterSkillsView" model="@Model" />
             </div>
-            <div class="col-6" style="padding-left:7.5px; padding-right:0px">
+            <div class="col-6" style="padding-left: 7.5px; padding-right:0px">
                 <partial name="_CharacterFociView" model="@Model" />
             </div>
         </div>
@@ -91,20 +69,10 @@
 <div class="d-flex" style="margin-top:20px">
     <div class="col-8">
         <partial name="_CharacterArmorView" model="@Model" />
-
         <partial name="_CharacterMeleeWeaponsView" model="@Model" />
-
         <partial name="_CharacterRangedWeaponsView" model="@Model" />
     </div>
     <div class="col-4">
         <partial name="_CharacterEquipmentView" model="@Model" />
-        <div class="card" style="height: 120px; margin-bottom: 20px; margin-top: 20px">
-        </div>
-        <div class="card" style="height: 160px;">
-        </div>
     </div>
-</div>
-
-<div class="card" style="height: 300px; margin-top: 20px">
-
 </div>

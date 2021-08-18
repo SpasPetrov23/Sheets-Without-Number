@@ -41,7 +41,7 @@
 
             if (!this.rangedWeapons.IsAmmoValid(rangedWeaponModel.Ammo, rangedWeaponModel.RangedWeaponId))
             {
-                this.ModelState.AddModelError(nameof(rangedWeaponModel.RangedWeaponId), "Ammo cannot be higher than Magazine.");
+                this.ModelState.AddModelError(nameof(rangedWeaponModel.Ammo), "Ammo cannot be higher than Magazine.");
             }
 
             if (!ModelState.IsValid)
@@ -85,6 +85,11 @@
             if (!this.rangedWeapons.RangedWeaponExists(rangedWeaponEdit.RangedWeaponId))
             {
                 this.ModelState.AddModelError(nameof(rangedWeaponEdit.RangedWeaponId), "Ranged Weapon does not exist.");
+            }
+
+            if (!this.rangedWeapons.IsAmmoValid(rangedWeaponEdit.Ammo, rangedWeaponEdit.RangedWeaponId))
+            {
+                this.ModelState.AddModelError(nameof(rangedWeaponEdit.Ammo), "Ammo cannot be higher than Magazine.");
             }
 
             if (!ModelState.IsValid)

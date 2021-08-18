@@ -1180,3 +1180,5 @@ C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\De
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Characters\_CharacterArmorView.cshtml.g.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Characters\_CharacterMeleeWeaponsView.cshtml.g.cs
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Characters\_CharacterRangedWeaponsView.cshtml.g.cs
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Games\_GameLeavePopupPartial.cshtml.g.cs
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Debug\net5.0\Razor\Views\Characters\_CharacterSavingThrowsView.cshtml.g.cs

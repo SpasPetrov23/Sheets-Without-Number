@@ -1,5 +1,8 @@
 ﻿@model FocusFormModel
 
+<h2 class="text-center">Add Focus</h2>
+<hr class="col-8" />
+
 <div class="row">
     <div class="col-12">
         <form method="post">
@@ -10,7 +13,7 @@
                         <select asp-for="FocusId" class="form-control">
                             @foreach (var focus in Model.Foci)
                             {
-                                <option value="@focus.Id">@focus.Name</option>}
+                <option value="@focus.Id">@focus.Name</option>}
                         </select>
                         <span asp-validation-for="FocusId" class="small text-danger"></span>
                     </div>

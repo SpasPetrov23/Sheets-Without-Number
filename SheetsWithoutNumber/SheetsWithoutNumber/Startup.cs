@@ -61,6 +61,8 @@ namespace SheetsWithoutNumber
 
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddMemoryCache();
+
             services.AddTransient<ICharacterService, CharacterService>();
             services.AddTransient<IGameService, GameService>();
             services.AddTransient<IUserService, UserService>();
@@ -99,6 +101,10 @@ namespace SheetsWithoutNumber
                     endpoints.MapControllerRoute(
                         name: "default",
                         pattern: "{controller=Home}/{action=Index}/{id?}");
+                    endpoints.MapControllerRoute(
+                        name: "gameDetails",
+                        pattern: "Games/Details/{id}/{information}",
+                        defaults: new { controller = "Games", actions = "Details"});
                     endpoints.MapControllerRoute(
                         name: "areas",
                         pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SWN.Data;
 
 namespace SWN.Data.Migrations
 {
     [DbContext(typeof(SWNDbContext))]
-    partial class SWNDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210817154612_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -257,9 +259,6 @@ namespace SWN.Data.Migrations
 
                     b.Property<int>("CurrentXP")
                         .HasColumnType("int");
-
-                    b.Property<string>("DateCreated")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Dexterity")
                         .HasColumnType("int");

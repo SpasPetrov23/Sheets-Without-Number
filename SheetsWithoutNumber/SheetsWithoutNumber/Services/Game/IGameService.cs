@@ -15,8 +15,10 @@
 
         public bool Edit(int gameId, string name, string description, string gameImage, int maxPlayers);
 
-        public string Join(int gameId, string userId);
+        public GameDetailsModel Join(int gameId, string userId);
 
         public bool PlayerMaxIsValid(int gameId, int playersMax);
+
+        public GameDetailsModel Leave(int gameId, string userId);
     }
 }

@@ -47,7 +47,7 @@
 
             var data = services.GetRequiredService<SWNDbContext>();
 
-            data.Database.EnsureDeleted();
+            //data.Database.EnsureDeleted();
             data.Database.Migrate();
         }
 

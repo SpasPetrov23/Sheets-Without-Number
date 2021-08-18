@@ -39,7 +39,7 @@
             this.CreateMap<Background, CharacterBackgroundViewModel>();
 
             this.CreateMap<Game, GamePreviewModel>()
-                .ForMember(g => g.PlayersCurrent, cfg => cfg.MapFrom(u => u.Users.Count));
+                .ForMember(g => g.PlayersCurrent, cfg => cfg.MapFrom(g => g.Users.Count));
             
             this.CreateMap<GameDetailsModel, GameFormModel>();
 

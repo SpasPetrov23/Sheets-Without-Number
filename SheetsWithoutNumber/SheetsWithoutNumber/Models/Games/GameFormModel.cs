@@ -1,11 +1,12 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-using static SWN.Data.DataConstants.GameData;
-
-namespace SheetsWithoutNumber.Models.Games
+﻿namespace SheetsWithoutNumber.Models.Games
 {
-    public class GameFormModel
+    using SheetsWithoutNumber.Services.Game;
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    using static SWN.Data.DataConstants.GameData;
+
+    public class GameFormModel : IGameModel
     {
         [Required]
         [MaxLength(NameMaxLength)]

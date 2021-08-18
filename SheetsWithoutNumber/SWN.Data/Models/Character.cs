@@ -73,10 +73,12 @@
 
         public string CharacterImage { get; set; } = string.Empty;
 
+        public string DateCreated { get; set; } = string.Empty;
+
         /// <summary>
         /// Table Relations Below
         /// </summary>
-        
+
         [Required]
         public string OwnerId { get; init; }
 

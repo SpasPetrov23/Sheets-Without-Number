@@ -2,10 +2,14 @@
 {
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Caching.Memory;
     using SheetsWithoutNumber.Models.Games;
+    using SheetsWithoutNumber.Services.Character;
     using SheetsWithoutNumber.Services.User;
     using SWN.Data;
     using SWN.Data.Models;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -13,25 +17,55 @@
     {
         private readonly SWNDbContext data;
         private readonly IUserService users;
-        private readonly IConfigurationProvider mapper;
+        private readonly ICharacterService characters;
+        private readonly IMapper mapper;
+        private readonly IMemoryCache cache;
 
-        public GameService(IUserService users, SWNDbContext data, IMapper mapper)
+        public GameService(
+            IUserService users,
+            SWNDbContext data,
+            IMapper mapper,
+            IMemoryCache cache,
+            ICharacterService characters)
         {
             this.data = data;
             this.users = users;
-            this.mapper = mapper.ConfigurationProvider;
+            this.mapper = mapper;
+            this.cache = cache;
+            this.characters = characters;
         }
 
         public IEnumerable<GamePreviewModel> All(string currentUserId)
         {
-            var games = data
-               .Games
-               .ProjectTo<GamePreviewModel>(this.mapper)
-               .ToList();
+            //var games = data
+            //       .Games
+            //       .ProjectTo<GamePreviewModel>(this.mapper)
+            //       .ToList();
+            //
+            //foreach (var game in games)
+            //{
+            //    game.CurrentUserId = currentUserId;
+            //}
 
-            foreach (var game in games)
+            const string allGames = "All Games";
+            var games = this.cache.Get<List<GamePreviewModel>>(allGames);
+            
+            if (games == null)
             {
-                game.CurrentUserId = currentUserId;
+                games = data
+                   .Games
+                   .ProjectTo<GamePreviewModel>(this.mapper.ConfigurationProvider)
+                   .ToList();
+            
+                foreach (var game in games)
+                {
+                    game.CurrentUserId = currentUserId;
+                }
+            
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromSeconds(10));
+            
+                this.cache.Set(allGames, games, cacheOptions);
             }
 
             return games;
@@ -71,7 +105,9 @@
                     Description = g.Description,
                     GameImage = g.GameImage,
                     PlayersMax = g.PlayersMax,
-                    GameMasterId = g.GameMasterId
+                    GameMasterId = g.GameMasterId,
+                    Users = g.Users,
+                    Characters = g.Characters
                 })
                 .FirstOrDefault();
 
@@ -85,13 +121,22 @@
                 .Where(g => g.Id == gameId)
                 .FirstOrDefault();
 
+            var charactersToDelete = new List<Character>();
+
             foreach (var character in data.Characters)
             {
                 if (character.GameId == gameId)
                 {
-                    data.Characters.Remove(character);
+                    charactersToDelete.Add(character);
                 }
             }
+
+            foreach (var character in charactersToDelete)
+            {
+                this.characters.Delete(character.Id);
+            }
+
+            charactersToDelete.Clear();
 
             data.Games.Remove(game);
 
@@ -119,7 +164,7 @@
             return true;
         }
 
-        public string Join(int gameId, string userId)
+        public GameDetailsModel Join(int gameId, string userId)
         {
             var game = data.Games.FirstOrDefault(g => g.Id == gameId);
 
@@ -129,14 +174,37 @@
 
             data.SaveChanges();
 
-            return userId;
+            var gameModel = this.mapper.Map<GameDetailsModel>(game);
+
+            return gameModel;
+        }
+
+        public GameDetailsModel Leave(int gameId, string userId)
+        {
+            var game = data.Games
+                .Include(g => g.Users)
+                .Include(g => g.Characters)
+                .FirstOrDefault(g => g.Id == gameId);
+
+            var currentUser = this.users.GetUserById(userId);
+            var userGameCharacter = game.Characters.Where(c => c.OwnerId == userId).FirstOrDefault();
+
+            game.Users.Remove(currentUser);
+            game.Characters.Remove(userGameCharacter);
+            data.Characters.Remove(userGameCharacter);
+
+            data.SaveChanges();
+
+            var gameModel = this.mapper.Map<GameDetailsModel>(game);
+
+            return gameModel;
         }
 
         public bool PlayerMaxIsValid(int gameId, int playersMax)
         {
             var game = data.Games
                 .Where(g => g.Id == gameId)
-                .ProjectTo<GameEditServiceModel>(this.mapper)
+                .ProjectTo<GameEditServiceModel>(this.mapper.ConfigurationProvider)
                 .FirstOrDefault();
 
             if (game.Users.Count > playersMax)
