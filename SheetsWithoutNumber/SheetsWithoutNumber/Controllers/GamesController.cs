@@ -73,7 +73,9 @@
 
             var game = this.games.Details(gameId);
 
-            if (game.GameMasterId != currentUserId)
+            var isAdmin = User.IsAdmin();
+
+            if (game.GameMasterId != currentUserId && !isAdmin)
             {
                 return Unauthorized();
             }
@@ -106,6 +108,15 @@
         [Authorize]
         public IActionResult Delete(int gameId)
         {
+            var currentUserId = this.User.GetId();
+
+            var game = this.games.Details(gameId);
+
+            if (game.GameMasterId != currentUserId || !User.IsAdmin())
+            {
+                return Unauthorized();
+            }
+
             games.Delete(gameId);
 
             return RedirectToAction("All", "Games");

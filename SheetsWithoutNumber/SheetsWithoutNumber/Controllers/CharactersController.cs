@@ -87,7 +87,7 @@
 
             var character = this.characters.Details(characterId, userId);
 
-            if (character.OwnerId != character.UserId && character.Game.GameMasterId != userId)
+            if (character.OwnerId != character.UserId && character.Game.GameMasterId != userId && !User.IsAdmin())
             {
                 return Unauthorized();
             }
