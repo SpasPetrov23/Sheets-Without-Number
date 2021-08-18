@@ -15,6 +15,8 @@
 
         public int Delete(int characterId);
 
+        public bool ClearCharacterRelations(int characterId);
+
         public IEnumerable<CharacterClassViewModel> GetCharacterClasses();
 
         public IEnumerable<CharacterBackgroundViewModel> GetCharacterBackgrounds();

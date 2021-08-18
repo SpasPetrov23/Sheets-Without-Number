@@ -1,7 +1,5 @@
 ﻿namespace SWN.Tests.Services
 {
-    using AutoMapper;
-    using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Services.Character;
     using SWN.Data.Models;
     using SWN.Tests.Mocks;
@@ -18,7 +16,7 @@
             var characterService = GetCharacterService();
 
             //Act
-            var createdCharacterId = characterService.Create("John Doe", 1, 1, "https://www.hiveworkshop.com/data/avatars/m/186/186388.jpg?1605866855", 9, 9, 9, 9, 9, 9, "Terra", "Human", "1", 1);
+            var createdCharacterId = characterService.Create("John Doe", 1, 1, "https://www.hiveworkshop.com/data/avatars/m/186/186388.jpg?1605866855", 9, 9, 9, 9, 9, 9, "Terra", "Human", "Test bio", "1", 1);
             var character = characterService.GetCharacterById(createdCharacterId);
 
             //Assert
@@ -279,6 +277,19 @@
         }
 
         [Fact]
+        public void ClearCharacterRelationsShouldReturnTrue()
+        {
+            //Arrange
+            var characterService = GetCharacterService();
+
+            //Act
+            var areCharacterRelationsCleared = characterService.ClearCharacterRelations(1);
+
+            //Assert
+            Assert.True(areCharacterRelationsCleared);
+        }
+
+        [Fact]
         public void LevelShouldReturnCorrectLevel()
         {
             //Arrange
@@ -350,11 +361,16 @@
                 GameId = 1
             });
 
+            data.CharactersSkills.Add(new CharactersSkills { Id = 1, SkillId = 1, CharacterId = 5 });
+            data.CharactersFoci.Add(new CharactersFoci { Id = 1, FocusId = 1, CharacterId = 5 });
+            data.CharactersEquipments.Add(new CharactersEquipments { Id = 1, EquipmentId = 1, CharacterId = 5 });
+            data.CharactersMeleeWeapons.Add(new CharactersMeleeWeapons { Id = 1, MeleeWeaponId = 1, CharacterId = 5 });
+            data.CharactersRangedWeapons.Add(new CharactersRangedWeapons { Id = 1, RangedWeaponId = 1, CharacterId = 5 });
+            data.CharactersArmors.Add(new CharactersArmors { Id = 1, ArmorId = 1, CharacterId = 5 });
+
             data.Games.Add(game1);
 
             data.SaveChanges();
-
-            var test = data.Characters;
 
             return new CharacterService(data, mapper);
         }

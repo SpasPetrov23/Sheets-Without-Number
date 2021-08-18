@@ -438,7 +438,7 @@
             return speed;
         }
 
-        public void ClearCharacterRelations(int characterId)
+        public bool ClearCharacterRelations(int characterId)
         {
             var characterSkills = data.CharactersSkills
                 .Where(cs => cs.CharacterId == characterId)
@@ -488,6 +488,18 @@
             {
                 data.CharactersRangedWeapons.Remove(characterRangedWeapon);
             }
+
+            if (!characterSkills.Any() && 
+                !characterFoci.Any() &&
+                !characterEquipments.Any() &&
+                !characterMeleeWeapons.Any() &&
+                !characterRangedWeapons.Any() &&
+                !characterEquipments.Any())
+            {
+                return true;
+            }
+
+            return false;
         }
 
         public int CalculateMaxEffort(
