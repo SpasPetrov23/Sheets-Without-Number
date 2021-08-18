@@ -1,6 +1,5 @@
 ﻿namespace SheetsWithoutNumber.Models.Users
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     using static SWN.Data.DataConstants.UserData;

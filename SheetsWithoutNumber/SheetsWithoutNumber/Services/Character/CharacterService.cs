@@ -9,11 +9,9 @@
     using AutoMapper;
     using AutoMapper.QueryableExtensions;
 
-    using static SWN.Data.DataConstants;
     using static SWN.Data.DataConstants.ClassData;
     using static SWN.Data.DataConstants.FocusData;
     using static SWN.Data.DataConstants.ArmorData;
-    using SheetsWithoutNumber.Models.Games;
 
     public class CharacterService : ICharacterService
     {
@@ -26,7 +24,7 @@
             this.mapper = mapper;
         }
 
-        public int Create(string name, int backgroundId, int classId, string characterImage, int strength, int constitution, int dexterity, int wisdom, int intelligence, int charisma, string homeworld, string species, string ownerId, int gameId)
+        public int Create(string name, int backgroundId, int classId, string characterImage, int strength, int constitution, int dexterity, int wisdom, int intelligence, int charisma, string homeworld, string species, string bio, string ownerId, int gameId)
         {
             var character = new Character
             {
@@ -42,6 +40,7 @@
                 Charisma = charisma,
                 Homeworld = homeworld,
                 Species = species,
+                Bio = bio,
                 OwnerId = ownerId,
                 GameId = gameId,
                 DateCreated = DateTime.Now.ToString("d")
@@ -76,7 +75,7 @@
             return character;
         }
 
-        public bool Edit(int characterId, string name, string characterImage, int strength, int dexterity, int constitution, int intelligence, int charisma, int wisdom, int currentXP, int hitPoints, int maxHitPoints, int effort, int systemStrain, int credits)
+        public bool Edit(int characterId, string name, string characterImage, int strength, int dexterity, int constitution, int intelligence, int charisma, int wisdom, int currentXP, int hitPoints, int maxHitPoints, int effort, int systemStrain, int credits, string bio)
         {
             var characterData = this.data.Characters.Find(characterId);
 
@@ -100,6 +99,7 @@
             characterData.Effort = effort;
             characterData.SystemStrain = systemStrain;
             characterData.Credits = credits;
+            characterData.Bio = bio;
 
             this.data.SaveChanges();
 

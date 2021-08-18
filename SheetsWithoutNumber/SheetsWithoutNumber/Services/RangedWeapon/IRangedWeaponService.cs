@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SheetsWithoutNumber.Services.RangedWeapon
+﻿namespace SheetsWithoutNumber.Services.RangedWeapon
 {
+    using System.Collections.Generic;
+
     public interface IRangedWeaponService
     {
         public int Add(int characterId, int rangedWeaponId, int ammo, string location);

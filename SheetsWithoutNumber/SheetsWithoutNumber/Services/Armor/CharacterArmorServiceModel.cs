@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SheetsWithoutNumber.Services.Armor
+﻿namespace SheetsWithoutNumber.Services.Armor
 {
     public class CharacterArmorServiceModel
     {

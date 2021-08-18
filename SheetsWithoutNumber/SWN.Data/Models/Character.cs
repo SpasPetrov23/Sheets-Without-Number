@@ -71,6 +71,8 @@
 
         public string Goal { get; set; } = string.Empty;
 
+        public string Bio { get; set; } = string.Empty;
+
         public string CharacterImage { get; set; } = string.Empty;
 
         public string DateCreated { get; set; } = string.Empty;

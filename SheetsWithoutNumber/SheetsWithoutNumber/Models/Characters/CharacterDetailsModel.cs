@@ -53,6 +53,8 @@
 
         public string CharacterImage { get; init; }
 
+        public string Bio { get; init; }
+
         public int HitPoints { get; init; }
 
         public int MaxHitPoints { get; init; }

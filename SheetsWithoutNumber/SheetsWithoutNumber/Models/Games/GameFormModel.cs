@@ -1,7 +1,6 @@
 ﻿namespace SheetsWithoutNumber.Models.Games
 {
     using SheetsWithoutNumber.Services.Game;
-    using System;
     using System.ComponentModel.DataAnnotations;
 
     using static SWN.Data.DataConstants.GameData;

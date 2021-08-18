@@ -37,12 +37,12 @@
         <br />
 
         <div class="d-flex">
-            <div class="col-9" style="padding-left:0px; padding-right:7.5px">
+            <div class="col-10" style="padding-left:7.5px; padding-right:7.5px">
                 <partial name="_CharacterMainInfoView" model="@Model" />
                 <partial name="_CharacterStatusInfoView" model="@Model" />
             </div>
 
-            <div class="col-3" style="padding-left:7.5px; padding-right:0px">
+            <div class="col-2" style="padding-left:7.5px; padding-right:0px">
                 <partial name="_CharacterSavingThrowsView" model="@Model" />
             </div>
         </div>
@@ -74,5 +74,22 @@
     </div>
     <div class="col-4">
         <partial name="_CharacterEquipmentView" model="@Model" />
+    </div>
+</div>
+
+<div class="d-flex">
+    <div class="col-12"  style="margin-top:20px">
+        <div class="table table-responsive">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr class="text-center" style="background-color: lightblue">
+                        <td><b>Bio</b></td>
+                    </tr>
+                    <tr class="text-justify">
+                        <td>@Model.Bio</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

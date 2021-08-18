@@ -60,7 +60,7 @@
 
             var characterOwnerId = this.User.GetId();
 
-            this.characters.Create(characterModel.Name, characterModel.BackgroundId, characterModel.ClassId, characterModel.CharacterImage, characterModel.Strength, characterModel.Constitution, characterModel.Dexterity, characterModel.Wisdom, characterModel.Intelligence, characterModel.Charisma, characterModel.Homeworld, characterModel.Species, characterOwnerId, gameId);
+            this.characters.Create(characterModel.Name, characterModel.BackgroundId, characterModel.ClassId, characterModel.CharacterImage, characterModel.Strength, characterModel.Constitution, characterModel.Dexterity, characterModel.Wisdom, characterModel.Intelligence, characterModel.Charisma, characterModel.Homeworld, characterModel.Species, characterModel.Bio, characterOwnerId, gameId);
 
             return RedirectToAction("Mine", "Characters");
         }
@@ -111,7 +111,7 @@
                 return View(characterEdit);
             }
 
-            this.characters.Edit(characterId, characterEdit.Name, characterEdit.CharacterImage, characterEdit.Strength, characterEdit.Dexterity, characterEdit.Constitution, characterEdit.Intelligence, characterEdit.Charisma, characterEdit.Wisdom, characterEdit.CurrentXP, characterEdit.HitPoints, characterEdit.MaxHitPoints, characterEdit.Effort, characterEdit.SystemStrain, characterEdit.Credits);
+            this.characters.Edit(characterId, characterEdit.Name, characterEdit.CharacterImage, characterEdit.Strength, characterEdit.Dexterity, characterEdit.Constitution, characterEdit.Intelligence, characterEdit.Charisma, characterEdit.Wisdom, characterEdit.CurrentXP, characterEdit.HitPoints, characterEdit.MaxHitPoints, characterEdit.Effort, characterEdit.SystemStrain, characterEdit.Credits, characterEdit.Bio);
 
             return RedirectToAction("Details", "Characters", new { characterId = characterId });
         }

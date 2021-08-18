@@ -1,5 +1,3 @@
-using System;
-
 namespace SheetsWithoutNumber.Models
 {
     public class ErrorViewModel

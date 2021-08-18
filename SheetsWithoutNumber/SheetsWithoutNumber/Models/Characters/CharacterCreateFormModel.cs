@@ -43,6 +43,9 @@
         [Display(Name = "Image")]
         public string CharacterImage { get; init; }
 
+        [Required]
+        public string Bio { get; init; }
+
         public int ClassId { get; init; }
 
         public IEnumerable<CharacterClassViewModel> Classes { get; set; }

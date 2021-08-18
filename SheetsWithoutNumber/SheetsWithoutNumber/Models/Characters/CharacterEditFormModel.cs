@@ -61,5 +61,8 @@
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Credits cannot be lower than 0.")]
         public int Credits { get; init; }
+
+        [Required]
+        public string Bio { get; init; }
     }
 }
