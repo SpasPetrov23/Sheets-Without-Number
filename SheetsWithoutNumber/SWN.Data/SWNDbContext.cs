@@ -48,14 +48,6 @@
 
         public DbSet<Focus> Foci { get; init; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Server=DESKTOP-5O8U2TO;Database=SheetsWithoutNumber;Integrated Security = true;");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Session>().HasKey(s => new { s.UserId, s.GameId });

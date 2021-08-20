@@ -47,8 +47,9 @@
 
             var data = services.GetRequiredService<SWNDbContext>();
 
+            data.Database.EnsureCreated();
             //data.Database.EnsureDeleted();
-            data.Database.Migrate();
+            //data.Database.Migrate();
         }
 
         private static void SeedAdministrators(IServiceProvider services)
