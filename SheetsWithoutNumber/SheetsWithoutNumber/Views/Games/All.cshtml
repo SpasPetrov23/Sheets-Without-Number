@@ -1,20 +1,40 @@
-﻿@model IEnumerable<GamePreviewModel>
+﻿@model AllGamesQueryModel
 
 <section>
     <div class="row mx-1">
         <div class="list-group col-12">
             <div class="card card-image card" style="background-image: url(https://wallpaperaccess.com/full/45416.jpg); ">
-                <div class="text-white text-center align-items-center rgba-black-strong py-5 px-3">
+                <div class="text-white text-center align-items-center rgba-black-strong py-4 px-3">
                     <div>
                         <h2 class="card-title py-3 font-weight-bold"><strong>Sheets Without Number</strong></h2>
                         <p>
                             Below you can find a list of all currently ongoing games.
                         </p>
-                        <input type="button" class="btn btn-info" style="width:200px" value="Create Game" onclick="location.href='@Url.Action("Create", "Games")'" />
+
+                        <input type="button" class="btn btn-info col-2" value="Create Game" onclick="location.href='@Url.Action("Create", "Games")'" />
+                        <form method="get">
+                            <div class="d-flex mb-2">
+                                <div class="offset-3 col-3">
+                                    <label asp-for="SearchTerm"></label>
+                                    <input asp-for="SearchTerm" class="form-control" placeholder="Search for games..." />
+                                </div>
+
+                                <div class="col-3">
+                                    <label asp-for="Sorting"></label>
+                                    <select asp-for="Sorting" class="form-control">
+                                        <option value="0" selected>Date Created</option>
+                                        <option value="1">Open Slots</option>
+                                        <option value="2">Game Master</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <input type="submit" class="btn btn-info col-1" style="height: calc(1.5em + .75rem + 2px)" value="Search" />
+                        </form>
                     </div>
                 </div>
 
-                @foreach (var gamePreview in Model)
+                @foreach (var gamePreview in Model.Games)
                 {
                     <a asp-controller="Games" asp-action="Details" asp-route-gameId="@gamePreview.Id" asp-route-information="@gamePreview.GetGameUrlInfo()" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div class="d-flex justify-content-between">

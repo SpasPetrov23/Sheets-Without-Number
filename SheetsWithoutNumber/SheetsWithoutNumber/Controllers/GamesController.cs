@@ -6,6 +6,7 @@
     using SheetsWithoutNumber.Infrastructure;
     using SheetsWithoutNumber.Models.Games;
     using SheetsWithoutNumber.Services.Game;
+    using System.Linq;
 
     public class GamesController : Controller
     {
@@ -40,17 +41,35 @@
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult All()
+        public IActionResult All(string searchTerm, GameSorting sorting)
         {
-            var currentUserId = User.Identity.IsAuthenticated 
-                ? this.User.GetId() 
+            var currentUserId = User.Identity.IsAuthenticated
+                ? this.User.GetId()
                 : null;
 
             ViewBag.UserIsSignedIn = User.Identity.IsAuthenticated;
 
             var allGames = this.games.All(currentUserId);
 
-            return View(allGames);
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                allGames = allGames.Where(g =>
+                g.Name.ToLower().Contains(searchTerm.ToLower()) ||
+                g.Description.ToLower().Contains(searchTerm.ToLower()));
+            }
+
+            allGames = sorting switch
+            {
+                GameSorting.DateCreated => allGames.OrderBy(g => g.Id),
+                GameSorting.OpenSlots => allGames.OrderByDescending(g => g.PlayersMax - g.PlayersCurrent),
+                GameSorting.GameMaster => allGames.OrderBy(g => g.GameMasterId),
+                _ => allGames.OrderByDescending(g => g.Id)
+            };
+
+            return View(new AllGamesQueryModel
+            {
+                Games = allGames
+            });
         }
 
         [Authorize]
@@ -101,7 +120,7 @@
 
             this.games.Edit(gameId, game.Name, game.Description, game.GameImage, game.PlayersMax);
 
-            return RedirectToAction("Details", "Games", new { gameId = gameId, information = game.GetGameUrlInfo()});
+            return RedirectToAction("Details", "Games", new { gameId = gameId, information = game.GetGameUrlInfo() });
         }
 
 
