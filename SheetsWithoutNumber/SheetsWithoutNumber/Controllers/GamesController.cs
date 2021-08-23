@@ -41,7 +41,7 @@
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult All(string searchTerm, GameSorting sorting)
+        public IActionResult All([FromQuery]AllGamesQueryModel query)
         {
             var currentUserId = User.Identity.IsAuthenticated
                 ? this.User.GetId()
@@ -49,27 +49,17 @@
 
             ViewBag.UserIsSignedIn = User.Identity.IsAuthenticated;
 
-            var allGames = this.games.All(currentUserId);
+            var allGames = this.games.All(
+                currentUserId,
+                query.Sorting,
+                query.SearchTerm,
+                AllGamesQueryModel.GamesPerPage,
+                query.CurrentPage);
 
-            if (!string.IsNullOrWhiteSpace(searchTerm))
-            {
-                allGames = allGames.Where(g =>
-                g.Name.ToLower().Contains(searchTerm.ToLower()) ||
-                g.Description.ToLower().Contains(searchTerm.ToLower()));
-            }
+            query.Games = allGames.Games;
+            query.TotalGames = allGames.TotalGames;
 
-            allGames = sorting switch
-            {
-                GameSorting.DateCreated => allGames.OrderBy(g => g.Id),
-                GameSorting.OpenSlots => allGames.OrderByDescending(g => g.PlayersMax - g.PlayersCurrent),
-                GameSorting.GameMaster => allGames.OrderBy(g => g.GameMasterId),
-                _ => allGames.OrderByDescending(g => g.Id)
-            };
-
-            return View(new AllGamesQueryModel
-            {
-                Games = allGames
-            });
+            return View(query);
         }
 
         [Authorize]

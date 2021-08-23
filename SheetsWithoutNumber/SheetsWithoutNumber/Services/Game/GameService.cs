@@ -35,40 +35,51 @@
             this.characters = characters;
         }
 
-        public IEnumerable<GamePreviewModel> All(string currentUserId)
+        public GameQueryServiceModel All(
+            string currentUserId,
+            GameSorting sorting,
+            string searchTerm,
+            int gamesPerPage,
+            int currentPage)
         {
-            //var games = data
-            //       .Games
-            //       .ProjectTo<GamePreviewModel>(this.mapper)
-            //       .ToList();
-            //
-            //foreach (var game in games)
-            //{
-            //    game.CurrentUserId = currentUserId;
-            //}
-
-            const string allGames = "All Games";
-            var games = this.cache.Get<List<GamePreviewModel>>(allGames);
-            
-            if (games == null)
-            {
-                games = data
+            var gamesQuery = data
                    .Games
-                   .ProjectTo<GamePreviewModel>(this.mapper.ConfigurationProvider)
-                   .ToList();
-            
-                foreach (var game in games)
-                {
-                    game.CurrentUserId = currentUserId;
-                }
-            
-                var cacheOptions = new MemoryCacheEntryOptions()
-                    .SetAbsoluteExpiration(TimeSpan.FromSeconds(10));
-            
-                this.cache.Set(allGames, games, cacheOptions);
+                   .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                gamesQuery = gamesQuery
+                    .Where(g =>
+                        g.Name.ToLower().Contains(searchTerm.ToLower()) ||
+                        g.Description.ToLower().Contains(searchTerm.ToLower()));
             }
 
-            return games;
+            gamesQuery = sorting switch
+            {
+                GameSorting.DateCreated => gamesQuery.OrderBy(g => g.Id),
+                GameSorting.OpenSlots => gamesQuery.OrderByDescending(g => g.Id), //Adjust this sorting
+                GameSorting.GameMaster => gamesQuery.OrderBy(g => g.GameMasterId),
+                _ => gamesQuery.OrderByDescending(g => g.Id)
+            };
+
+            var games = gamesQuery
+                .Skip((currentPage - 1) * gamesPerPage)
+                .Take(gamesPerPage)
+                .ProjectTo<GamePreviewModel>(this.mapper.ConfigurationProvider)
+                .ToList();
+
+            foreach (var game in games)
+            {
+                game.CurrentUserId = currentUserId;
+            }
+
+            var totalGames = gamesQuery.Count();
+
+            return new GameQueryServiceModel
+            {
+                Games = games,
+                TotalGames = totalGames
+            };
         }
 
         public int Create(string name, string description, string gameImage, int maxPlayers, string gameMasterId)

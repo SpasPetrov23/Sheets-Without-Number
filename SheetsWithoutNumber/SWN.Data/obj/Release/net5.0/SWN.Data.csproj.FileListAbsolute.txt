@@ -1,0 +1,15 @@
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\bin\Release\net5.0\SWN.Data.deps.json
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\bin\Release\net5.0\SWN.Data.runtimeconfig.json
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\bin\Release\net5.0\SWN.Data.runtimeconfig.dev.json
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\bin\Release\net5.0\SWN.Data.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\bin\Release\net5.0\ref\SWN.Data.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\bin\Release\net5.0\SWN.Data.pdb
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\obj\Release\net5.0\SWN.Data.csproj.AssemblyReference.cache
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\obj\Release\net5.0\SWN.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\obj\Release\net5.0\SWN.Data.AssemblyInfoInputs.cache
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\obj\Release\net5.0\SWN.Data.AssemblyInfo.cs
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\obj\Release\net5.0\SWN.Data.csproj.CoreCompileInputs.cache
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\obj\Release\net5.0\SWN.Data.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\obj\Release\net5.0\ref\SWN.Data.dll
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\obj\Release\net5.0\SWN.Data.pdb
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SWN.Data\obj\Release\net5.0\SWN.Data.genruntimeconfig.cache

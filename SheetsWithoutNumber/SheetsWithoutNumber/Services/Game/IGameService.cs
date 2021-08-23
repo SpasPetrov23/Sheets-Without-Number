@@ -5,7 +5,12 @@
 
     public interface IGameService
     {
-        public IEnumerable<GamePreviewModel> All(string currentUserId);
+        public GameQueryServiceModel All(
+            string currentUserId,
+            GameSorting sorting,
+            string searchTerm,
+            int gamesPerPage,
+            int currentPage);
 
         public int Create(string name, string description, string gameImage, int maxPlayers, string gameMasterId);
 
