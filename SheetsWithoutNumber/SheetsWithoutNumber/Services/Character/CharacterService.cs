@@ -75,7 +75,7 @@
             return character;
         }
 
-        public bool Edit(int characterId, string name, string characterImage, int strength, int dexterity, int constitution, int intelligence, int charisma, int wisdom, int currentXP, int hitPoints, int maxHitPoints, int effort, int systemStrain, int credits, string bio)
+        public bool Edit(int characterId, CharacterEditFormModel characterEdit)
         {
             var characterData = this.data.Characters.Find(characterId);
 
@@ -84,22 +84,8 @@
                 return false;
             }
 
-            characterData.Name = name;
-            characterData.CharacterImage = characterImage;
-            characterData.Strength = strength;
-            characterData.Dexterity = dexterity;
-            characterData.Constitution = constitution;
-            characterData.Intelligence = intelligence;
-            characterData.Charisma = charisma;
-            characterData.Wisdom = wisdom;
-            characterData.CurrentXP = currentXP;
-            characterData.Level = this.CalculateLevel(currentXP);
-            characterData.HitPoints = hitPoints;
-            characterData.MaxHitPoints = maxHitPoints;
-            characterData.Effort = effort;
-            characterData.SystemStrain = systemStrain;
-            characterData.Credits = credits;
-            characterData.Bio = bio;
+            characterData = this.mapper.Map(characterEdit, characterData);
+            characterData.Level = this.CalculateLevel(characterEdit.CurrentXP);
 
             this.data.SaveChanges();
 

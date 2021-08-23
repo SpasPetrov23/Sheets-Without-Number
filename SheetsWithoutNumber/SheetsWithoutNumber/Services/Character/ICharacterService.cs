@@ -11,7 +11,7 @@
 
         public CharacterDetailsModel Details(int characterId, string userId);
 
-        public bool Edit(int characterId, string name, string characterImage, int strength, int dexterity, int constitution, int intelligence, int charisma, int wisdom, int currentXP, int hitPoints, int maxHitPoints, int effort, int systemStrain, int credits, string bio);
+        public bool Edit(int characterId, CharacterEditFormModel characterEdit);
 
         public int Delete(int characterId);
 

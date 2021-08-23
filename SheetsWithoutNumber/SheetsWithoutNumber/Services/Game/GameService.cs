@@ -44,6 +44,7 @@
         {
             var gamesQuery = data
                    .Games
+                   .Include(g => g.Users)
                    .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(searchTerm))
@@ -57,7 +58,7 @@
             gamesQuery = sorting switch
             {
                 GameSorting.DateCreated => gamesQuery.OrderBy(g => g.Id),
-                GameSorting.OpenSlots => gamesQuery.OrderByDescending(g => g.Id), //Adjust this sorting
+                GameSorting.OpenSlots => gamesQuery.OrderByDescending(g => g.PlayersMax - g.Users.Count),
                 GameSorting.GameMaster => gamesQuery.OrderBy(g => g.GameMasterId),
                 _ => gamesQuery.OrderByDescending(g => g.Id)
             };

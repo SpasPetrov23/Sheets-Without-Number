@@ -24,6 +24,8 @@
         {
             this.CreateMap<CharacterDetailsModel, CharacterEditFormModel>();
 
+            this.CreateMap<CharacterEditFormModel, Character>();
+
             this.CreateMap<Character, CharacterListingModel>()
                 .ForMember(c => c.Class, cfg => cfg.MapFrom(c => c.Class.Name))
                 .ForMember(c => c.Background, cfg => cfg.MapFrom(c => c.Background.Name));
