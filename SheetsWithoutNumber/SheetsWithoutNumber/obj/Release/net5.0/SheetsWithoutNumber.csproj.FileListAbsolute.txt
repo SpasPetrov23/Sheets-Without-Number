@@ -437,3 +437,4 @@ C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Re
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Release\net5.0\ref\SheetsWithoutNumber.dll
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Release\net5.0\SheetsWithoutNumber.pdb
 C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Release\net5.0\SheetsWithoutNumber.genruntimeconfig.cache
+C:\Users\Spas\SheetsWithoutNumber\SheetsWithoutNumber\SheetsWithoutNumber\obj\Release\net5.0\Razor\Views\Errors\Index.cshtml.g.cs
