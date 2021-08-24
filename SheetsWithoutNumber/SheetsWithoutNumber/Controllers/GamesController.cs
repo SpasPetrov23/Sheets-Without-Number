@@ -121,7 +121,7 @@
 
             var game = this.games.Details(gameId);
 
-            if (game.GameMasterId != currentUserId || !User.IsAdmin())
+            if (game.GameMasterId != currentUserId && !User.IsAdmin())
             {
                 return Unauthorized();
             }

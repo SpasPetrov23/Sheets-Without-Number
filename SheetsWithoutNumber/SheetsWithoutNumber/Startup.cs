@@ -93,6 +93,8 @@ namespace SheetsWithoutNumber
                 app.UseHsts();
             }
 
+            app.UseStatusCodePagesWithReExecute("/Errors/Index", "?statusCode={0}");
+
             app
                 .UseHttpsRedirection()
                 .UseStaticFiles()
