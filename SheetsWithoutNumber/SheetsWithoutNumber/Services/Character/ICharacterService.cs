@@ -5,7 +5,10 @@
 
     public interface ICharacterService
     {
-        public IEnumerable<CharacterListingModel> ByUser(string userId);
+        public CharacterQueryServiceModel ByUser(
+            string userId,
+            CharacterSorting sorting,
+            string className);
 
         public int Create(string name, int backgroundId, int classId, string characterImage, int strength, int constitution, int dexterity, int wisdom, int intelligence, int charisma, string homeworld, string species, string bio, string ownerId, int gameId);
 

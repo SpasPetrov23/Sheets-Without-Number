@@ -19,11 +19,16 @@
         }
 
         [Authorize]
-        public IActionResult Mine()
+        public IActionResult Mine([FromQuery]MyCharactersQueryModel query)
         {
-            var charactersList = this.characters.ByUser(this.User.GetId());
+            var charactersList = this.characters.ByUser(this.User.GetId(), query.Sorting, query.Class);
 
-            return View(charactersList);
+            var characterClasses = this.characters.GetCharacterClasses();
+
+            query.Characters = charactersList.Characters;
+            query.Classes = characterClasses;
+
+            return View(query);
         }
 
         [Authorize]

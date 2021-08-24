@@ -1,36 +1,67 @@
-﻿@model ICollection<CharacterListingModel>
+﻿@model MyCharactersQueryModel
 
 <h2 class="text-center">My Characters</h2>
-<hr />
+<div>
+    <form method="get">
+        <div class="d-flex justify-content-between text-center align-items-end mb-2">
+            <div class="d-flex">
+                <div class="col-6">
+                    <label asp-for="Class"></label>
+                    <select asp-for="Class" class="form-control">
+                        <option value="">Any</option>
+                        @foreach (var className in Model.Classes)
+                        {
+                            <option value="@className.Name">@className.Name</option>
+                        }
+                    </select>
+                </div>
 
-@if (Model.Any())
-{
-    @foreach (var classPreview in Model)
-    {
-        <div class="row">
-            <div class="card-deck">
-                <div class="card" style="width: 18rem">
-                    <img class="card-img flex-shrink-0" alt="Character Image" style="width: 100%; height: 350px; object-fit: cover" src="@classPreview.CharacterImage">
-                    <div class="card-body">
-                        <h4 class="card-title">@classPreview.Name</h4> <h5>[Level @classPreview.Level @classPreview.Background @classPreview.Class]</h5>
-                        <p class="card-text">
-                            <b>Homeworld:</b> @classPreview.Homeworld
-                            <div></div>
-                            <b>Species:</b> @classPreview.Species
-                        </p>
-                        <a asp-controller="Characters" asp-action="Details" asp-route-characterId="@classPreview.Id" class="btn btn-primary">View</a>
-                        <a class="btn btn-danger" data-toggle="modal" data-target="#deleteCharacterModal_@classPreview.Id">Delete</a>
-                        <partial name="_CharacterDeletePopupPartial" model="@classPreview" />
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Created on: @classPreview.DateCreated</small>
-                    </div>
+                <div class="col-6">
+                    <label asp-for="Sorting"></label>
+                    <select asp-for="Sorting" class="form-control">
+                        <option value="0" selected>Date Created</option>
+                        <option value="1">Class</option>
+                        <option value="2">Background</option>
+                        <option value="3">Level</option>
+                    </select>
                 </div>
             </div>
+
+            <input type="submit" class="btn btn-info col-1" style="height: calc(1.5em + .75rem + 2px)" value="Search" />
         </div>
-    }
+    </form>
+</div>
+
+<hr />
+
+@if (Model.Characters.Any())
+{
+<div class="row flex-wrap">
+        <div class="card-deck">
+    @foreach (var classPreview in Model.Characters)
+    {
+            <div class="card" style="width: 18rem">
+                <img class="card-img flex-shrink-0" alt="Character Image" style="width: 100%; height: 350px; object-fit: cover" src="@classPreview.CharacterImage">
+                <div class="card-body">
+                    <h4 class="card-title">@classPreview.Name</h4> <h5>[Level @classPreview.Level @classPreview.Background @classPreview.Class</h5>
+                    <p class="card-text">
+                        <b>Homeworld:</b> @classPreview.Homeworld
+                        <div></div>
+                        <b>Species:</b> @classPreview.Species
+                    </p>
+                    <a asp-controller="Characters" asp-action="Details" asp-route-characterId="@classPreview.Id" class="btn btn-primary">View</a>
+                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteCharacterModal_@classPreview.Id">Delete</a>
+                    <partial name="_CharacterDeletePopupPartial" model="@classPreview" />
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Created on: @classPreview.DateCreated</small>
+                </div>
+            </div>
+    } 
+        </div>
+</div>
 }
 else
 {
-    <h5 class="text-center">You don't have any characters at this time. You can create one by Joining a Game.</h5>
+    <h5 class="text-center">No characters to display. You can create one by Joining a Game.</h5>
 }

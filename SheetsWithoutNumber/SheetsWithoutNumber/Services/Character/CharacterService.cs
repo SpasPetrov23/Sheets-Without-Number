@@ -108,15 +108,39 @@
             return character.Id;
         }
 
-        public IEnumerable<CharacterListingModel> ByUser(string userId)
+        public CharacterQueryServiceModel ByUser(
+            string userId,
+            CharacterSorting sorting,
+            string className)
         {
-            var characters = data
+            var charactersQuery = data
                 .Characters
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(className))
+            {
+                charactersQuery = charactersQuery
+                    .Where(c => c.Class.Name == className);
+            }
+
+            charactersQuery = sorting switch
+            {
+                CharacterSorting.DateCreated => charactersQuery.OrderBy(c => c.DateCreated),
+                CharacterSorting.Class => charactersQuery.OrderBy(c => c.Class),
+                CharacterSorting.Background => charactersQuery.OrderBy(c => c.Background),
+                CharacterSorting.Level => charactersQuery.OrderBy(c => c.Level),
+                _ => charactersQuery.OrderBy(c => c.DateCreated)
+            };
+
+            var characters = charactersQuery
                 .Where(c => c.OwnerId == userId)
                 .ProjectTo<CharacterListingModel>(this.mapper.ConfigurationProvider)
                 .ToList();
 
-            return characters;
+            return new CharacterQueryServiceModel
+            { 
+                Characters = characters
+            };
         }
 
         public IEnumerable<CharacterClassViewModel> GetCharacterClasses()
